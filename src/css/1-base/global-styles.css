@@ -1,0 +1,56 @@
+@import 'tiny-css-reset';
+
+@layer base {
+	:root {
+		--default-gutter: var(--space-s);
+		--default-stack-space: 1.25em;
+	}
+
+	* {
+		text-underline-position: from-font;
+	}
+
+	*:focus {
+		outline: 2px dashed;
+		outline-offset: 3px;
+	}
+
+	[tabindex="-1"] {
+		outline: none;
+	}
+
+	body {
+		background-color: var(--color-surface-2);
+		color: var(--color-text-regular);
+		font-size: var(--text-0);
+		line-height: 1.5;
+	}
+
+	h1, h2, h3, .h1, .h2, .h3, em, strong {
+		color: var(--color-text-strong);
+	}
+
+	h1, .h1 {
+		font-size: var(--text-8);
+		letter-spacing: -0.02em;
+		line-height: 1;
+	}
+
+	h2, .h2 {
+		font-size: var(--text-4);
+		line-height: 1.125;
+	}
+
+	h3, .h3 {
+		font-size: var(--text-2);
+		line-height: 1.25;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	figure img {
+		margin-inline: auto;
+	}
+}
