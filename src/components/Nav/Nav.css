@@ -29,7 +29,6 @@
 @layer components {
 	.primary-nav {
 		inset-inline: 0;
-		padding-block: var(--space-s);
 		position: fixed;
 		top: 0;
 		z-index: 10;
@@ -40,6 +39,15 @@
 		height: 100vh;
 		height: 100lvh;
 		inset-inline: 0;
+	}
+
+	.primary-nav__inner {
+		padding-block: var(--space-s);
+	}
+
+	.open > .primary-nav__inner {
+		height: 100%;
+		height: 100dvh;
 		overflow-y: auto;
 		overscroll-behavior: none;
 	}
@@ -135,13 +143,22 @@
 			height: 100vh;
 			height: 100lvh;
 			inset-inline-end: auto;
-			padding: 0;
 			top: 0;
+		}
+
+		.primary-nav__inner,
+		.open > .primary-nav__inner {
+			height: 100%;
+			height: 100dvh;
+			padding: 0;
 		}
 
 		.primary-nav.open {
 			background-color: transparent;
-			overflow: visible;
+		}
+
+		.open > .primary-nav__inner {
+			overflow: initial;
 		}
 
 		.nav-toggle {

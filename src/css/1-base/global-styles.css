@@ -11,6 +11,7 @@
 
 	@screen xl {
 		:root {
+			--content-padding-block: var(--space-xl);
 			--content-padding-inline: var(--space-xl);
 		}
 	}
@@ -43,7 +44,6 @@
 	}
 
 	.content-wrapper {
-		margin-block-start: var(--space-xl);
 		margin-inline: auto;
 		max-inline-size: max-content;
 	}
@@ -56,16 +56,6 @@
 		.content {
 			padding-block-start: var(--content-padding-block);
 			padding-inline: var(--content-padding-inline);
-		}
-	}
-
-	@screen xl {
-		.content {
-			padding-block: var(--space-xl);
-		}
-
-		.content-wrapper {
-			margin-block-start: 0;
 		}
 	}
 
