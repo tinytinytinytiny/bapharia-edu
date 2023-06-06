@@ -47,7 +47,7 @@
 		.article-nav {
 			background-color: transparent;
 			border-radius: 0;
-			min-inline-size: var(--space-5xl);
+			min-inline-size: var(--space-5xl-fluid);
 			max-block-size: calc(100dvh - var(--content-padding-block) * 2);
 			overflow-y: auto;
 			padding: 0;

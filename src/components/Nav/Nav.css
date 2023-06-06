@@ -2,8 +2,8 @@
 	:root {
 		--nav-toggle-height: calc(var(--space-s) * 2 + 1lh);
 		--nav-toggle-content-offset: calc(var(--nav-toggle-height) + var(--space-xs));
-		--sidebar-width: calc(var(--space-2xl) + var(--space-s));
-		--sidebar-submenu-width: var(--space-5xl);
+		--sidebar-width: calc(var(--space-2xl-fluid) + var(--space-s-fluid));
+		--sidebar-submenu-width: var(--space-5xl-fluid);
 		--sidebar-content-offset: var(--sidebar-width);
 	}
 
@@ -15,6 +15,7 @@
 		.main-region {
 			margin-inline-start: var(--sidebar-content-offset);
 			margin-top: 0;
+			padding-inline-start: var(--space-2xs);
 		}
 	}
 
