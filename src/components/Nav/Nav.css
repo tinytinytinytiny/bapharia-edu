@@ -39,7 +39,7 @@
 		background-color: var(--color-surface-2);
 		height: 100vh;
 		height: 100lvh;
-		inset: 0;
+		inset-inline: 0;
 		overflow-y: auto;
 		overscroll-behavior: none;
 	}
@@ -209,7 +209,7 @@
 		.nav-submenu {
 			background-color: var(--color-surface-2);
 			height: 100vh;
-			height: 100dvh;
+			height: 100lvh;
 			font-size: 1rem;
 			inset-inline-start: var(--sidebar-width);
 			inline-size: var(--sidebar-submenu-width);
