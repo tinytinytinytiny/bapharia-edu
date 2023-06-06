@@ -120,5 +120,6 @@
 		font-size: inherit;
 		font-family: inherit;
 		outline: none;
+		touch-action: manipulation;
 	}
 }
