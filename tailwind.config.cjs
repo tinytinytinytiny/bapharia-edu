@@ -1,9 +1,9 @@
 const plugin = require('tailwindcss/plugin');
 
-const color = require('./src/design-tokens/colors.json');
-const fontSize = require('./src/design-tokens/font-sizes.cjs');
-const spacing = require('./src/design-tokens/spacing.cjs');
-const screens = require('./src/design-tokens/screen-sizes.json');
+const color = require('./src/assets/design-tokens/colors.json');
+const fontSize = require('./src/assets/design-tokens/font-sizes.cjs');
+const spacing = require('./src/assets/design-tokens/spacing.cjs');
+const screens = require('./src/assets/design-tokens/screen-sizes.json');
 
 function getTokens(tokens, prefix = '') {
 	const flatten = (obj) => {
@@ -45,6 +45,7 @@ function getTokens(tokens, prefix = '') {
 
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	important: false,
 	theme: {
 		screens,
 		colors: getTokens(color, 'color'),

@@ -1,0 +1,20 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import ArticleTitle from "@components/PageTitle/ArticleTitle.astro";
+import Article from "@components/Article/Article.astro";
+
+const { title, author, lastUpdatedDate } = Astro.props;
+---
+
+<BaseLayout title={title}>
+	<ArticleTitle
+		title={title}
+		author={author}
+		lastUpdatedDate={lastUpdatedDate}
+	/>
+	<div class="content">
+		<Article>
+			<slot />
+		</Article>
+	</div>
+</BaseLayout>

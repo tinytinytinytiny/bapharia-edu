@@ -1,0 +1,6 @@
+@import-glob '*/*.css';
+@import-glob '../components/*/*.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

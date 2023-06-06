@@ -1,0 +1,17 @@
+@layer components {
+	.button {
+		background-color: var(--color-accent);
+		border: 2px solid transparent;
+		border-radius: var(--border-radius);
+		color: var(--color-text-inverted);
+		font-weight: 600;
+		line-height: 1;
+		padding-inline: var(--space-s);
+		padding-block: var(--space-xs);
+	}
+
+	.button:focus {
+		border-color: var(--color-text-inverted);
+		outline: 2px solid var(--color-text-strong);
+	}
+}

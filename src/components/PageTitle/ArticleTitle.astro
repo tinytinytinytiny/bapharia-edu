@@ -1,0 +1,15 @@
+---
+const { title, author, lastUpdatedDate } = Astro.props;
+---
+
+<header class="page-title">
+	<div class="page-title__inner">
+		<h1>{title}</h1>
+		<div role="note" class="cluster gutter-2xs">
+			<p>By {author}</p>
+			<p class="font-normal" aria-hidden="true">•</p>
+			<p class="article-date">Last Updated {lastUpdatedDate}</p>
+		</div>
+	</div>
+	<img class="page-title__bg" src="images/banner.webp" alt />
+</header>

@@ -1,0 +1,31 @@
+---
+import NavItem from "./NavItem.astro";
+import NavItemToggle from "./NavItemToggle.svelte";
+
+const { url = "/", title, current = false, controls } = Astro.props;
+---
+
+<li class="nav-item">
+	{
+		current ? (
+			<NavItemToggle
+				client:load
+				url={url}
+				title={title}
+				current={current}
+				controls={controls}
+			>
+				<Fragment slot="icon">
+					<slot name="icon" />
+				</Fragment>
+				<slot />
+			</NavItemToggle>
+		) : (
+			<NavItem url={url} title={title} current={current}>
+				<Fragment slot="icon">
+					<slot name="icon" />
+				</Fragment>
+			</NavItem>
+		)
+	}
+</li>

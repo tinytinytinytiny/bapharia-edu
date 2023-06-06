@@ -1,0 +1,21 @@
+@layer components {
+	.sidebar {
+		--gutter: var(--default-gutter);
+		--sidebar-target-width: 20rem;
+		--sidebar-content-min-width: 50%;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gutter);
+	}
+
+	.sidebar > :first-child {
+		flex-basis: var(--sidebar-target-width);
+		flex-grow: 1;
+	}
+
+	.sidebar > :last-child {
+		flex-grow: 999;
+		max-width: 100%;
+		width: var(--sidebar-content-min-width);
+	}
+}

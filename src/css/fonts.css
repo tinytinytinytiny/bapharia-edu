@@ -1,0 +1,13 @@
+@font-face {
+	font-display: block;
+	font-family: 'Public Sans';
+	font-style: normal;
+	src: url('/fonts/PublicSans[wght].woff2') format('woff2-variations');
+}
+
+@font-face {
+	font-display: block;
+	font-family: 'Public Sans';
+	font-style: italic;
+	src: url('/fonts/PublicSans-Italic[wght].woff2') format('woff2-variations');
+}

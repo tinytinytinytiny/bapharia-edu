@@ -1,0 +1,79 @@
+---
+import navigationData from "@data/navigation";
+import NavItem from "./NavItem.astro";
+import NavItemDisclosure from "./NavItemDisclosure.astro";
+import Svg from "@jasikpark/astro-svg-loader";
+import { slugify } from "@utils";
+
+function isCurrentUrl(url) {
+	const rootPathName = "/" + Astro.url.pathname.split("/")[1];
+	return url === rootPathName;
+}
+---
+
+<nav class="primary-nav">
+	<button
+		aria-controls="main-menu"
+		aria-expanded="false"
+		class="nav-toggle button"
+		type="button"
+	>
+		Menu
+	</button>
+	<ul id="main-menu" role="list" class="nav-menu stack">
+		{
+			navigationData.map((item) =>
+				"children" in item ? (
+					<NavItemDisclosure
+						title={item.title}
+						url={item.url}
+						controls={`nav-${slugify(item.title)}-submenu`}
+						current={isCurrentUrl(item.url)}
+					>
+						<Svg slot="icon" src={item.icon} />
+						<ul
+							id={`nav-${slugify(item.title)}-submenu`}
+							class="nav-submenu stack"
+							role="list"
+						>
+							{item.children.map((child) => (
+								<li class="nav-submenu-item">
+									<a
+										href={child.url}
+										class="nav-submenu-item__link underline-on-hover"
+									>
+										{child.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</NavItemDisclosure>
+				) : (
+					<NavItem
+						title={item.title}
+						url={item.url}
+						current={isCurrentUrl(item.url)}
+					>
+						<Svg slot="icon" src={item.icon} />
+					</NavItem>
+				)
+			)
+		}
+	</ul>
+</nav>
+
+<script>
+	const nav = document.querySelector(".primary-nav");
+	const navToggle = document.querySelector(".nav-toggle");
+	let expanded = JSON.parse(navToggle.getAttribute("aria-expanded"));
+
+	navToggle.addEventListener("click", () => {
+		expanded = !expanded;
+		if (expanded) {
+			nav.classList.add("open");
+		} else {
+			nav.classList.remove("open");
+		}
+		navToggle.setAttribute("aria-expanded", expanded);
+	});
+</script>

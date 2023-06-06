@@ -1,0 +1,58 @@
+@layer components {
+	.article-nav {
+		background-color: var(--color-surface-0);
+		border-radius: var(--border-radius);
+		padding: var(--space-s-l);
+	}
+
+	.article-nav h2 {
+		font-size: var(--text--1);
+		margin-block-end: 1em;
+	}
+
+	.article-nav__list > li + li,
+	.article-nav__list li > ul > li + li {
+		margin-block-start: 0.75em;
+	}
+
+	.article-nav__list li > ul {
+		margin-block-start: 0.5em;
+		padding-inline-start: var(--space-s);
+	}
+
+	@screen sm {
+		.article-nav {
+			display: inline-block;
+		}
+	}
+
+	@screen md {
+		.article-nav {
+			font-size: 1rem;
+		}
+	}
+
+	@screen xl {
+		.article {
+			align-items: flex-start;
+			display: flex;
+			flex-direction: row-reverse;
+			gap: var(--space-xl);
+		}
+
+		.article > :last-child {
+			flex-grow: 999;
+		}
+
+		.article-nav {
+			background-color: transparent;
+			border-radius: 0;
+			min-inline-size: var(--space-5xl);
+			max-block-size: calc(100dvh - var(--content-padding-block) * 2);
+			overflow-y: auto;
+			padding: 0;
+			position: sticky;
+			top: var(--content-padding-block);
+		}
+	}
+}

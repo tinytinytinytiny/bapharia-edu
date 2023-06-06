@@ -3,5 +3,6 @@
 	"md": "46rem",
 	"lg": "62rem",
 	"xl": "78rem",
-	"2xl": "94rem"
+	"2xl": "94rem",
+	"3xl": "110rem"
 }

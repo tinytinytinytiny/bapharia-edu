@@ -1,0 +1,33 @@
+---
+import "../css/fonts.css";
+import "../css/global.css";
+import navigationData from "@data/navigation";
+import Nav from "@components/Nav/Nav.astro";
+
+const { title } = Astro.props;
+const navExpandedRoutes = navigationData.filter((x) => "children" in x);
+const rootPathName = "/" + Astro.url.pathname.split("/")[1];
+const isSubmenuOpen = Boolean(
+	navExpandedRoutes.find((x) => x.url === rootPathName)
+);
+---
+
+<html lang="en" class:list={[{ "submenu-expanded": isSubmenuOpen }]}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title ? `${title} - Bapharia.edu` : "Bapharia.edu"}</title>
+	</head>
+	<body>
+		<header>
+			<Nav />
+		</header>
+		<div class="main-region stack stack-space-s">
+			<main class="stack stack-space-s">
+				<slot />
+			</main>
+		</div>
+	</body>
+</html>

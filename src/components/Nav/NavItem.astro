@@ -1,0 +1,16 @@
+---
+const { url = "/", title, current = false } = Astro.props;
+---
+
+<li class="nav-item">
+	<a
+		class="nav-item__link underline-on-hover"
+		href={url}
+		aria-current={current ? "page" : "false"}
+	>
+		<div class="nav-item__icon-container">
+			<slot name="icon" />
+		</div>
+		<span>{title}</span>
+	</a>
+</li>

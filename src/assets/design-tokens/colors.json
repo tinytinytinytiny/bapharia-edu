@@ -4,8 +4,8 @@
 		"surface": "oklch(89.5% 0.08 255)"
 	},
 	"scrim": {
-		"linear": "linear-gradient(oklch(20% 0.06 255 / 90%), oklch(20% 0.06 255 / 50%))",
-		"radial": "radial-gradient(oklch(20% 0.06 255 / 90%), oklch(20% 0.06 255 / 50%) 200%)"
+		"linear": "linear-gradient(90deg, oklch(20% 0.06 255 / 90%), oklch(20% 0.06 255 / 50%) 150%)",
+		"radial": "radial-gradient(oklch(20% 0.06 255 / 90%), oklch(20% 0.06 255 / 50%) 400%)"
 	},
 	"separator": "oklch(28% 0.064 255 / 32%)",
 	"surface": {
