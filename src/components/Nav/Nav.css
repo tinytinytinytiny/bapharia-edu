@@ -38,7 +38,7 @@
 	.primary-nav.open {
 		background-color: var(--color-surface-2);
 		height: 100vh;
-		height: 100dvh;
+		height: 100lvh;
 		inset: 0;
 		overflow-y: auto;
 		overscroll-behavior: none;
@@ -134,7 +134,7 @@
 		.primary-nav,
 		.primary-nav.open {
 			height: 100vh;
-			height: 100dvh;
+			height: 100lvh;
 			inset-inline-end: auto;
 			padding: 0;
 			top: 0;
