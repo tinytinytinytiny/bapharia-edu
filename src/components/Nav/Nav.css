@@ -1,7 +1,6 @@
 @layer base {
 	:root {
-		--nav-toggle-height: calc(var(--space-s) * 2 + 1lh);
-		--nav-toggle-content-offset: calc(var(--nav-toggle-height) + var(--space-xs));
+		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
 		--sidebar-width: calc(var(--space-2xl-fluid) + var(--space-s-fluid));
 		--sidebar-submenu-width: var(--space-5xl-fluid);
 		--sidebar-content-offset: var(--sidebar-width);
@@ -53,6 +52,7 @@
 	}
 
 	.nav-toggle {
+		@apply shadow-md;
 		margin-inline: var(--space-s);
 	}
 
@@ -244,11 +244,6 @@
 		.nav-item__link.expanded + .nav-submenu,
 		.nav-item__link.expanded + * > .nav-submenu {
 			display: none;
-		}
-
-		.nav-item__link.expanded.interacted + .nav-submenu,
-		.nav-item__link.expanded.interacted + * > .nav-submenu {
-			display: block;
 		}
 
 		.nav-submenu-item__link {

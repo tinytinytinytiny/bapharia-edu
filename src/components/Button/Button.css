@@ -1,17 +1,52 @@
+@layer base {
+	:root {
+		--button-icon-size: var(--space-m);
+		--button-padding-block: var(--space-2xs);
+		--button-padding-inline: var(--space-s);
+		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
+	}
+}
+
 @layer components {
 	.button {
+		align-items: center;
 		background-color: var(--color-accent);
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
 		color: var(--color-text-inverted);
+		display: inline-flex;
 		font-weight: 600;
+		justify-content: center;
 		line-height: 1;
-		padding-inline: var(--space-s);
-		padding-block: var(--space-xs);
+		min-block-size: var(--button-height);
+		padding-block: var(--button-padding-block);
+		padding-inline: var(--button-padding-inline);
 	}
 
 	.button:focus {
 		border-color: var(--color-text-inverted);
 		outline: 2px solid var(--color-text-strong);
+	}
+
+	.button svg {
+		block-size: var(--space-m);
+		inline-size: var(--space-m);
+	}
+
+	.icon-label-button {
+		gap: var(--space-2xs);
+	}
+
+	.icon-label-button svg:first-child {
+		margin-inline-start: calc(-1 * var(--space-3xs));
+	}
+
+	.icon-label-button svg:last-child {
+		margin-inline-end: calc(-1 * var(--space-3xs));
+	}
+
+	.icon-button {
+		--button-padding-inline: var(--button-padding-block);
+		font-size: 0;
 	}
 }
