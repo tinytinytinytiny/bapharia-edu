@@ -42,7 +42,6 @@
 		inset: 0;
 		overflow-y: auto;
 		overscroll-behavior: none;
-		padding-bottom: var(--space-s);
 	}
 
 	.nav-toggle {
@@ -64,7 +63,7 @@
 		font-size: var(--text-1);
 		margin-block-start: var(--space-m);
 		padding-inline: var(--space-2xs);
-		padding-bottom: env(safe-area-inset-bottom);
+		padding-bottom: calc(var(--space-s) + env(safe-area-inset-bottom));
 	}
 
 	[aria-expanded="true"] + .nav-menu {
