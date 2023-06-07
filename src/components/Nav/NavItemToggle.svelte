@@ -14,8 +14,9 @@
 	onMount(() => {
 		mounted = true;
 
+		const lgBreakPoint = `${Number(screens.lg.split("rem")[0]) - 1}rem`;
 		const matchesMd = window.matchMedia(
-			`(min-width: ${screens.md}) and (max-width: ${screens.lg})`
+			`(min-width: ${screens.md}) and (max-width: ${lgBreakPoint})`
 		);
 		expanded = !matchesMd.matches;
 		matchesMd.addEventListener("change", (event) => {
