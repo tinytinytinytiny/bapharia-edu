@@ -1,7 +1,19 @@
+@layer base {
+	:root {
+		--article-gutter: var(--space-xl);
+	}
+
+	@screen xl {
+		:root {
+			--article-nav-width: var(--space-5xl-rem);
+		}
+	}
+}
+
 @layer components {
 	.article > .content-wrapper {
 		line-height: 1.625;
-		margin-block-start: var(--space-xl);
+		margin-block-start: var(--article-gutter);
 	}
 
 	.article-nav {
@@ -44,13 +56,13 @@
 			align-items: flex-start;
 			display: flex;
 			flex-direction: row-reverse;
-			gap: var(--space-xl);
+			gap: var(--article-gutter);
 		}
 
 		.article > .content-wrapper {
 			display: grid;
 			flex-grow: 999;
-			grid-template-columns: 1fr minmax(auto, var(--paragraph-width)) 1fr;
+			grid-template-columns: 1fr minmax(auto, calc(var(--main-region-limit) - 2 * (var(--content-padding-inline) + var(--article-nav-width) + var(--article-gutter))));
 			margin-inline-start: auto;
 			max-inline-size: 95.625rem;
 		}
@@ -67,10 +79,11 @@
 		.article-nav {
 			background-color: transparent;
 			border-radius: 0;
+			flex-shrink: 0;
 			float: none;
 			margin: 0;
 			max-block-size: calc(100vh - var(--content-padding-block) * 2);
-			min-inline-size: var(--space-5xl-rem);
+			flex-basis: var(--article-nav-width);
 			overflow-y: auto;
 			padding: 0;
 			position: sticky;

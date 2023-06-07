@@ -4,10 +4,17 @@
 	:root {
 		--border-radius: var(--space-xs);
 		--content-padding-block: var(--space-s-l);
-		--content-padding-inline: var(--space-s-l);
+		--content-padding-inline: 0;
 		--default-gutter: var(--space-s);
 		--default-stack-space: 1.25em;
-		--paragraph-width: 65ch;
+		--main-region-limit: 100.125rem;
+		--main-region-padding: var(--space-s);
+	}
+
+	@screen sm {
+		:root {
+			--content-padding-inline: var(--space-s-l);
+		}
 	}
 
 	@screen xl {
@@ -34,14 +41,20 @@
 	}
 
 	.main-region {
-		padding-block: var(--space-s);
-		padding-inline: var(--space-s);
+		display: grid;
+		grid-template-columns: 1fr minmax(auto, var(--main-region-limit)) 1fr;
+		padding: var(--main-region-padding);
+	}
+
+	.main-region > * {
+		grid-column: 2;
 	}
 
 	.content {
 		background-color: var(--color-surface-1);
 		border-radius: var(--border-radius);
 		padding-block: 0 var(--content-padding-block);
+		padding-inline: var(--content-padding-inline);
 	}
 
 	.content-wrapper {
@@ -56,7 +69,6 @@
 
 		.content {
 			padding-block-start: var(--content-padding-block);
-			padding-inline: var(--content-padding-inline);
 		}
 	}
 
@@ -96,7 +108,7 @@
 	}
 
 	p {
-		max-inline-size: var(--paragraph-width);
+		max-inline-size: 63ch;
 	}
 
 	figure img {
