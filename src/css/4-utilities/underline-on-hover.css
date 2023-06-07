@@ -3,7 +3,9 @@
 		text-decoration: none;
 	}
 
-	.underline-on-hover:hover {
-		text-decoration: underline;
+	@media (hover: hover) {
+		.underline-on-hover:hover {
+			text-decoration: underline;
+		}
 	}
 }

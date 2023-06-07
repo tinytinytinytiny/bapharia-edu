@@ -14,6 +14,7 @@
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
 		color: var(--color-text-inverted);
+		cursor: pointer;
 		display: inline-flex;
 		font-weight: 500;
 		justify-content: center;
@@ -21,6 +22,15 @@
 		min-block-size: var(--button-height);
 		padding-block: var(--button-padding-block);
 		padding-inline: var(--button-padding-inline);
+		position: relative;
+	}
+
+	.button:not(.bg-transparent) {
+		text-decoration: none;
+	}
+
+	.button:where(:not([lang^="en"])) {
+		font-weight: 700;
 	}
 
 	.button:focus {
@@ -29,20 +39,33 @@
 		outline-offset: 0;
 	}
 
-	.button svg {
-		block-size: var(--space-m);
-		inline-size: var(--space-m);
+	.button-s {
+		--button-icon-size: var(--space-s);
+		--button-padding-inline: var(--space-xs);
+		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
+		font-size: var(--text--1);
+	}
+
+	.button__icon {
+		block-size: var(--button-icon-size);
+		inline-size: var(--button-icon-size);
+	}
+
+	.button__icon svg {
+		block-size: 100%;
+		inline-size: 100%;
+		vertical-align: middle;
 	}
 
 	.icon-label-button {
 		gap: var(--space-2xs);
 	}
 
-	.icon-label-button svg:first-child {
+	.icon-label-button .button__icon:first-child {
 		margin-inline-start: calc(-1 * var(--space-3xs));
 	}
 
-	.icon-label-button svg:last-child {
+	.icon-label-button .button__icon:last-child {
 		margin-inline-end: calc(-1 * var(--space-3xs));
 	}
 

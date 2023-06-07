@@ -107,6 +107,10 @@
 		color: inherit;
 	}
 
+	a:hover {
+		text-decoration: none;
+	}
+
 	p {
 		max-inline-size: 63ch;
 	}

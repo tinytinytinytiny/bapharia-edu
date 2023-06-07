@@ -11,7 +11,7 @@ function isCurrentUrl(url) {
 }
 ---
 
-<nav class="primary-nav">
+<nav class="primary-nav" aria-label="Main">
 	<div class="primary-nav__inner">
 		<button
 			aria-controls="main-menu"
@@ -19,7 +19,9 @@ function isCurrentUrl(url) {
 			class="nav-toggle button icon-button"
 			type="button"
 		>
-			<Svg src={import("@assets/icons/three-line-horizontal.svg?raw")} />
+			<div class="button__icon">
+				<Svg src={import("@assets/icons/three-line-horizontal.svg?raw")} />
+			</div>
 			Menu
 		</button>
 		<ul id="main-menu" role="list" class="nav-menu">

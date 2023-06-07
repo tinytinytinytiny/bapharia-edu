@@ -57,6 +57,9 @@ module.exports = {
 		}),
 		padding: ({ theme }) => theme('spacing'),
 		extend: {
+			backgroundColor: ({ colors }) => ({
+				transparent: colors.transparent
+			}),
 			colors: ({ colors }) => ({
 				current: colors.current,
 				inherit: colors.inherit

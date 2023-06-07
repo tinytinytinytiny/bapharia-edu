@@ -62,6 +62,7 @@
 	}
 
 	.nav-menu {
+		--border-radius: 9999px;
 		display: none;
 		font-size: var(--text-1);
 		margin-block-start: var(--space-m);

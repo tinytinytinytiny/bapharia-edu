@@ -1,0 +1,15 @@
+@layer utilities {
+	.visually-hidden,
+	.visually-hidden-onblur:not(:focus) {
+		border: 0;
+		clip: rect(0 0 0 0);
+		height: auto;
+		margin: 0;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		text-transform: none;
+		width: 1px;
+		white-space: nowrap;
+	}
+}

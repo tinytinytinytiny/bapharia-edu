@@ -3,6 +3,7 @@ import "../css/fonts.css";
 import "../css/global.css";
 import navigationData from "@data/navigation";
 import Nav from "@components/Nav/Nav.astro";
+import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
 
 const { title } = Astro.props;
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
@@ -22,6 +23,9 @@ const isSubmenuOpen = Boolean(
 	</head>
 	<body>
 		<header>
+			<nav class="main-region pbe-0 hidden md:grid" aria-label="Language" aria-describedby="language-select-description">
+				<LanguageSelect />
+			</nav>
 			<Nav />
 		</header>
 		<div class="main-region stack stack-space-s">
