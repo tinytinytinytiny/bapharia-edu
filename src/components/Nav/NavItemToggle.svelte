@@ -1,5 +1,5 @@
 <script>
-	import screens from "@assets/design-tokens/screen-sizes.json";
+	import screens from "@data/design-tokens/screen-sizes.json";
 	import { onMount } from "svelte";
 
 	export let url = "/";
