@@ -15,7 +15,7 @@
 		border-radius: var(--border-radius);
 		color: var(--color-text-inverted);
 		display: inline-flex;
-		font-weight: 600;
+		font-weight: 500;
 		justify-content: center;
 		line-height: 1;
 		min-block-size: var(--button-height);
@@ -24,8 +24,9 @@
 	}
 
 	.button:focus {
-		border-color: var(--color-text-inverted);
-		outline: 2px solid var(--color-text-strong);
+		@apply focus-ring;
+		border-color: currentColor;
+		outline-offset: 0;
 	}
 
 	.button svg {

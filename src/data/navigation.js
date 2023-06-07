@@ -48,7 +48,8 @@ export default [
 			},
 			{
 				title: 'Liquid Memories',
-				url: '/guides'
+				url: '/guides',
+				current: true
 			},
 			{
 				title: 'Main Story Quests',

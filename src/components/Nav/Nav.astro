@@ -43,6 +43,9 @@ function isCurrentUrl(url) {
 										<a
 											href={child.url}
 											class="nav-submenu-item__link underline-on-hover"
+											aria-current={
+												child.current ? "page" : "false"
+											}
 										>
 											{child.title}
 										</a>
