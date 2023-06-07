@@ -6,13 +6,30 @@
 		--stack-space-override: var(--stack-space);
 	}
 
+	h2,
+	.h2 {
+		--stack-space-override: var(--space-xl-rem);
+	}
+
+	h3,
+	.h3 {
+		--stack-space-override: var(--space-l-rem);
+	}
+
 	h1 + *,
 	.h1 + *,
 	h2 + *,
 	.h2 + *,
 	h3 + *,
 	.h3 + * {
-		--stack-space-override: var(--space-xs-fluid);
+		--stack-space-override: var(--space-xs-rem);
+	}
+
+	figure,
+	.figure,
+	figure + *,
+	.figure + * {
+		--stack-space-override: var(--space-l-xl-rem);
 	}
 }
 

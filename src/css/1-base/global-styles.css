@@ -7,6 +7,7 @@
 		--content-padding-inline: var(--space-s-l);
 		--default-gutter: var(--space-s);
 		--default-stack-space: 1.25em;
+		--paragraph-width: 65ch;
 	}
 
 	@screen xl {
@@ -95,10 +96,11 @@
 	}
 
 	p {
-		max-inline-size: 65ch;
+		max-inline-size: var(--paragraph-width);
 	}
 
 	figure img {
+		border-radius: var(--border-radius);
 		margin-inline: auto;
 	}
 

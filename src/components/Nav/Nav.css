@@ -1,8 +1,8 @@
 @layer base {
 	:root {
 		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
-		--sidebar-width: calc(var(--space-2xl-fluid) + var(--space-s-fluid));
-		--sidebar-submenu-width: var(--space-5xl-fluid);
+		--sidebar-width: calc(var(--space-2xl-rem) + var(--space-s-rem));
+		--sidebar-submenu-width: var(--space-5xl-rem);
 		--sidebar-content-offset: var(--sidebar-width);
 	}
 
