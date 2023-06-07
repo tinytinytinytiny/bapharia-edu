@@ -1,5 +1,5 @@
 const css = `
-/* @link https://utopia.fyi/type/calculator?c=328,16,1.125,1530,18,1.25,9,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,s,3xl,12 */
+/* @link https://utopia.fyi/type/calculator?c=328,16,1.125,1530,18,1.25,9,2,&s=0.75|0.5|0.25,1.5|2|3|4|6|8|12,s-l&g=s,s,3xl,9 */
 
 :root {
   --step--2: clamp(0.72rem, calc(0.81rem + -0.09vw), 0.79rem);

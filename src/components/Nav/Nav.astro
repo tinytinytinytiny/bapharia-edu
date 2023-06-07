@@ -22,7 +22,7 @@ function isCurrentUrl(url) {
 			<Svg src={import("@assets/icons/three-line-horizontal.svg?raw")} />
 			Menu
 		</button>
-		<ul id="main-menu" role="list" class="nav-menu stack">
+		<ul id="main-menu" role="list" class="nav-menu">
 			{
 				navigationData.map((item) =>
 					"children" in item ? (
@@ -35,7 +35,7 @@ function isCurrentUrl(url) {
 							<Svg slot="icon" src={item.icon} />
 							<ul
 								id={`nav-${slugify(item.title)}-submenu`}
-								class="nav-submenu stack"
+								class="nav-submenu"
 								role="list"
 							>
 								{item.children.map((child) => (
