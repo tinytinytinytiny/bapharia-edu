@@ -3,7 +3,6 @@
 		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
 		--sidebar-width: calc(var(--space-2xl-rem) + var(--space-s-rem));
 		--sidebar-submenu-width: var(--space-5xl-rem);
-		--sidebar-content-offset: var(--sidebar-width);
 	}
 
 	.main-region {
@@ -11,8 +10,11 @@
 	}
 
 	@screen md {
+		:root {
+			--sidebar-content-offset: var(--sidebar-width);
+		}
+
 		.main-region {
-			margin-inline-start: var(--sidebar-content-offset);
 			margin-top: 0;
 			padding-inline-start: var(--space-2xs);
 		}
@@ -170,8 +172,8 @@
 			inline-size: var(--sidebar-width);
 			margin-block-start: 0;
 			overflow-y: auto;
-			padding-block: var(--space-xs);
-			padding-bottom: calc(var(--space-xs) + env(safe-area-inset-bottom));
+			padding-block: var(--space-2xs);
+			padding-bottom: calc(var(--space-2xs) + env(safe-area-inset-bottom));
 		}
 
 		.nav-item {

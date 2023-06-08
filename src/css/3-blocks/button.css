@@ -14,7 +14,6 @@
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
 		color: var(--color-text-inverted);
-		cursor: pointer;
 		display: inline-flex;
 		font-weight: 500;
 		justify-content: center;
@@ -25,11 +24,16 @@
 		position: relative;
 	}
 
+	button.button,
+	a.button {
+		cursor: pointer;
+	}
+
 	.button:not(.bg-transparent) {
 		text-decoration: none;
 	}
 
-	.button:where(:not([lang^="en"])) {
+	.button:where([lang]:not([lang^="en"])) {
 		font-weight: 700;
 	}
 
@@ -39,7 +43,7 @@
 		outline-offset: 0;
 	}
 
-	.button-s {
+	.button[data-size="s"] {
 		--button-icon-size: var(--space-s);
 		--button-padding-inline: var(--space-xs);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);

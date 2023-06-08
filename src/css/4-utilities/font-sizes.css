@@ -1,0 +1,9 @@
+@layer utilities {
+	.text--2 {
+		font-size: var(--text--2);
+	}
+
+	.text--1 {
+		font-size: var(--text--1);
+	}
+}

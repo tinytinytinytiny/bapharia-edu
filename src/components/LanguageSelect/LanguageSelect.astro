@@ -1,22 +1,27 @@
 ---
 import Svg from "@jasikpark/astro-svg-loader";
-
-const currentUrl = Astro.url;
 ---
 
 <div class="language-select cluster gutter-2xs justify-end">
-	<p id="language-select-description" class="visually-hidden">Choose a language</p>
-	<a href={Astro.url} class="button button-s icon-label-button" aria-current="page">
+	<p id="language-select-label-1" class="font-bold">Language:</p>
+	<p id="language-select-description-1" class="visually-hidden">
+		This content is available in English and Japanese
+	</p>
+	<a
+		href={Astro.url}
+		class="button icon-label-button rounded-full"
+		data-size="s"
+		aria-current="page"
+	>
 		<div class="button__icon">
 			<Svg src={import("@assets/icons/circle-check-fill.svg?raw")} />
 		</div>
 		English
 	</a>
-	<a lang="ja" href={Astro.url} class="button button-s bg-surface-4 text-regular underline-on-hover">日本語</a>
+	<a
+		lang="ja"
+		href={Astro.url}
+		class="button bg-surface-4 text-regular underline-on-hover rounded-full"
+		data-size="s">日本語</a
+	>
 </div>
-
-<style>
-	.language-select {
-		--border-radius: 9999px;
-	}
-</style>

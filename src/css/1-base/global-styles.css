@@ -7,7 +7,7 @@
 		--content-padding-inline: 0;
 		--default-gutter: var(--space-s);
 		--default-stack-space: 1.25em;
-		--main-region-limit: 100.125rem;
+		--main-region-limit: 112.5rem;
 		--main-region-padding: var(--space-s);
 	}
 
@@ -42,7 +42,7 @@
 
 	.main-region {
 		display: grid;
-		grid-template-columns: 1fr minmax(auto, var(--main-region-limit)) 1fr;
+		grid-template-columns: minmax(var(--sidebar-content-offset), 1fr) minmax(auto, var(--main-region-limit)) 1fr;
 		padding: var(--main-region-padding);
 	}
 

@@ -64,7 +64,6 @@
 			flex-grow: 999;
 			grid-template-columns: 1fr minmax(auto, calc(var(--main-region-limit) - 2 * (var(--content-padding-inline) + var(--article-nav-width) + var(--article-gutter))));
 			margin-inline-start: auto;
-			max-inline-size: 95.625rem;
 		}
 
 		.article > .content-wrapper > * {

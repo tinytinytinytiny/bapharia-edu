@@ -1,0 +1,14 @@
+---
+import Svg from "@jasikpark/astro-svg-loader";
+---
+
+<div
+	class="button icon-label-button bg-surface-0 text-regular font-bold rounded-full"
+	data-size="s"
+>
+	<div class="button__icon">
+		<Svg src={import("@assets/icons/clock.svg?raw")} />
+	</div>
+	<span class="visually-hidden">In Japan, it is currently&nbsp;</span>
+	<time datetime="2023-06-08T12:00">Jun 08, 12:00 JST</time>
+</div>
