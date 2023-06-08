@@ -27,7 +27,7 @@
 		"dark": "var(--color-surface-3)"
 	},
 	"text": {
-		"regular": "oklch(28% 0.064 225)",
+		"regular": "oklch(28% 0.04 225)",
 		"strong": "#000",
 		"inverted": "#fff"
 	}
