@@ -1,5 +1,8 @@
 @layer base {
 	:root {
+		--button-background: var(--color-accent);
+		--button-hover-background: var(--color-accent-glare);
+		--button-active-background: var(--color-accent-shade);
 		--button-icon-size: var(--space-m);
 		--button-padding-block: var(--space-2xs);
 		--button-padding-inline: var(--space-s);
@@ -10,7 +13,7 @@
 @layer components {
 	.button {
 		align-items: center;
-		background-color: var(--color-accent);
+		background-color: var(--button-background);
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
 		color: var(--color-text-inverted);
@@ -24,17 +27,30 @@
 		position: relative;
 	}
 
-	button.button,
-	a.button {
-		cursor: pointer;
-	}
-
 	.button:not(.bg-transparent) {
 		text-decoration: none;
 	}
 
 	.button:where([lang]:not([lang^="en"])) {
 		font-weight: 700;
+	}
+
+	a:where(.button),
+	button:where(.button),
+	input:where(.button) {
+		cursor: pointer;
+	}
+
+	a:where(.button):hover,
+	button:where(.button):hover,
+	input:where(.button):hover {
+		background-color: var(--button-hover-background);
+	}
+
+	a:where(.button):active,
+	button:where(.button):active,
+	input:where(.button):active {
+		background-color: var(--button-active-background);
 	}
 
 	.button:focus {
@@ -48,6 +64,13 @@
 		--button-padding-inline: var(--space-xs);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
 		font-size: var(--text--1);
+	}
+
+	.button[data-color="neutral"] {
+		--button-background: var(--color-shade);
+		--button-hover-background: var(--color-shade-strong);
+		--button-active-background: var(--color-shade-strongest);
+		color: var(--color-text-regular);
 	}
 
 	.button__icon {

@@ -1,6 +1,8 @@
 {
 	"accent": {
 		"DEFAULT": "oklch(40% 0.1 245)",
+		"glare": "oklch(50% 0.13 245)",
+		"shade": "oklch(30% 0.07 245)",
 		"surface": "oklch(70% 0.14 245 / 40%)"
 	},
 	"focus-ring": "oklch(50% 0.13 245 / 40%)",
@@ -8,11 +10,13 @@
 		"linear": "linear-gradient(90deg, oklch(20% 0.06 255 / 90%), oklch(20% 0.06 255 / 50%) 150%)",
 		"radial": "radial-gradient(oklch(20% 0.06 255 / 90%), oklch(20% 0.06 255 / 50%) 400%)"
 	},
-	"separator": {
-		"DEFAULT": "oklch(28% 0.064 255 / 32%)",
-		"weak": "oklch(28% 0.064 255 / 16%)"
+	"separator": "oklch(24% 0.04 225 / 30%)",
+	"shade": {
+		"weak": "oklch(40% 0.032 225 / 10%)",
+		"DEFAULT": "oklch(40% 0.032 225 / 20%)",
+		"strong": "oklch(40% 0.032 225 / 30%)",
+		"strongest": "oklch(40% 0.032 225 / 40%)"
 	},
-	"shade": "oklch(40% 0.1 245 / 10%)",
 	"surface": {
 		"0": "#fff",
 		"1": "oklch(96% 0.004 205)",
@@ -23,7 +27,7 @@
 		"dark": "var(--color-surface-3)"
 	},
 	"text": {
-		"regular": "oklch(28% 0.064 255)",
+		"regular": "oklch(28% 0.064 245)",
 		"strong": "#000",
 		"inverted": "#fff"
 	}

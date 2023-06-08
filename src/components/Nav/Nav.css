@@ -47,6 +47,11 @@
 
 	.nav-item__link:hover,
 	.nav-submenu-item__link:hover {
+		background-color: var(--color-shade-weak);
+	}
+
+	.nav-item__link:active,
+	.nav-submenu-item__link:active {
 		background-color: var(--color-shade);
 	}
 
@@ -126,6 +131,10 @@
 		}
 
 		.nav-item__link:hover .nav-item__icon-container {
+			background-color: var(--color-shade-weak);
+		}
+
+		.nav-item__link:active .nav-item__icon-container {
 			background-color: var(--color-shade);
 		}
 
