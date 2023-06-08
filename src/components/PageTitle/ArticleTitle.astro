@@ -11,5 +11,38 @@ const { title, author, lastUpdatedDate } = Astro.props;
 			<p class="article-date">Last Updated {lastUpdatedDate}</p>
 		</div>
 	</div>
-	<img class="page-title__bg" src="images/banner.webp" alt />
+	<img class="page-title__bg" src="images/banner.webp" alt="" />
 </header>
+
+<style>
+	.article-date {
+		color: #78ffae;
+	}
+
+	[role="note"] {
+		justify-content: center;
+		margin-block-start: 1em;
+		row-gap: 0;
+	}
+
+	@screen sm {
+		.page-title {
+			background-image: var(--color-scrim-linear);
+			padding-inline: var(--content-padding-inline);
+		}
+
+		.page-title__inner {
+			text-align: initial;
+		}
+
+		[role="note"] {
+			justify-content: initial;
+		}
+	}
+
+	@screen md {
+		[role="note"] {
+			font-size: var(--text-1);
+		}
+	}
+</style>

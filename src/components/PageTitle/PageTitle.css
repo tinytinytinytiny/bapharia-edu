@@ -21,16 +21,6 @@
 		color: inherit;
 	}
 
-	.page-title [role="note"] {
-		justify-content: center;
-		margin-block-start: 1em;
-		row-gap: 0;
-	}
-
-	.article-date {
-		color: #78FFAE;
-	}
-
 	.page-title__bg {
 		background-color: var(--color-surface-3);
 		height: 100%;
@@ -42,28 +32,9 @@
 		z-index: -1;
 	}
 
-	@screen sm {
-		.page-title {
-			background-image: var(--color-scrim-linear);
-			padding-inline: var(--content-padding-inline);
-		}
-
-		.page-title__inner {
-			text-align: initial;
-		}
-
-		.page-title [role="note"] {
-			justify-content: initial;
-		}
-	}
-
 	@screen md {
 		.page-title {
 			min-block-size: 24rem;
-		}
-
-		.page-title [role="note"] {
-			font-size: var(--text-1);
 		}
 	}
 }

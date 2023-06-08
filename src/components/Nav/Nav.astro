@@ -16,11 +16,13 @@ function isCurrentUrl(url) {
 		<button
 			aria-controls="main-menu"
 			aria-expanded="false"
-			class="nav-toggle button icon-button"
+			class="nav-toggle button icon-button shadow-md"
 			type="button"
 		>
 			<div class="button__icon">
-				<Svg src={import("@assets/icons/three-line-horizontal.svg?raw")} />
+				<Svg
+					src={import("@assets/icons/three-line-horizontal.svg?raw")}
+				/>
 			</div>
 			Menu
 		</button>
@@ -69,6 +71,97 @@ function isCurrentUrl(url) {
 		</ul>
 	</div>
 </nav>
+
+<style>
+	.primary-nav {
+		inset-inline: 0;
+		position: fixed;
+		top: 0;
+		z-index: 10;
+	}
+
+	.primary-nav.open {
+		background-color: var(--color-surface-2);
+		height: 100vh;
+		height: 100lvh;
+		inset-inline: 0;
+	}
+
+	.primary-nav__inner {
+		padding-block: var(--space-s);
+	}
+
+	.open > .primary-nav__inner {
+		height: 100%;
+		height: 100dvh;
+		overflow-y: auto;
+		overscroll-behavior: none;
+	}
+
+	.nav-toggle {
+		margin-inline: var(--space-s);
+	}
+
+	.primary-nav.open .nav-toggle {
+		position: sticky;
+		top: 0;
+	}
+
+	.nav-menu {
+		--border-radius: 9999px;
+		display: none;
+		font-size: var(--text-1);
+		margin-block-start: var(--space-m);
+		padding-inline: var(--space-2xs);
+		padding-bottom: calc(var(--space-s) + env(safe-area-inset-bottom));
+	}
+
+	[aria-expanded="true"] + .nav-menu {
+		display: block;
+	}
+
+	@screen md {
+		.primary-nav,
+		.primary-nav.open {
+			height: 100vh;
+			height: 100lvh;
+			inset-inline-end: auto;
+			top: 0;
+		}
+
+		.primary-nav.open {
+			background-color: transparent;
+		}
+
+		.primary-nav__inner,
+		.open > .primary-nav__inner {
+			height: 100%;
+			height: 100dvh;
+			padding: 0;
+		}
+
+		.open > .primary-nav__inner {
+			overflow: initial;
+		}
+
+		.nav-toggle {
+			display: none;
+		}
+
+		.nav-menu {
+			display: block;
+			font-size: var(--text-0);
+			height: 100%;
+			inline-size: var(--sidebar-width);
+			margin-block-start: 0;
+			overflow-y: auto;
+			padding-block: var(--space-2xs);
+			padding-bottom: calc(
+				var(--space-2xs) + env(safe-area-inset-bottom)
+			);
+		}
+	}
+</style>
 
 <script>
 	const nav = document.querySelector(".primary-nav");
