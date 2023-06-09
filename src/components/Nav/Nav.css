@@ -38,6 +38,7 @@
 	}
 
 	.nav-item__link {
+		--icon-size: var(--space-l);
 		align-items: center;
 		display: flex;
 		gap: var(--space-xs);
@@ -65,10 +66,6 @@
 		color: var(--color-text-strong);
 		background-color: var(--color-accent-surface);
 		font-weight: 700;
-	}
-
-	.nav-item__link .icon {
-		--icon-size: var(--space-l);
 	}
 
 	.nav-submenu {
