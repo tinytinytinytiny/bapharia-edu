@@ -52,7 +52,6 @@
 	.closer-container {
 		background-color: var(--color-surface-2);
 		inset-block-end: 0;
-		margin-block-start: auto;
 		padding-block: var(--space-xs) var(--space-s);
 		position: sticky;
 	}

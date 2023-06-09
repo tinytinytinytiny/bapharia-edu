@@ -2,6 +2,7 @@
 	font-display: block;
 	font-family: 'Public Sans';
 	font-style: normal;
+	font-weight: 100 900;
 	src: url('/fonts/PublicSans[wght].woff2') format('woff2-variations');
 }
 
@@ -9,6 +10,7 @@
 	font-display: block;
 	font-family: 'Public Sans';
 	font-style: italic;
+	font-weight: 100 900;
 	src: url('/fonts/PublicSans-Italic[wght].woff2') format('woff2-variations');
 }
 
@@ -16,5 +18,6 @@
 	font-display: block;
 	font-family: 'Noto Sans JP';
 	font-style: normal;
+	font-weight: 100 900;
 	src: url('/fonts/NotoSansJP-VariableFont_wght.woff2') format('woff2-variations');
 }

@@ -1,7 +1,7 @@
 @layer base {
 	:root {
 		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
-		--sidebar-width: calc(var(--space-2xl-rem) + var(--space-xs) * 2);
+		--sidebar-width: calc(var(--space-2xl-rem) + var(--space-s));
 		--sidebar-submenu-width: calc(var(--space-5xl-rem) + var(--space-s));
 	}
 
@@ -23,7 +23,7 @@
 
 	@screen 2xl {
 		.submenu-expanded {
-			--sidebar-content-offset: calc(var(--sidebar-width) + var(--sidebar-submenu-width));
+			--sidebar-content-offset: calc(var(--sidebar-width) + var(--sidebar-submenu-width) + var(--space-2xs));
 		}
 	}
 }
@@ -121,13 +121,13 @@
 			display: flex;
 			flex-flow: column nowrap;
 			justify-content: center;
-			gap: var(--space-3xs);
+			gap: 2px;
 		}
 
 		.nav-item__icon-container {
 			border: 2px solid transparent;
 			border-radius: var(--border-radius);
-			inline-size: 100%;
+			inline-size: calc(100% - var(--space-s));
 		}
 
 		.nav-item__link:hover .nav-item__icon-container {
@@ -159,12 +159,11 @@
 			font-size: 1rem;
 			inset-inline-start: 0;
 			inline-size: calc(var(--sidebar-submenu-width) + var(--sidebar-width));
-			justify-content: flex-start;
 			margin-block-start: 0;
 			overflow-y: auto;
 			overscroll-behavior: none;
 			padding-block: var(--space-xs) 0;
-			padding-inline: calc(var(--sidebar-width) + var(--space-s) - var(--space-xs)) var(--space-s);
+			padding-inline: var(--sidebar-width) var(--space-s);
 			position: fixed;
 			text-align: start;
 			top: 0;
@@ -178,7 +177,7 @@
 
 		.nav-item__link.expanded.interacted + .nav-submenu,
 		.nav-item__link.expanded.interacted + * .nav-submenu {
-			display: flex;
+			display: block;
 		}
 
 		.nav-submenu-item__link {
@@ -188,11 +187,12 @@
 		@screen 2xl {
 			.nav-submenu {
 				box-shadow: none;
+				padding-inline-end: var(--space-2xs);
 			}
 
 			.nav-item__link.expanded + .nav-submenu,
 			.nav-item__link.expanded + * .nav-submenu {
-				display: flex;
+				display: block;
 			}
 		}
 	}

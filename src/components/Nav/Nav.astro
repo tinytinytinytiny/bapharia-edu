@@ -2,6 +2,7 @@
 import navigationData from "@data/navigation";
 import NavItem from "./NavItem.astro";
 import NavItemDisclosure from "./NavItemDisclosure.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 import Svg from "@jasikpark/astro-svg-loader";
 import { slugify } from "@utils";
 
@@ -26,45 +27,48 @@ function isCurrentUrl(url) {
 			</div>
 			Menu
 		</button>
-		<ul id="main-menu" role="list" class="nav-menu">
-			{
-				navigationData.map((item) =>
-					"children" in item ? (
-						<NavItemDisclosure
-							title={item.title}
-							url={item.url}
-							id={`nav-${slugify(item.title)}-submenu`}
-							current={isCurrentUrl(item.url)}
-						>
-							<Svg slot="icon" src={item.icon} />
-							<ul role="list">
-								{item.children.map((child) => (
-									<li class="nav-submenu-item">
-										<a
-											href={child.url}
-											class="nav-submenu-item__link underline-on-hover"
-											aria-current={
-												child.current ? "page" : "false"
-											}
-										>
-											{child.title}
-										</a>
-									</li>
-								))}
-							</ul>
-						</NavItemDisclosure>
-					) : (
-						<NavItem
-							title={item.title}
-							url={item.url}
-							current={isCurrentUrl(item.url)}
-						>
-							<Svg slot="icon" src={item.icon} />
-						</NavItem>
+		<div id="main-menu" class="nav-menu">
+			<ul class="is-full" role="list">
+				{
+					navigationData.map((item) =>
+						"children" in item ? (
+							<NavItemDisclosure
+								title={item.title}
+								url={item.url}
+								id={`nav-${slugify(item.title)}-submenu`}
+								current={isCurrentUrl(item.url)}
+							>
+								<Svg slot="icon" src={item.icon} />
+								<ul role="list">
+									{item.children.map((child) => (
+										<li class="nav-submenu-item">
+											<a
+												href={child.url}
+												class="nav-submenu-item__link underline-on-hover"
+												aria-current={
+													child.current ? "page" : "false"
+												}
+											>
+												{child.title}
+											</a>
+										</li>
+									))}
+								</ul>
+							</NavItemDisclosure>
+						) : (
+							<NavItem
+								title={item.title}
+								url={item.url}
+								current={isCurrentUrl(item.url)}
+							>
+								<Svg slot="icon" src={item.icon} />
+							</NavItem>
+						)
 					)
-				)
-			}
-		</ul>
+				}
+			</ul>
+			<ThemeToggle />
+		</div>
 	</div>
 </nav>
 
@@ -105,14 +109,15 @@ function isCurrentUrl(url) {
 
 	.nav-menu {
 		display: none;
+		flex-flow: column nowrap;
 		font-size: var(--text-1);
 		margin-block-start: var(--space-m);
 		padding-inline: var(--space-2xs);
-		padding-bottom: calc(var(--space-s) + env(safe-area-inset-bottom));
+		padding-bottom: env(safe-area-inset-bottom);
 	}
 
 	[aria-expanded="true"] + .nav-menu {
-		display: block;
+		display: flex;
 	}
 
 	@screen md {
@@ -144,14 +149,14 @@ function isCurrentUrl(url) {
 		}
 
 		.nav-menu {
+			align-items: center;
 			block-size: 100%;
-			display: block;
+			display: flex;
 			font-size: var(--text-0);
 			inline-size: var(--sidebar-width);
 			margin-block-start: 0;
 			overflow-y: auto;
-			padding-block: var(--space-2xs);
-			padding-inline: var(--space-xs);
+			padding-block: var(--space-2xs) var(--space-s);
 		}
 	}
 </style>

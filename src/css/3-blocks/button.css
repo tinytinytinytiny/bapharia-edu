@@ -90,8 +90,11 @@
 	}
 
 	.button__icon {
+		align-items: center;
 		block-size: var(--button-icon-size);
+		display: flex;
 		inline-size: var(--button-icon-size);
+		justify-content: center;
 	}
 
 	.button__icon svg {
@@ -117,16 +120,21 @@
 		gap: var(--space-3xs);
 	}
 
-	.icon-label-button .button__icon:first-child {
+	.icon-label-button :where(.button__icon:first-child) {
 		margin-inline-start: calc(-1 * var(--space-3xs));
 	}
 
-	.icon-label-button .button__icon:last-child {
+	.icon-label-button :where(.button__icon:last-child) {
 		margin-inline-end: calc(-1 * var(--space-3xs));
 	}
 
 	.icon-button {
 		--button-padding-inline: var(--button-padding-block);
 		font-size: 0;
+		gap: 0;
+	}
+
+	.icon-button .button__icon {
+		margin: 0;
 	}
 }
