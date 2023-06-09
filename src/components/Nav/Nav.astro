@@ -33,15 +33,11 @@ function isCurrentUrl(url) {
 						<NavItemDisclosure
 							title={item.title}
 							url={item.url}
-							controls={`nav-${slugify(item.title)}-submenu`}
+							id={`nav-${slugify(item.title)}-submenu`}
 							current={isCurrentUrl(item.url)}
 						>
 							<Svg slot="icon" src={item.icon} />
-							<ul
-								id={`nav-${slugify(item.title)}-submenu`}
-								class="nav-submenu"
-								role="list"
-							>
+							<ul role="list">
 								{item.children.map((child) => (
 									<li class="nav-submenu-item">
 										<a
@@ -108,7 +104,6 @@ function isCurrentUrl(url) {
 	}
 
 	.nav-menu {
-		--border-radius: 9999px;
 		display: none;
 		font-size: var(--text-1);
 		margin-block-start: var(--space-m);

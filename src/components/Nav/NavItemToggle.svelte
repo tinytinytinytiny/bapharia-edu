@@ -10,38 +10,67 @@
 	let expanded = Boolean(current);
 	let interacted = false;
 	let mounted;
+	let button;
+	let closeEvent;
+	let openEvent;
 
 	onMount(() => {
 		mounted = true;
 
-		const lgBreakPoint = `${Number(screens.lg.split("rem")[0]) - 1}rem`;
-		const matchesMd = window.matchMedia(
-			`(min-width: ${screens.md}) and (max-width: ${lgBreakPoint})`
+		closeEvent = new CustomEvent("submenutoggle", {
+			detail: { id: controls, open: false },
+			bubbles: true,
+			cancelable: false,
+		});
+
+		openEvent = new CustomEvent("submenutoggle", {
+			detail: { id: controls, open: true },
+			bubbles: true,
+			cancelable: false,
+		});
+
+		document.documentElement.addEventListener("submenutoggle", (event) => {
+			if (event.detail.id === controls && event.detail.open) {
+				open();
+			} else {
+				close();
+			}
+		});
+
+		const maxBreakPoint = `${
+			Number(screens["2xl"].split("rem")[0]) - 0.01
+		}rem`;
+		const minBreakPoint = window.matchMedia(
+			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`
 		);
-		expanded = !matchesMd.matches;
-		matchesMd.addEventListener("change", (event) => {
+		expanded = !minBreakPoint.matches;
+		minBreakPoint.addEventListener("change", (event) => {
 			if (event.matches) {
-				if (!interacted) {
-					expanded = false;
-				}
-			} else if (current && !interacted) {
+				expanded = false;
+				document.documentElement.dispatchEvent(closeEvent);
+			} else if (current) {
 				expanded = true;
+				document.documentElement.dispatchEvent(openEvent);
 			}
 		});
 	});
 
 	function toggle() {
-		interacted = true;
-		expanded = !expanded;
-		setContentOffset(expanded);
+		if (expanded) {
+			button.dispatchEvent(closeEvent);
+		} else {
+			button.dispatchEvent(openEvent);
+		}
 	}
 
-	function setContentOffset(bool) {
-		if (bool) {
-			document.documentElement.classList.add("submenu-expanded");
-		} else {
-			document.documentElement.classList.remove("submenu-expanded");
-		}
+	function close() {
+		interacted = true;
+		expanded = false;
+	}
+
+	function open() {
+		interacted = true;
+		expanded = true;
 	}
 </script>
 
@@ -55,6 +84,7 @@
 		aria-expanded={expanded.toString()}
 		type="button"
 		on:click={toggle}
+		bind:this={button}
 	>
 		<div class="nav-item__icon-container">
 			<slot name="icon" />

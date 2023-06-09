@@ -42,7 +42,7 @@
 
 	.main-region {
 		display: grid;
-		grid-template-columns: minmax(var(--sidebar-content-offset), 1fr) minmax(auto, var(--main-region-limit)) 1fr;
+		grid-template-columns: 1fr minmax(auto, var(--main-region-limit)) 1fr;
 		padding: var(--main-region-padding);
 	}
 

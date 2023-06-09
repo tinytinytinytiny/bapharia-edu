@@ -9,20 +9,22 @@ import Svg from "@jasikpark/astro-svg-loader";
 	</p>
 	<a
 		href={Astro.url}
-		class="button icon-label-button rounded-full"
+		class="button chip icon-label-button"
 		data-size="s"
 		aria-current="page"
 	>
 		<div class="button__icon">
 			<Svg src={import("@assets/icons/circle-check-fill.svg?raw")} />
 		</div>
-		English
+		<span>English</span>
 	</a>
 	<a
 		lang="ja"
 		href={Astro.url}
-		class="button underline-on-hover rounded-full"
+		class="button chip"
 		data-size="s"
-		data-color="neutral">日本語</a
+		data-color="neutral"
 	>
+		<span>日本語</span>
+	</a>
 </div>

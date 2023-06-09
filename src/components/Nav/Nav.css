@@ -6,6 +6,7 @@
 	}
 
 	.main-region {
+		grid-template-columns: minmax(var(--sidebar-content-offset), 1fr) minmax(auto, var(--main-region-limit)) 1fr;
 		margin-top: var(--nav-toggle-content-offset);
 	}
 
@@ -20,7 +21,7 @@
 		}
 	}
 
-	@screen lg {
+	@screen 2xl {
 		.submenu-expanded {
 			--sidebar-content-offset: calc(var(--sidebar-width) + var(--sidebar-submenu-width));
 		}
@@ -76,14 +77,8 @@
 		vertical-align: middle;
 	}
 
-	.nav-submenu {
-		display: none;
-		font-size: var(--text-0);
-		padding-inline-start: calc(var(--space-l) + var(--space-3xs));
-	}
-
 	.nav-item__link.expanded + .nav-submenu,
-	.nav-item__link.expanded + * > .nav-submenu {
+	.nav-item__link.expanded + * .nav-submenu {
 		display: block;
 	}
 
@@ -150,34 +145,13 @@
 			margin-block-end: var(--space-3xs);
 		}
 
-		.nav-submenu {
-			@apply shadow-2xl;
-			background-color: var(--color-surface-2);
-			height: 100vh;
-			height: 100lvh;
-			font-size: 1rem;
-			inset-inline-start: 0;
-			inline-size: calc(var(--sidebar-submenu-width) + var(--sidebar-width));
-			margin-block-start: 0;
-			overflow-y: auto;
-			overscroll-behavior: none;
-			padding-block: var(--space-xs);
-			padding-bottom: calc(var(--space-xs) + env(safe-area-inset-bottom));
-			padding-inline-end: var(--space-2xs);
-			padding-inline-start: calc(var(--sidebar-width) + var(--space-2xs));
-			position: fixed;
-			text-align: start;
-			top: 0;
-			z-index: -1;
-		}
-
 		.nav-item__link.expanded + .nav-submenu,
-		.nav-item__link.expanded + * > .nav-submenu {
+		.nav-item__link.expanded + * .nav-submenu {
 			display: none;
 		}
 
 		.nav-item__link.expanded.interacted + .nav-submenu,
-		.nav-item__link.expanded.interacted + * > .nav-submenu {
+		.nav-item__link.expanded.interacted + * .nav-submenu {
 			display: block;
 		}
 
@@ -185,13 +159,10 @@
 			padding-block: calc((var(--space-2xs) + var(--space-xs)) / 2);
 		}
 
-		@screen lg {
-			.nav-submenu {
-				box-shadow: none;
-			}
+		@screen 2xl {
 
 			.nav-item__link.expanded + .nav-submenu,
-			.nav-item__link.expanded + * > .nav-submenu {
+			.nav-item__link.expanded + * .nav-submenu {
 				display: block;
 			}
 		}

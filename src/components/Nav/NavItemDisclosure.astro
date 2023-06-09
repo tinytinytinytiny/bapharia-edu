@@ -1,8 +1,9 @@
 ---
 import NavItem from "./NavItem.astro";
 import NavItemToggle from "./NavItemToggle.svelte";
+import SubmenuCollapseButton from "./SubmenuCollapseButton.svelte";
 
-const { url = "/", title, current = false, controls } = Astro.props;
+const { url = "/", title, current = false, id } = Astro.props;
 ---
 
 <li class="nav-item">
@@ -13,12 +14,15 @@ const { url = "/", title, current = false, controls } = Astro.props;
 				url={url}
 				title={title}
 				current={current}
-				controls={controls}
+				controls={id}
 			>
 				<Fragment slot="icon">
 					<slot name="icon" />
 				</Fragment>
-				<slot />
+				<div id={id} class="nav-submenu">
+					<slot />
+					<SubmenuCollapseButton client:visible controls={id} />
+				</div>
 			</NavItemToggle>
 		) : (
 			<NavItem url={url} title={title} current={current}>
@@ -29,3 +33,78 @@ const { url = "/", title, current = false, controls } = Astro.props;
 		)
 	}
 </li>
+
+<style>
+	.nav-submenu {
+		display: none;
+		font-size: var(--text-0);
+		padding-inline-start: calc(var(--space-l) + var(--space-3xs));
+	}
+
+	@screen md {
+		.nav-submenu {
+			@apply shadow-2xl;
+			background-color: var(--color-surface-2);
+			height: 100vh;
+			height: 100lvh;
+			font-size: 1rem;
+			inset-inline-start: 0;
+			inline-size: calc(
+				var(--sidebar-submenu-width) + var(--sidebar-width)
+			);
+			margin-block-start: 0;
+			overflow-y: auto;
+			overscroll-behavior: none;
+			padding-block: var(--space-xs) 0;
+			padding-inline-end: var(--space-2xs);
+			padding-inline-start: calc(var(--sidebar-width) + var(--space-2xs));
+			position: fixed;
+			text-align: start;
+			top: 0;
+			z-index: -1;
+		}
+	}
+
+	@screen 2xl {
+		.nav-submenu {
+			box-shadow: none;
+		}
+	}
+</style>
+
+<script>
+	import screens from "@data/design-tokens/screen-sizes.json";
+
+	document.documentElement.addEventListener("submenutoggle", (event) => {
+		console.log(event);
+		if (event.detail.open) {
+			document.documentElement.classList.add("submenu-expanded");
+		} else {
+			document.documentElement.classList.remove("submenu-expanded");
+			if (
+				event.detail.id &&
+				event.target.tagName.toLowerCase() === "button"
+			) {
+				document
+					.querySelector(`[aria-controls="${event.detail.id}"]`)
+					.focus();
+			}
+		}
+	});
+
+	document.body.addEventListener("click", (event) => {
+		const maxBreakPoint = `${
+			Number(screens["2xl"].split("rem")[0]) - 0.01
+		}rem`;
+		const minBreakPoint = window.matchMedia(
+			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`
+		);
+
+		if (!event.target.closest(".nav-menu") && minBreakPoint.matches) {
+			const closeEvent = new CustomEvent("submenutoggle", {
+				detail: { open: false },
+			});
+			document.documentElement.dispatchEvent(closeEvent);
+		}
+	});
+</script>

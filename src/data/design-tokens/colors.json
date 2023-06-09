@@ -10,7 +10,10 @@
 		"linear": "linear-gradient(90deg, oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 150%)",
 		"radial": "radial-gradient(oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 400%)"
 	},
-	"separator": "oklch(24% 0.04 225 / 30%)",
+	"separator": {
+		"DEFAULT": "oklch(24% 0.04 225 / 30%)",
+		"strong": "oklch(24% 0.04 225 / 60%)"
+	},
 	"shade": {
 		"weak": "oklch(40% 0.032 225 / 10%)",
 		"DEFAULT": "oklch(40% 0.032 225 / 20%)",

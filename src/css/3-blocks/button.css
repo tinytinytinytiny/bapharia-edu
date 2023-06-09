@@ -5,7 +5,7 @@
 		--button-active-background: var(--color-accent-shade);
 		--button-icon-size: var(--space-m);
 		--button-padding-block: var(--space-2xs);
-		--button-padding-inline: var(--space-s);
+		--button-padding-inline: var(--space-m);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
 	}
 }
@@ -41,10 +41,13 @@
 		cursor: pointer;
 	}
 
-	a:where(.button):hover,
-	button:where(.button):hover,
-	input:where(.button):hover {
-		background-color: var(--button-hover-background);
+	@media (hover: hover) {
+
+		a:where(.button):hover,
+		button:where(.button):hover,
+		input:where(.button):hover {
+			background-color: var(--button-hover-background);
+		}
 	}
 
 	a:where(.button):active,
@@ -61,7 +64,7 @@
 
 	.button[data-size="s"] {
 		--button-icon-size: var(--space-s);
-		--button-padding-inline: var(--space-xs);
+		--button-padding-inline: var(--space-s);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
 		font-size: var(--text--1);
 	}
@@ -69,8 +72,25 @@
 	.button[data-color="neutral"] {
 		--button-background: var(--color-shade);
 		--button-hover-background: var(--color-shade-strong);
-		--button-active-background: var(--color-shade-strongest);
+		--button-active-background: var(--color-shade-weak);
 		color: var(--color-text-regular);
+	}
+
+	.button[data-type="ghost"] {
+		--button-background: transparent;
+		--button-hover-background: transparent;
+		--button-active-background: var(--color-shade-weak);
+		color: var(--color-text-regular);
+	}
+
+	.button[data-type="ghost"]:not(:focus) {
+		border-color: var(--color-separator);
+	}
+
+	@media (hover: hover) {
+		.button[data-type="ghost"]:hover:not(:focus) {
+			border-color: var(--color-separator-strong);
+		}
 	}
 
 	.button__icon {
@@ -84,8 +104,21 @@
 		vertical-align: middle;
 	}
 
+	.chip {
+		--button-padding-inline: var(--space-s);
+		border-radius: 9999px;
+	}
+
+	.chip[data-size="s"] {
+		--button-padding-inline: var(--space-xs);
+	}
+
 	.icon-label-button {
 		gap: var(--space-2xs);
+	}
+
+	.icon-label-button[data-size="s"] {
+		gap: var(--space-3xs);
 	}
 
 	.icon-label-button .button__icon:first-child {
