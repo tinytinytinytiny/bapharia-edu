@@ -34,49 +34,10 @@ const { url = "/", title, current = false, id } = Astro.props;
 	}
 </li>
 
-<style>
-	.nav-submenu {
-		display: none;
-		font-size: var(--text-0);
-		padding-inline-start: calc(var(--space-l) + var(--space-3xs));
-	}
-
-	@screen md {
-		.nav-submenu {
-			@apply shadow-2xl;
-			background-color: var(--color-surface-2);
-			height: 100vh;
-			height: 100lvh;
-			font-size: 1rem;
-			inset-inline-start: 0;
-			inline-size: calc(
-				var(--sidebar-submenu-width) + var(--sidebar-width)
-			);
-			margin-block-start: 0;
-			overflow-y: auto;
-			overscroll-behavior: none;
-			padding-block: var(--space-xs) 0;
-			padding-inline-end: var(--space-2xs);
-			padding-inline-start: calc(var(--sidebar-width) + var(--space-2xs));
-			position: fixed;
-			text-align: start;
-			top: 0;
-			z-index: -1;
-		}
-	}
-
-	@screen 2xl {
-		.nav-submenu {
-			box-shadow: none;
-		}
-	}
-</style>
-
 <script>
 	import screens from "@data/design-tokens/screen-sizes.json";
 
 	document.documentElement.addEventListener("submenutoggle", (event) => {
-		console.log(event);
 		if (event.detail.open) {
 			document.documentElement.classList.add("submenu-expanded");
 		} else {

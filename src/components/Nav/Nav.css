@@ -1,13 +1,13 @@
 @layer base {
 	:root {
 		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
-		--sidebar-width: calc(var(--space-2xl-rem) + var(--space-s-rem));
-		--sidebar-submenu-width: var(--space-5xl-rem);
+		--sidebar-width: calc(var(--space-2xl-rem) + var(--space-xs) * 2);
+		--sidebar-submenu-width: calc(var(--space-5xl-rem) + var(--space-s));
 	}
 
 	.main-region {
 		grid-template-columns: minmax(var(--sidebar-content-offset), 1fr) minmax(auto, var(--main-region-limit)) 1fr;
-		margin-top: var(--nav-toggle-content-offset);
+		margin-block-start: var(--nav-toggle-content-offset);
 	}
 
 	@screen md {
@@ -16,8 +16,8 @@
 		}
 
 		.main-region {
-			margin-top: 0;
-			padding-inline-start: var(--space-2xs);
+			margin-block-start: 0;
+			padding-inline-start: 0;
 		}
 	}
 
@@ -77,6 +77,12 @@
 		vertical-align: middle;
 	}
 
+	.nav-submenu {
+		display: none;
+		font-size: var(--text-0);
+		padding-inline-start: calc(var(--space-l) + var(--space-3xs));
+	}
+
 	.nav-item__link.expanded + .nav-submenu,
 	.nav-item__link.expanded + * .nav-submenu {
 		display: block;
@@ -121,8 +127,7 @@
 		.nav-item__icon-container {
 			border: 2px solid transparent;
 			border-radius: var(--border-radius);
-			box-sizing: content-box;
-			padding-inline: var(--space-xs);
+			inline-size: 100%;
 		}
 
 		.nav-item__link:hover .nav-item__icon-container {
@@ -145,6 +150,27 @@
 			margin-block-end: var(--space-3xs);
 		}
 
+		.nav-submenu {
+			@apply shadow-2xl;
+			background-color: var(--color-surface-2);
+			height: 100vh;
+			height: 100lvh;
+			flex-flow: column nowrap;
+			font-size: 1rem;
+			inset-inline-start: 0;
+			inline-size: calc(var(--sidebar-submenu-width) + var(--sidebar-width));
+			justify-content: flex-start;
+			margin-block-start: 0;
+			overflow-y: auto;
+			overscroll-behavior: none;
+			padding-block: var(--space-xs) 0;
+			padding-inline: calc(var(--sidebar-width) + var(--space-s) - var(--space-xs)) var(--space-s);
+			position: fixed;
+			text-align: start;
+			top: 0;
+			z-index: -1;
+		}
+
 		.nav-item__link.expanded + .nav-submenu,
 		.nav-item__link.expanded + * .nav-submenu {
 			display: none;
@@ -152,7 +178,7 @@
 
 		.nav-item__link.expanded.interacted + .nav-submenu,
 		.nav-item__link.expanded.interacted + * .nav-submenu {
-			display: block;
+			display: flex;
 		}
 
 		.nav-submenu-item__link {
@@ -160,10 +186,13 @@
 		}
 
 		@screen 2xl {
+			.nav-submenu {
+				box-shadow: none;
+			}
 
 			.nav-item__link.expanded + .nav-submenu,
 			.nav-item__link.expanded + * .nav-submenu {
-				display: block;
+				display: flex;
 			}
 		}
 	}
