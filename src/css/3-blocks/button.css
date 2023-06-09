@@ -90,38 +90,35 @@
 		}
 	}
 
-	.chip {
-		--button-padding-inline: var(--space-s);
-		border-radius: 9999px;
-	}
-
-	.chip:where([data-size="s"]) {
-		--button-padding-inline: var(--space-xs);
-	}
-
 	.icon-label-button {
-		gap: var(--space-2xs);
+		--button-gap: calc(var(--button-padding-inline) / 3);
+		gap: var(--button-gap);
 	}
-
+	
 	.icon-label-button :where(.icon:first-child) {
-		margin-inline-start: calc(-1 * var(--space-3xs));
+		margin-inline-start: calc(-1 * var(--button-gap));
 	}
 
 	.icon-label-button :where(.icon:last-child) {
-		margin-inline-end: calc(-1 * var(--space-3xs));
-	}
-
-	.icon-label-button:where([data-size="s"]) {
-		gap: var(--space-3xs);
+		margin-inline-end: calc(-1 * var(--button-gap));
 	}
 
 	.icon-button {
-		--button-padding-inline: var(--button-padding-block);
 		font-size: 0;
 		gap: 0;
+		padding-inline: var(--button-padding-block);
 	}
 
 	.icon-button .icon {
 		margin: 0;
+	}
+
+	.chip {
+		border-radius: 9999px;
+		padding-inline: var(--space-s);
+	}
+
+	.chip:where([data-size="s"]) {
+		padding-inline: var(--space-xs);
 	}
 }
