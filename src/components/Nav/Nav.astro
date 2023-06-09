@@ -20,7 +20,7 @@ function isCurrentUrl(url) {
 			class="nav-toggle button icon-button shadow-md"
 			type="button"
 		>
-			<div class="button__icon">
+			<div class="icon">
 				<Svg
 					src={import("@assets/icons/three-line-horizontal.svg?raw")}
 				/>
@@ -35,10 +35,10 @@ function isCurrentUrl(url) {
 							<NavItemDisclosure
 								title={item.title}
 								url={item.url}
+								icon={item.icon}
 								id={`nav-${slugify(item.title)}-submenu`}
 								current={isCurrentUrl(item.url)}
 							>
-								<Svg slot="icon" src={item.icon} />
 								<ul role="list">
 									{item.children.map((child) => (
 										<li class="nav-submenu-item">
@@ -59,10 +59,9 @@ function isCurrentUrl(url) {
 							<NavItem
 								title={item.title}
 								url={item.url}
+								icon={item.icon}
 								current={isCurrentUrl(item.url)}
-							>
-								<Svg slot="icon" src={item.icon} />
-							</NavItem>
+							/>
 						)
 					)
 				}

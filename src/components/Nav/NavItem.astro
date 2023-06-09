@@ -1,5 +1,6 @@
 ---
-const { url = "/", title, current = false } = Astro.props;
+import Svg from "@jasikpark/astro-svg-loader";
+const { url = "/", title, icon, current = false } = Astro.props;
 ---
 
 <li class="nav-item">
@@ -8,8 +9,8 @@ const { url = "/", title, current = false } = Astro.props;
 		href={url}
 		aria-current={current ? "page" : "false"}
 	>
-		<div class="nav-item__icon-container">
-			<slot name="icon" />
+		<div class="icon">
+			<Svg src={icon} />
 		</div>
 		<span>{title}</span>
 	</a>

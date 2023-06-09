@@ -1,9 +1,12 @@
 <script>
 	import screens from "@data/design-tokens/screen-sizes.json";
+	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
+	import ChevronRight  from "@assets/icons/chevron-right.svg?raw";
 	import { onMount } from "svelte";
 
 	export let url = "/";
 	export let title;
+	export let icon;
 	export let current = false;
 	export let controls;
 
@@ -13,7 +16,7 @@
 	let button;
 	let closeEvent;
 	let openEvent;
-
+	
 	onMount(() => {
 		mounted = true;
 
@@ -86,10 +89,21 @@
 		on:click={toggle}
 		bind:this={button}
 	>
-		<div class="nav-item__icon-container">
-			<slot name="icon" />
+		<div class="icon">
+			{@html icon}
 		</div>
 		<span>{title}</span>
+		<div class="chevron icon md:hidden">
+			{#if expanded}
+				{#await ChevronDown then svg}
+					{@html svg}
+				{/await}
+			{:else}
+				{#await ChevronRight then svg}
+					{@html svg}
+				{/await}
+			{/if}
+		</div>
 	</button>
 {:else}
 	<a
@@ -98,10 +112,18 @@
 		href={url}
 		aria-current={current ? "page" : "false"}
 	>
-		<div class="nav-item__icon-container">
-			<slot name="icon" />
+		<div class="icon">
+			{@html icon}
 		</div>
 		<span>{title}</span>
 	</a>
 {/if}
 <slot />
+
+<style>
+	.chevron {
+		--icon-size: var(--space-m);
+		color: var(--color-text-regular);
+		margin-inline: auto calc(-1 * var(--space-3xs));
+	}
+</style>

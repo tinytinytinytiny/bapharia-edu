@@ -3,7 +3,8 @@ import NavItem from "./NavItem.astro";
 import NavItemToggle from "./NavItemToggle.svelte";
 import SubmenuCollapseButton from "./SubmenuCollapseButton.svelte";
 
-const { url = "/", title, current = false, id } = Astro.props;
+const { url = "/", title, icon, current = false, id } = Astro.props;
+const _icon = await icon;
 ---
 
 <li class="nav-item">
@@ -13,23 +14,22 @@ const { url = "/", title, current = false, id } = Astro.props;
 				client:load
 				url={url}
 				title={title}
+				icon={_icon.default}
 				current={current}
 				controls={id}
 			>
-				<Fragment slot="icon">
-					<slot name="icon" />
-				</Fragment>
 				<div id={id} class="nav-submenu">
 					<slot />
 					<SubmenuCollapseButton client:visible controls={id} />
 				</div>
 			</NavItemToggle>
 		) : (
-			<NavItem url={url} title={title} current={current}>
-				<Fragment slot="icon">
-					<slot name="icon" />
-				</Fragment>
-			</NavItem>
+			<NavItem
+				url={url}
+				title={title}
+				icon={icon}
+				current={current}
+			/>
 		)
 	}
 </li>

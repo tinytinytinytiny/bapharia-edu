@@ -1,0 +1,15 @@
+@layer components {
+	.icon {
+		align-items: center;
+		display: flex;
+		height: var(--icon-size, var(--space-m));
+		justify-content: center;
+		width: var(--icon-size, var(--space-m));
+	}
+
+	.icon svg {
+		height: 100%;
+		vertical-align: middle;
+		width: 100%;
+	}
+}

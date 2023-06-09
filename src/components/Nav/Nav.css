@@ -67,14 +67,8 @@
 		font-weight: 700;
 	}
 
-	.nav-item__icon-container {
-		display: inline-block;
-	}
-
-	.nav-item__icon-container svg {
-		height: var(--space-l);
-		width: var(--space-l);
-		vertical-align: middle;
+	.nav-item__link .icon {
+		--icon-size: var(--space-l);
 	}
 
 	.nav-submenu {
@@ -115,8 +109,7 @@
 			background: transparent;
 		}
 
-		.nav-item__link,
-		.nav-item__icon-container {
+		.nav-item__link {
 			align-items: center;
 			display: flex;
 			flex-flow: column nowrap;
@@ -124,25 +117,25 @@
 			gap: 2px;
 		}
 
-		.nav-item__icon-container {
+		.nav-item__link .icon {
 			border: 2px solid transparent;
 			border-radius: var(--border-radius);
 			inline-size: calc(100% - var(--space-s));
 		}
 
-		.nav-item__link:hover .nav-item__icon-container {
+		.nav-item__link:hover .icon {
 			background-color: var(--color-shade-weak);
 		}
 
-		.nav-item__link:active .nav-item__icon-container {
+		.nav-item__link:active .icon {
 			background-color: var(--color-shade);
 		}
 
-		.nav-item__link[aria-current="page"] .nav-item__icon-container {
+		.nav-item__link[aria-current="page"] .icon {
 			background-color: var(--color-accent-surface);
 		}
 
-		.nav-item__link:focus .nav-item__icon-container {
+		.nav-item__link:focus .icon {
 			@apply focus-ring;
 		}
 
