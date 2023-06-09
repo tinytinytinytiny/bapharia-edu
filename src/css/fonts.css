@@ -11,3 +11,10 @@
 	font-style: italic;
 	src: url('/fonts/PublicSans-Italic[wght].woff2') format('woff2-variations');
 }
+
+@font-face {
+	font-display: block;
+	font-family: 'Noto Sans JP';
+	font-style: normal;
+	src: url('/fonts/NotoSansJP-VariableFont_wght.woff2') format('woff2-variations');
+}
