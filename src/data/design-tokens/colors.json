@@ -3,9 +3,12 @@
 		"DEFAULT": "oklch(40% 0.1 245)",
 		"glare": "oklch(50% 0.13 245)",
 		"shade": "oklch(30% 0.07 245)",
-		"surface": "oklch(70% 0.14 245 / 40%)"
+		"surface": {
+			"DEFAULT": "oklch(70% 0.16 245 / 35%)",
+			"strong": "oklch(70% 0.14 245 / 55%)"
+		}
 	},
-	"focus-ring": "oklch(50% 0.13 245 / 40%)",
+	"focus-ring": "oklch(60% 0.14 245 / 40%)",
 	"scrim": {
 		"linear": "linear-gradient(90deg, oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 150%)",
 		"radial": "radial-gradient(oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 400%)"
@@ -16,9 +19,9 @@
 	},
 	"shade": {
 		"weak": "oklch(40% 0.032 225 / 10%)",
-		"DEFAULT": "oklch(40% 0.032 225 / 20%)",
-		"strong": "oklch(40% 0.032 225 / 30%)",
-		"strongest": "oklch(40% 0.032 225 / 40%)"
+		"DEFAULT": "oklch(40% 0.032 225 / 18%)",
+		"strong": "oklch(40% 0.032 225 / 27%)",
+		"strongest": "oklch(40% 0.032 225 / 37%)"
 	},
 	"surface": {
 		"0": "#fff",
