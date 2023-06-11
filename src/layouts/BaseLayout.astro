@@ -1,12 +1,13 @@
 ---
 import "../css/fonts.css";
 import "../css/global.css";
-import navigationData from "@data/navigation";
+import getNavigationData from "@data/navigation";
 import Nav from "@components/Nav/Nav.astro";
 import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
 import JSTTime from "@components/JSTTime/JSTTime.astro";
 
 const { title } = Astro.props;
+const navigationData = await getNavigationData();
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
 const rootPathName = "/" + Astro.url.pathname.split("/")[1];
 const isSubmenuOpen = Boolean(
@@ -24,6 +25,7 @@ const isSubmenuOpen = Boolean(
 	</head>
 	<body>
 		<header>
+			<Nav />
 			<div class="main-region pbe-0 hidden md:grid">
 				<div class="spread">
 					<JSTTime />
@@ -35,7 +37,6 @@ const isSubmenuOpen = Boolean(
 					</nav>
 				</div>
 			</div>
-			<Nav />
 		</header>
 		<div class="main-region stack stack-space-s">
 			<main class="stack stack-space-s">

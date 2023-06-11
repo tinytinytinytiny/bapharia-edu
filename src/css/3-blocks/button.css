@@ -3,6 +3,7 @@
 		--button-background: var(--color-accent);
 		--button-hover-background: var(--color-accent-glare);
 		--button-active-background: var(--color-accent-shade);
+		--button-color: var(--color-text-inverted);
 		--button-icon-size: var(--space-m);
 		--button-padding-block: var(--space-2xs);
 		--button-padding-inline: var(--space-m);
@@ -17,7 +18,7 @@
 		background-color: var(--button-background);
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
-		color: var(--color-text-inverted);
+		color: var(--button-color);
 		display: inline-flex;
 		font-weight: 600;
 		justify-content: center;
@@ -26,6 +27,10 @@
 		padding-block: var(--button-padding-block);
 		padding-inline: var(--button-padding-inline);
 		position: relative;
+	}
+
+	.button:hover {
+		color: var(--button-color);
 	}
 
 	.button:not(.bg-transparent) {
@@ -70,14 +75,14 @@
 		--button-background: var(--color-shade);
 		--button-hover-background: var(--color-shade-strong);
 		--button-active-background: var(--color-shade-weak);
-		color: var(--color-text-regular);
+		--button-color: var(--color-text-regular);
 	}
 
 	.button:where([data-type="ghost"]) {
 		--button-background: transparent;
 		--button-hover-background: transparent;
 		--button-active-background: var(--color-shade-weak);
-		color: var(--color-text-regular);
+		--button-color: var(--color-text-regular);
 	}
 
 	.button:where([data-type="ghost"]:not(:focus)) {
@@ -94,7 +99,7 @@
 		--button-gap: calc(var(--button-padding-inline) / 3);
 		gap: var(--button-gap);
 	}
-	
+
 	.icon-label-button :where(.icon:first-child) {
 		margin-inline-start: calc(-1 * var(--button-gap));
 	}

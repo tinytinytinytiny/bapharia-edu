@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { useStoryblokApi } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const storyblokApi = useStoryblokApi();
+const slug = Astro.params.slug;
+let content;
+let lastUpdatedDate;
+
+try {
+	const { data } = await storyblokApi.get(`cdn/stories/guides/${slug}`, {
+		version: import.meta.env.DEV ? "draft" : "published",
+	});
+	content = data.story.content;
+	lastUpdatedDate = data.story.updated_at || data.story.created_at;
+} catch (error) {
+	return Astro.redirect("/404");
+}
+---
+
+<BaseLayout title={content.title}>
+	<StoryblokComponent blok={content} lastUpdatedDate={lastUpdatedDate} />
+</BaseLayout>

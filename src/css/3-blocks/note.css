@@ -1,0 +1,51 @@
+@layer components {
+
+	.note-title,
+	.note-body {
+		padding: var(--space-s);
+	}
+
+	.note {
+		background-color: var(--color-surface-2);
+		/* border: 2px solid var(--color-surface-4); */
+		border-radius: var(--border-radius);
+		box-sizing: content-box;
+		max-inline-size: 63ch;
+		overflow: hidden;
+	}
+
+	.note,
+	:where(.note) + * {
+		--stack-space-override: var(--space-l-rem);
+	}
+
+	.note-title {
+		background-color: var(--color-surface-3);
+		color: var(--color-text-strong);
+		font-weight: 700;
+		line-height: 1;
+		padding-block: var(--space-xs);
+	}
+
+	.note[data-style="tip"] {
+		background-color: var(--color-accent-surface-1);
+		border-color: var(--color-accent-surface-3);
+	}
+
+	[data-style="tip"] .note-title {
+		background-color: var(--color-accent-surface-2);
+	}
+
+	.note[data-style="caution"] {
+		background-color: var(--color-alert-surface-1);
+		border-color: var(--color-alert-surface-3);
+	}
+
+	[data-style="caution"] .note-title {
+		background-color: var(--color-alert-surface-2);
+	}
+
+	.note-body {
+		line-height: 1.5;
+	}
+}

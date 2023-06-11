@@ -1,0 +1,51 @@
+@layer components {
+	.table-container {
+		inline-size: max-content;
+		max-inline-size: 100%;
+		overflow-x: auto;
+	}
+
+	table {
+		border-radius: var(--border-radius);
+		border: 2px solid var(--color-separator);
+		border-collapse: separate;
+		line-height: 1.25;
+		overflow: hidden;
+	}
+
+	.table-container:focus > table {
+		border-color: currentColor;
+	}
+
+	thead {
+		background-color: var(--color-surface-2);
+
+	}
+
+	tbody td {
+		border-block-start: 1px solid var(--color-separator);
+	}
+
+	th,
+	td {
+		padding-block: var(--space-2xs-xs);
+		padding-inline: var(--space-xs-s);
+		text-align: -webkit-match-parent;
+		text-align: match-parent;
+	}
+
+	th + th,
+	td + td {
+		border-inline-start: 1px solid var(--color-separator);
+	}
+
+	table[data-layout="dense"] {
+		font-size: 1rem;
+	}
+
+	[data-layout="dense"] th,
+	[data-layout="dense"] td {
+		padding-block: 8px;
+		padding-inline: 12px;
+	}
+}

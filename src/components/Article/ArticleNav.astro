@@ -1,40 +1,67 @@
+---
+import ArticleNavList from "./ArticleNavList.astro";
+const { headings } = Astro.props;
+
+const toc = [];
+
+let root;
+let currentParent;
+let prev;
+
+headings.forEach((heading, index) => {
+	heading.children = [];
+
+	if (heading.attrs.level === 2) {
+		/* h2 serves as the "root" heading that contains each
+		child subheading. when a h2 is encountered it is pushed immediately to the final array */
+		if (currentParent && currentParent !== root) {
+			root.children.push(currentParent);
+		}
+		root = heading;
+		currentParent = heading;
+		toc.push(heading);
+	} else {
+		if (prev.attrs.level === heading.attrs.level) {
+			/* we don't want to push a sibling heading if a
+			heading of a similar level is set as the current
+			parent element so this will traverse the
+			original array of headings in reverse until a
+			shallower heading level is found, and then that
+			heading will be set as the parent */
+			if (currentParent.attrs.level === heading.attrs.level) {
+				for (let i = index - 1; i > 0; i--) {
+					if (headings[i].attrs.level < currentParent.attrs.level) {
+						currentParent = headings[i];
+						currentParent.children.push(heading);
+						break;
+					}
+				}
+			} else {
+				currentParent.children.push(heading);
+			}
+		} else if (prev.attrs.level < heading.attrs.level) {
+			// deeper
+			prev.children.push(heading);
+			currentParent = prev;
+		} else if (prev.attrs.level > heading.attrs.level) {
+			// shallower
+			currentParent = heading;
+			/* after setting the new parent heading we need to
+			push it into a shallower heading */
+			for (let i = index - 1; i > 0; i--) {
+				if (headings[i].attrs.level < currentParent.attrs.level) {
+					headings[i].children.push(heading);
+					break;
+				}
+			}
+		}
+	}
+
+	prev = heading;
+});
+---
+
 <nav class="article-nav">
 	<h2>In this article</h2>
-	<ul role="list" class="article-nav__list">
-		<li>
-			Aegis Fighter
-			<ul role="list">
-				<li>Shield Gauge</li>
-			</ul>
-		</li>
-		<li>
-			Blast Archer
-			<ul role="list">
-				<li>Buff Charge Gauge</li>
-				<li>Weak-point Targeting</li>
-			</ul>
-		</li>
-		<li>
-			<span class="font-bold underline text-strong"
-				>Heavy Smasher</span
-			>
-			<ul role="list">
-				<li>Cartridge</li>
-			</ul>
-		</li>
-		<li>
-			Spell Caster
-			<ul role="list">
-				<li>EP Gauge</li>
-			</ul>
-		</li>
-		<li>
-			Twin Striker
-			<ul role="list">
-				<li>Combo Gauge</li>
-			</ul>
-		</li>
-		<li>Changing Classes</li>
-		<li>Class Abilities</li>
-	</ul>
+	<ArticleNavList headings={toc} />
 </nav>

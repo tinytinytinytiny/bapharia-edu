@@ -6,6 +6,11 @@
 		--stack-space-override: var(--stack-space);
 	}
 
+	figure + *,
+	.figure + * {
+		--stack-space-override: var(--space-l-xl-rem);
+	}
+
 	h2,
 	.h2 {
 		--stack-space-override: var(--space-xl-rem);
@@ -26,9 +31,7 @@
 	}
 
 	figure,
-	.figure,
-	figure + *,
-	.figure + * {
+	.figure {
 		--stack-space-override: var(--space-l-xl-rem);
 	}
 }

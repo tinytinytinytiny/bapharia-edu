@@ -17,11 +17,20 @@
 		text-align: center;
 	}
 
+	.page-title__inner > * {
+		margin-inline: auto;
+	}
+
 	.page-title h1 {
 		color: inherit;
 	}
 
-	.page-title__bg {
+	:where(.page-title h1) + * {
+		font-size: var(--text-1);
+		margin-block-start: 1em;
+	}
+
+	.page-title img {
 		background-color: var(--color-surface-3);
 		height: 100%;
 		inset: 0;

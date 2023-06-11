@@ -1,0 +1,29 @@
+---
+const { headings } = Astro.props;
+---
+
+<ul role="list" class="article-nav__list">
+	{
+		headings.map((heading) => (
+			<li>
+				<a href={`#${heading.content[0].marks[0].attrs.id}`}>
+					{heading.content[0].text}
+				</a>
+				{heading.children?.length > 0 && (
+					<Astro.self headings={heading.children} />
+				)}
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.article-nav__list > li + li {
+		margin-block-start: 0.75em;
+	}
+
+	.article-nav__list li > ul {
+		margin-block-start: 0.5em;
+		padding-inline-start: 1.25em;
+	}
+</style>

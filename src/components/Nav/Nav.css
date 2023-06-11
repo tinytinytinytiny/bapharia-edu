@@ -34,7 +34,13 @@
 	.nav-submenu-item__link {
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
+		color: inherit;
 		cursor: pointer;
+	}
+
+	.nav-item__link:hover,
+	.nav-submenu-item__link:hover {
+		color: inherit;
 	}
 
 	.nav-item__link {
@@ -64,7 +70,7 @@
 
 	.primary-nav [aria-current="page"] {
 		color: var(--color-text-strong);
-		background-color: var(--color-accent-surface);
+		background-color: var(--color-accent-surface-2);
 		font-weight: 700;
 	}
 
@@ -129,7 +135,7 @@
 		}
 
 		.nav-item__link[aria-current="page"] .icon {
-			background-color: var(--color-accent-surface);
+			background-color: var(--color-accent-surface-2);
 		}
 
 		.nav-item__link:focus .icon {

@@ -1,0 +1,5 @@
+@layer utilities {
+	.rounded {
+		border-radius: var(--border-radius);
+	}
+}

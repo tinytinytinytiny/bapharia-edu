@@ -1,0 +1,76 @@
+---
+import { RichTextSchema, renderRichText } from "@storyblok/astro";
+import cloneDeep from "clone-deep";
+import articleResolver from "./article-resolver";
+import { slugify } from "@utils";
+import ArticleTitle from "@components/PageTitle/ArticleTitle.astro";
+import ArticleNav from "@components/Article/ArticleNav.astro";
+import { getStoryblokImageDimensions } from "@utils";
+
+const { lastUpdatedDate, blok } = Astro.props;
+
+const coverImage = blok.cover_image;
+const coverImageDimensions = getStoryblokImageDimensions(coverImage.filename);
+const _headingIds = [];
+const _content = blok.content.content.map((x) => {
+	if (x.type === "heading") {
+		let id;
+		const _id = slugify(x.content[0].text);
+		const repeatId = [..._headingIds].reverse().find((x) => x.id === _id);
+		if (repeatId) {
+			_headingIds.push({ id: _id, instance: repeatId.instance + 1 });
+			id = `${repeatId.id}-${repeatId.instance + 1}`;
+		} else {
+			_headingIds.push({ id: _id, instance: 1 });
+			id = _id;
+		}
+		x.content[0].marks = [
+			{
+				type: "anchor",
+				attrs: { id },
+			},
+		];
+	}
+
+	return x;
+});
+const content = renderRichText(
+	{ type: "doc", content: _content },
+	{
+		schema: cloneDeep(RichTextSchema),
+		resolver: articleResolver,
+	}
+);
+const headings = blok.content.content.filter((x) => x.type === "heading");
+---
+
+<ArticleTitle
+	title={blok.title}
+	author={blok.author}
+	lastUpdatedDate={lastUpdatedDate}
+>
+	<img
+		slot="img"
+		src={coverImage.filename}
+		alt={coverImage.alt}
+		width={coverImageDimensions.width}
+		height={coverImageDimensions.height}
+	/>
+</ArticleTitle>
+<div class="content">
+	<div class="article">
+		<ArticleNav headings={headings} />
+		<div class="content-wrapper stack">
+			<Fragment set:html={content} />
+		</div>
+	</div>
+</div>
+
+<script>
+	document.querySelectorAll(".table-container").forEach((container) => {
+		const { scrollWidth, clientWidth } = container;
+		if (scrollWidth > clientWidth) {
+			container.setAttribute("tabindex", "0");
+		}
+	});
+</script>

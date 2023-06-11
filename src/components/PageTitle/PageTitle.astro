@@ -1,0 +1,33 @@
+---
+const { title } = Astro.props;
+const defaultBanners = [
+	{
+		filename: "banner-1.png",
+		width: 2560,
+		height: 1440,
+	},
+	{
+		filename: "banner-2.jpg",
+		width: 1920,
+		height: 1080,
+	},
+	{
+		filename: "banner-3.jpg",
+		width: 1920,
+		height: 1080,
+	},
+];
+const getRandomBanner = () =>
+	defaultBanners[Math.floor(Math.random() * defaultBanners.length)];
+const { filename, width, height } = getRandomBanner();
+---
+
+<header class="page-title">
+	<div class="page-title__inner">
+		<h1>{title}</h1>
+		<slot />
+	</div>
+	<slot name="img">
+		<img src={`images/${filename}`} width={width} height={height} alt="" />
+	</slot>
+</header>

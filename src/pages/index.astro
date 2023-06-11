@@ -1,37 +1,69 @@
 ---
+import { useStoryblokApi } from "@storyblok/astro";
+import { getStoryblokImageDimensions } from "@utils";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import ArticleTitle from "@components/PageTitle/ArticleTitle.astro";
+import PageTitle from "@components/PageTitle/PageTitle.astro";
+
+const storyblokApi = useStoryblokApi();
+const {
+	data: { stories },
+} = await storyblokApi.get("cdn/stories", {
+	by_slugs: "guides/*",
+	sort_by: "name:asc",
+	version: import.meta.env.DEV ? "draft" : "published",
+});
 ---
 
 <BaseLayout>
-	<ArticleTitle title="Astro" author="Zakum" lastUpdatedDate="5/10/2023" />
-	<div class="content">
-		<div class="content-wrapper stack">
-			<p>
-				BLUE PROTOCOL will launch with 5 classes, with more in
-				development. Each class has a unique mechanic that influences
-				their gameplay.
-			</p>
-			<h2>Aegis Fighter</h2>
-			<p>
-				The Aegis Fighter (Blade Warden) is a short-range class that
-				fights on the front line, utilizing offensive and defensive
-				skills. Aegis Fighters wield a one-handed sword and shield and
-				are mainly a tank class. Their skills excel in crowd-control and
-				enemy aggro management. They have various Light-elemental
-				skills.
-			</p>
-			<h3>Shield Gauge</h3>
-			<p>
-				Aegis Fighters can hold down the subaction button to enter a
-				guard stance. Successful blocks of enemy attacks will consume
-				Shield Gauge. Once the gauge is depleted, shield-related skills
-				will be temporarily unavailable.
-			</p>
-			<p>
-				Press the normal attack button after blocking to perform a
-				powerful counterattack.
-			</p>
-		</div>
+	<PageTitle title="Bapharia.edu">
+		<p class="text-secondary">
+			The premier information hub for BLUE PROTOCOL
+		</p>
+	</PageTitle>
+	<div>
+		<ul class="auto-grid" role="list">
+			{
+				stories.map((guide) => (
+					<li class="card">
+						<div class="card-body gap-s-rem flex-col flex justify-between">
+							<div class="stack stack-space-2xs-rem">
+								<a
+									class="card-title card-link underline-on-hover"
+									href={`/${guide.full_slug}`}
+								>
+									{guide.content.title}
+								</a>
+								<p>{guide.content.summary}</p>
+							</div>
+							<p>
+								<span
+									class="button chip static bg-accent-surface-3"
+									data-size="s"
+									data-color="neutral"
+								>
+									{guide.content.category[0]}
+								</span>
+							</p>
+						</div>
+						<div class="card-img">
+							<img
+								src={guide.content.cover_image.filename}
+								alt={guide.content.cover_image.alt}
+								width={
+									getStoryblokImageDimensions(
+										guide.content.cover_image.filename
+									).width
+								}
+								height={
+									getStoryblokImageDimensions(
+										guide.content.cover_image.filename
+									).height
+								}
+							/>
+						</div>
+					</li>
+				))
+			}
+		</ul>
 	</div>
 </BaseLayout>

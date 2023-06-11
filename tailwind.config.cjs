@@ -1,5 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 
+const borderRadius = require('./src/data/design-tokens/border-radius.json');
 const color = require('./src/data/design-tokens/colors.json');
 const fontSize = require('./src/data/design-tokens/font-sizes.cjs');
 const spacing = require('./src/data/design-tokens/spacing.cjs');
@@ -48,6 +49,7 @@ module.exports = {
 	important: false,
 	theme: {
 		screens,
+		borderRadius,
 		colors: getTokens(color, 'color'),
 		fontSize: getTokens(fontSize, 'text'),
 		spacing: getTokens(spacing, 'space'),

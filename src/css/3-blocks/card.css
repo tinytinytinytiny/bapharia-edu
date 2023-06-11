@@ -1,0 +1,69 @@
+@layer components {
+	.card {
+		background-color: var(--color-surface-light);
+		border: 2px solid transparent;
+		border-radius: var(--border-radius);
+		display: flex;
+		flex-flow: row wrap;
+		overflow: hidden;
+		position: relative;
+		transition: transform 0.2s ease-out;
+	}
+
+	@media (hover: hover) {
+		.card:hover {
+			background-color: var(--color-surface-light);
+			transform: scale(102%);
+			transform-origin: center;
+		}
+	}
+
+	.card:focus-within {
+		@apply focus-ring;
+	}
+
+	.card-img {
+		flex-basis: 21.375rem;
+		flex-grow: 1;
+		order: -1;
+	}
+
+	.card-img img {
+		aspect-ratio: 5 / 2;
+		height: 100%;
+		object-fit: cover;
+		width: 100%;
+	}
+
+	.card-body {
+		flex-basis: 21.375rem;
+		flex-grow: 999;
+		max-inline-size: 100%;
+		padding: var(--space-s);
+	}
+
+	.card-title {
+		color: var(--color-text-strong);
+		display: block;
+		font-size: var(--text-2);
+		font-weight: 700;
+		line-height: 1.25;
+	}
+
+	.card-link::before {
+		content: '';
+		inset: 0;
+		position: absolute;
+	}
+
+	.card-link:focus {
+		outline: none;
+		text-decoration: underline;
+	}
+
+	@screen sm {
+		.card {
+			background-color: var(--color-surface-1);
+		}
+	}
+}

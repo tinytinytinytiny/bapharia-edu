@@ -5,23 +5,27 @@ const { title, author, lastUpdatedDate } = Astro.props;
 <header class="page-title">
 	<div class="page-title__inner">
 		<h1>{title}</h1>
-		<div role="note" class="cluster gutter-2xs">
+		<div role="note" class="text-inherit cluster gutter-2xs">
 			<p>By {author}</p>
 			<p class="font-normal" aria-hidden="true">•</p>
-			<p class="article-date">Last Updated {lastUpdatedDate}</p>
+			<p class="article-date">
+				Last Updated <time datetime={lastUpdatedDate}
+					>{new Date(lastUpdatedDate).toLocaleDateString()}</time
+				>
+			</p>
 		</div>
 	</div>
-	<img class="page-title__bg" src="images/banner.webp" alt="" />
+	<slot name="img" />
 </header>
 
 <style>
 	.article-date {
-		color: #78ffae;
+		color: var(--color-secondary);
 	}
 
 	[role="note"] {
+		font-size: var(--text-0);
 		justify-content: center;
-		margin-block-start: 1em;
 		row-gap: 0;
 	}
 

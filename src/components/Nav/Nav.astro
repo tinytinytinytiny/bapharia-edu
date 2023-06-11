@@ -1,14 +1,26 @@
 ---
-import navigationData from "@data/navigation";
+import getNavigationData from "@data/navigation";
 import NavItem from "./NavItem.astro";
 import NavItemDisclosure from "./NavItemDisclosure.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Svg from "@jasikpark/astro-svg-loader";
 import { slugify } from "@utils";
 
-function isCurrentUrl(url) {
+const navigationData = await getNavigationData();
+
+function isCurrentPath(url) {
 	const rootPathName = "/" + Astro.url.pathname.split("/")[1];
 	return url === rootPathName;
+}
+
+function isCurrentUrl(url) {
+	if (Astro.url.pathname.endsWith("/")) {
+		if (!url.endsWith("/")) {
+			return url + "/" === Astro.url.pathname;
+		}
+	}
+
+	return url === Astro.url.pathname;
 }
 ---
 
@@ -37,16 +49,31 @@ function isCurrentUrl(url) {
 								url={item.url}
 								icon={item.icon}
 								id={`nav-${slugify(item.title)}-submenu`}
-								current={isCurrentUrl(item.url)}
+								current={isCurrentPath(item.url)}
 							>
 								<ul role="list">
+									<li class="nav-submenu-item">
+										<a
+											href={item.url}
+											class="nav-submenu-item__link underline-on-hover"
+											aria-current={
+												isCurrentUrl(item.url)
+													? "page"
+													: "false"
+											}
+										>
+											{item.title} Overview
+										</a>
+									</li>
 									{item.children.map((child) => (
 										<li class="nav-submenu-item">
 											<a
 												href={child.url}
 												class="nav-submenu-item__link underline-on-hover"
 												aria-current={
-													child.current ? "page" : "false"
+													isCurrentUrl(child.url)
+														? "page"
+														: "false"
 												}
 											>
 												{child.title}
