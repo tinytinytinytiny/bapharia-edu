@@ -15,7 +15,8 @@ const _headingIds = [];
 const _content = blok.content.content.map((x) => {
 	if (x.type === "heading") {
 		let id;
-		const _id = slugify(x.content[0].text);
+		const headingText = x.content.find((y) => "text" in y);
+		const _id = slugify(headingText.text);
 		const repeatId = [..._headingIds].reverse().find((x) => x.id === _id);
 		if (repeatId) {
 			_headingIds.push({ id: _id, instance: repeatId.instance + 1 });

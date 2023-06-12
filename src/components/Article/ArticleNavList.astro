@@ -6,8 +6,13 @@ const { headings } = Astro.props;
 	{
 		headings.map((heading) => (
 			<li>
-				<a href={`#${heading.content[0].marks[0].attrs.id}`}>
-					{heading.content[0].text}
+				<a
+					href={`#${
+						heading.content.find((x) => "marks" in x).marks[0].attrs
+							.id
+					}`}
+				>
+					{heading.content.find((x) => "text" in x).text}
 				</a>
 				{heading.children?.length > 0 && (
 					<Astro.self headings={heading.children} />
