@@ -1,26 +1,20 @@
 {
 	"accent": {
 		"DEFAULT": "oklch(40% 0.1 245)",
-		"glare": "oklch(50% 0.13 245)",
-		"shade": "oklch(30% 0.07 245)",
+		"light": "oklch(50% 0.13 245)",
+		"dark": "oklch(30% 0.07 245)",
 		"surface": {
-			"1": "oklch(73% 0.14 245 / 25%)",
-			"2": "oklch(70% 0.16 245 / 35%)",
-			"3": "oklch(67% 0.14 245 / 45%)",
-			"border": "oklch(60% 0.16 245 / 50%)"
+			"DEFAULT": "oklch(85% 0.07 245)",
+			"tint": "oklch(70% 0.16 245 / 35%)"
 		}
 	},
 	"secondary": {
-		"DEFAULT": "oklch(90% 0.18 155)",
-		"surface": "oklch(79% 0.2 155 / 45%)"
+		"DEFAULT": "oklch(40% 0.1 155)",
+		"surface": "oklch(86% 0.11 155)"
 	},
 	"alert": {
-		"surface": {
-			"1": "oklch(86% 0.16 85 / 35%)",
-			"2": "oklch(83% 0.15 85 / 45%)",
-			"3": "oklch(80% 0.15 85 / 55%)",
-			"border": "oklch(66% 0.14 85 / 60%)"
-		}
+		"DEFAULT": "oklch(45% 0.09 85)",
+		"surface": "oklch(90% 0.08 85)"
 	},
 	"focus-ring": "oklch(60% 0.14 245 / 40%)",
 	"scrim": {
