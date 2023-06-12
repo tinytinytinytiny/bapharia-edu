@@ -74,6 +74,10 @@
 		font-weight: 700;
 	}
 
+	.nav-item__link[aria-expanded="true"] {
+		background-color: transparent;
+	}
+
 	.nav-submenu {
 		display: none;
 		font-size: var(--text-0);

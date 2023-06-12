@@ -6,7 +6,7 @@ import { loadEnv } from 'vite';
 import netlify from "@astrojs/netlify/functions";
 import svelte from "@astrojs/svelte";
 
-const env = loadEnv('', process.cwd(), 'STORYBLOK');
+const env = import.meta.env.STORYBLOK_TOKEN || loadEnv('', process.cwd(), 'STORYBLOK');
 
 // https://astro.build/config
 export default defineConfig({
