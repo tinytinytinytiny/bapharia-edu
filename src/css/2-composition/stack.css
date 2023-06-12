@@ -6,8 +6,8 @@
 		--stack-space-override: var(--stack-space);
 	}
 
-	figure + *,
-	.figure + * {
+	:where(figure) + *,
+	:where(.figure) + * {
 		--stack-space-override: var(--space-l-xl-rem);
 	}
 

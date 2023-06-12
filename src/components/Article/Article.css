@@ -77,14 +77,18 @@
 		.article-nav {
 			background-color: transparent;
 			border-radius: 0;
+			box-sizing: content-box;
 			flex-shrink: 0;
 			float: none;
 			inset-block-start: var(--content-padding-block);
 			margin: 0;
+			margin-inline-end: calc(-1 * var(--space-xs));
 			max-block-size: calc(100vh - var(--content-padding-block) * 2);
 			flex-basis: var(--article-nav-width);
 			overflow-y: auto;
+			overscroll-behavior: contain;
 			padding: 0;
+			padding-inline-end: var(--space-xs);
 			position: sticky;
 		}
 	}
