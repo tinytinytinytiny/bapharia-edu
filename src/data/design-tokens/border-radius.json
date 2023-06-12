@@ -1,3 +1,5 @@
 {
-	"DEFAULT": "var(--space-xs)"
+	"sm": "var(--space-2xs)",
+	"DEFAULT": "var(--space-xs)",
+	"full": "9999px"
 }

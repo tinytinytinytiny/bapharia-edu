@@ -39,7 +39,7 @@
 		flex-basis: 21.375rem;
 		flex-grow: 999;
 		max-inline-size: 100%;
-		padding: var(--space-s);
+		padding: var(--space-xs-s);
 	}
 
 	.card-title {
