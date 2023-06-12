@@ -29,10 +29,6 @@
 		position: relative;
 	}
 
-	.button:hover {
-		color: var(--button-color);
-	}
-
 	.button:not(.bg-transparent) {
 		text-decoration: none;
 	}
