@@ -1,8 +1,6 @@
 @layer base {
 	:root {
 		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
-		--sidebar-width: calc(var(--space-2xl-rem) + var(--space-s));
-		--sidebar-submenu-width: calc(var(--space-5xl-rem) + var(--space-s));
 	}
 
 	.main-region {
@@ -13,6 +11,8 @@
 	@screen md {
 		:root {
 			--sidebar-content-offset: var(--sidebar-width);
+			--sidebar-submenu-width: calc(var(--space-5xl-rem) + var(--space-s));
+			--sidebar-width: calc(var(--space-2xl-rem) + var(--space-s));
 		}
 
 		.main-region {
@@ -22,6 +22,10 @@
 	}
 
 	@screen 2xl {
+		:root {
+			--sidebar-submenu-width: calc(var(--space-5xl-rem) + var(--space-xs));
+		}
+		
 		.submenu-expanded {
 			--sidebar-content-offset: calc(var(--sidebar-width) + var(--sidebar-submenu-width) + var(--space-2xs));
 		}
