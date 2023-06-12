@@ -114,12 +114,13 @@
 
 	h3,
 	.h3 {
-		font-size: var(--text-1);
+		font-size: var(--text-2);
 		line-height: 1.25;
 	}
 
 	h4,
 	.h4 {
+		font-size: var(--text-1);
 		line-height: 1.5;
 	}
 

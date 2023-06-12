@@ -2,7 +2,7 @@
 
 	.note-title,
 	.note-body {
-		padding: var(--space-s);
+		padding: var(--space-xs-s);
 	}
 
 	.note {
@@ -16,7 +16,7 @@
 
 	.note,
 	:where(.note) + * {
-		--stack-space-override: var(--space-l-rem);
+		--stack-space-override: var(--space-m-rem);
 	}
 
 	.note-title {
