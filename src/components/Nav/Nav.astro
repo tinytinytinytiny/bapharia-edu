@@ -1,12 +1,12 @@
 ---
-import getNavigationData from "@data/navigation";
+import navigationData from "@data/navigation";
 import NavItem from "./NavItem.astro";
 import NavItemDisclosure from "./NavItemDisclosure.astro";
+import NavSubmenu from "./NavSubmenu.astro";
+import AsyncSubmenu from "./AsyncSubmenu.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Svg from "@jasikpark/astro-svg-loader";
 import { slugify } from "@utils";
-
-const navigationData = await getNavigationData();
 
 function isCurrentPath(url) {
 	const rootPathName = "/" + Astro.url.pathname.split("/")[1];
@@ -51,36 +51,19 @@ function isCurrentUrl(url) {
 								id={`nav-${slugify(item.title)}-submenu`}
 								current={isCurrentPath(item.url)}
 							>
-								<ul role="list">
-									<li class="nav-submenu-item">
-										<a
-											href={item.url}
-											class="nav-submenu-item__link underline-on-hover"
-											aria-current={
-												isCurrentUrl(item.url)
-													? "page"
-													: "false"
-											}
-										>
-											{item.title} Overview
-										</a>
-									</li>
-									{item.children.map((child) => (
-										<li class="nav-submenu-item">
-											<a
-												href={child.url}
-												class="nav-submenu-item__link underline-on-hover"
-												aria-current={
-													isCurrentUrl(child.url)
-														? "page"
-														: "false"
-												}
-											>
-												{child.title}
-											</a>
-										</li>
-									))}
-								</ul>
+								{isCurrentPath(item.url) ? (
+									Array.isArray(item.children) ? (
+										<NavSubmenu
+											parentUrl={item.url}
+											parentTitle={item.title}
+											children={item.children}
+										/>
+									) : (
+										<AsyncSubmenu item={item} />
+									)
+								) : (
+									""
+								)}
 							</NavItemDisclosure>
 						) : (
 							<NavItem

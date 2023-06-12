@@ -1,13 +1,12 @@
 ---
 import "../css/fonts.css";
 import "../css/global.css";
-import getNavigationData from "@data/navigation";
+import navigationData from "@data/navigation";
 import Nav from "@components/Nav/Nav.astro";
 import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
 import JSTTime from "@components/JSTTime/JSTTime.astro";
 
 const { title } = Astro.props;
-const navigationData = await getNavigationData();
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
 const rootPathName = "/" + Astro.url.pathname.split("/")[1];
 const isSubmenuOpen = Boolean(

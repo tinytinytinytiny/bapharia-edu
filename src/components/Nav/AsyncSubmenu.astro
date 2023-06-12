@@ -1,0 +1,17 @@
+---
+import { getStoryblokLinks } from "@utils";
+import NavSubmenu from "./NavSubmenu.astro";
+
+const { item } = Astro.props;
+
+const links = await getStoryblokLinks(item.children);
+---
+
+<NavSubmenu
+	parentUrl={item.url}
+	parentTitle={item.title}
+	children={links.map((link) => ({
+		title: link.name,
+		url: `/${link.slug}`,
+	}))}
+/>

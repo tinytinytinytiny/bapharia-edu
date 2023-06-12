@@ -1,0 +1,38 @@
+---
+const { parentUrl, parentTitle, children } = Astro.props;
+
+function isCurrentUrl(url) {
+	if (Astro.url.pathname.endsWith("/")) {
+		if (!url.endsWith("/")) {
+			return url + "/" === Astro.url.pathname;
+		}
+	}
+
+	return url === Astro.url.pathname;
+}
+---
+
+<ul role="list">
+	<li class="nav-submenu-item">
+		<a
+			href={parentUrl}
+			class="nav-submenu-item__link underline-on-hover"
+			aria-current={isCurrentUrl(parentUrl) ? "page" : "false"}
+		>
+			{parentTitle} Overview
+		</a>
+	</li>
+	{
+		children.map((child) => (
+			<li class="nav-submenu-item">
+				<a
+					href={child.url}
+					class="nav-submenu-item__link underline-on-hover"
+					aria-current={isCurrentUrl(child.url) ? "page" : "false"}
+				>
+					{child.title}
+				</a>
+			</li>
+		))
+	}
+</ul>
