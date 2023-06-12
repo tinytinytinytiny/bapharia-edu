@@ -10,7 +10,8 @@
 	},
 	"secondary": {
 		"DEFAULT": "oklch(40% 0.1 155)",
-		"surface": "oklch(86% 0.11 155)"
+		"surface": "oklch(86% 0.11 155)",
+		"on-dark": "oklch(90% 0.18 155)"
 	},
 	"alert": {
 		"DEFAULT": "oklch(45% 0.09 85)",
