@@ -21,6 +21,11 @@
 		--stack-space-override: var(--space-l-rem);
 	}
 
+	h4,
+	.h4 {
+		--stack-space-override: var(--space-m-rem);
+	}
+
 	h1 + *,
 	.h1 + *,
 	h2 + *,

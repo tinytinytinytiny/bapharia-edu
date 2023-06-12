@@ -14,7 +14,7 @@ headings.forEach((heading, index) => {
 	if (heading.attrs.level === 2) {
 		/* h2 serves as the "root" heading that contains each
 		child subheading. when a h2 is encountered it is pushed immediately to the final array */
-		if (currentParent && currentParent !== root) {
+		if (currentParent && currentParent !== root && !'currentParent' in root) {
 			root.children.push(currentParent);
 		}
 		root = heading;
