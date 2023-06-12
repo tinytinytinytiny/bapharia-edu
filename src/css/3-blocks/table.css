@@ -9,6 +9,7 @@
 		border-radius: var(--border-radius);
 		border: 2px solid var(--color-separator);
 		border-collapse: separate;
+		font-variant-numeric: tabular-nums;
 		line-height: 1.25;
 		overflow: hidden;
 	}

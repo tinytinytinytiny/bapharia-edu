@@ -43,7 +43,7 @@ export default (component, blok) => {
 				</table>
 			</section>`;
 		case 'youtube':
-			return `<iframe class="youtube figure rounded" width="1280" height="720" src="https://www.youtube.com/embed/${blok.video.split('=')[1]}" title="${blok.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+			return `<iframe class="youtube figure full-width rounded" width="1280" height="720" src="https://www.youtube.com/embed/${blok.video.split('=')[1]}" title="${blok.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 		default:
 			return `<p class="p-xs bg-surface-3 text-strong rounded font-bold">Component ${component} not found</p>`;
 	}

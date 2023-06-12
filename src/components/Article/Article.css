@@ -1,6 +1,6 @@
 @layer base {
 	:root {
-		--article-gutter: var(--space-l);
+		--article-gutter: var(--space-xl);
 	}
 
 	@screen xl {
