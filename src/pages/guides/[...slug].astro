@@ -13,7 +13,7 @@ try {
 		version: import.meta.env.DEV ? "draft" : "published",
 	});
 	content = data.story.content;
-	lastUpdatedDate = data.story.updated_at || data.story.created_at;
+	lastUpdatedDate = data.story.published_at || data.story.created_at;
 } catch (error) {
 	return Astro.redirect("/404");
 }
