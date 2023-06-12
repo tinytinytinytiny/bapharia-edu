@@ -8,7 +8,7 @@ const { title, author, lastUpdatedDate } = Astro.props;
 		<div role="note" class="text-inherit cluster gutter-2xs">
 			<p>By {author}</p>
 			<p class="font-normal" aria-hidden="true">•</p>
-			<p class="article-date">
+			<p class="text-secondary-on-dark">
 				Last Updated <time datetime={lastUpdatedDate}
 					>{new Date(lastUpdatedDate).toLocaleDateString()}</time
 				>
@@ -19,10 +19,6 @@ const { title, author, lastUpdatedDate } = Astro.props;
 </header>
 
 <style>
-	.article-date {
-		color: oklch(90% 0.18 155);
-	}
-
 	[role="note"] {
 		font-size: var(--text-0);
 		justify-content: center;
