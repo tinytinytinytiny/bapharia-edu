@@ -48,7 +48,7 @@
 	}
 
 	.nav-item__link {
-		--icon-size: var(--space-l);
+		--icon-size: var(--space-l-rem);
 		align-items: center;
 		display: flex;
 		gap: var(--space-xs);

@@ -122,7 +122,7 @@
 
 <style>
 	.chevron {
-		--icon-size: var(--space-m);
+		--icon-size: var(--space-m-rem);
 		color: var(--color-text-regular);
 		margin-inline: auto calc(-1 * var(--space-3xs));
 	}
