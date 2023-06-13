@@ -61,7 +61,7 @@
 		.article > .content-wrapper {
 			display: grid;
 			flex-grow: 999;
-			grid-template-columns: minmax(auto, calc(var(--article-nav-width) + var(--article-gutter))) 1fr;
+			grid-template-columns: 1fr minmax(auto, max(45rem, 100% - var(--article-nav-width) - var(--article-gutter)));
 			margin-inline-start: auto;
 			max-inline-size: none;
 		}
@@ -82,13 +82,13 @@
 			float: none;
 			inset-block-start: var(--content-padding-block);
 			margin: 0;
-			margin-inline-end: calc(-1 * var(--space-xs));
+			margin-inline-end: calc(-1 * var(--content-padding-inline));
 			max-block-size: calc(100vh - var(--content-padding-block) * 2);
 			flex-basis: var(--article-nav-width);
 			overflow-y: auto;
 			overscroll-behavior: contain;
 			padding: 0;
-			padding-inline-end: var(--space-xs);
+			padding-inline-end: var(--content-padding-inline);
 			position: sticky;
 		}
 	}
