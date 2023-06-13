@@ -108,6 +108,7 @@
 	h2,
 	.h2 {
 		font-size: var(--text-4);
+		font-weight: 800;
 		letter-spacing: -0.01em;
 		line-height: 1.125;
 	}
@@ -115,6 +116,7 @@
 	h3,
 	.h3 {
 		font-size: var(--text-2);
+		font-weight: 800;
 		line-height: 1.25;
 	}
 
