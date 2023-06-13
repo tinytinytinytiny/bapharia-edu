@@ -14,7 +14,11 @@ headings.forEach((heading, index) => {
 	if (heading.attrs.level === 2) {
 		/* h2 serves as the "root" heading that contains each
 		child subheading. when a h2 is encountered it is pushed immediately to the final array */
-		if (currentParent && currentParent !== root && !'currentParent' in root) {
+		if (
+			currentParent &&
+			currentParent !== root &&
+			!root.children.includes(currentParent)
+		) {
 			root.children.push(currentParent);
 		}
 		root = heading;
@@ -61,7 +65,9 @@ headings.forEach((heading, index) => {
 });
 ---
 
-<nav class="article-nav">
-	<h2>In this article</h2>
-	<ArticleNavList headings={toc} />
+<nav class="article-nav" aria-labelledby="article-nav-label">
+	<div>
+		<h2 id="article-nav-label">In this article</h2>
+		<ArticleNavList headings={toc} />
+	</div>
 </nav>
