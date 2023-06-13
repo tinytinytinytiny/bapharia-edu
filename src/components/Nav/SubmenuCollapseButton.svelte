@@ -1,6 +1,6 @@
 <script>
 	import Icon from "@assets/icons/panel-left.svg?raw";
-	
+
 	export let controls;
 
 	let button;
@@ -42,5 +42,6 @@
 		inset-block-end: 0;
 		padding-block: var(--space-xs) var(--space-s);
 		position: sticky;
+		z-index: 1;
 	}
 </style>
