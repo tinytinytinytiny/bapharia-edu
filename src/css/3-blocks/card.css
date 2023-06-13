@@ -16,6 +16,12 @@
 			transform: scale(102%);
 			transform-origin: center;
 		}
+
+		@media (prefers-reduced-motion) {
+			.card:hover {
+				transform: none;
+			}
+		}
 	}
 
 	.card:focus-within {
