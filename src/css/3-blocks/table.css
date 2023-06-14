@@ -29,6 +29,7 @@
 
 	th,
 	td {
+		max-inline-size: 24rem;
 		padding-block: var(--space-2xs-xs);
 		padding-inline: var(--space-xs-s);
 		text-align: -webkit-match-parent;
