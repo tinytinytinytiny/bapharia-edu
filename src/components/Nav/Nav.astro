@@ -51,7 +51,7 @@ function isCurrentUrl(url) {
 								id={`nav-${slugify(item.title)}-submenu`}
 								current={isCurrentPath(item.url)}
 							>
-								{isCurrentPath(item.url) ? (
+								{isCurrentPath(item.url) && (
 									Array.isArray(item.children) ? (
 										<NavSubmenu
 											parentUrl={item.url}
@@ -59,10 +59,12 @@ function isCurrentUrl(url) {
 											children={item.children}
 										/>
 									) : (
-										<AsyncSubmenu item={item} />
+										<AsyncSubmenu
+											parentUrl={item.url}
+											parentTitle={item.title}
+											linkPrefix={item.children}
+										/>
 									)
-								) : (
-									""
 								)}
 							</NavItemDisclosure>
 						) : (
