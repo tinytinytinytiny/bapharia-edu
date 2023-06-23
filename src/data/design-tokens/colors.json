@@ -17,7 +17,7 @@
 		"DEFAULT": "oklch(45% 0.09 85)",
 		"surface": "oklch(90% 0.08 85)"
 	},
-	"focus-ring": "oklch(60% 0.14 245 / 40%)",
+	"focus-ring": "oklch(70% 0.16 245 / 80%)",
 	"scrim": {
 		"linear": "linear-gradient(90deg, oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 150%)",
 		"radial": "radial-gradient(oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 400%)"
