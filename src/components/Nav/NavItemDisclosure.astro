@@ -1,7 +1,7 @@
 ---
 import NavItem from "./NavItem.astro";
 import NavItemToggle from "./NavItemToggle.svelte";
-import SubmenuCollapseButton from "./SubmenuCollapseButton.svelte";
+import NavSubmenuCloser from "./NavSubmenuCloser.svelte";
 
 const { url = "/", title, icon, current = false, id } = Astro.props;
 const _icon = await icon;
@@ -20,7 +20,7 @@ const _icon = await icon;
 			>
 				<div id={id} class="nav-submenu">
 					<slot />
-					<SubmenuCollapseButton client:visible controls={id} />
+					<NavSubmenuCloser controls={id} client:visible />
 				</div>
 			</NavItemToggle>
 		) : (
@@ -35,19 +35,17 @@ const _icon = await icon;
 </li>
 
 <script>
+	import { submenu } from "./navStore.js";
 	import screens from "@data/design-tokens/screen-sizes.json";
 
-	document.documentElement.addEventListener("submenutoggle", (event) => {
-		if (event.detail.open) {
+	submenu.listen((submenu) => {
+		if (submenu.open) {
 			document.documentElement.classList.add("submenu-expanded");
 		} else {
 			document.documentElement.classList.remove("submenu-expanded");
-			if (
-				event.detail.id &&
-				event.target.tagName.toLowerCase() === "button"
-			) {
+			if (submenu.id) {
 				document
-					.querySelector(`[aria-controls="${event.detail.id}"]`)
+					.querySelector(`[aria-controls="${submenu.id}"]`)
 					.focus();
 			}
 		}
@@ -62,10 +60,7 @@ const _icon = await icon;
 		);
 
 		if (!event.target.closest(".nav-menu") && minBreakPoint.matches) {
-			const closeEvent = new CustomEvent("submenutoggle", {
-				detail: { open: false },
-			});
-			document.documentElement.dispatchEvent(closeEvent);
+			submenu.set({ open: false });
 		}
 	});
 </script>

@@ -1,4 +1,5 @@
 <script>
+	import { submenu } from "./navStore.js";
 	import screens from "@data/design-tokens/screen-sizes.json";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
 	import ChevronRight  from "@assets/icons/chevron-right.svg?raw";
@@ -13,32 +14,9 @@
 	let expanded = Boolean(current);
 	let interacted = false;
 	let mounted;
-	let button;
-	let closeEvent;
-	let openEvent;
 	
 	onMount(() => {
 		mounted = true;
-
-		closeEvent = new CustomEvent("submenutoggle", {
-			detail: { id: controls, open: false },
-			bubbles: true,
-			cancelable: false,
-		});
-
-		openEvent = new CustomEvent("submenutoggle", {
-			detail: { id: controls, open: true },
-			bubbles: true,
-			cancelable: false,
-		});
-
-		document.documentElement.addEventListener("submenutoggle", (event) => {
-			if (event.detail.id === controls && event.detail.open) {
-				open();
-			} else {
-				close();
-			}
-		});
 
 		const maxBreakPoint = `${
 			Number(screens["2xl"].split("rem")[0]) - 0.01
@@ -50,19 +28,27 @@
 		minBreakPoint.addEventListener("change", (event) => {
 			if (event.matches) {
 				expanded = false;
-				document.documentElement.dispatchEvent(closeEvent);
+				submenu.set({ open: false, id: controls });
 			} else if (current) {
 				expanded = true;
-				document.documentElement.dispatchEvent(openEvent);
+				submenu.set({ open: true, id: controls });
 			}
 		});
 	});
 
+	submenu.listen((submenu) => {
+		if (submenu.id === controls && submenu.open) {
+			open();
+		} else {
+			close();
+		}
+	});
+
 	function toggle() {
 		if (expanded) {
-			button.dispatchEvent(closeEvent);
+			submenu.set({ open: false, id: controls });
 		} else {
-			button.dispatchEvent(openEvent);
+			submenu.set({ open: true, id: controls });
 		}
 	}
 
@@ -87,7 +73,6 @@
 		aria-expanded={expanded.toString()}
 		type="button"
 		on:click={toggle}
-		bind:this={button}
 	>
 		<div class="icon">
 			{@html icon}

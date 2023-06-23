@@ -1,21 +1,11 @@
 <script>
+	import { submenu } from "./navStore.js";
 	import Icon from "@assets/icons/panel-left.svg?raw";
 
 	export let controls;
 
-	let button;
-
 	function close() {
-		const closeEvent = new CustomEvent("submenutoggle", {
-			detail: {
-				id: controls,
-				open: false,
-			},
-			bubbles: true,
-			cancelable: false,
-		});
-
-		button.dispatchEvent(closeEvent);
+		submenu.set({ open: false, id: controls });
 	}
 </script>
 
@@ -27,7 +17,6 @@
 		data-type="ghost"
 		type="button"
 		on:click={close}
-		bind:this={button}
 	>
 		<div class="icon">
 			{@html Icon}
