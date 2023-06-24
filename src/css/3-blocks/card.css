@@ -7,21 +7,6 @@
 		flex-flow: row wrap;
 		overflow: hidden;
 		position: relative;
-		transition: transform 0.2s ease-out;
-	}
-
-	@media (hover: hover) {
-		.card:hover {
-			background-color: var(--color-surface-light);
-			transform: scale(102%);
-			transform-origin: center;
-		}
-
-		@media (prefers-reduced-motion) {
-			.card:hover {
-				transform: none;
-			}
-		}
 	}
 
 	.card:focus-within {
@@ -32,12 +17,16 @@
 		flex-basis: 21.375rem;
 		flex-grow: 1;
 		order: -1;
+		overflow: hidden;
+		overflow: clip;
 	}
 
 	.card-img img {
 		aspect-ratio: 5 / 2;
 		height: 100%;
 		object-fit: cover;
+		transform-origin: center;
+		transition: transform 0.2s ease-out;
 		width: 100%;
 	}
 
@@ -60,6 +49,7 @@
 		content: '';
 		inset: 0;
 		position: absolute;
+		z-index: 1;
 	}
 
 	.card-link:focus {
@@ -70,6 +60,22 @@
 	@screen sm {
 		.card {
 			background-color: var(--color-surface-1);
+		}
+	}
+
+	@media (hover: hover) {
+		.card:hover {
+			background-color: var(--color-surface-light);
+		}
+
+		.card:hover .card-img img {
+			transform: scale(105%);
+		}
+
+		@media (prefers-reduced-motion) {
+			.card:hover .card-img img {
+				transform: none;
+			}
 		}
 	}
 }

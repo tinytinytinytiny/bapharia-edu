@@ -56,8 +56,6 @@
 
 	.button:focus {
 		@apply focus-ring;
-		border-color: currentColor;
-		outline-offset: 0;
 	}
 
 	.button:where([data-size="s"]) {
@@ -70,7 +68,7 @@
 	.button:where([data-color="neutral"]) {
 		--button-background: var(--color-shade);
 		--button-hover-background: var(--color-shade-strong);
-		--button-active-background: var(--color-shade-weak);
+		--button-active-background: var(--color-shade-strongest);
 		--button-color: var(--color-text-regular);
 	}
 

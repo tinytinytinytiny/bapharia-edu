@@ -25,7 +25,7 @@
 		:root {
 			--sidebar-submenu-width: calc(var(--space-5xl-rem) + var(--space-xs));
 		}
-		
+
 		.submenu-expanded {
 			--sidebar-content-offset: calc(var(--sidebar-width) + var(--sidebar-submenu-width) + var(--space-2xs));
 		}
