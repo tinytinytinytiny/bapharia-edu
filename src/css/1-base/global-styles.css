@@ -30,11 +30,12 @@
 		text-underline-position: from-font;
 	}
 
-	[tabindex="-1"] {
+	[tabindex="-1"],
+	[tabindex="0"] {
 		outline: none;
 	}
 
-	[tabindex="0"]:focus {
+	[tabindex="0"]:focus-visible {
 		@apply focus-ring;
 	}
 
@@ -134,8 +135,8 @@
 		text-decoration: none;
 	}
 
-	a:focus {
-		outline: 3px solid var(--color-focus-ring);
+	a:focus-visible {
+		outline: 2px solid var(--color-focus-ring);
 		outline-offset: 2px;
 	}
 

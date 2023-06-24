@@ -1,7 +1,7 @@
 @layer utilities {
 	.focus-ring {
 		border-color: currentColor;
-		outline: 3px solid var(--color-focus-ring);
+		outline: 2px solid var(--color-focus-ring);
 		outline-offset: 0;
 	}
 }

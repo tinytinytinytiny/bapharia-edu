@@ -7,10 +7,21 @@
 		flex-flow: row wrap;
 		overflow: hidden;
 		position: relative;
+		transition: transform 0.05s ease-in;
 	}
 
-	.card:focus-within {
+	.card:has(.card-link:focus-visible) {
 		@apply focus-ring;
+	}
+
+	@supports not selector(:has(a:focus-visible)) {
+		.card:focus-within {
+			@apply focus-ring;
+		}
+	}
+
+	.card:active {
+		transform: scale(0.99) translateY(4px);
 	}
 
 	.card-img {
@@ -54,6 +65,9 @@
 
 	.card-link:focus {
 		outline: none;
+	}
+
+	.card-link:focus-visible {
 		text-decoration: underline;
 	}
 
@@ -71,11 +85,13 @@
 		.card:hover .card-img img {
 			transform: scale(105%);
 		}
+	}
 
-		@media (prefers-reduced-motion) {
-			.card:hover .card-img img {
-				transform: none;
-			}
+	@media (prefers-reduced-motion) {
+
+		.card:active,
+		.card:hover .card-img img {
+			transform: none;
 		}
 	}
 }

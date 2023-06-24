@@ -67,8 +67,8 @@
 		background-color: var(--color-shade);
 	}
 
-	.nav-item__link:focus,
-	.nav-submenu-item__link:focus {
+	.nav-item__link:focus-visible,
+	.nav-submenu-item__link:focus-visible {
 		@apply focus-ring;
 	}
 
@@ -146,7 +146,7 @@
 			background-color: var(--color-accent-surface-tint);
 		}
 
-		.nav-item__link:focus .icon {
+		.nav-item__link:focus-visible .icon {
 			@apply focus-ring;
 		}
 
