@@ -1,5 +1,6 @@
 @layer base {
 	.card {
+		--card-background: var(--color-surface-lightest);
 		--card-body-target-width: 21.375rem;
 		--card-img-target-width: 16.875rem;
 	}
@@ -28,12 +29,8 @@
 		height: 100%;
 	}
 
-	.card-frame:where([data-variant="border"]) > .card {
-		border-color: var(--color-separator);
-	}
-	
 	.card {
-		background-color: var(--color-surface-lightest);
+		background-color: var(--card-background);
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
 		display: flex;
@@ -44,14 +41,16 @@
 		transition: transform 0.04s ease-in;
 	}
 
-	.card:has(.card-link:focus-visible) {
-		@apply focus-ring;
+	:where(.card-frame[data-variant="border"]) > .card {
+		border-color: var(--color-separator);
 	}
 
-	@supports not selector(:has(a:focus-visible)) {
-		.card:focus-within {
-			@apply focus-ring;
-		}
+	:where(.card-frame[data-variant="border"]) > .card:hover {
+		border-color: var(--color-separator-strong);
+	}
+
+	.card:focus-within {
+		@apply focus-ring;
 	}
 
 	.card-frame:active > .card {
@@ -106,18 +105,18 @@
 
 	@screen sm {
 		.card {
-			background-color: var(--color-surface-light);
+			--card-background: var(--color-surface-light);
 		}
 
 		.card-frame:where(.on-content) > .card,
 		.card.on-content {
-			background-color: var(--color-surface-lightest);
+			--card-background: var(--color-surface-lightest);
 		}
 	}
 
 	@media (hover: hover) {
 		.card:hover {
-			background-color: var(--color-surface-lightest);
+			--card-background: var(--color-surface-lightest);
 		}
 
 		.card:hover .card-img img {
@@ -126,8 +125,6 @@
 	}
 
 	@media (prefers-reduced-motion) {
-
-		.card:active,
 		.card:hover .card-img img {
 			transform: none;
 		}
