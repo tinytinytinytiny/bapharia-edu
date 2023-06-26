@@ -1,0 +1,12 @@
+---
+const randomId = crypto.randomUUID();
+
+const { title = "On this page", class: className } = Astro.props;
+---
+
+<nav class:list={["heading-nav", className]} aria-labelledby={randomId}>
+	<div>
+		<h2 id={randomId}>{title}</h2>
+		<slot />
+	</div>
+</nav>

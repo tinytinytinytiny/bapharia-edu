@@ -1,5 +1,9 @@
 ---
-import { RichTextSchema, renderRichText } from "@storyblok/astro";
+import {
+	RichTextSchema,
+	renderRichText,
+	storyblokEditable,
+} from "@storyblok/astro";
 import cloneDeep from "clone-deep";
 import articleResolver from "./article-resolver";
 import { slugify } from "@utils";
@@ -61,7 +65,10 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 <div class="content">
 	<div class="article">
 		<ArticleNav headings={headings} />
-		<div class="content-wrapper stack">
+		<div
+			class="content-wrapper stack leading-[1.625]"
+			{...storyblokEditable(blok)}
+		>
 			<Fragment set:html={content} />
 		</div>
 	</div>

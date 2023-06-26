@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageTitle from "@components/PageTitle/PageTitle.astro";
+import HeadingNav from "@components/HeadingNav/HeadingNav.astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+import { useStoryblokApi, renderRichText } from "@storyblok/astro";
+import { useTranslations } from "src/utils/i18n";
+
+const storyblokApi = useStoryblokApi();
+const slug = Astro.params.slug;
+const t = useTranslations("en");
+let name;
+let content;
+
+try {
+	const { data } = await storyblokApi.get(`cdn/stories/classes/${slug}`, {
+		version: import.meta.env.DEV ? "draft" : "published",
+	});
+	name = data.story.content.ui_string;
+	content = data.story.content;
+} catch (error) {
+	return Astro.redirect("/404");
+}
+---
+
+<BaseLayout title={t(`class.${name}`)}>
+	<PageTitle title={t(`class.${name}`)} align="start">
+		<Fragment set:html={renderRichText(content.description)} />
+	</PageTitle>
+	<div class="content">
+		<div class="article">
+			<HeadingNav>
+				<ul role="list">
+					<li>
+						<a href="#overview">Overview</a>
+					</li>
+					<li>
+						<a href="#base-actions">Base Actions</a>
+					</li>
+					<li>
+						<a href="#tactical-skills">Tactical Skills</a>
+					</li>
+					<li>
+						<a href="#ultimate-skills">Ultimate Skills</a>
+					</li>
+					<li>
+						<a href="#base-abilities">Base Abilities</a>
+					</li>
+					<li>
+						<a href="#class-abilities">Class Abilities</a>
+					</li>
+				</ul>
+			</HeadingNav>
+			<div class="content-wrapper stack">
+				<h2 id="overview">Overview</h2>
+				<Fragment set:html={renderRichText(content.overview)} />
+				<h2 id="base-actions">Base Actions</h2>
+				{
+					content.base_actions.map((skill) => (
+						<StoryblokComponent blok={skill} properties={false} />
+					))
+				}
+				<h2 id="tactical-skills">Tactical Skills</h2>
+				{
+					content.tactical_skills.map((skill) => (
+						<StoryblokComponent blok={skill} />
+					))
+				}
+				<h2 id="ultimate-skills">Ultimate Skills</h2>
+				{
+					content.ultimate_skills.map((skill) => (
+						<StoryblokComponent blok={skill} />
+					))
+				}
+				<h2 id="base-abilities">Base Abilities</h2>
+				{
+					content.base_abilities.map((skill) => (
+						<StoryblokComponent blok={skill} properties={false} />
+					))
+				}
+				<h2 id="class-abilities">Class Abilities</h2>
+				{
+					content.class_abilities.map((skill) => (
+						<StoryblokComponent blok={skill} properties={false} />
+					))
+				}
+			</div>
+		</div>
+	</div>
+</BaseLayout>

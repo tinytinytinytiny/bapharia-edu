@@ -1,0 +1,28 @@
+---
+import { useTranslations } from "src/utils/i18n";
+
+const t = useTranslations("en");
+
+const { name, characterClass, level } = Astro.props;
+---
+
+<article class="stack bg-surface-0 rounded p-s-m">
+	<header class="cluster">
+		<hgroup class="leading-tight">
+			<h3>{name}</h3>
+			<p>
+				Requires <b>{t(`class.${characterClass}`)} Level {level}</b>
+			</p>
+		</hgroup>
+		<slot name="icon" />
+	</header>
+	<slot name="properties" />
+	<h4 class="visually-hidden">Description</h4>
+	<slot name="description" />
+</article>
+
+<style>
+	article {
+		max-inline-size: calc(15ch + var(--paragraph-max-inline-size));
+	}
+</style>

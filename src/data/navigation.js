@@ -1,22 +1,23 @@
 export default [
 	{
-		title: 'Home',
+		title: 'nav.home',
 		url: '/',
 		icon: import('@assets/icons/bapharia.svg?raw')
 	},
 	{
-		title: 'World Map',
-		url: '/map',
-		icon: import('@assets/icons/msq.svg?raw')
+		title: 'nav.classes',
+		url: '/classes',
+		icon: import('@assets/icons/msq.svg?raw'),
+		children: 'classes/'
 	},
 	{
-		title: 'Guides',
+		title: 'nav.guides',
 		url: '/guides',
 		icon: import('@assets/icons/guide.svg?raw'),
 		children: 'guides/'
 	},
 	{
-		title: 'Test',
+		title: 'nav.test',
 		url: '/test',
 		icon: import('@assets/icons/bapharia.svg?raw')
 	}

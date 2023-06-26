@@ -21,11 +21,14 @@ export default defineConfig({
 		storyblok({
 			accessToken: env.STORYBLOK_TOKEN,
 			components: {
-				article: 'storyblok/Article'
+				article: 'storyblok/Article',
+				skill: 'storyblok/Skill',
+				classLink: 'storyblok/ClassLink'
 			},
 			apiOptions: { region: 'us' }
 		})
 	],
+	scopedStyleStrategy: "class",
 	output: "server",
 	adapter: netlify()
 });

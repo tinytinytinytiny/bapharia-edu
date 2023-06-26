@@ -1,0 +1,41 @@
+---
+import { useTranslations } from "src/utils/i18n";
+
+const t = useTranslations("en");
+
+const { cooldown, element, type, additionalEffect } = Astro.props;
+---
+
+<dl class="skill-properties auto-grid rounded-sm">
+	<div>
+		<dt>Cooldown</dt>
+		<dd>{cooldown || 0} seconds</dd>
+	</div>
+	<div>
+		<dt>Element</dt>
+		<dd>
+			{element ? t(`element.${element}`) : "None"}
+		</dd>
+	</div>
+	<div>
+		<dt>Type</dt>
+		<dd>
+			{type ? t(`skill.type.${type}`) : "None"}
+		</dd>
+	</div>
+	<div>
+		<dt>Additional Effect</dt>
+		<dd>{additionalEffect || "None"}</dd>
+	</div>
+</dl>
+
+<style>
+	.skill-properties {
+		--grid-min-item-size: var(--space-3xl-rem);
+		--grid-placement: auto-fit;
+		background-color: var(--color-surface-1);
+		font-size: 1rem;
+		padding-block: var(--space-xs);
+		padding-inline: var(--space-s);
+	}
+</style>

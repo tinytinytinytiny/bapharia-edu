@@ -1,0 +1,49 @@
+---
+import { useStoryblokApi, renderRichText } from "@storyblok/astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageTitle from "@components/PageTitle/PageTitle.astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
+
+const storyblokApi = useStoryblokApi();
+const {
+	data: { story },
+} = await storyblokApi.get("cdn/stories/classes", {
+	version: import.meta.env.DEV ? "draft" : "published",
+});
+const content = story.content;
+---
+
+<BaseLayout title="Classes">
+	<PageTitle title="Classes">
+		<Fragment set:html={renderRichText(content.subheading)} />
+	</PageTitle>
+	<div class="sidebar items-start">
+		<div class="content">
+			<div class="content-wrapper stack">
+				<Fragment set:html={renderRichText(content.overview)} />
+			</div>
+		</div>
+		<nav aria-labelledby="all-classes">
+			<h2 id="all-classes" class="visually-hidden">All classes</h2>
+			<ul class="auto-grid" role="list">
+				{
+					content.links.map((link) => (
+						<li>
+							<StoryblokComponent blok={link} class="bs-full" />
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</BaseLayout>
+
+<style>
+	.sidebar {
+		--sidebar-target-width: 40.5rem;
+	}
+
+	.auto-grid {
+		--grid-min-item-size: var(--space-5xl-rem);
+	}
+</style>

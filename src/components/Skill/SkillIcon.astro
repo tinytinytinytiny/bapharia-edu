@@ -1,0 +1,70 @@
+---
+const elementId = {
+	fire: 1,
+	thunder: 2,
+	ice: 3,
+	earth: 4,
+	light: 5,
+	dark: 6,
+};
+let frameSrc = "/images/icon/skill/type/UI_PlayerSkillType_Empty.png";
+
+const { category, type, element, src } = Astro.props;
+
+switch (category) {
+	case "passiveBase":
+		frameSrc =
+			"/images/ui/skilltree/UI_SkillBoard_PlayerAbilityBIconBg.png";
+		break;
+	case "passiveClass":
+		frameSrc =
+			"/images/ui/skilltree/UI_SkillBoard_PlayerAbilityCIconBg.png";
+		break;
+	default:
+		frameSrc = `/images/icon/skill/type/UI_PlayerSkillType_${
+			type || "Empty"
+		}.png`;
+}
+---
+
+<div class="skill-icon">
+	<img src={frameSrc} alt="" width="64" height="64" decoding="async" />
+	{src && <img src={src} alt="" width="64" height="64" decoding="async" />}
+	{
+		element && (
+			<img
+				class="element-icon"
+				src={`/images/icon/skill/attribute/UI_PlayerSkillAttribute_${elementId[element]}.png`}
+				alt=""
+				width="24"
+				height="24"
+				decoding="async"
+			/>
+		)
+	}
+</div>
+
+<style>
+	.skill-icon {
+		align-items: center;
+		display: grid;
+		height: 64px;
+		justify-content: center;
+		order: -1;
+		position: relative;
+		width: 64px;
+	}
+
+	.skill-icon > * {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.skill-icon > .element-icon {
+		bottom: -4px;
+		left: -4px;
+		height: 24px;
+		position: absolute;
+		width: 24px;
+	}
+</style>

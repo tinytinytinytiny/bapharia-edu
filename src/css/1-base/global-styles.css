@@ -5,11 +5,12 @@
 		--border-radius: var(--space-xs);
 		--content-padding-block: var(--space-s-l);
 		--content-padding-inline: 0;
-		--default-gutter: var(--space-s);
+		--default-gutter: var(--space-s-rem);
 		--default-stack-space: 1.25em;
 		--grid-min-item-size: 29.25rem;
 		--main-region-limit: 112.5rem;
 		--main-region-padding: var(--space-s);
+		--paragraph-max-inline-size: 63ch;
 	}
 
 	@screen sm {
@@ -94,7 +95,8 @@
 	.h3,
 	.h4,
 	em,
-	strong {
+	strong,
+	dt {
 		color: var(--color-text-strong);
 		font-weight: 700;
 	}
@@ -103,7 +105,7 @@
 	.h1 {
 		font-size: var(--text-8);
 		letter-spacing: -0.02em;
-		line-height: 0.8;
+		line-height: 0.95;
 	}
 
 	h2,
@@ -143,7 +145,7 @@
 	p,
 	h4,
 	.h4 {
-		max-inline-size: 63ch;
+		max-inline-size: var(--paragraph-max-inline-size);
 	}
 
 	button {

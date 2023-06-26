@@ -18,11 +18,13 @@ export const getStoryblokLinks = async (startsWith) => {
 		starts_with: startsWith,
 		version: import.meta.env.DEV ? 'draft' : 'published'
 	});
-	const sortedLinks = Object.values(links).sort((a, b) => {
-		if (a.name < b.name) return -1;
-		if (a.name > b.name) return 1;
-		return 0;
-	});
+	const sortedLinks = Object.values(links)
+		.filter(link => link.is_startpage === false)
+		.sort((a, b) => {
+			if (a.name < b.name) return -1;
+			if (a.name > b.name) return 1;
+			return 0;
+		});
 
 	return sortedLinks;
 };

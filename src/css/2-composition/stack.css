@@ -44,6 +44,10 @@
 	.figure {
 		--stack-space-override: var(--space-l-xl-rem);
 	}
+
+	.visually-hidden + * {
+		--stack-space-override: var(--stack-space);
+	}
 }
 
 @layer components {

@@ -2,13 +2,13 @@
 const { title, author, lastUpdatedDate } = Astro.props;
 ---
 
-<header class="page-title">
+<header class="page-title" data-align="start">
 	<div class="page-title__inner">
 		<h1>{title}</h1>
 		<div role="note" class="text-inherit cluster gutter-2xs">
-			<p>By {author}</p>
-			<p class="font-normal" aria-hidden="true">•</p>
-			<p class="text-secondary-on-dark">
+			<p class="font-bold">By {author}</p>
+			<p aria-hidden="true">•</p>
+			<p class="font-bold text-secondary-on-dark">
 				Last Updated <time datetime={lastUpdatedDate}
 					>{new Date(lastUpdatedDate).toLocaleDateString()}</time
 				>
@@ -26,15 +26,6 @@ const { title, author, lastUpdatedDate } = Astro.props;
 	}
 
 	@screen sm {
-		.page-title {
-			background-image: var(--color-scrim-linear);
-			padding-inline: var(--content-padding-inline);
-		}
-
-		.page-title__inner {
-			text-align: initial;
-		}
-
 		[role="note"] {
 			justify-content: initial;
 		}

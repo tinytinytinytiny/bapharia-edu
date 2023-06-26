@@ -2,7 +2,7 @@
 const { headings } = Astro.props;
 ---
 
-<ul role="list" class="article-nav__list">
+<ul role="list">
 	{
 		headings.map((heading) => (
 			<li>
@@ -21,14 +21,3 @@ const { headings } = Astro.props;
 		))
 	}
 </ul>
-
-<style>
-	.article-nav__list > li + li {
-		margin-block-start: 0.75em;
-	}
-
-	.article-nav__list li > ul {
-		margin-block-start: 0.5em;
-		padding-inline-start: 1.5em;
-	}
-</style>

@@ -1,0 +1,75 @@
+---
+import { renderRichText, storyblokEditable } from "@storyblok/astro";
+import SkillComponent from "@components/Skill/Skill.astro";
+import SkillIcon from "@components/Skill/SkillIcon.astro";
+import SkillProperties from "@components/Skill/SkillProperties.astro";
+import SkillLevel from "@components/Skill/SkillLevel.astro";
+
+const { blok, properties = true } = Astro.props;
+---
+
+<SkillComponent
+	name={blok.name}
+	characterClass={blok.class}
+	level={blok.level}
+	{...storyblokEditable(blok)}
+>
+	{
+		blok.icon?.filename && (
+			<SkillIcon
+				slot="icon"
+				src={blok.icon.filename}
+				category={blok.category}
+				type={blok.type}
+				element={blok.element}
+			/>
+		)
+	}
+	{
+		properties && (
+			<SkillProperties
+				cooldown={blok.cooldown}
+				element={blok.element}
+				type={blok.type}
+				additionalEffect={blok.additional_effect}
+				slot="properties"
+			/>
+		)
+	}
+	{
+		blok.description[0].component === "skillLevelDescription" ? (
+			<dl class="rack" slot="description">
+				{blok.description.map((g) => (
+					<SkillLevel grade={g.grade} level={g.level}>
+						<Fragment set:html={renderRichText(g.description)} />
+						{g.upgrades?.length > 0 && (
+							<dl
+								class="rack mbs-[var(--rack-space)]"
+								data-border-top="true"
+							>
+								{g.upgrades.map((g2) => (
+									<SkillLevel
+										grade={g.grade}
+										subgrade={g2.grade}
+										level={g2.level}
+									>
+										<Fragment
+											set:html={renderRichText(
+												g2.description
+											)}
+										/>
+									</SkillLevel>
+								))}
+							</dl>
+						)}
+					</SkillLevel>
+				))}
+			</dl>
+		) : (
+			<Fragment
+				slot="description"
+				set:html={renderRichText(blok.description[0].description)}
+			/>
+		)
+	}
+</SkillComponent>
