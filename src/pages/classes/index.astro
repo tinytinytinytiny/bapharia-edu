@@ -17,34 +17,31 @@ const content = story.content;
 	<PageTitle title="Classes">
 		<Fragment set:html={renderRichText(content.subheading)} />
 	</PageTitle>
-	<div class="sidebar items-start mbs-l-rem sm:mbs-[var(--stack-space-override)]">
-		<div class="content">
+	<div class="content mbs-l-rem sm:mbs-[var(--stack-space-override)]">
+		<div class="sidebar items-start">
 			<div class="content-wrapper stack leading-[1.625]">
 				<Fragment set:html={renderRichText(content.overview)} />
 			</div>
+			<nav aria-labelledby="all-classes">
+				<h2 id="all-classes" class="visually-hidden">All classes</h2>
+				<ul class="auto-grid" role="list">
+					{
+						content.links.map((link) => (
+							<li>
+								<StoryblokComponent blok={link} class="bs-full" />
+							</li>
+						))
+					}
+				</ul>
+			</nav>
 		</div>
-		<nav aria-labelledby="all-classes">
-			<h2 id="all-classes" class="visually-hidden">All classes</h2>
-			<ul class="auto-grid" role="list">
-				{
-					content.links.map((link) => (
-						<li>
-							<StoryblokComponent blok={link} class="bs-full" />
-						</li>
-					))
-				}
-			</ul>
-		</nav>
 	</div>
 </BaseLayout>
 
 <style>
 	.sidebar {
 		--sidebar-target-width: 40.5rem;
-	}
-
-	.content {
-		--content-bg: var(--color-surface-3);
+		--gutter: var(--space-xl-rem);
 	}
 
 	.auto-grid {

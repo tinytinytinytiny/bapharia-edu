@@ -10,7 +10,7 @@ const { width, height } = getStoryblokImageDimensions(blok.image.filename);
 ---
 
 <div class:list={["card-frame", className]}>
-	<div class="card">
+	<div class="card bg-surface-lightest">
 		<div class="card-body">
 			<a
 				href={`/${blok.url.cached_url}`}
@@ -18,7 +18,7 @@ const { width, height } = getStoryblokImageDimensions(blok.image.filename);
 			>
 				{t(`class.${blok.name}`)}
 			</a>
-			<p>{blok.caption}</p>
+			<p class="leading-tight mbs-3xs-rem">{blok.caption}</p>
 		</div>
 		<div class="card-img">
 			<img

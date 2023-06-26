@@ -6,19 +6,26 @@
 }
 
 @layer components {
-	.card-frame::after {
+	.card-frame {
+		position: relative;
+	}
+
+	.card-frame::before {
 		content: '';
-		block-size: calc(2 * var(--space-3xs));
 		background-color: var(--color-accent-light);
-		border-end-start-radius: var(--border-radius);
-		border-end-end-radius: var(--border-radius);
+		border-radius: var(--border-radius);
 		display: block;
-		inline-size: calc(100% - var(--border-radius));
-		margin-block-start: calc(-1 * var(--space-3xs));
 		margin-inline: auto;
 		opacity: 0.1;
-		position: relative;
-		z-index: -1;
+		position: absolute;
+		top: 50%;
+		right: var(--space-2xs);
+		left: var(--space-2xs);
+		bottom: calc(-1 * var(--space-3xs));
+	}
+
+	.card-frame > .card {
+		height: 100%;
 	}
 	
 	.card {
