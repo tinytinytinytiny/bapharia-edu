@@ -1,13 +1,36 @@
 @layer base {
 	.card {
+		--card-background: var(--color-surface-lightest);
 		--card-body-target-width: 21.375rem;
 		--card-img-target-width: 16.875rem;
 	}
 }
 
 @layer components {
+	.card-frame {
+		position: relative;
+	}
+
+	.card-frame::before {
+		background-color: var(--color-separator);
+		border-radius: var(--space-2xs);
+		content: '';
+		display: block;
+		margin-inline: auto;
+		opacity: 0.25;
+		position: absolute;
+		top: 50%;
+		right: calc(var(--border-radius) / 2);
+		left: calc(var(--border-radius) / 2);
+		bottom: calc(-1 * var(--space-3xs));
+	}
+
+	.card-frame > .card {
+		height: 100%;
+	}
+
 	.card {
-		background-color: var(--color-surface-light);
+		background-color: var(--card-background);
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
 		display: flex;
@@ -15,21 +38,23 @@
 		overflow: hidden;
 		position: relative;
 		transform-origin: bottom;
-		transition: transform 0.05s ease-in;
+		transition: transform 0.04s ease-in;
 	}
 
-	.card:has(.card-link:focus-visible) {
+	:where(.card-frame[data-variant="border"]) > .card {
+		border-color: var(--color-separator);
+	}
+
+	:where(.card-frame[data-variant="border"]) > .card:hover {
+		border-color: var(--color-separator-strong);
+	}
+
+	.card:focus-within {
 		@apply focus-ring;
 	}
 
-	@supports not selector(:has(a:focus-visible)) {
-		.card:focus-within {
-			@apply focus-ring;
-		}
-	}
-
-	.card:active {
-		transform: scale(0.99);
+	.card-frame:active > .card {
+		transform: translateY(calc(var(--space-3xs) / 2));
 	}
 
 	.card-img {
@@ -80,13 +105,18 @@
 
 	@screen sm {
 		.card {
-			background-color: var(--color-surface-1);
+			--card-background: var(--color-surface-light);
+		}
+
+		.card-frame:where(.on-content) > .card,
+		.card.on-content {
+			--card-background: var(--color-surface-lightest);
 		}
 	}
 
 	@media (hover: hover) {
 		.card:hover {
-			background-color: var(--color-surface-light);
+			--card-background: var(--color-surface-lightest);
 		}
 
 		.card:hover .card-img img {
@@ -95,8 +125,6 @@
 	}
 
 	@media (prefers-reduced-motion) {
-
-		.card:active,
 		.card:hover .card-img img {
 			transform: none;
 		}

@@ -36,6 +36,16 @@ const { cooldown, element, type, additionalEffect } = Astro.props;
 		background-color: var(--color-surface-1);
 		font-size: 1rem;
 		padding-block: var(--space-xs);
-		padding-inline: var(--space-s);
+		padding-inline: var(--space-xs-s);
+	}
+
+	dt {
+		font-size: var(--text--1);
+	}
+
+	@screen md {
+		dt {
+			font-size: inherit;
+		}
 	}
 </style>

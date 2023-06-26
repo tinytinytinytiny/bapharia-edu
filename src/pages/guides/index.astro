@@ -3,7 +3,7 @@ import { useStoryblokApi } from "@storyblok/astro";
 import { getStoryblokImageDimensions } from "@utils";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle/PageTitle.astro";
-import GuideCard from "@components/Card/GuideCard.astro";
+import ArticleCard from "@components/Card/ArticleCard.astro";
 
 const storyblokApi = useStoryblokApi();
 const {
@@ -27,7 +27,7 @@ const {
 			{
 				stories.map((guide) => (
 					<li>
-						<GuideCard
+						<ArticleCard
 							class="bs-full"
 							title={guide.content.title}
 							url={`/${guide.full_slug}`}
@@ -51,7 +51,7 @@ const {
 								loading="lazy"
 								decoding="async"
 							/>
-						</GuideCard>
+						</ArticleCard>
 					</li>
 				))
 			}
