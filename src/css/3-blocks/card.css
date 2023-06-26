@@ -104,6 +104,11 @@
 		.card {
 			background-color: var(--color-surface-light);
 		}
+
+		.card-frame:where(.on-content) > .card,
+		.card.on-content {
+			background-color: var(--color-surface-lightest);
+		}
 	}
 
 	@media (hover: hover) {
