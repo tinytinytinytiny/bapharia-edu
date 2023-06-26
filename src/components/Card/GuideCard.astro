@@ -11,33 +11,35 @@ const getCategoryColor = (cat) => {
 };
 ---
 
-<div class:list={["card", "guide-card", className]}>
-	<div class="card-body gap-s-rem flex flex-col justify-between">
-		<div class="stack stack-space-2xs-rem">
-			<a class="card-title card-link underline-on-hover" href={url}>
-				{title}
-			</a>
-			<slot name="summary" />
+<div class:list={["card-frame", className]}>
+	<div class:list={["card", "guide-card", className]}>
+		<div class="card-body gap-s-rem flex flex-col justify-between">
+			<div class="stack stack-space-2xs-rem">
+				<a class="card-title card-link underline-on-hover" href={url}>
+					{title}
+				</a>
+				<slot name="summary" />
+			</div>
+			<p>
+				<span
+					class={`button chip rounded-sm static ${getCategoryColor(
+						category
+					)}`}
+					data-size="s"
+					data-color="neutral"
+				>
+					{category}
+				</span>
+			</p>
 		</div>
-		<p>
-			<span
-				class={`button chip rounded-sm static ${getCategoryColor(
-					category
-				)}`}
-				data-size="s"
-				data-color="neutral"
-			>
-				{category}
-			</span>
-		</p>
-	</div>
-	<div class="card-img">
-		<slot name="img">
-			<img />
-		</slot>
+		<div class="card-img">
+			<slot name="img">
+				<img />
+			</slot>
+		</div>
 	</div>
 </div>
-
+	
 <style>
 	.guide-card {
 		--card-img-target-width: 21.375rem;

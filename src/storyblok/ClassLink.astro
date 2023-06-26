@@ -9,24 +9,26 @@ const { blok, class: className } = Astro.props;
 const { width, height } = getStoryblokImageDimensions(blok.image.filename);
 ---
 
-<div class:list={["card", className]}>
-	<div class="card-body">
-		<a
-			href={`/${blok.url.cached_url}`}
-			class="card-title card-link underline-on-hover"
-		>
-			{t(`class.${blok.name}`)}
-		</a>
-		<p>{blok.caption}</p>
-	</div>
-	<div class="card-img">
-		<img
-			src={blok.image.filename}
-			alt=""
-			width={width}
-			height={height}
-			decoding="async"
-			loading="lazy"
-		/>
+<div class:list={["card-frame", className]}>
+	<div class="card">
+		<div class="card-body">
+			<a
+				href={`/${blok.url.cached_url}`}
+				class="card-title text-1 lg:text-2 card-link underline-on-hover"
+			>
+				{t(`class.${blok.name}`)}
+			</a>
+			<p>{blok.caption}</p>
+		</div>
+		<div class="card-img">
+			<img
+				src={blok.image.filename}
+				alt=""
+				width={width}
+				height={height}
+				decoding="async"
+				loading="lazy"
+			/>
+		</div>
 	</div>
 </div>

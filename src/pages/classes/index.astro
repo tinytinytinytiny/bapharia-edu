@@ -17,9 +17,9 @@ const content = story.content;
 	<PageTitle title="Classes">
 		<Fragment set:html={renderRichText(content.subheading)} />
 	</PageTitle>
-	<div class="sidebar items-start">
+	<div class="sidebar items-start mbs-l-rem sm:mbs-[var(--stack-space-override)]">
 		<div class="content">
-			<div class="content-wrapper stack">
+			<div class="content-wrapper stack leading-[1.625]">
 				<Fragment set:html={renderRichText(content.overview)} />
 			</div>
 		</div>
@@ -43,7 +43,11 @@ const content = story.content;
 		--sidebar-target-width: 40.5rem;
 	}
 
+	.content {
+		--content-bg: var(--color-surface-3);
+	}
+
 	.auto-grid {
-		--grid-min-item-size: var(--space-5xl-rem);
+		--grid-min-item-size: var(--space-4xl-5xl-rem);
 	}
 </style>

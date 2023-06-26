@@ -65,7 +65,8 @@
 	}
 
 	.content {
-		background-color: var(--color-surface-1);
+		--content-bg: transparent;
+		background-color: var(--content-bg);
 		border-radius: var(--border-radius);
 		padding-block: 0 var(--content-padding-block);
 		padding-inline: var(--content-padding-inline);
@@ -82,6 +83,7 @@
 		}
 
 		.content {
+			--content-bg: var(--color-surface-1);
 			padding-block-start: var(--content-padding-block);
 		}
 	}
@@ -131,6 +133,10 @@
 
 	a {
 		color: inherit;
+	}
+
+	a:not([class]) {
+		color: var(--color-accent);
 	}
 
 	a:hover {

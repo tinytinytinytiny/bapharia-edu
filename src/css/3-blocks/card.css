@@ -6,8 +6,23 @@
 }
 
 @layer components {
+	.card-frame::after {
+		content: '';
+		block-size: calc(2 * var(--space-3xs));
+		background-color: var(--color-accent-light);
+		border-end-start-radius: var(--border-radius);
+		border-end-end-radius: var(--border-radius);
+		display: block;
+		inline-size: calc(100% - var(--border-radius));
+		margin-block-start: calc(-1 * var(--space-3xs));
+		margin-inline: auto;
+		opacity: 0.1;
+		position: relative;
+		z-index: -1;
+	}
+	
 	.card {
-		background-color: var(--color-surface-light);
+		background-color: var(--color-surface-lightest);
 		border: 2px solid transparent;
 		border-radius: var(--border-radius);
 		display: flex;
@@ -15,7 +30,7 @@
 		overflow: hidden;
 		position: relative;
 		transform-origin: bottom;
-		transition: transform 0.05s ease-in;
+		transition: transform 0.04s ease-in;
 	}
 
 	.card:has(.card-link:focus-visible) {
@@ -28,8 +43,8 @@
 		}
 	}
 
-	.card:active {
-		transform: scale(0.99);
+	.card-frame:active > .card {
+		transform: translateY(calc(var(--space-3xs) / 2));
 	}
 
 	.card-img {
@@ -80,13 +95,13 @@
 
 	@screen sm {
 		.card {
-			background-color: var(--color-surface-1);
+			background-color: var(--color-surface-light);
 		}
 	}
 
 	@media (hover: hover) {
 		.card:hover {
-			background-color: var(--color-surface-light);
+			background-color: var(--color-surface-lightest);
 		}
 
 		.card:hover .card-img img {

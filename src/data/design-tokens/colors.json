@@ -38,8 +38,10 @@
 		"2": "oklch(92% 0.008 205)",
 		"3": "oklch(88% 0.012 205)",
 		"4": "oklch(84% 0.016 205)",
-		"light": "var(--color-surface-0)",
-		"dark": "var(--color-surface-3)"
+		"light": "var(--color-surface-1)",
+		"lightest": "var(--color-surface-0)",
+		"dark": "var(--color-surface-3)",
+		"darkest": "var(--color-surface-4)"
 	},
 	"text": {
 		"regular": "oklch(28% 0.04 225)",
