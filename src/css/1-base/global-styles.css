@@ -65,8 +65,7 @@
 	}
 
 	.content {
-		--content-bg: transparent;
-		background-color: var(--content-bg);
+		--content-bg: var(--color-surface-1);
 		border-radius: var(--border-radius);
 		padding-block: 0 var(--content-padding-block);
 		padding-inline: var(--content-padding-inline);
@@ -83,75 +82,9 @@
 		}
 
 		.content {
-			--content-bg: var(--color-surface-1);
+			background-color: var(--content-bg);
 			padding-block-start: var(--content-padding-block);
 		}
-	}
-
-	h1,
-	h2,
-	h3,
-	h4,
-	.h1,
-	.h2,
-	.h3,
-	.h4,
-	em,
-	strong,
-	dt {
-		color: var(--color-text-strong);
-		font-weight: 700;
-	}
-
-	h1,
-	.h1 {
-		font-size: var(--text-8);
-		letter-spacing: -0.02em;
-		line-height: 0.95;
-	}
-
-	h2,
-	.h2 {
-		font-size: var(--text-4);
-		font-weight: 800;
-		letter-spacing: -0.01em;
-		line-height: 1.125;
-	}
-
-	h3,
-	.h3 {
-		font-size: var(--text-2);
-		font-weight: 800;
-		line-height: 1.25;
-	}
-
-	h4,
-	.h4 {
-		font-size: var(--text-1);
-		line-height: 1.5;
-	}
-
-	a {
-		color: inherit;
-	}
-
-	a:not([class]) {
-		color: var(--color-accent);
-	}
-
-	a:hover {
-		text-decoration: none;
-	}
-
-	a:focus-visible {
-		outline: 2px solid var(--color-focus-ring);
-		outline-offset: 2px;
-	}
-
-	p,
-	h4,
-	.h4 {
-		max-inline-size: var(--paragraph-max-inline-size);
 	}
 
 	button {
