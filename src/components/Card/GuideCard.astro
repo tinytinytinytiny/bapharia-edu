@@ -11,7 +11,7 @@ const getCategoryColor = (cat) => {
 };
 ---
 
-<div class:list={["card-frame", className]}>
+<div class:list={["card-frame", className]} data-variant="border">
 	<div class:list={["card", "guide-card", className]}>
 		<div class="card-body gap-s-rem flex flex-col justify-between">
 			<div class="stack stack-space-2xs-rem">
@@ -43,6 +43,21 @@ const getCategoryColor = (cat) => {
 <style>
 	.guide-card {
 		--card-img-target-width: 21.375rem;
+	}
+
+	.card-img {
+		border: var(--space-2xs) solid var(--color-surface-lightest);
+		border-radius: var(--border-radius);
+	}
+
+	.guide-card:hover .card-img {
+		border-color: var(--color-surface-lightest);
+	}
+
+	@screen sm {
+		.card-img {
+			border-color: var(--color-surface-light);
+		}
 	}
 </style>
 
