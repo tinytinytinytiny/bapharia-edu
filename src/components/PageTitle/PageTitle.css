@@ -5,7 +5,7 @@
 		background-image: var(--color-scrim-radial);
 		border-radius: var(--border-radius);
 		display: flex;
-		font-weight: 700;
+		font-size: var(--text-1);
 		overflow: hidden;
 		padding-block: var(--space-xl);
 		padding-inline: var(--space-xs);
@@ -26,7 +26,6 @@
 	}
 
 	:where(.page-title h1) + * {
-		font-size: var(--text-1);
 		margin-block-start: 1em;
 	}
 
@@ -39,6 +38,29 @@
 		position: absolute;
 		width: 100%;
 		z-index: -1;
+	}
+
+	.page-title b,
+	.page-title strong {
+		color: var(--color-secondary-on-dark);
+	}
+
+	@screen sm {
+		.page-title {
+			padding-inline: var(--content-padding-inline);
+		}
+
+		.page-title:where([data-align="start"]) {
+			background-image: var(--color-scrim-linear);
+		}
+
+		.page-title:where([data-align="start"]) .page-title__inner {
+			text-align: start;
+		}
+
+		.page-title:where([data-align="start"]) .page-title__inner > * {
+			margin-inline-start: 0;
+		}
 	}
 
 	@screen md {

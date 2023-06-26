@@ -1,5 +1,9 @@
 ---
+import { useTranslations } from "src/utils/i18n";
+
 const { parentUrl, parentTitle, children } = Astro.props;
+
+const t = useTranslations("en");
 
 function isCurrentUrl(url) {
 	if (Astro.url.pathname.endsWith("/")) {
@@ -30,7 +34,7 @@ function isCurrentUrl(url) {
 					class="nav-submenu-item__link underline-on-hover"
 					aria-current={isCurrentUrl(child.url) ? "page" : "false"}
 				>
-					{child.title}
+					{t(child.title)}
 				</a>
 			</li>
 		))

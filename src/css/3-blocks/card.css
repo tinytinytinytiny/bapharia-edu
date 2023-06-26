@@ -1,3 +1,10 @@
+@layer base {
+	.card {
+		--card-body-target-width: 21.375rem;
+		--card-img-target-width: 16.875rem;
+	}
+}
+
 @layer components {
 	.card {
 		background-color: var(--color-surface-light);
@@ -7,31 +14,42 @@
 		flex-flow: row wrap;
 		overflow: hidden;
 		position: relative;
+		transform-origin: bottom;
+		transition: transform 0.05s ease-in;
 	}
 
-	.card:focus-within {
+	.card:has(.card-link:focus-visible) {
 		@apply focus-ring;
 	}
 
+	@supports not selector(:has(a:focus-visible)) {
+		.card:focus-within {
+			@apply focus-ring;
+		}
+	}
+
+	.card:active {
+		transform: scale(0.99);
+	}
+
 	.card-img {
-		flex-basis: 21.375rem;
+		align-items: center;
+		display: flex;
+		flex-basis: var(--card-img-target-width);
 		flex-grow: 1;
+		justify-content: center;
 		order: -1;
 		overflow: hidden;
 		overflow: clip;
 	}
 
 	.card-img img {
-		aspect-ratio: 5 / 2;
-		height: 100%;
-		object-fit: cover;
 		transform-origin: center;
 		transition: transform 0.2s ease-out;
-		width: 100%;
 	}
 
 	.card-body {
-		flex-basis: 21.375rem;
+		flex-basis: var(--card-body-target-width);
 		flex-grow: 999;
 		max-inline-size: 100%;
 		padding: var(--space-xs-s);
@@ -54,6 +72,9 @@
 
 	.card-link:focus {
 		outline: none;
+	}
+
+	.card-link:focus-visible {
 		text-decoration: underline;
 	}
 
@@ -71,11 +92,13 @@
 		.card:hover .card-img img {
 			transform: scale(105%);
 		}
+	}
 
-		@media (prefers-reduced-motion) {
-			.card:hover .card-img img {
-				transform: none;
-			}
+	@media (prefers-reduced-motion) {
+
+		.card:active,
+		.card:hover .card-img img {
+			transform: none;
 		}
 	}
 }

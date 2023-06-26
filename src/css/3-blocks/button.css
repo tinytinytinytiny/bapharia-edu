@@ -54,10 +54,8 @@
 		background-color: var(--button-active-background);
 	}
 
-	.button:focus {
+	.button:focus-visible {
 		@apply focus-ring;
-		border-color: currentColor;
-		outline-offset: 0;
 	}
 
 	.button:where([data-size="s"]) {
@@ -70,25 +68,23 @@
 	.button:where([data-color="neutral"]) {
 		--button-background: var(--color-shade);
 		--button-hover-background: var(--color-shade-strong);
-		--button-active-background: var(--color-shade-weak);
+		--button-active-background: var(--color-shade-strongest);
 		--button-color: var(--color-text-regular);
 	}
 
 	.button:where([data-type="ghost"]) {
 		--button-background: transparent;
-		--button-hover-background: transparent;
-		--button-active-background: var(--color-shade-weak);
+		--button-hover-background: var(--color-shade-weak);
+		--button-active-background: var(--color-shade);
 		--button-color: var(--color-text-regular);
 	}
 
-	.button:where([data-type="ghost"]:not(:focus)) {
+	.button:where([data-type="ghost"]) {
 		border-color: var(--color-separator);
 	}
 
-	@media (hover: hover) {
-		.button:where([data-type="ghost"]:hover:not(:focus)) {
-			border-color: var(--color-separator-strong);
-		}
+	.button:where([data-type="ghost"]:active) {
+		border-color: var(--color-separator-strong);
 	}
 
 	.icon-label-button {

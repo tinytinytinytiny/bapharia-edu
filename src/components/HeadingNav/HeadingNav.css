@@ -1,0 +1,64 @@
+@layer base {
+	@screen xl {
+		:root {
+			--heading-nav-width: var(--space-5xl-rem);
+		}
+	}
+}
+
+@layer components {
+	.heading-nav {
+		background-color: var(--color-surface-0);
+		border-radius: var(--border-radius);
+		padding: var(--space-s-l);
+	}
+
+	.heading-nav h2 {
+		font-size: var(--text--1);
+		margin-block-end: 1em;
+	}
+
+	.heading-nav ul > li + li {
+		margin-block-start: 0.75em;
+	}
+
+	.heading-nav ul li > ul {
+		margin-block-start: 0.5em;
+		padding-inline-start: 1.5em;
+	}
+
+	.heading-nav + .content-wrapper {
+		margin-block-start: var(--space-xl-rem);
+	}
+
+	@screen md {
+		.heading-nav {
+			font-size: 1rem;
+		}
+	}
+
+	@screen xl {
+		.heading-nav {
+			background-color: transparent;
+			border-radius: 0;
+			flex: 1 0 var(--heading-nav-width);
+			margin-block: calc(-1 * var(--content-padding-block));
+			margin-inline: 0;
+			padding: 0;
+		}
+
+		.heading-nav > * {
+			inset-block-start: 0;
+			margin-inline-end: calc(-1 * var(--content-padding-inline));
+			max-block-size: 100vh;
+			overflow-y: auto;
+			padding-block: var(--content-padding-block);
+			padding-inline-end: var(--content-padding-inline);
+			position: sticky;
+		}
+
+		.heading-nav + .content-wrapper {
+			margin-block-start: 0;
+		}
+	}
+}

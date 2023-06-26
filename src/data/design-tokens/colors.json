@@ -27,10 +27,10 @@
 		"strong": "oklch(24% 0.04 225 / 48%)"
 	},
 	"shade": {
-		"weak": "oklch(40% 0.032 225 / 10%)",
-		"DEFAULT": "oklch(40% 0.032 225 / 18%)",
-		"strong": "oklch(40% 0.032 225 / 27%)",
-		"strongest": "oklch(40% 0.032 225 / 37%)"
+		"weak": "oklch(40% 0.016 225 / 10%)",
+		"DEFAULT": "oklch(40% 0.016 225 / 18%)",
+		"strong": "oklch(40% 0.016 225 / 27%)",
+		"strongest": "oklch(40% 0.016 225 / 38%)"
 	},
 	"surface": {
 		"0": "#fff",

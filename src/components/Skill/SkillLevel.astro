@@ -1,0 +1,28 @@
+---
+const subgrades = {
+	"1": "α",
+	"2": "β",
+};
+
+const { grade, subgrade, level } = Astro.props;
+---
+
+<div class="skill-level sidebar">
+	<dt class="grow-0">
+		G{grade}{subgrades[subgrade] || ""} (Level {level})
+	</dt>
+	<dd class="stack">
+		<slot />
+	</dd>
+</div>
+
+<style>
+	.skill-level {
+		--sidebar-target-width: 12.5ch;
+		row-gap: var(--space-xs-rem);
+	}
+
+	.skill-level .skill-level {
+		font-size: 1rem;
+	}
+</style>

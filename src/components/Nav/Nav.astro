@@ -7,6 +7,9 @@ import AsyncSubmenu from "./AsyncSubmenu.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Svg from "@jasikpark/astro-svg-loader";
 import { slugify } from "@utils";
+import { useTranslations } from "src/utils/i18n";
+
+const t = useTranslations("en");
 
 function isCurrentPath(url) {
 	const rootPathName = "/" + Astro.url.pathname.split("/")[1];
@@ -45,31 +48,30 @@ function isCurrentUrl(url) {
 					navigationData.map((item) =>
 						"children" in item ? (
 							<NavItemDisclosure
-								title={item.title}
+								title={t(item.title)}
 								url={item.url}
 								icon={item.icon}
-								id={`nav-${slugify(item.title)}-submenu`}
+								id={`nav-${slugify(t(item.title))}-submenu`}
 								current={isCurrentPath(item.url)}
 							>
-								{isCurrentPath(item.url) && (
-									Array.isArray(item.children) ? (
+								{isCurrentPath(item.url) &&
+									(Array.isArray(item.children) ? (
 										<NavSubmenu
 											parentUrl={item.url}
-											parentTitle={item.title}
+											parentTitle={t(item.title)}
 											children={item.children}
 										/>
 									) : (
 										<AsyncSubmenu
 											parentUrl={item.url}
-											parentTitle={item.title}
+											parentTitle={t(item.title)}
 											linkPrefix={item.children}
 										/>
-									)
-								)}
+									))}
 							</NavItemDisclosure>
 						) : (
 							<NavItem
-								title={item.title}
+								title={t(item.title)}
 								url={item.url}
 								icon={item.icon}
 								current={isCurrentUrl(item.url)}

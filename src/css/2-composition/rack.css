@@ -1,0 +1,21 @@
+@layer base {
+	:root {
+		--default-rack-space: var(--space-xs);
+	}
+}
+
+@layer components {
+	.rack {
+		--rack-space: var(--default-rack-space);
+	}
+
+	.rack > :not(:last-child) {
+		padding-block-end: var(--rack-space);
+	}
+
+	.rack > * + *,
+	.rack:where([data-border-top="true"]) > :first-child {
+		border-block-start: 1px solid var(--color-separator);
+		padding-block-start: var(--rack-space);
+	}
+}

@@ -2,7 +2,7 @@
 	import { submenu } from "./navStore.js";
 	import screens from "@data/design-tokens/screen-sizes.json";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
-	import ChevronRight  from "@assets/icons/chevron-right.svg?raw";
+	import ChevronRight from "@assets/icons/chevron-right.svg?raw";
 	import { onMount } from "svelte";
 
 	export let url = "/";
@@ -14,7 +14,7 @@
 	let expanded = Boolean(current);
 	let interacted = false;
 	let mounted;
-	
+
 	onMount(() => {
 		mounted = true;
 
