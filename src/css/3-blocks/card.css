@@ -2,7 +2,7 @@
 	.card {
 		--card-background: var(--color-surface-lightest);
 		--card-body-target-width: 21.375rem;
-		--card-img-target-width: 16.875rem;
+		--card-img-target-width: 13.5rem;
 	}
 }
 
@@ -63,6 +63,7 @@
 		flex-basis: var(--card-img-target-width);
 		flex-grow: 1;
 		justify-content: center;
+		margin-inline: auto;
 		order: -1;
 		overflow: hidden;
 		overflow: clip;
@@ -83,7 +84,7 @@
 	.card-title {
 		color: var(--color-text-strong);
 		display: block;
-		font-size: var(--text-2);
+		font-size: var(--text-1);
 		font-weight: 700;
 		line-height: 1.25;
 	}

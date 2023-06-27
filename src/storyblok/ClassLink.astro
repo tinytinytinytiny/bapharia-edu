@@ -14,13 +14,13 @@ const { width, height } = getStoryblokImageDimensions(blok.image.filename);
 		<div class="card-body">
 			<a
 				href={`/${blok.url.cached_url}`}
-				class="card-title text-1 lg:text-2 card-link underline-on-hover"
+				class="card-title card-link underline-on-hover"
 			>
 				{t(`class.${blok.name}`)}
 			</a>
 			<p class="leading-tight mbs-3xs-rem">{blok.caption}</p>
 		</div>
-		<div class="card-img">
+		<div class="card-img grow-0">
 			<img
 				src={blok.image.filename}
 				alt=""
