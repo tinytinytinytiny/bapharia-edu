@@ -45,8 +45,18 @@
 		border-color: var(--color-separator);
 	}
 
-	:where(.card-frame[data-variant="border"]) > .card:hover {
-		border-color: var(--color-separator-strong);
+	@media (hover: hover) {
+		:where(.card-frame[data-variant="border"]) > .card:hover {
+			border-color: var(--color-separator-strong);
+		}
+
+		.card:hover {
+			--card-background: var(--color-surface-2);
+		}
+
+		.card:hover .card-img img {
+			transform: scale(105%);
+		}
 	}
 
 	.card:focus-within {
@@ -102,16 +112,6 @@
 
 	.card-link:focus-visible {
 		text-decoration: underline;
-	}
-
-	@media (hover: hover) {
-		.card:hover {
-			--card-background: var(--color-surface-lightest);
-		}
-
-		.card:hover .card-img img {
-			transform: scale(105%);
-		}
 	}
 
 	@media (prefers-reduced-motion) {
