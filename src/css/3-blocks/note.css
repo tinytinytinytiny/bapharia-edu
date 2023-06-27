@@ -40,4 +40,8 @@
 	.note-body {
 		line-height: 1.5;
 	}
+
+	.note a {
+		color: inherit;
+	}
 }
