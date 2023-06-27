@@ -6,7 +6,7 @@ import Nav from "@components/Nav/Nav.astro";
 import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
 import JSTTime from "@components/JSTTime/JSTTime.astro";
 
-const { title } = Astro.props;
+const { title, storyblokAttributes = [] } = Astro.props;
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
 const rootPathName = "/" + Astro.url.pathname.split("/")[1];
 const isSubmenuOpen = Boolean(
@@ -39,7 +39,7 @@ const isSubmenuOpen = Boolean(
 			</div>
 		</header>
 		<div class="main-region stack stack-space-s">
-			<main class="stack stack-space-s">
+			<main class="stack stack-space-s" {...storyblokAttributes}>
 				<slot />
 			</main>
 		</div>

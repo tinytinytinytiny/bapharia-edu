@@ -12,7 +12,6 @@ const { blok, properties = true } = Astro.props;
 	name={blok.name}
 	characterClass={blok.class}
 	level={blok.level}
-	{...storyblokEditable(blok)}
 >
 	{
 		blok.icon?.filename && (

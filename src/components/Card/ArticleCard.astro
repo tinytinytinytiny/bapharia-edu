@@ -1,5 +1,5 @@
 ---
-const { title, url, category, class: className } = Astro.props;
+const { title, url, category, class: className, innerClass } = Astro.props;
 
 const getCategoryColor = (cat) => {
 	const colors = {
@@ -13,7 +13,7 @@ const getCategoryColor = (cat) => {
 
 <div class:list={["card-frame", className]} data-variant="border">
 	<div class:list={["card", "guide-card", className]}>
-		<div class="card-body gap-s-rem flex flex-col justify-between">
+		<div class:list={["card-body", "gap-s-rem", "flex", "flex-col", "justify-between", innerClass]}>
 			<div class="stack stack-space-2xs-rem">
 				<a class="card-title card-link underline-on-hover" href={url}>
 					{title}

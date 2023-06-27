@@ -1,10 +1,12 @@
 ---
-import ArticleNav from "./ArticleNav.astro";
+const { class: className } = Astro.props;
 ---
 
-<div class="article">
-	<ArticleNav />
-	<div class="content-wrapper stack">
-		<slot />
+<div class="content">
+	<div class="article">
+		<slot name="navigation" />
+		<div class:list={["content-wrapper", "stack", className]}>
+			<slot />
+		</div>
 	</div>
 </div>

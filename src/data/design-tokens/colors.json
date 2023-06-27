@@ -4,13 +4,13 @@
 		"light": "oklch(50% 0.13 245)",
 		"dark": "oklch(30% 0.07 245)",
 		"surface": {
-			"DEFAULT": "oklch(89% 0.06 245)",
-			"tint": "oklch(70% 0.16 245 / 35%)"
+			"DEFAULT": "oklch(90% 0.06 245)",
+			"tint": "oklch(76% 0.14 245 / 38%)"
 		}
 	},
 	"secondary": {
 		"DEFAULT": "oklch(40% 0.1 155)",
-		"surface": "oklch(89% 0.08 155)",
+		"surface": "oklch(90% 0.08 155)",
 		"on-dark": "oklch(90% 0.18 155)"
 	},
 	"alert": {

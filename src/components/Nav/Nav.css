@@ -156,7 +156,7 @@
 
 		.nav-submenu {
 			@apply shadow-2xl;
-			background-color: var(--color-surface-2);
+			background-color: var(--color-surface-1);
 			height: 100vh;
 			height: 100lvh;
 			flex-flow: column nowrap;

@@ -45,7 +45,7 @@
 	}
 
 	body {
-		background-color: var(--color-surface-1);
+		background-color: var(--color-surface-0);
 		color: var(--color-text-regular);
 		font-family: 'Public Sans', 'Noto Sans JP', sans-serif;
 		font-size: var(--text-0);
@@ -77,11 +77,11 @@
 
 	@screen sm {
 		body {
-			background-color: var(--color-surface-2);
+			background-color: var(--color-surface-1);
 		}
 
 		.content {
-			background-color: var(--color-surface-1);
+			background-color: var(--color-surface-0);
 			padding-block-start: var(--content-padding-block);
 		}
 	}

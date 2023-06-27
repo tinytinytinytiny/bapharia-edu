@@ -7,6 +7,7 @@ import {
 import cloneDeep from "clone-deep";
 import articleResolver from "./article-resolver";
 import { slugify } from "@utils";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import ArticleTitle from "@components/PageTitle/ArticleTitle.astro";
 import ArticleNav from "@components/Article/ArticleNav.astro";
 import { getStoryblokImageDimensions } from "@utils";
@@ -49,30 +50,29 @@ const content = renderRichText(
 const headings = blok.content.content.filter((x) => x.type === "heading");
 ---
 
-<ArticleTitle
-	title={blok.title}
-	author={blok.author}
-	lastUpdatedDate={lastUpdatedDate}
->
-	<img
-		slot="img"
-		src={coverImage.filename}
-		alt={coverImage.alt}
-		width={coverImageDimensions.width}
-		height={coverImageDimensions.height}
-	/>
-</ArticleTitle>
-<div class="content">
-	<div class="article">
-		<ArticleNav headings={headings} />
-		<div
-			class="content-wrapper stack leading-[1.625]"
-			{...storyblokEditable(blok)}
-		>
-			<Fragment set:html={content} />
+<BaseLayout title={blok.title} storyblokAttributes={storyblokEditable(blok)}>
+	<ArticleTitle
+		title={blok.title}
+		author={blok.author}
+		lastUpdatedDate={lastUpdatedDate}
+	>
+		<img
+			slot="img"
+			src={coverImage.filename}
+			alt={coverImage.alt}
+			width={coverImageDimensions.width}
+			height={coverImageDimensions.height}
+		/>
+	</ArticleTitle>
+	<div class="content">
+		<div class="article">
+			<ArticleNav headings={headings} />
+			<div class="content-wrapper stack leading-[1.625]">
+				<Fragment set:html={content} />
+			</div>
 		</div>
 	</div>
-</div>
+</BaseLayout>
 
 <script>
 	document.querySelectorAll(".table-container").forEach((container) => {

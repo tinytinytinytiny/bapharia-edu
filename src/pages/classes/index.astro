@@ -1,5 +1,5 @@
 ---
-import { useStoryblokApi, renderRichText } from "@storyblok/astro";
+import { useStoryblokApi, renderRichText, storyblokEditable } from "@storyblok/astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle/PageTitle.astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
@@ -13,8 +13,8 @@ const {
 const content = story.content;
 ---
 
-<BaseLayout title="Classes">
-	<PageTitle title="Classes">
+<BaseLayout title={content.title} storyblokAttributes={storyblokEditable(content)}>
+	<PageTitle title={content.title}>
 		<Fragment set:html={renderRichText(content.subheading)} />
 	</PageTitle>
 	<div class="content mbs-l-rem sm:mbs-[var(--stack-space-override)]">
@@ -28,7 +28,7 @@ const content = story.content;
 					{
 						content.links.map((link) => (
 							<li>
-								<StoryblokComponent blok={link} class="bs-full on-content" />
+								<StoryblokComponent blok={link} class="bs-full" />
 							</li>
 						))
 					}

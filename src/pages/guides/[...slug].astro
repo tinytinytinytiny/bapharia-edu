@@ -1,6 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import { useStoryblokApi } from "@storyblok/astro";
+import { useStoryblokApi, storyblokEditable } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
 const storyblokApi = useStoryblokApi();
@@ -19,6 +18,4 @@ try {
 }
 ---
 
-<BaseLayout title={content.title}>
-	<StoryblokComponent blok={content} lastUpdatedDate={lastUpdatedDate} />
-</BaseLayout>
+<StoryblokComponent blok={content} lastUpdatedDate={lastUpdatedDate} />

@@ -3,7 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle/PageTitle.astro";
 import HeadingNav from "@components/HeadingNav/HeadingNav.astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
-import { useStoryblokApi, renderRichText } from "@storyblok/astro";
+import { useStoryblokApi, renderRichText, storyblokEditable } from "@storyblok/astro";
 import { useTranslations } from "src/utils/i18n";
 
 const storyblokApi = useStoryblokApi();
@@ -23,7 +23,7 @@ try {
 }
 ---
 
-<BaseLayout title={t(`class.${name}`)}>
+<BaseLayout title={t(`class.${name}`)} storyblokAttributes={storyblokEditable(content)}>
 	<PageTitle title={t(`class.${name}`)} align="start">
 		<Fragment set:html={renderRichText(content.description)} />
 	</PageTitle>

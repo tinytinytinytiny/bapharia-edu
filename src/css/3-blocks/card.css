@@ -1,6 +1,6 @@
 @layer base {
 	.card {
-		--card-background: var(--color-surface-lightest);
+		--card-background: var(--color-surface-light);
 		--card-body-target-width: 21.375rem;
 		--card-img-target-width: 13.5rem;
 	}
@@ -17,7 +17,7 @@
 		content: '';
 		display: block;
 		margin-inline: auto;
-		opacity: 0.25;
+		opacity: 0.2;
 		position: absolute;
 		top: 50%;
 		right: calc(var(--border-radius) / 2);
@@ -102,17 +102,6 @@
 
 	.card-link:focus-visible {
 		text-decoration: underline;
-	}
-
-	@screen sm {
-		.card {
-			--card-background: var(--color-surface-light);
-		}
-
-		.card-frame:where(.on-content) > .card,
-		.card.on-content {
-			--card-background: var(--color-surface-lightest);
-		}
 	}
 
 	@media (hover: hover) {

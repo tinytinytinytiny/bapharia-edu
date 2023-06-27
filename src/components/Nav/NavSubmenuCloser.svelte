@@ -27,7 +27,7 @@
 
 <style>
 	.closer-container {
-		background-color: var(--color-surface-2);
+		background-color: var(--color-surface-1);
 		inset-block-end: 0;
 		padding-block: var(--space-xs) var(--space-s);
 		position: sticky;
