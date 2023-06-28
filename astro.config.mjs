@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import storyblok from '@storyblok/astro';
 import { loadEnv } from 'vite';
 import netlify from "@astrojs/netlify/functions";
@@ -30,5 +31,11 @@ export default defineConfig({
 	],
 	scopedStyleStrategy: "class",
 	output: "server",
+	vite: {
+		plugins: [basicSsl()],
+		server: {
+			https: true,
+		},
+	},
 	adapter: netlify()
 });

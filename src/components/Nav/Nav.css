@@ -166,7 +166,7 @@
 			margin-block-start: 0;
 			overflow-y: auto;
 			overscroll-behavior: none;
-			padding-block: var(--space-xs) 0;
+			padding-block: var(--space-s) 0;
 			padding-inline: var(--sidebar-width) var(--space-s);
 			position: fixed;
 			text-align: start;

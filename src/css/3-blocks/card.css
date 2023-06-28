@@ -1,6 +1,6 @@
 @layer base {
 	.card {
-		--card-background: var(--color-surface-light);
+		--card-background: var(--color-surface-1);
 		--card-body-target-width: 21.375rem;
 		--card-img-target-width: 13.5rem;
 	}
@@ -41,12 +41,12 @@
 		transition: transform 0.04s ease-in;
 	}
 
-	:where(.card-frame[data-variant="border"]) > .card {
+	.card-frame > .card {
 		border-color: var(--color-separator);
 	}
 
 	@media (hover: hover) {
-		:where(.card-frame[data-variant="border"]) > .card:hover {
+		:where(.card-frame) > .card:hover {
 			border-color: var(--color-separator-strong);
 		}
 
