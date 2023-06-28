@@ -1,6 +1,7 @@
 @layer base {
 	:root {
 		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
+		--sidebar-content-offset: 0;
 	}
 
 	.main-region {

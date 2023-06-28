@@ -11,11 +11,11 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 	</PageTitle>
 	<div class="content">
 		<div class="content-wrapper text-center stack">
-			<p class="font-bold text-1">
+			<p class="font-bold text-1 max-is-none">
 				<span>Your are visitor number</span>
 				<span class="visitor-counter">01069</span>
 			</p>
-			<div class="h2 caution stack">
+			<div class="figure uc-notice stack">
 				<hgroup>
 					<h2 class="uppercase text-inherit">Caution!</h2>
 					<p class="text-1">This site under Construction!</p>
@@ -40,16 +40,24 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 		line-height: 1;
 	}
 
-	.caution {
-		@apply shadow-xl shadow-[#ffe70966];
-		background-image: radial-gradient(rgba(0, 0, 0, 0.1),transparent), repeating-linear-gradient(-60deg, #000, #000 50px, #ffe709 50px, #ffe709 100px);
+	.uc-notice {
+		@apply shadow-xl shadow-[#ffe70933];
+		background-image: radial-gradient(rgba(0, 0, 0, 0.1), transparent),
+			repeating-linear-gradient(
+				-60deg,
+				#000,
+				#000 50px,
+				#ffe709 50px,
+				#ffe709 100px
+			);
 		border: 2px solid #ffe709;
 		box-shadow: 0 0 0 2px #000, var(--tw-shadow);
 		border-radius: var(--border-radius);
+		font-weight: 700;
 		padding: var(--space-xs-s);
 	}
 
-	.caution > * {
+	.uc-notice > * {
 		@apply shadow-lg;
 		background-color: #000;
 		border: 2px solid;
