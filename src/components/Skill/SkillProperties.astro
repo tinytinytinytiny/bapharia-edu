@@ -3,27 +3,29 @@ import { useTranslations } from "src/utils/i18n";
 
 const t = useTranslations("en");
 
-const { cooldown, element, type, additionalEffect } = Astro.props;
+const { cooldown, element, type, additionalEffect, variant = "tactical" } = Astro.props;
 ---
 
 <dl class="skill-properties auto-grid rounded-sm">
-	<div>
+	<div class="skill-property">
 		<dt>Cooldown</dt>
 		<dd>{cooldown || 0} seconds</dd>
 	</div>
-	<div>
+	<div class="skill-property">
 		<dt>Element</dt>
 		<dd>
 			{element ? t(`element.${element}`) : "None"}
 		</dd>
 	</div>
-	<div>
-		<dt>Type</dt>
-		<dd>
-			{type ? t(`skill.type.${type}`) : "None"}
-		</dd>
-	</div>
-	<div>
+	{variant === "tactical" && (
+		<div class="skill-property">
+			<dt>Type</dt>
+			<dd>
+				{type ? t(`skill.type.${type}`) : "None"}
+			</dd>
+		</div>
+	)}
+	<div class="skill-property">
 		<dt>Additional Effect</dt>
 		<dd>{additionalEffect || "None"}</dd>
 	</div>

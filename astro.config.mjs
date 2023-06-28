@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-import mdx from "@astrojs/mdx";
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import storyblok from '@storyblok/astro';
 import { loadEnv } from 'vite';
@@ -17,7 +16,6 @@ export default defineConfig({
 				applyBaseStyles: false
 			}
 		}),
-		mdx(),
 		svelte(),
 		storyblok({
 			accessToken: env.STORYBLOK_TOKEN,

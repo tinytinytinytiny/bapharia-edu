@@ -1,10 +1,20 @@
 ---
-import { getStoryblokLinks } from "@utils";
+import { useStoryblokApi } from "@storyblok/astro";
 import NavSubmenu from "./NavSubmenu.astro";
 
 const { parentUrl, parentTitle, linkPrefix } = Astro.props;
 
-const links = await getStoryblokLinks(linkPrefix);
+const links = await getStoryblokLinks();
+
+async function getStoryblokLinks() {
+	const storyblokApi = useStoryblokApi();
+	const { data: { links } } = await storyblokApi.get('cdn/links/', {
+		starts_with: linkPrefix,
+		version: import.meta.env.DEV ? 'draft' : 'published'
+	});
+
+	return Object.values(links).filter(link => link.is_startpage === false);
+}
 ---
 
 <NavSubmenu

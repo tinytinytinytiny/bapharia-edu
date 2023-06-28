@@ -51,15 +51,15 @@ try {
 					</li>
 				</ul>
 			</HeadingNav>
-			<div class="content-wrapper stack">
+			<div class="content-wrapper stack max-is-none">
 				<div class="leading-[1.625] stack">
 					<h2 id="overview">Overview</h2>
 					<Fragment set:html={renderRichText(content.overview)} />
 				</div>
 				<h2 id="base-actions">Base Actions</h2>
 				{
-					content.base_actions.map((skill) => (
-						<StoryblokComponent blok={skill} properties={false} />
+					content.base_actions.map((skill, index) => (
+						<StoryblokComponent blok={skill} properties={index < 2} />
 					))
 				}
 				<h2 id="tactical-skills">Tactical Skills</h2>

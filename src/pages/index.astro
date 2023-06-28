@@ -11,15 +11,16 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 	</PageTitle>
 	<div class="content">
 		<div class="content-wrapper text-center stack">
-			<p
-				class="font-bold text-1 bg-accent text-inverted p-s-m rounded shadow-xl"
-			>
-				Your are visitor number
-				<span class="block text-8 leading-none font-extrabold"
-					>01069</span
-				>
+			<p class="font-bold text-1">
+				<span>Your are visitor number</span>
+				<span class="visitor-counter">01069</span>
 			</p>
-			<h2>Caution</h2>
+			<div class="h2 caution stack">
+				<hgroup>
+					<h2 class="uppercase text-inherit">Caution!</h2>
+					<p class="text-1">This site under Construction!</p>
+				</hgroup>
+			</div>
 			<p>
 				Sorry, we are currently under construction. Please come back
 				soon.
@@ -27,3 +28,38 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 		</div>
 	</div>
 </BaseLayout>
+
+<style>
+	.visitor-counter {
+		color: var(--color-accent);
+		display: block;
+		font-size: var(--text-8);
+		font-variant-numeric: tabular-nums;
+		font-weight: 800;
+		letter-spacing: -0.05em;
+		line-height: 1;
+	}
+
+	.caution {
+		@apply shadow-xl shadow-[#ffe70966];
+		background-image: radial-gradient(rgba(0, 0, 0, 0.1),transparent), repeating-linear-gradient(-60deg, #000, #000 50px, #ffe709 50px, #ffe709 100px);
+		border: 2px solid #ffe709;
+		box-shadow: 0 0 0 2px #000, var(--tw-shadow);
+		border-radius: var(--border-radius);
+		padding: var(--space-xs-s);
+	}
+
+	.caution > * {
+		@apply shadow-lg;
+		background-color: #000;
+		border: 2px solid;
+		border-radius: var(--space-2xs);
+		box-shadow: 0 0 0 2px #000, var(--tw-shadow);
+		color: #ffe709;
+		display: inline-block;
+		line-height: 1;
+		max-inline-size: 80%;
+		padding-block: var(--space-3xs-2xs);
+		padding-inline: var(--space-s-m);
+	}
+</style>

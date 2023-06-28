@@ -4,6 +4,13 @@ import { useTranslations } from "src/utils/i18n";
 const { parentUrl, parentTitle, children } = Astro.props;
 
 const t = useTranslations("en");
+const sortedChildren = children.sort((a, b) => {
+	const titleA = t(a.title);
+	const titleB = t(b.title);
+	if (titleA < titleB) return -1;
+	if (titleA > titleB) return 1;
+	return 0;
+});
 
 function isCurrentUrl(url) {
 	if (Astro.url.pathname.endsWith("/")) {
@@ -27,7 +34,7 @@ function isCurrentUrl(url) {
 		</a>
 	</li>
 	{
-		children.map((child) => (
+		sortedChildren.map((child) => (
 			<li class="nav-submenu-item">
 				<a
 					href={child.url}
