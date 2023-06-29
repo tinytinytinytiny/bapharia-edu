@@ -3,7 +3,11 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle/PageTitle.astro";
 import HeadingNav from "@components/HeadingNav/HeadingNav.astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
-import { useStoryblokApi, renderRichText, storyblokEditable } from "@storyblok/astro";
+import {
+	useStoryblokApi,
+	renderRichText,
+	storyblokEditable,
+} from "@storyblok/astro";
 import { useTranslations } from "src/utils/i18n";
 
 const storyblokApi = useStoryblokApi();
@@ -23,13 +27,16 @@ try {
 }
 ---
 
-<BaseLayout title={t(`class.${name}`)} storyblokAttributes={storyblokEditable(content)}>
+<BaseLayout
+	title={t(`class.${name}`)}
+	storyblokAttributes={storyblokEditable(content)}
+>
 	<PageTitle title={t(`class.${name}`)} align="start">
 		<Fragment set:html={renderRichText(content.description)} />
 	</PageTitle>
 	<div class="content">
 		<div class="article">
-			<HeadingNav>
+			<HeadingNav class="article-nav">
 				<ul role="list">
 					<li>
 						<a href="#overview">Overview</a>
@@ -59,7 +66,10 @@ try {
 				<h2 id="base-actions">Base Actions</h2>
 				{
 					content.base_actions.map((skill, index) => (
-						<StoryblokComponent blok={skill} properties={index < 2} />
+						<StoryblokComponent
+							blok={skill}
+							properties={index < 2}
+						/>
 					))
 				}
 				<h2 id="tactical-skills">Tactical Skills</h2>
