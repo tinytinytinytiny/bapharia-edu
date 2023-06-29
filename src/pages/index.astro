@@ -16,10 +16,15 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 				<span class="visitor-counter">01069</span>
 			</p>
 			<div class="figure uc-notice stack">
-				<hgroup>
-					<h2 class="uppercase text-inherit">Caution!</h2>
-					<p class="text-1">This site under Construction!</p>
-				</hgroup>
+				<h2>
+					<span class="block h2 uppercase text-inherit">
+						Caution!
+					</span>
+					<span class="visually-hidden">&nbsp;</span>
+					<span class="block text-1 font-bold">
+						This site under Construction!
+					</span>
+				</h2>
 			</div>
 			<p>
 				Sorry, we are currently under construction. Please come back
@@ -53,7 +58,6 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 		border: 2px solid #ffe709;
 		box-shadow: 0 0 0 2px #000, var(--tw-shadow);
 		border-radius: var(--border-radius);
-		font-weight: 700;
 		padding: var(--space-xs-s);
 	}
 
