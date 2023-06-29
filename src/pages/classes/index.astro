@@ -26,17 +26,24 @@ const content = story.content;
 	</PageTitle>
 	<div class="content mbs-l-rem sm:mbs-[var(--stack-space-override)]">
 		<div class="sidebar items-start flex-row-reverse">
-			<ul class="auto-grid" role="list">
-				{
-					content.links.map((link) => (
-						<li>
-							<StoryblokComponent blok={link} class="bs-full" />
-						</li>
-					))
-				}
-			</ul>
-			<div class="content-wrapper stack leading-[1.625]">
-				<Fragment set:html={renderRichText(content.overview)} />
+			<nav aria-label="Classes">
+				<ul class="auto-grid" role="list">
+					{
+						content.links.map((link) => (
+							<li>
+								<StoryblokComponent
+									blok={link}
+									class="bs-full"
+								/>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+			<div>
+				<div class="content-wrapper stack leading-[1.625]">
+					<Fragment set:html={renderRichText(content.overview)} />
+				</div>
 			</div>
 		</div>
 	</div>
