@@ -64,38 +64,54 @@ try {
 					<Fragment set:html={renderRichText(content.overview)} />
 				</div>
 				<h2 id="base-actions">Base Actions</h2>
-				{
-					content.base_actions.map((skill, index) => (
-						<StoryblokComponent
-							blok={skill}
-							properties={index < 2}
-						/>
-					))
-				}
+				<div class="stack stack-space-s">
+					{
+						content.base_actions.map((skill, index) => (
+							<StoryblokComponent
+								blok={skill}
+								properties={index < 2}
+							/>
+						))
+					}
+				</div>
 				<h2 id="tactical-skills">Tactical Skills</h2>
-				{
-					content.tactical_skills.map((skill) => (
-						<StoryblokComponent blok={skill} />
-					))
-				}
+				<div class="stack stack-space-s">
+					{
+						content.tactical_skills.map((skill) => (
+							<StoryblokComponent blok={skill} />
+						))
+					}
+				</div>
 				<h2 id="ultimate-skills">Ultimate Skills</h2>
-				{
-					content.ultimate_skills.map((skill) => (
-						<StoryblokComponent blok={skill} />
-					))
-				}
+				<div class="stack stack-space-s">
+					{
+						content.ultimate_skills.map((skill) => (
+							<StoryblokComponent blok={skill} />
+						))
+					}
+				</div>
 				<h2 id="base-abilities">Base Abilities</h2>
-				{
-					content.base_abilities.map((skill) => (
-						<StoryblokComponent blok={skill} properties={false} />
-					))
-				}
+				<div class="stack stack-space-s">
+					{
+						content.base_abilities.map((skill) => (
+							<StoryblokComponent
+								blok={skill}
+								properties={false}
+							/>
+						))
+					}
+				</div>
 				<h2 id="class-abilities">Class Abilities</h2>
-				{
-					content.class_abilities.map((skill) => (
-						<StoryblokComponent blok={skill} properties={false} />
-					))
-				}
+				<div class="stack stack-space-s">
+					{
+						content.class_abilities.map((skill) => (
+							<StoryblokComponent
+								blok={skill}
+								properties={false}
+							/>
+						))
+					}
+				</div>
 			</div>
 		</div>
 	</div>

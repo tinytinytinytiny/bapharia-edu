@@ -49,7 +49,7 @@ module.exports = {
 	important: false,
 	theme: {
 		screens,
-		borderRadius,
+		borderRadius: getTokens(borderRadius, 'border-radius'),
 		colors: getTokens(color, 'color'),
 		fontSize: getTokens(fontSize, 'text'),
 		spacing: getTokens(spacing, 'space'),
@@ -70,6 +70,7 @@ module.exports = {
 		},
 		variables: {
 			DEFAULT: {
+				'border-radius': borderRadius,
 				color,
 				space: spacing,
 				text: fontSize

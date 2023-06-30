@@ -2,7 +2,6 @@
 
 @layer base {
 	:root {
-		--border-radius: var(--space-xs);
 		--content-padding-block: var(--space-s-l);
 		--content-padding-inline: 0;
 		--default-gutter: var(--space-s-rem);
@@ -10,7 +9,7 @@
 		--grid-min-item-size: 29.25rem;
 		--main-region-limit: 112.5rem;
 		--main-region-padding: var(--space-s);
-		--paragraph-max-inline-size: 63ch;
+		--paragraph-max-width: 63ch;
 	}
 
 	@screen sm {
@@ -27,7 +26,6 @@
 	}
 
 	* {
-		text-decoration-thickness: 1px;
 		text-underline-position: from-font;
 	}
 

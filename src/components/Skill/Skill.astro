@@ -6,23 +6,25 @@ const t = useTranslations("en");
 const { name, characterClass, level } = Astro.props;
 ---
 
-<article class="stack bg-surface-1 rounded p-s-m">
-	<header class="cluster">
-		<hgroup class="leading-tight">
-			<h3>{name}</h3>
-			<p>
-				Requires <b>{t(`class.${characterClass}`)} Level {level}</b>
-			</p>
-		</hgroup>
-		<slot name="icon" />
-	</header>
-	<slot name="properties" />
-	<h4 class="visually-hidden">Description</h4>
-	<slot name="description" />
+<article>
+	<div class="stack bg-surface-1 rounded p-s-m">
+		<header class="cluster">
+			<hgroup class="leading-tight">
+				<h3>{name}</h3>
+				<p>
+					Requires <b>{t(`class.${characterClass}`)} Level {level}</b>
+				</p>
+			</hgroup>
+			<slot name="icon" />
+		</header>
+		<slot name="properties" />
+		<h4 class="visually-hidden">Description</h4>
+		<slot name="description" />
+	</div>
 </article>
 
 <style>
 	article {
-		max-inline-size: calc(15ch + var(--paragraph-max-inline-size));
+		max-inline-size: calc(15ch + var(--paragraph-max-width));
 	}
 </style>

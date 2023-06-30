@@ -1,4 +1,5 @@
 @layer base {
+
 	h1,
 	h2,
 	h3,
@@ -62,6 +63,6 @@
 	p,
 	h4,
 	.h4 {
-		max-inline-size: var(--paragraph-max-inline-size);
+		max-inline-size: var(--paragraph-max-width);
 	}
 }

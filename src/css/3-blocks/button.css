@@ -111,7 +111,7 @@
 	}
 
 	.chip {
-		border-radius: 9999px;
+		border-radius: var(--border-radius-full);
 		padding-inline: var(--space-s);
 	}
 

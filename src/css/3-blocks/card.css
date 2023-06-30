@@ -13,7 +13,7 @@
 
 	.card-frame::before {
 		background-color: var(--color-separator);
-		border-radius: var(--space-2xs);
+		border-radius: var(--border-radius-s);
 		content: '';
 		display: block;
 		margin-inline: auto;
