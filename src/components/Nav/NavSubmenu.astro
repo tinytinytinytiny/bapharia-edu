@@ -3,7 +3,7 @@ import { useTranslations } from "src/utils/i18n";
 
 const { parentUrl, parentTitle, children } = Astro.props;
 
-const t = useTranslations("en");
+const t = await useTranslations("en");
 const sortedChildren = children.sort((a, b) => {
 	const titleA = t(a.title);
 	const titleB = t(b.title);

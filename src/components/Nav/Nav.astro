@@ -9,7 +9,7 @@ import Svg from "@jasikpark/astro-svg-loader";
 import { slugify } from "@utils";
 import { useTranslations } from "src/utils/i18n";
 
-const t = useTranslations("en");
+const t = await useTranslations("en");
 
 function isCurrentPath(url) {
 	const rootPathName = "/" + Astro.url.pathname.split("/")[1];

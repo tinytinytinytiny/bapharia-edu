@@ -12,7 +12,7 @@ import { useTranslations } from "src/utils/i18n";
 
 const storyblokApi = useStoryblokApi();
 const slug = Astro.params.slug;
-const t = useTranslations("en");
+const t = await useTranslations("en");
 let name;
 let content;
 
@@ -41,21 +41,31 @@ try {
 					<li>
 						<a href="#overview">Overview</a>
 					</li>
-					<li>
-						<a href="#base-actions">Base Actions</a>
-					</li>
-					<li>
-						<a href="#tactical-skills">Tactical Skills</a>
-					</li>
-					<li>
-						<a href="#ultimate-skills">Ultimate Skills</a>
-					</li>
-					<li>
-						<a href="#base-abilities">Base Abilities</a>
-					</li>
-					<li>
-						<a href="#class-abilities">Class Abilities</a>
-					</li>
+					{content.base_actions?.length > 0 && (
+						<li>
+							<a href="#base-actions">Base Actions</a>
+						</li>
+					)}
+					{content.tactical_skills?.length > 0 && (
+						<li>
+							<a href="#tactical-skills">Tactical Skills</a>
+						</li>
+					)}
+					{content.ultimate_skills?.length > 0 && (
+						<li>
+							<a href="#ultimate-skills">Ultimate Skills</a>
+						</li>
+					)}
+					{content.base_abilities?.length > 0 && (
+						<li>
+							<a href="#base-abilities">Base Abilities</a>
+						</li>
+					)}
+					{content.class_abilities?.length > 0 && (
+						<li>
+							<a href="#class-abilities">Class Abilities</a>
+						</li>
+					)}
 				</ul>
 			</HeadingNav>
 			<div class="content-wrapper stack max-is-none">
@@ -63,55 +73,75 @@ try {
 					<h2 id="overview">Overview</h2>
 					<Fragment set:html={renderRichText(content.overview)} />
 				</div>
-				<h2 id="base-actions">Base Actions</h2>
-				<div class="stack stack-space-s">
-					{
-						content.base_actions.map((skill, index) => (
-							<StoryblokComponent
-								blok={skill}
-								properties={index < 2}
-							/>
-						))
-					}
-				</div>
-				<h2 id="tactical-skills">Tactical Skills</h2>
-				<div class="stack stack-space-s">
-					{
-						content.tactical_skills.map((skill) => (
-							<StoryblokComponent blok={skill} />
-						))
-					}
-				</div>
-				<h2 id="ultimate-skills">Ultimate Skills</h2>
-				<div class="stack stack-space-s">
-					{
-						content.ultimate_skills.map((skill) => (
-							<StoryblokComponent blok={skill} />
-						))
-					}
-				</div>
-				<h2 id="base-abilities">Base Abilities</h2>
-				<div class="stack stack-space-s">
-					{
-						content.base_abilities.map((skill) => (
-							<StoryblokComponent
-								blok={skill}
-								properties={false}
-							/>
-						))
-					}
-				</div>
-				<h2 id="class-abilities">Class Abilities</h2>
-				<div class="stack stack-space-s">
-					{
-						content.class_abilities.map((skill) => (
-							<StoryblokComponent
-								blok={skill}
-								properties={false}
-							/>
-						))
-					}
-				</div>
+				{
+					content.base_actions?.length > 0 && (
+						<h2 id="base-actions">Base Actions</h2>
+						<div class="stack stack-space-s">
+							{
+								content.base_actions.map((skill, index) => (
+									<StoryblokComponent
+										blok={skill}
+										properties={index < 2}
+									/>
+								))
+							}
+						</div>
+					)
+				}
+				{
+					content.tactical_skills?.length > 0 && (
+						<h2 id="tactical-skills">Tactical Skills</h2>
+						<div class="stack stack-space-s">
+							{
+								content.tactical_skills.map((skill) => (
+									<StoryblokComponent blok={skill} />
+								))
+							}
+						</div>
+					)
+				}
+				{
+					content.ultimate_skills?.length > 0 && (
+						<h2 id="ultimate-skills">Ultimate Skills</h2>
+						<div class="stack stack-space-s">
+							{
+								content.ultimate_skills.map((skill) => (
+									<StoryblokComponent blok={skill} />
+								))
+							}
+						</div>
+					)
+				}
+				{
+					content.base_abilities?.length > 0 && (
+						<h2 id="base-abilities">Base Abilities</h2>
+						<div class="stack stack-space-s">
+							{
+								content.base_abilities.map((skill) => (
+									<StoryblokComponent
+										blok={skill}
+										properties={false}
+									/>
+								))
+							}
+						</div>
+					)
+				}
+				{
+					content.class_abilities?.length > 0 && (
+						<h2 id="class-abilities">Class Abilities</h2>
+						<div class="stack stack-space-s">
+							{
+								content.class_abilities.map((skill) => (
+									<StoryblokComponent
+										blok={skill}
+										properties={false}
+									/>
+								))
+							}
+						</div>
+					)
+				}
 			</div>
 		</div>
 	</div>

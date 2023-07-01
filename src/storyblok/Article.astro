@@ -58,10 +58,11 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 	>
 		<img
 			slot="img"
-			src={coverImage.filename}
+			src={`${coverImage.filename}/m/`}
 			alt={coverImage.alt}
 			width={coverImageDimensions.width}
 			height={coverImageDimensions.height}
+			decoding="async"
 		/>
 	</ArticleTitle>
 	<div class="content">

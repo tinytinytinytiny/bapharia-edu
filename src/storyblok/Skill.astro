@@ -17,7 +17,7 @@ const { blok, properties = true } = Astro.props;
 		blok.icon?.filename && (
 			<SkillIcon
 				slot="icon"
-				src={blok.icon.filename}
+				src={`${blok.icon.filename}/m/`}
 				category={blok.category}
 				type={blok.type}
 				element={blok.element}

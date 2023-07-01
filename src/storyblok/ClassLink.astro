@@ -2,7 +2,7 @@
 import { getStoryblokImageDimensions } from "@utils";
 import { useTranslations } from "src/utils/i18n";
 
-const t = useTranslations("en");
+const t = await useTranslations("en");
 
 const { blok, class: className } = Astro.props;
 
@@ -23,7 +23,7 @@ const { width, height } = getStoryblokImageDimensions(blok.image.filename);
 		<div class="card-img grow-0">
 			<img
 				class="mix-blend-exclusion"
-				src={blok.image.filename}
+				src={`${blok.image.filename}/m/`}
 				alt=""
 				width={width}
 				height={height}

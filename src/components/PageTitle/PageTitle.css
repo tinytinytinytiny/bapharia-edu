@@ -21,6 +21,10 @@
 		margin-inline: auto;
 	}
 
+	.page-title__inner > :empty {
+		display: none;
+	}
+
 	.page-title h1 {
 		color: inherit;
 	}
