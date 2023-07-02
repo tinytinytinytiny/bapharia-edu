@@ -60,14 +60,12 @@ function isCurrentUrl(url) {
 											parentUrl={item.url}
 											parentTitle={t(item.title)}
 											children={item.children}
-											prefetch={item.prefetchChildren}
 										/>
 									) : (
 										<AsyncSubmenu
 											parentUrl={item.url}
 											parentTitle={t(item.title)}
 											linkPrefix={item.children}
-											prefetch={item.prefetchChildren}
 										/>
 									))}
 							</NavItemDisclosure>

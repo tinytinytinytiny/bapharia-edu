@@ -2,7 +2,7 @@
 import { useStoryblokApi } from "@storyblok/astro";
 import NavSubmenu from "./NavSubmenu.astro";
 
-const { parentUrl, parentTitle, linkPrefix, prefetch } = Astro.props;
+const { parentUrl, parentTitle, linkPrefix } = Astro.props;
 
 const links = await getStoryblokLinks();
 
@@ -26,5 +26,4 @@ async function getStoryblokLinks() {
 		title: link.name,
 		url: `/${link.slug}`,
 	}))}
-	prefetch={prefetch}
 />

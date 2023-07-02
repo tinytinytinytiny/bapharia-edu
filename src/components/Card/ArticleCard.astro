@@ -1,5 +1,5 @@
 ---
-const { title, url, class: className, innerClass, prefetch } = Astro.props;
+const { title, url, class: className, innerClass, prefetch = true } = Astro.props;
 ---
 
 <div class:list={["card-frame", className]}>

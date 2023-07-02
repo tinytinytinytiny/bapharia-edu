@@ -1,7 +1,7 @@
 ---
 import { useTranslations } from "src/utils/i18n";
 
-const { parentUrl, parentTitle, children, prefetch = true } = Astro.props;
+const { parentUrl, parentTitle, children } = Astro.props;
 
 const t = await useTranslations("en");
 const sortedChildren = children.sort((a, b) => {
@@ -40,7 +40,6 @@ function isCurrentUrl(url) {
 					href={child.url}
 					class="nav-submenu-item__link underline-on-hover"
 					aria-current={isCurrentUrl(child.url) ? "page" : "false"}
-					rel={prefetch ? "prefetch" : null}
 				>
 					{t(child.title)}
 				</a>
