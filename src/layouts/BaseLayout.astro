@@ -48,6 +48,18 @@ const isSubmenuOpen = Boolean(
 </html>
 
 <script>
+	if ("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("/service-worker.js").then(
+			(registration) =>
+				console.log(
+					"Service worker registration succeeded:",
+					registration
+				),
+			(error) =>
+				console.error(`Service worker registration failed: ${error}`)
+		);
+	}
+
 	const supportsSessionStorage = storageAvailable("sessionStorage");
 
 	if (supportsSessionStorage && sessionStorage.getItem("scrollbarWidth")) {
