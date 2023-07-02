@@ -3,8 +3,8 @@ import "../css/fonts.css";
 import "../css/global.css";
 import navigationData from "@data/navigation";
 import Nav from "@components/Nav/Nav.astro";
-import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
-import JSTTime from "@components/JSTTime/JSTTime.astro";
+// import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
+// import JSTTime from "@components/JSTTime/JSTTime.astro";
 
 const { title, storyblokAttributes = [] } = Astro.props;
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
@@ -18,6 +18,7 @@ const isSubmenuOpen = Boolean(
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://a-us.storyblok.com/" crossorigin />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? `${title} - Bapharia.edu` : "Bapharia.edu"}</title>

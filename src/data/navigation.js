@@ -15,10 +15,5 @@ export default [
 		url: '/guides',
 		icon: import('@assets/icons/guide.svg?raw'),
 		children: 'guides/'
-	},
-	{
-		title: 'nav.test',
-		url: '/test',
-		icon: import('@assets/icons/bapharia.svg?raw')
 	}
 ];

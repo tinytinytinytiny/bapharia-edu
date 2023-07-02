@@ -2,18 +2,20 @@
 import { useStoryblokApi } from "@storyblok/astro";
 import NavSubmenu from "./NavSubmenu.astro";
 
-const { parentUrl, parentTitle, linkPrefix } = Astro.props;
+const { parentUrl, parentTitle, linkPrefix, prefetch } = Astro.props;
 
 const links = await getStoryblokLinks();
 
 async function getStoryblokLinks() {
 	const storyblokApi = useStoryblokApi();
-	const { data: { links } } = await storyblokApi.get('cdn/links/', {
+	const {
+		data: { links },
+	} = await storyblokApi.get("cdn/links/", {
 		starts_with: linkPrefix,
-		version: import.meta.env.DEV ? 'draft' : 'published'
+		version: import.meta.env.DEV ? "draft" : "published",
 	});
 
-	return Object.values(links).filter(link => link.is_startpage === false);
+	return Object.values(links).filter((link) => link.is_startpage === false);
 }
 ---
 
@@ -24,4 +26,5 @@ async function getStoryblokLinks() {
 		title: link.name,
 		url: `/${link.slug}`,
 	}))}
+	prefetch={prefetch}
 />
