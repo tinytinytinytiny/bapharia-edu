@@ -1,17 +1,28 @@
 ---
-import { useStoryblokApi } from "@storyblok/astro";
-import { getStoryblokImageDimensions } from "@utils";
+import { queryStoryblokGApi, getStoryblokImageDimensions } from "@utils";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle/PageTitle.astro";
 import ArticleCard from "@components/Card/ArticleCard.astro";
 
-const storyblokApi = useStoryblokApi();
 const {
-	data: { stories },
-} = await storyblokApi.get("cdn/stories", {
-	by_slugs: "guides/*",
-	sort_by: "name:asc",
-	version: import.meta.env.DEV ? "draft" : "published",
+	ArticleItems: { items },
+} = await queryStoryblokGApi({
+	query: `
+		query {
+			ArticleItems(starts_with: "guides/", sort_by: "name:asc") {
+				items {
+					full_slug
+					content {
+						title
+						summary
+						cover_image {
+							filename
+						}
+					}
+				}
+			}
+		}
+	`,
 });
 ---
 
@@ -25,7 +36,7 @@ const {
 	<div>
 		<ul class="auto-grid" role="list">
 			{
-				stories.map((guide) => (
+				items.map((guide) => (
 					<li>
 						<ArticleCard
 							class="bs-full"

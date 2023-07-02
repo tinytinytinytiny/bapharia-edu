@@ -1,26 +1,27 @@
 import { useStoryblokApi } from '@storyblok/astro';
-import { languages, ui } from '@data/i18n';
+import { languages, defaultLang, ui } from '@data/i18n';
 
 const storyblokApi = useStoryblokApi();
 
-export async function useTranslations(lang) {
+export async function useTranslations(lang = defaultLang) {
 	let strings;
 	const cachedStrings = ui.get();
+	const _lang = (lang in languages) ? lang : defaultLang;
 
-	if (cachedStrings) {
-		strings = cachedStrings;
+	if (_lang in cachedStrings) {
+		strings = cachedStrings[_lang];
 	} else {
-		strings = await getAllLangStrings();
-		ui.set(strings);
+		strings = await getStrings(_lang);
+		ui.setKey(_lang, strings);
 	}
 
 	return function t(key) {
-		return strings[lang][key] || key;
+		return strings[key] || key;
 	}
 }
 
 async function getStrings(dimension) {
-	const { data: { datasource_entries }} = await storyblokApi.get('cdn/datasource_entries', {
+	const { data: { datasource_entries } } = await storyblokApi.get('cdn/datasource_entries', {
 		datasource: 'ui',
 		dimension,
 		per_page: 1000
@@ -29,16 +30,6 @@ async function getStrings(dimension) {
 	return Object.fromEntries(
 		datasource_entries.map(
 			x => ([x.name, x.dimension_value || x.value])
-		)
-	);
-}
-
-async function getAllLangStrings() {
-	return Object.fromEntries(
-		await Promise.all(
-			Object.keys(languages).map(async (lang) => 
-				([lang, await getStrings(lang)])
-		  	)
 		)
 	);
 }
