@@ -1,19 +1,22 @@
 import { renderRichText } from '@storyblok/astro';
-import { getStoryblokImageDimensions } from '@utils';
+import { storyblokImage } from '@utils';
 
 export default (component, blok) => {
 	switch (component) {
 		case 'figure':
-			const { width, height } = getStoryblokImageDimensions(
-				blok.content.filename
-			);
+			const img = storyblokImage(blok.content.filename);
+			const [width, height] = img.getDimensions();
+			const srcset = img.generateSrcset();
+			const sizes = '90vw';
+			const attributes = `srcset="${srcset}" sizes="${sizes}" src="${img.getOptimizedUrl()}" alt="${blok.content.alt}" width="${width}" height="${height}" decoding="async" loading="lazy"`;
+
 			if (blok.caption) {
 				return `<figure class="stack stack-space-2xs-rem">
-					<img class="rounded" src="${blok.content.filename}" alt="${blok.content.alt}" width="${width}" height="${height}">
+					<img class="rounded" ${attributes}>
 					<figcaption class="italic text-[1rem]">${blok.caption}</figcaption>
 				</figure>`;
 			}
-			return `<img class="figure rounded" src="${blok.content.filename}/m/" alt="${blok.content.alt}" width="${width}" height="${height}" decoding="async" loading="lazy">`;
+			return `<img class="figure rounded" ${attributes}>`;
 		case 'note':
 			return `<aside class="note" data-style="${blok.title.toLowerCase()}">
 				<p class="note-title">${blok.title}</p>

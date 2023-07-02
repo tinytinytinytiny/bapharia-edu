@@ -1,19 +1,14 @@
 ---
-import { getStoryblokImageDimensions } from "@utils";
+import StoryblokImg from "@components/Image/StoryblokImg.astro";
 
 const { title, align } = Astro.props;
 
 const defaultBanners = [
-	"https://a-us.storyblok.com/f/1014865/2560x1440/acbb4174ca/banner-1.png/m/",
-	"https://a-us.storyblok.com/f/1014865/1920x1080/dec9f282d0/banner-2.jpg/m/",
-	"https://a-us.storyblok.com/f/1014865/1920x1080/50b0a917dd/banner-3.jpg/m/"
+	"https://a-us.storyblok.com/f/1014865/2560x1440/acbb4174ca/banner-1.png/",
+	"https://a-us.storyblok.com/f/1014865/1920x1080/dec9f282d0/banner-2.jpg/",
+	"https://a-us.storyblok.com/f/1014865/1920x1080/50b0a917dd/banner-3.jpg/"
 ];
-const getRandomBanner = () => {
-	const src = defaultBanners[Math.floor(Math.random() * defaultBanners.length)];
-	const { width, height } = getStoryblokImageDimensions(src);
-	return { src, width, height };
-};
-const { src, width, height } = getRandomBanner();
+const src = defaultBanners[Math.floor(Math.random() * defaultBanners.length)];
 ---
 
 <header class="page-title" data-align={align}>
@@ -22,6 +17,6 @@ const { src, width, height } = getRandomBanner();
 		<slot />
 	</div>
 	<slot name="img">
-		<img src={src} width={width} height={height} alt="" decoding="async" />
+		<StoryblokImg src={src} alt="" sizes="95vw" />
 	</slot>
 </header>

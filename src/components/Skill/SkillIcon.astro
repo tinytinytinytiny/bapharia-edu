@@ -1,11 +1,13 @@
 ---
+import { storyblokImage } from "@utils";
+
 const elements = {
-	fire: "https://a-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png/m/",
-	thunder: "https://a-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png/m/",
-	ice: "https://a-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png/m/",
-	earth: "https://a-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png/m/",
-	light: "https://a-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png/m/",
-	dark: "https://a-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png/m/",
+	fire: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png"),
+	thunder: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png"),
+	ice: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png"),
+	earth: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png"),
+	light: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png"),
+	dark: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png"),
 };
 const frames = {
 	A: "https://a-us.storyblok.com/f/1014865/64x64/b534ca330b/ui_playerskilltype_a.png/m/",
@@ -43,7 +45,8 @@ switch (category) {
 		element && (
 			<img
 				class="element-icon"
-				src={elements[element]}
+				src={elements[element].setSize(24).getUrl()}
+				srcset={`${elements[element].getOptimizedUrl()} 2x`}
 				alt=""
 				width="24"
 				height="24"

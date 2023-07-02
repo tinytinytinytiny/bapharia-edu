@@ -1,0 +1,14 @@
+@layer components {
+	.flex-grid {
+		--gutter: var(--default-gutter);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		gap: var(--gutter);
+	}
+
+	.flex-grid > * {
+		flex-basis: var(--grid-min-item-size);
+		flex-grow: 1;
+	}
+}

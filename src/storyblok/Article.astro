@@ -10,12 +10,10 @@ import { slugify } from "@utils";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ArticleTitle from "@components/PageTitle/ArticleTitle.astro";
 import ArticleNav from "@components/Article/ArticleNav.astro";
-import { getStoryblokImageDimensions } from "@utils";
+import StoryblokImg from "@components/Image/StoryblokImg.astro";
 
 const { lastUpdatedDate, blok } = Astro.props;
 
-const coverImage = blok.cover_image;
-const coverImageDimensions = getStoryblokImageDimensions(coverImage.filename);
 const _headingIds = [];
 const _content = blok.content.content.map((x) => {
 	if (x.type === "heading") {
@@ -56,13 +54,11 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 		author={blok.author}
 		lastUpdatedDate={lastUpdatedDate}
 	>
-		<img
+		<StoryblokImg
 			slot="img"
-			src={`${coverImage.filename}/m/`}
-			alt={coverImage.alt}
-			width={coverImageDimensions.width}
-			height={coverImageDimensions.height}
-			decoding="async"
+			src={blok.cover_image.filename}
+			alt={blok.cover_image.alt}
+			sizes="95vw"
 		/>
 	</ArticleTitle>
 	<div class="content">

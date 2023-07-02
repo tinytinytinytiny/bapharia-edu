@@ -1,0 +1,26 @@
+---
+import { storyblokImage } from "@utils";
+
+const {
+	class: className,
+	src,
+	alt,
+	decoding = "async",
+	loading = "auto",
+	widths,
+	sizes = "100vw"
+} = Astro.props;
+
+const img = storyblokImage(src);
+---
+<img
+	class={className}
+	src={img.getOptimizedUrl()}
+	srcset={img.generateSrcset(widths)}
+	sizes={sizes}
+	alt={alt}
+	width={img.getWidth()}
+	height={img.getHeight()}
+	decoding={decoding}
+	loading={loading}
+/>

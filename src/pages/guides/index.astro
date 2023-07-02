@@ -1,8 +1,9 @@
 ---
-import { queryStoryblokGApi, getStoryblokImageDimensions } from "@utils";
+import { queryStoryblokGApi } from "@utils";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageTitle from "@components/PageTitle/PageTitle.astro";
 import ArticleCard from "@components/Card/ArticleCard.astro";
+import StoryblokImg from "@components/Image/StoryblokImg.astro";
 
 const {
 	ArticleItems: { items },
@@ -46,22 +47,20 @@ const {
 							url={`/${guide.full_slug}`}
 						>
 							<p slot="summary">{guide.content.summary}</p>
-							<img
+							<StoryblokImg
 								slot="img"
-								src={`${guide.content.cover_image.filename}/m/`}
+								src={guide.content.cover_image.filename}
 								alt={guide.content.cover_image.alt}
-								width={
-									getStoryblokImageDimensions(
-										guide.content.cover_image.filename
-									).width
-								}
-								height={
-									getStoryblokImageDimensions(
-										guide.content.cover_image.filename
-									).height
-								}
+								sizes="30vw"
+								widths={[
+									0.8,
+									0.6,
+									0.5,
+									0.4,
+									0.3,
+									0.2
+								]}
 								loading="lazy"
-								decoding="async"
 							/>
 						</ArticleCard>
 					</li>

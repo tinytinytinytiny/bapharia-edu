@@ -12,7 +12,7 @@ const {
 } = Astro.props;
 ---
 
-<dl class="skill-properties auto-grid rounded-s">
+<dl class="skill-properties flex-grid rounded-s">
 	<div class="skill-property">
 		<dt>Cooldown</dt>
 		<dd>{cooldown || 0} seconds</dd>
@@ -40,7 +40,6 @@ const {
 <style>
 	.skill-properties {
 		--grid-min-item-size: var(--space-3xl-rem);
-		--grid-placement: auto-fit;
 		background-color: var(--color-surface-2);
 		font-size: 1rem;
 		padding-block: var(--space-xs);
