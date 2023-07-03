@@ -5,7 +5,6 @@ import storyblok from '@storyblok/astro';
 import { loadEnv } from 'vite';
 import netlify from "@astrojs/netlify/functions";
 import svelte from "@astrojs/svelte";
-import prefetch from "@astrojs/prefetch";
 
 const env = import.meta.env.STORYBLOK_TOKEN || loadEnv('', process.cwd(), 'STORYBLOK');
 
@@ -26,9 +25,6 @@ export default defineConfig({
 				classLink: 'storyblok/ClassLink'
 			},
 			apiOptions: { region: 'us' }
-		}),
-		prefetch({
-			throttle: 3
 		})
 	],
 	scopedStyleStrategy: "class",

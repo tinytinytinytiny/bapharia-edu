@@ -6,7 +6,13 @@ const filesToCache = [
 	'/fonts/NotoSansJP-VariableFont_wght.woff2'
 ];
 
-self.addEventListener('activate', e => self.clients.claim());
+self.addEventListener('activate', e => {
+	e.waitUntil(async function () {
+		if (self.registration.navigationPreload) {
+			await self.registration.navigationPreload.enable();
+		}
+	})
+});
 
 self.addEventListener('install', (e) => {
 	self.skipWaiting();
@@ -17,7 +23,13 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-	e.respondWith(
-		caches.match(e.request).then(response => (response) ? response : fetch(e.request))
-	);
+	e.respondWith(async function () {
+		const cachedResponse = await caches.match(e.request);
+		if (cachedResponse) return cachedResponse;
+
+		const response = await e.preloadResponse;
+		if (response) return response;
+
+		return fetch(e.request);
+	}());
 });

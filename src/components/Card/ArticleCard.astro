@@ -1,16 +1,12 @@
 ---
-const { title, url, class: className, innerClass, prefetch = true } = Astro.props;
+const { title, url, class: className, innerClass } = Astro.props;
 ---
 
 <div class:list={["card-frame", className]}>
 	<div class:list={["card", "guide-card", innerClass]}>
 		<div class="card-body">
 			<div class="stack stack-space-2xs-rem">
-				<a
-					class="card-title card-link underline-on-hover"
-					href={url}
-					rel={prefetch ? "prefetch" : null}
-				>
+				<a class="card-title card-link underline-on-hover" href={url}>
 					{title}
 				</a>
 				<slot name="summary" />
