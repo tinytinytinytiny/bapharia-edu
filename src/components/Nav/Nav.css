@@ -49,13 +49,13 @@
 	}
 
 	.nav-item__link {
-		--icon-size: var(--space-l-rem);
+		--icon-size: var(--space-m-rem);
 		align-items: center;
 		display: flex;
 		gap: var(--space-xs);
 		inline-size: 100%;
 		padding-block: var(--space-2xs);
-		padding-inline: var(--space-3xs) var(--space-xs);
+		padding-inline: var(--space-2xs) var(--space-xs);
 	}
 
 	.nav-item__link:hover,
@@ -86,7 +86,7 @@
 	.nav-submenu {
 		display: none;
 		font-size: var(--text-0);
-		padding-inline-start: calc(var(--space-l) + var(--space-3xs));
+		padding-inline-start: calc(var(--space-m) + var(--space-2xs));
 	}
 
 	.nav-item__link.expanded + .nav-submenu,
@@ -130,9 +130,11 @@
 		}
 
 		.nav-item__link .icon {
+			block-size: calc(var(--icon-size) + var(--space-3xs));
 			border: 2px solid transparent;
 			border-radius: var(--border-radius);
 			inline-size: calc(100% - var(--space-s));
+			padding-block: calc(var(--space-3xs) / 2);
 		}
 
 		.nav-item__link:hover .icon {
