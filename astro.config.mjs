@@ -29,11 +29,11 @@ export default defineConfig({
 	],
 	scopedStyleStrategy: "class",
 	output: "server",
-	vite: {
-		plugins: [basicSsl()],
-		server: {
-			https: true,
-		},
-	},
+	// vite: {
+	// 	plugins: [basicSsl()],
+	// 	server: {
+	// 		https: true,
+	// 	},
+	// },
 	adapter: netlify()
 });

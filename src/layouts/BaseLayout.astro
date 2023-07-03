@@ -1,5 +1,4 @@
 ---
-import "../css/fonts.css";
 import "../css/global.css";
 import navigationData from "@data/navigation";
 import Nav from "@components/Nav/Nav.astro";
@@ -19,6 +18,7 @@ const isSubmenuOpen = Boolean(
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://a-us.storyblok.com/" crossorigin />
+		<link rel="stylesheet" href="/fonts.css" />
 		<slot name="head" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
