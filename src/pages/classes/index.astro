@@ -21,6 +21,17 @@ const content = story.content;
 	title={content.title}
 	storyblokAttributes={storyblokEditable(content)}
 >
+	<Fragment slot="head">
+		{
+			content.links.map((link) => (
+				<link
+					rel="prefetch"
+					href={`/${link.url.cached_url}`}
+					as="document"
+				/>
+			))
+		}
+	</Fragment>
 	<PageTitle title={content.title}>
 		<Fragment set:html={renderRichText(content.subheading)} />
 	</PageTitle>

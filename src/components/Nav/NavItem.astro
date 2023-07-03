@@ -8,7 +8,6 @@ const { url = "/", title, icon, current = false } = Astro.props;
 		class="nav-item__link underline-on-hover"
 		href={url}
 		aria-current={current ? "page" : "false"}
-		rel="prefetch"
 	>
 		<div class="icon">
 			<Svg src={icon} />

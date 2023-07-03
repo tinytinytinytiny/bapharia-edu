@@ -2,12 +2,24 @@
 import { storyblokImage } from "@utils";
 
 const elements = {
-	fire: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png"),
-	thunder: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png"),
-	ice: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png"),
-	earth: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png"),
-	light: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png"),
-	dark: storyblokImage("https://a-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png"),
+	fire: storyblokImage(
+		"https://a-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png"
+	),
+	thunder: storyblokImage(
+		"https://a-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png"
+	),
+	ice: storyblokImage(
+		"https://a-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png"
+	),
+	earth: storyblokImage(
+		"https://a-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png"
+	),
+	light: storyblokImage(
+		"https://a-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png"
+	),
+	dark: storyblokImage(
+		"https://a-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png"
+	),
 };
 const frames = {
 	A: "https://a-us.storyblok.com/f/1014865/64x64/b534ca330b/ui_playerskilltype_a.png/m/",
@@ -20,7 +32,7 @@ const frames = {
 	Empty: "https://a-us.storyblok.com/f/1014865/64x64/82a066c1e5/ui_playerskilltype_empty.png/m/",
 	R: "https://a-us.storyblok.com/f/1014865/64x64/894fee3ca7/ui_playerskilltype_r.png/m/",
 	R_B: "https://a-us.storyblok.com/f/1014865/64x64/3cf57655ad/ui_playerskilltype_r_b.png/m/",
-	R_D: "https://a-us.storyblok.com/f/1014865/64x64/c39e9b2054/ui_playerskilltype_r_d.png/m/"
+	R_D: "https://a-us.storyblok.com/f/1014865/64x64/c39e9b2054/ui_playerskilltype_r_d.png/m/",
 };
 let frameSrc = frames.Empty;
 
@@ -28,13 +40,15 @@ const { category, type, element, src } = Astro.props;
 
 switch (category) {
 	case "passiveBase":
-		frameSrc = "https://a-us.storyblok.com/f/1014865/64x64/3b58a545b4/ui_skillboard_playerabilitybiconbg.png/m/";
+		frameSrc =
+			"https://a-us.storyblok.com/f/1014865/64x64/3b58a545b4/ui_skillboard_playerabilitybiconbg.png/m/";
 		break;
 	case "passiveClass":
-		frameSrc = "https://a-us.storyblok.com/f/1014865/64x64/9f202d2337/ui_skillboard_playerabilityciconbg.png/m/";
+		frameSrc =
+			"https://a-us.storyblok.com/f/1014865/64x64/9f202d2337/ui_skillboard_playerabilityciconbg.png/m/";
 		break;
 	default:
-		frameSrc = frames[type || 'Empty'];
+		frameSrc = frames[type || "Empty"];
 }
 ---
 
@@ -60,11 +74,18 @@ switch (category) {
 	.skill-icon {
 		align-items: center;
 		display: grid;
-		height: 64px;
+		height: 48px;
 		justify-content: center;
 		order: -1;
 		position: relative;
-		width: 64px;
+		width: 48px;
+	}
+
+	@screen sm {
+		.skill-icon {
+			height: 64px;
+			width: 64px;
+		}
 	}
 
 	.skill-icon > * {

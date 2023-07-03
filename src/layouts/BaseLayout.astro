@@ -19,10 +19,15 @@ const isSubmenuOpen = Boolean(
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://a-us.storyblok.com/" crossorigin />
+		{
+			navigationData
+				.filter((x) => x.url !== Astro.url.pathname && x.url !== "/")
+				.map((x) => <link rel="prefetch" href={x.url} as="document" />)
+		}
+		<slot name="head" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? `${title} - Bapharia.edu` : "Bapharia.edu"}</title>
-		<slot name="head" />
 	</head>
 	<body>
 		<header>
@@ -58,64 +63,5 @@ const isSubmenuOpen = Boolean(
 			(error) =>
 				console.error(`Service worker registration failed: ${error}`)
 		);
-	}
-
-	const supportsSessionStorage = storageAvailable("sessionStorage");
-
-	if (supportsSessionStorage && sessionStorage.getItem("scrollbarWidth")) {
-		document.documentElement.style.setProperty(
-			"--scrollbar-width",
-			`${sessionStorage.getItem("scrollbarWidth")}px`
-		);
-	} else {
-		const outer = document.createElement("div");
-		outer.style.visibility = "hidden";
-		outer.style.overflow = "scroll";
-		outer.style.msOverflowStyle = "scrollbar";
-		document.body.appendChild(outer);
-
-		const inner = document.createElement("div");
-		outer.appendChild(inner);
-
-		const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
-
-		outer.parentNode.removeChild(outer);
-
-		if (supportsSessionStorage) {
-			sessionStorage.setItem("scrollbarWidth", scrollbarWidth);
-		}
-
-		document.documentElement.style.setProperty(
-			"--scrollbar-width",
-			`${scrollbarWidth}px`
-		);
-	}
-
-	function storageAvailable(type) {
-		let storage;
-
-		try {
-			storage = window[type];
-			const x = "__storage_test__";
-			storage.setItem(x, x);
-			storage.removeItem(x);
-			return true;
-		} catch (e) {
-			return (
-				e instanceof DOMException &&
-				// everything except Firefox
-				(e.code === 22 ||
-					// Firefox
-					e.code === 1014 ||
-					// test name field too, because code might not be present
-					// everything except Firefox
-					e.name === "QuotaExceededError" ||
-					// Firefox
-					e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
-				// acknowledge QuotaExceededError only if there's something already stored
-				storage &&
-				storage.length !== 0
-			);
-		}
 	}
 </script>
