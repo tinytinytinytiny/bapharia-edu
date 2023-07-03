@@ -8,7 +8,7 @@ const { name, characterClass, level } = Astro.props;
 
 <article>
 	<div class="stack bg-surface-1 rounded p-s-m">
-		<header class="cluster gutter-xs-rem sm:gutter-s-rem">
+		<header class="cluster">
 			<hgroup class="leading-tight">
 				<h3>{name}</h3>
 				<p>
@@ -26,5 +26,15 @@ const { name, characterClass, level } = Astro.props;
 <style>
 	article {
 		max-inline-size: calc(15ch + var(--paragraph-max-width));
+	}
+
+	header {
+		--gutter: var(--space-xs-rem);
+	}
+
+	@screen sm {
+		header {
+			--gutter: var(--default-gutter);
+		}
 	}
 </style>

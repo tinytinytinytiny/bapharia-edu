@@ -32,7 +32,6 @@ export const storyblokImage = (url) => {
 			srcset.splice(0, 0, `${m(url)} ${width}w`);
 			return srcset.join(', ');
 		},
-		optimize: () => storyblokImage(m(url)),
 		setSize: (width, height = 0) =>
 			storyblokImage(`${m(url)}${width}x${height}/`)
 	};
