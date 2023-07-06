@@ -29,12 +29,12 @@ const { name, characterClass, level } = Astro.props;
 	}
 
 	header {
-		--gutter: var(--space-xs-rem);
+		gap: var(--space-xs-rem);
 	}
 
 	@screen sm {
 		header {
-			--gutter: var(--default-gutter);
+			gap: var(--default-gutter);
 		}
 	}
 </style>

@@ -1,9 +1,8 @@
 @layer components {
 	.flex-grid {
-		--gutter: var(--default-gutter);
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--gutter);
+		gap: var(--default-gutter);
 	}
 
 	.flex-grid > * {

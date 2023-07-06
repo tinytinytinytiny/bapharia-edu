@@ -7,10 +7,9 @@
 
 @layer components {
 	.sidebar {
-		--gutter: var(--default-gutter);
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--gutter);
+		gap: var(--default-gutter);
 	}
 
 	:where(.sidebar) > :first-child {

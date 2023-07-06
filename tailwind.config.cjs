@@ -85,8 +85,7 @@ module.exports = {
 		require('tailwindcss-logical'),
 		plugin(function ({ addUtilities, theme }) {
 			const customUtilities = [
-				{ configKey: 'spacing', prefix: '.stack-space', property: '--stack-space' },
-				{ configKey: 'spacing', prefix: '.gutter', property: '--gutter' }
+				{ configKey: 'spacing', prefix: '.stack-space', property: '--stack-space' }
 			];
 
 			customUtilities.forEach(({ configKey, prefix, property }) =>

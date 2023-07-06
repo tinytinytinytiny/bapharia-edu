@@ -1,10 +1,9 @@
 @layer components {
 	.auto-grid {
-		--gutter: var(--default-gutter);
 		display: grid;
 		grid-template-columns: repeat(var(--grid-placement, auto-fill),
 				minmax(min(var(--grid-min-item-size), 100%), 1fr));
-		gap: var(--gutter);
+		gap: var(--default-gutter);
 	}
 
 	.auto-grid:where([data-layout="50-50"]) {
