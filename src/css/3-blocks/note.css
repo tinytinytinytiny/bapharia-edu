@@ -9,7 +9,7 @@
 		background-color: var(--color-accent-surface);
 		border-radius: var(--border-radius);
 		box-sizing: content-box;
-		max-inline-size: 63ch;
+		max-inline-size: var(--paragraph-max-width);
 		overflow: hidden;
 		padding: var(--space-3xs);
 	}
