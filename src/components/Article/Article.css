@@ -46,6 +46,10 @@
 			max-inline-size: none;
 		}
 
+		.article.navless > .content-wrapper {
+			grid-template-columns: 1fr 59.625rem 1fr;
+		}
+
 		.article > .content-wrapper > * {
 			grid-column: 2;
 		}

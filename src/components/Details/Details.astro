@@ -1,0 +1,35 @@
+---
+import Svg from "@jasikpark/astro-svg-loader";
+const { class: className } = Astro.props;
+---
+
+<details class={className}>
+	<summary class="spread">
+		<slot name="summary" />
+		<span class="icon details-open-icon">
+			<Svg src={import("@assets/icons/minus.svg?raw")} />
+		</span>
+		<span class="icon details-closed-icon">
+			<Svg src={import("@assets/icons/plus.svg?raw")} />
+		</span>
+	</summary>
+	<slot />
+</details>
+
+<style>
+	summary {
+		flex-wrap: nowrap;
+	}
+
+	.details-open-icon {
+		display: none;
+	}
+
+	details[open] .details-open-icon {
+		display: block;
+	}
+
+	details[open] .details-closed-icon {
+		display: none;
+	}
+</style>

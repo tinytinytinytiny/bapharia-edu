@@ -1,5 +1,6 @@
 .replit
 replit.nix
+.prettierrc.json
 
 # build output
 dist/

@@ -31,7 +31,12 @@ const {
 			</div>
 		)
 	}
-	<div class="skill-property">
+	<div
+		class:list={[
+			"skill-property",
+			variant === "tactical" ? null : "grow-[2]",
+		]}
+	>
 		<dt>Additional Effect</dt>
 		<dd>{additionalEffect || "None"}</dd>
 	</div>
