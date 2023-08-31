@@ -12,9 +12,7 @@ const env = import.meta.env.STORYBLOK_TOKEN || loadEnv('', process.cwd(), 'STORY
 export default defineConfig({
 	integrations: [
 		tailwind({
-			config: {
-				applyBaseStyles: false
-			}
+			applyBaseStyles: false
 		}),
 		svelte(),
 		storyblok({
@@ -27,7 +25,6 @@ export default defineConfig({
 			apiOptions: { region: 'us' }
 		})
 	],
-	scopedStyleStrategy: "class",
 	output: "server",
 	// vite: {
 	// 	plugins: [basicSsl()],
