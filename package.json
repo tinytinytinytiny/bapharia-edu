@@ -16,7 +16,7 @@
 		"@jasikpark/astro-svg-loader": "^0.1.0",
 		"@mertasan/tailwindcss-variables": "^2.6.1",
 		"@storyblok/astro": "^2.3.4",
-		"astro": "^3.0.5",
+		"astro": "^0.0.0-sanitize-filenames-20230901201147",
 		"clone-deep": "^4.0.1",
 		"nanostores": "^0.9.1",
 		"postcss-import": "^15.1.0",
