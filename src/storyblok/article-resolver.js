@@ -5,10 +5,8 @@ export default (component, blok) => {
 	switch (component) {
 		case 'figure':
 			const img = storyblokImage(blok.content.filename);
-			const [width, height] = img.getDimensions();
-			const srcset = img.generateSrcset();
 			const sizes = '90vw';
-			const attributes = `srcset="${srcset}" sizes="${sizes}" src="${img.getOptimizedUrl()}" alt="${blok.content.alt}" width="${width}" height="${height}" decoding="async" loading="lazy"`;
+			const attributes = `srcset="${img.generateSrcset()}" sizes="${sizes}" src="${img.optimizedUrl}" alt="${blok.content.alt}" width="${img.width}" height="${img.height}" decoding="async" loading="lazy"`;
 
 			if (blok.caption) {
 				return `<figure class="stack stack-space-2xs-rem">

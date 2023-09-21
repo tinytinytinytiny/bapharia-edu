@@ -1,6 +1,5 @@
 ---
 import "../css/global.css";
-import { ViewTransitions } from 'astro:transitions';
 import navigationData from "@data/navigation";
 import Nav from "@components/Nav/Nav.astro";
 // import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
@@ -24,7 +23,6 @@ const isSubmenuOpen = Boolean(
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? `${title} - Bapharia.edu` : "Bapharia.edu"}</title>
-		<ViewTransitions />
 	</head>
 	<body>
 		<header>

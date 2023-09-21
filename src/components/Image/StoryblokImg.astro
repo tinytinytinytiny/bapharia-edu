@@ -15,12 +15,12 @@ const img = storyblokImage(src);
 ---
 <img
 	class={className}
-	src={img.getOptimizedUrl()}
+	src={img.optimizedUrl}
 	srcset={img.generateSrcset(widths)}
 	sizes={sizes}
 	alt={alt}
-	width={img.getWidth()}
-	height={img.getHeight()}
+	width={img.width}
+	height={img.height}
 	decoding={decoding}
 	loading={loading}
 />
