@@ -3,13 +3,14 @@
 	import screens from "@data/design-tokens/screen-sizes.json";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
 	import ChevronRight from "@assets/icons/chevron-right.svg?raw";
+	import PanelLeft from "@assets/icons/panel-left.svg?raw";
 	import { onMount } from "svelte";
 
 	export let url = "/";
 	export let title;
 	export let icon;
 	export let current = false;
-	export let controls;
+	export let id; // id of submenu container
 
 	let expanded = Boolean(current);
 	let interacted = false;
@@ -28,16 +29,16 @@
 		minBreakPoint.addEventListener("change", (event) => {
 			if (event.matches) {
 				expanded = false;
-				submenu.set({ open: false, id: controls });
+				submenu.set({ open: false, id });
 			} else if (current) {
 				expanded = true;
-				submenu.set({ open: true, id: controls });
+				submenu.set({ open: true, id });
 			}
 		});
 	});
 
 	submenu.listen((submenu) => {
-		if (submenu.id === controls && submenu.open) {
+		if (submenu.id === id && submenu.open) {
 			open();
 		} else {
 			close();
@@ -46,9 +47,9 @@
 
 	function toggle() {
 		if (expanded) {
-			submenu.set({ open: false, id: controls });
+			submenu.set({ open: false, id });
 		} else {
-			submenu.set({ open: true, id: controls });
+			submenu.set({ open: true, id });
 		}
 	}
 
@@ -63,12 +64,13 @@
 	}
 </script>
 
+<!-- replace link with button when javascript loads -->
 {#if mounted}
 	<button
 		class="nav-item__link underline-on-hover"
 		class:interacted
 		class:expanded
-		aria-controls={controls}
+		aria-controls={id}
 		aria-current={current ? "page" : "false"}
 		aria-expanded={expanded.toString()}
 		type="button"
@@ -103,12 +105,43 @@
 		<span>{title}</span>
 	</a>
 {/if}
-<slot />
+<!-- submenu container -->
+<div {id} class="nav-submenu">
+	<slot />
+	<!-- close button -->
+	{#if mounted}
+		<div class="closer-container hidden md:block">
+			<button
+				aria-controls={id}
+				class="button icon-label-button is-full"
+				data-size="s"
+				data-type="ghost"
+				type="button"
+				on:click={() => {
+					submenu.set({ open: false, id });
+				}}
+			>
+				<div class="icon">
+					{@html PanelLeft}
+				</div>
+				<span>Collapse menu</span>
+			</button>
+		</div>
+	{/if}
+</div>
 
 <style>
 	.chevron {
 		--icon-size: var(--space-m-rem);
 		color: var(--color-text-regular);
 		margin-inline: auto calc(-1 * var(--space-3xs));
+	}
+
+	.closer-container {
+		background-color: var(--color-surface-1);
+		inset-block-end: 0;
+		padding-block: var(--space-xs) var(--space-s);
+		position: sticky;
+		z-index: 1;
 	}
 </style>

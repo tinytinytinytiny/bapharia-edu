@@ -1,7 +1,6 @@
 ---
 import NavItem from "./NavItem.astro";
-import NavItemToggle from "./NavItemToggle.svelte";
-import NavSubmenuCloser from "./NavSubmenuCloser.svelte";
+import NavSubmenuController from "./NavSubmenuController.svelte";
 
 const { url = "/", title, icon, current = false, id } = Astro.props;
 const _icon = await icon;
@@ -10,19 +9,16 @@ const _icon = await icon;
 <li class="nav-item">
 	{
 		current ? (
-			<NavItemToggle
+			<NavSubmenuController
 				client:load
 				url={url}
 				title={title}
 				icon={_icon.default}
 				current={current}
-				controls={id}
+				id={id}
 			>
-				<div id={id} class="nav-submenu">
-					<slot />
-					<NavSubmenuCloser controls={id} client:visible />
-				</div>
-			</NavItemToggle>
+				<slot /> <!-- submenu goes here -->
+			</NavSubmenuController>
 		) : (
 			<NavItem url={url} title={title} icon={icon} current={current} />
 		)
