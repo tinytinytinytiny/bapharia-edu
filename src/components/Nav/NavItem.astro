@@ -3,15 +3,13 @@ import Svg from "@jasikpark/astro-svg-loader";
 const { url = "/", title, icon, current = false } = Astro.props;
 ---
 
-<li class="nav-item">
-	<a
-		class="nav-item__link underline-on-hover"
-		href={url}
-		aria-current={current ? "page" : "false"}
-	>
-		<div class="icon">
-			<Svg src={icon} />
-		</div>
-		<span>{title}</span>
-	</a>
-</li>
+<a
+	class="nav-item__link underline-on-hover"
+	href={url}
+	aria-current={current ? "page" : "false"}
+>
+	<div class="icon">
+		<Svg src={icon} />
+	</div>
+	<span>{title}</span>
+</a>

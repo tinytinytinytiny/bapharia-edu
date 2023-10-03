@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-import basicSsl from '@vitejs/plugin-basic-ssl';
+// import basicSsl from '@vitejs/plugin-basic-ssl';
 import storyblok from '@storyblok/astro';
 import { loadEnv } from 'vite';
 import netlify from "@astrojs/netlify/functions";

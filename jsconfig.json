@@ -1,5 +1,4 @@
 {
-	"extends": "astro/tsconfigs/base",
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
@@ -18,6 +17,7 @@
 			"@utils": [
 				"src/utils"
 			]
-		}
+		},
+		"verbatimModuleSyntax": false
 	}
 }

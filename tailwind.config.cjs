@@ -6,40 +6,45 @@ const fontSize = require('./src/data/design-tokens/font-sizes.cjs');
 const spacing = require('./src/data/design-tokens/spacing.cjs');
 const screens = require('./src/data/design-tokens/screen-sizes.json');
 
-function getTokens(tokens, prefix = '') {
-	const flatten = (obj) => {
-		const result = {};
+/**
+ * Flattens a nested object into a single depth object
+ * @param {Object} obj
+ * @returns {Object} the flattened object
+ */
+function flatten(obj) {
+	const result = {};
 
-		Object.keys(obj).forEach((key) => {
-			if (typeof obj[key] === 'object') {
-				const _obj = flatten(obj[key]);
-				Object.keys(_obj).forEach((_key) => {
-					result[`${key}.${_key}`] = _obj[_key];
-				});
-			} else {
-				result[key] = obj[key];
+	for (const key in obj) {
+		if (typeof obj[key] === 'object') {
+			// recursively call the function again
+			const _obj = flatten(obj[key]);
+			// store _obj in result
+			for (const _key in _obj) {
+				result[`${key}.${_key}`] = _obj[_key];
 			}
-		});
+		} else {
+			// store obj[key] in result if obj[key] can be flattened no more
+			result[key] = obj[key];
+		}
+	}
 
-		return result;
-	};
+	return result;
+}
 
-	const makeCSSVariable = (str) => {
-		const variable = [prefix, ...str.split('.')]
+function makeCSSVariables(tokens, prefix = '') {
+	const CSSVar = (prefix, token) =>
+		`var(--${[prefix, ...token.split('.')]
 			.filter(x => x.length && x !== 'DEFAULT')
-			.join('-');
-		return `var(--${variable})`;
-	};
-
+			.join('-')})`;
 	const _tokens = JSON.parse(JSON.stringify(tokens));
 	const flatTokens = flatten(_tokens);
 
-	Object.keys(flatTokens).forEach((token) => {
+	for (const token in flatTokens) {
 		token.split('.').reduce((o, i) => {
 			if (typeof o[i] === 'object') return o[i];
-			o[i] = makeCSSVariable(token);
+			o[i] = CSSVar(prefix, token);
 		}, _tokens);
-	});
+	}
 
 	return _tokens;
 }
@@ -49,10 +54,10 @@ module.exports = {
 	important: false,
 	theme: {
 		screens,
-		borderRadius: getTokens(borderRadius, 'border-radius'),
-		colors: getTokens(color, 'color'),
-		fontSize: getTokens(fontSize, 'text'),
-		spacing: getTokens(spacing, 'space'),
+		borderRadius: makeCSSVariables(borderRadius, 'border-radius'),
+		colors: makeCSSVariables(color, 'color'),
+		fontSize: makeCSSVariables(fontSize, 'text'),
+		spacing: makeCSSVariables(spacing, 'space'),
 		margin: ({ theme }) => ({
 			auto: 'auto',
 			...theme('spacing')
@@ -66,7 +71,7 @@ module.exports = {
 				current: colors.current,
 				inherit: colors.inherit
 			}),
-			textColor: getTokens(color.text, 'color-text')
+			textColor: makeCSSVariables(color.text, 'color-text')
 		},
 		variables: {
 			DEFAULT: {

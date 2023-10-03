@@ -109,25 +109,23 @@
 <div {id} class="nav-submenu">
 	<slot />
 	<!-- close button -->
-	{#if mounted}
-		<div class="closer-container hidden md:block">
-			<button
-				aria-controls={id}
-				class="button icon-label-button is-full"
-				data-size="s"
-				data-type="ghost"
-				type="button"
-				on:click={() => {
-					submenu.set({ open: false, id });
-				}}
-			>
-				<div class="icon">
-					{@html PanelLeft}
-				</div>
-				<span>Collapse menu</span>
-			</button>
-		</div>
-	{/if}
+	<div class="closer-container hidden md:block">
+		<button
+			aria-controls={id}
+			class="button icon-label-button is-full"
+			data-size="s"
+			data-type="ghost"
+			type="button"
+			on:click={() => {
+				submenu.set({ open: false, id });
+			}}
+		>
+			<div class="icon">
+				{@html PanelLeft}
+			</div>
+			<span>Collapse menu</span>
+		</button>
+	</div>
 </div>
 
 <style>
