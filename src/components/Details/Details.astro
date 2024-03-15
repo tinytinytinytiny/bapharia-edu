@@ -1,9 +1,9 @@
 ---
 import Svg from "@jasikpark/astro-svg-loader";
-const { class: className } = Astro.props;
+const { class: className, name } = Astro.props;
 ---
 
-<details class={className}>
+<details class={className} name={name}>
 	<summary class="spread">
 		<slot name="summary" />
 		<span class="icon details-open-icon">
@@ -33,3 +33,15 @@ const { class: className } = Astro.props;
 		display: none;
 	}
 </style>
+
+<script>
+	if ("name" in HTMLDetailsElement) {
+		document.querySelectorAll("details[name]").forEach((details) => {
+			details.addEventListener("toggle", (event) => {
+				if (event.currentTarget.open) {
+					event.currentTarget.scrollIntoView();
+				}
+			});
+		});
+	}
+</script>

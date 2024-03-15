@@ -85,6 +85,7 @@ module.exports = {
 	corePlugins: {
 		preflight: false
 	},
+	blocklist: ['container'],
 	plugins: [
 		require('@mertasan/tailwindcss-variables'),
 		require('tailwindcss-logical'),

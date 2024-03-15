@@ -65,4 +65,9 @@
 	.h4 {
 		max-inline-size: var(--paragraph-max-width);
 	}
+
+	.list-none {
+		list-style-type: '';
+		padding: 0;
+	}
 }
