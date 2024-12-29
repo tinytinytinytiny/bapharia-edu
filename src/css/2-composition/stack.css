@@ -31,13 +31,10 @@
 	h2 + *,
 	.h2 + *,
 	h3 + *,
-	.h3 + * {
-		--stack-space-override: var(--space-xs-rem);
-	}
-
+	.h3 + *,
 	h4 + *,
 	.h4 + * {
-		--stack-space-override: var(--space-2xs-rem);
+		--stack-space-override: var(--space-xs-rem);
 	}
 
 	figure,

@@ -4,7 +4,7 @@ const { class: className, name } = Astro.props;
 ---
 
 <details class={className} name={name}>
-	<summary class="spread">
+	<summary class="button" data-type="ghost">
 		<slot name="summary" />
 		<span class="icon details-open-icon">
 			<Svg src={import("@assets/icons/minus.svg?raw")} />
@@ -18,15 +18,26 @@ const { class: className, name } = Astro.props;
 
 <style>
 	summary {
+		--button-padding-inline: var(--space-s);
+		display: flex;
 		flex-wrap: nowrap;
-	}
-
-	summary:hover {
-		text-decoration: underline;
+		justify-content: space-between;
 	}
 
 	.details-open-icon {
 		display: none;
+	}
+
+	:where(details[open]) summary {
+		--button-background: var(--color-accent);
+		--button-hover-background: var(--color-accent-light);
+		--button-active-background: var(--color-accent-dark);
+		--button-color: var(--color-text-inverted);
+		border-color: transparent;
+	}
+
+	summary:focus-visible {
+		@apply focus-ring;
 	}
 
 	details[open] .details-open-icon {

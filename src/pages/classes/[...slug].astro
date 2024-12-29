@@ -40,19 +40,29 @@ try {
 			<HeadingNav>
 				<ul class="list-none">
 					<li>
-						<a href="#base-actions">Base Actions</a>
+						<a href="#overview">Overview</a>
 					</li>
 					<li>
-						<a href="#tactical-skills">Tactical Skills</a>
+						<a href="#skills">Skills</a>
 					</li>
 					<li>
-						<a href="#ultimate-skills">Ultimate Skills</a>
-					</li>
-					<li>
-						<a href="#base-abilities">Base Abilities</a>
-					</li>
-					<li>
-						<a href="#class-abilities">Class Abilities</a>
+						<ul class="list-none">
+							<li>
+								<a href="#base-actions">Base Actions</a>
+							</li>
+							<li>
+								<a href="#tactical-skills">Tactical Skills</a>
+							</li>
+							<li>
+								<a href="#ultimate-skills">Ultimate Skills</a>
+							</li>
+							<li>
+								<a href="#base-abilities">Base Abilities</a>
+							</li>
+							<li>
+								<a href="#class-abilities">Class Abilities</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</HeadingNav>
@@ -61,14 +71,19 @@ try {
 					<h2 id="overview">Overview</h2>
 					<Fragment set:html={renderRichText(content.overview)} />
 				</div>
-				<div class="rack mbs-xl-2xl-rem" data-border-top="true">
+				<h2 id="Skills">Skills</h2>
+				<div class="stack stack-space-xs">
 					{
 						content.base_actions?.length > 0 && (
 							<Details>
-								<h2 id="base-actions" slot="summary">
+								<h3
+									class="skill-category-name"
+									id="base-actions"
+									slot="summary"
+								>
 									Base Actions
-								</h2>
-								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
+								</h3>
+								<div class="stack stack-space-xs mbs-xs mbe-m-l">
 									{content.base_actions.map(
 										(skill, index) => (
 											<StoryblokComponent
@@ -84,10 +99,14 @@ try {
 					{
 						content.tactical_skills?.length > 0 && (
 							<Details>
-								<h2 id="tactical-skills" slot="summary">
+								<h3
+									class="skill-category-name"
+									id="tactical-skills"
+									slot="summary"
+								>
 									Tactical Skills
-								</h2>
-								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
+								</h3>
+								<div class="stack stack-space-xs mbs-xs mbe-m-l">
 									{content.tactical_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -98,10 +117,14 @@ try {
 					{
 						content.ultimate_skills?.length > 0 && (
 							<Details>
-								<h2 id="ultimate-skills" slot="summary">
+								<h3
+									class="skill-category-name"
+									id="ultimate-skills"
+									slot="summary"
+								>
 									Ultimate Skills
-								</h2>
-								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
+								</h3>
+								<div class="stack stack-space-xs mbs-xs mbe-m-l">
 									{content.ultimate_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -112,10 +135,14 @@ try {
 					{
 						content.base_abilities?.length > 0 && (
 							<Details>
-								<h2 id="base-abilities" slot="summary">
+								<h3
+									class="skill-category-name"
+									id="base-abilities"
+									slot="summary"
+								>
 									Base Abilities
-								</h2>
-								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
+								</h3>
+								<div class="stack stack-space-xs mbs-xs mbe-m-l">
 									{content.base_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
@@ -129,10 +156,14 @@ try {
 					{
 						content.class_abilities?.length > 0 && (
 							<Details>
-								<h2 id="class-abilities" slot="summary">
+								<h3
+									class="skill-category-name"
+									id="class-abilities"
+									slot="summary"
+								>
 									Class Abilities
-								</h2>
-								<div class="stack stack-space-xs-rem mbs-xs-rem">
+								</h3>
+								<div class="stack stack-space-xs mbs-xs">
 									{content.class_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
@@ -150,8 +181,8 @@ try {
 </BaseLayout>
 
 <style>
-	.rack {
-		--rack-space: var(--space-xs-rem);
+	.skill-category-name {
+		color: var(--button-color);
 	}
 </style>
 

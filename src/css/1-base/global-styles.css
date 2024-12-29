@@ -75,14 +75,8 @@
 	}
 
 	summary {
-		border-radius: var(--border-radius);
 		cursor: pointer;
 		list-style: none;
-	}
-
-	summary:focus-visible {
-		@apply focus-ring;
-		outline-offset: 4px;
 	}
 
 	@screen sm {

@@ -9,7 +9,7 @@ const { grade, subgrade, level } = Astro.props;
 
 <div class="skill-level sidebar">
 	<dt class="grow-0">
-		G{grade}{subgrades[subgrade] || ""} (Level {level})
+		G{grade}{subgrades[subgrade] || ""} (Lv. {level})
 	</dt>
 	<dd class="stack">
 		<slot />
@@ -19,7 +19,7 @@ const { grade, subgrade, level } = Astro.props;
 <style>
 	.skill-level {
 		--sidebar-content-min-width: 32ch;
-		--sidebar-target-width: 12.5ch;
+		--sidebar-target-width: 9.5ch;
 		row-gap: var(--space-xs-rem);
 	}
 </style>

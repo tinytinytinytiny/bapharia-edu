@@ -40,7 +40,11 @@
 	h4,
 	.h4 {
 		font-size: var(--text-1);
-		line-height: 1.5;
+		font-weight: 800;
+		font-variant: small-caps;
+		letter-spacing: 0.025em;
+		line-height: 1.25;
+		text-transform: lowercase;
 	}
 
 	a {

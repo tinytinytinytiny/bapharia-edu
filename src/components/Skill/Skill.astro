@@ -7,25 +7,52 @@ const { name, characterClass, level } = Astro.props;
 ---
 
 <article>
-	<div class="stack bg-surface-1 rounded p-s-m">
+	<div class="stack bg-surface-1 rounded p-s">
 		<header class="cluster">
 			<hgroup class="leading-tight">
-				<h3>{name}</h3>
-				<p>
-					Requires <b>{t(`class.${characterClass}`)} Level {level}</b>
+				<h4>{name}</h4>
+				<p class="text--1 md:text-0">
+					{t(`class.${characterClass}`)} Lv. {level}
 				</p>
 			</hgroup>
 			<slot name="icon" />
 		</header>
-		<slot name="properties" />
-		<h4 class="visually-hidden">Description</h4>
-		<slot name="description" />
+		<div class="sidebar">
+			<div class="skill-properties-container">
+				<slot name="properties" />
+			</div>
+			<h5 class="visually-hidden">Description</h5>
+			<slot name="description" />
+		</div>
 	</div>
 </article>
 
 <style>
 	header {
 		gap: var(--space-xs-rem);
+	}
+
+	h4 {
+		font-variant: normal;
+		letter-spacing: normal;
+		text-transform: none;
+	}
+
+	.sidebar {
+		--sidebar-target-width: 12rem;
+		--sidebar-content-min-width: 41.5ch;
+		align-items: stretch;
+		flex-direction: row-reverse;
+		gap: var(--space-s-m);
+	}
+
+	.skill-properties-container {
+		background-color: var(--color-surface-2);
+		border-radius: var(--border-radius-s);
+	}
+
+	.skill-properties-container:empty {
+		display: none;
 	}
 
 	@screen sm {
