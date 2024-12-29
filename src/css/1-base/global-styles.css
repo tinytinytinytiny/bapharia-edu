@@ -79,6 +79,10 @@
 		list-style: none;
 	}
 
+	summary:focus-visible {
+		@apply focus-ring;
+	}
+
 	@screen sm {
 		:root {
 			--content-padding-inline: var(--space-s-l);
