@@ -8,6 +8,7 @@ import {
 	storyblokEditable,
 } from "@storyblok/astro";
 import { useTranslations } from "src/utils/i18n";
+import HeadingNav from "@components/HeadingNav/HeadingNav.astro";
 import Details from "@components/Details/Details.astro";
 
 const storyblokApi = useStoryblokApi();
@@ -35,7 +36,26 @@ try {
 		<Fragment set:html={renderRichText(content.description)} />
 	</PageTitle>
 	<div class="content">
-		<div class="article navless">
+		<div class="article">
+			<HeadingNav>
+				<ul class="list-none">
+					<li>
+						<a href="#base-actions">Base Actions</a>
+					</li>
+					<li>
+						<a href="#tactical-skills">Tactical Skills</a>
+					</li>
+					<li>
+						<a href="#ultimate-skills">Ultimate Skills</a>
+					</li>
+					<li>
+						<a href="#base-abilities">Base Abilities</a>
+					</li>
+					<li>
+						<a href="#class-abilities">Class Abilities</a>
+					</li>
+				</ul>
+			</HeadingNav>
 			<div class="content-wrapper stack max-is-none">
 				<div class="leading-[1.625] stack">
 					<h2 id="overview">Overview</h2>
@@ -44,11 +64,11 @@ try {
 				<div class="rack mbs-xl-2xl-rem" data-border-top="true">
 					{
 						content.base_actions?.length > 0 && (
-							<Details name="skill-category">
+							<Details>
 								<h2 id="base-actions" slot="summary">
 									Base Actions
 								</h2>
-								<div class="stack stack-space-s mbs-s-rem">
+								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
 									{content.base_actions.map(
 										(skill, index) => (
 											<StoryblokComponent
@@ -63,11 +83,11 @@ try {
 					}
 					{
 						content.tactical_skills?.length > 0 && (
-							<Details name="skill-category">
+							<Details>
 								<h2 id="tactical-skills" slot="summary">
 									Tactical Skills
 								</h2>
-								<div class="stack stack-space-s mbs-s-rem">
+								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
 									{content.tactical_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -77,11 +97,11 @@ try {
 					}
 					{
 						content.ultimate_skills?.length > 0 && (
-							<Details name="skill-category">
+							<Details>
 								<h2 id="ultimate-skills" slot="summary">
 									Ultimate Skills
 								</h2>
-								<div class="stack stack-space-s mbs-s-rem">
+								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
 									{content.ultimate_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -91,11 +111,11 @@ try {
 					}
 					{
 						content.base_abilities?.length > 0 && (
-							<Details name="skill-category">
+							<Details>
 								<h2 id="base-abilities" slot="summary">
 									Base Abilities
 								</h2>
-								<div class="stack stack-space-s mbs-s-rem">
+								<div class="stack stack-space-xs-rem mbs-xs-rem mbe-s-m">
 									{content.base_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
@@ -108,11 +128,11 @@ try {
 					}
 					{
 						content.class_abilities?.length > 0 && (
-							<Details name="skill-category">
+							<Details>
 								<h2 id="class-abilities" slot="summary">
 									Class Abilities
 								</h2>
-								<div class="stack stack-space-s mbs-s-rem">
+								<div class="stack stack-space-xs-rem mbs-xs-rem">
 									{content.class_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
@@ -131,6 +151,17 @@ try {
 
 <style>
 	.rack {
-		--rack-space: var(--space-s-rem);
+		--rack-space: var(--space-xs-rem);
 	}
 </style>
+
+<script>
+	import screens from "@data/design-tokens/screen-sizes.json";
+
+	const breakpoint = window.matchMedia(`(min-width: ${screens.xl})`);
+	if (breakpoint.matches) {
+		document
+			.querySelectorAll("details")
+			.forEach((details) => (details.open = true));
+	}
+</script>

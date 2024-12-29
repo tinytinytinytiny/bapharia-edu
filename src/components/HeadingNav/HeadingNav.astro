@@ -5,8 +5,27 @@ const { title = "On this page", class: className } = Astro.props;
 ---
 
 <nav class:list={["heading-nav", className]} aria-labelledby={randomId}>
-	<div>
+	<heading-nav>
 		<h2 id={randomId}>{title}</h2>
 		<slot />
-	</div>
+	</heading-nav>
 </nav>
+
+<script>
+	class HeadingNav extends HTMLElement {
+		constructor() {
+			super();
+			this.addEventListener("click", (event) => {
+				const id = event.target.closest("a").href.split("#")[1];
+				if (document.getElementById(id)) {
+					const h = document.getElementById(id);
+					if (h.closest("details")) {
+						h.closest("details").open = true;
+					}
+				}
+			});
+		}
+	}
+
+	customElements.define("heading-nav", HeadingNav);
+</script>
