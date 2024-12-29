@@ -7,12 +7,13 @@ const { name, characterClass, level } = Astro.props;
 ---
 
 <article>
-	<div class="stack bg-surface-1 rounded p-s">
+	<div class="stack stack-space-s bg-surface-1 rounded p-s">
 		<header class="cluster">
 			<hgroup class="leading-tight">
 				<h4>{name}</h4>
 				<p class="text--1 md:text-0">
-					{t(`class.${characterClass}`)} Lv. {level}
+					Lv. {level}&#32;
+					{t(`class.${characterClass}`)} required
 				</p>
 			</hgroup>
 			<slot name="icon" />

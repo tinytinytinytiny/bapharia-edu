@@ -3,22 +3,22 @@ import { storyblokImage } from "@utils";
 
 const elements = {
 	fire: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png"
+		"https://a-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png",
 	),
 	thunder: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png"
+		"https://a-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png",
 	),
 	ice: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png"
+		"https://a-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png",
 	),
 	earth: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png"
+		"https://a-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png",
 	),
 	light: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png"
+		"https://a-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png",
 	),
 	dark: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png"
+		"https://a-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png",
 	),
 };
 const frames = {
@@ -68,9 +68,18 @@ switch (category) {
 			/>
 		)
 	}
+	{category === "tactical" && <div class="border" />}
 </div>
 
 <style>
+	.border {
+		color: #000;
+		border: 2px solid;
+		border-radius: calc(Infinity * 1px);
+		width: 100%;
+		height: 100%;
+	}
+
 	.skill-icon {
 		align-items: center;
 		display: grid;

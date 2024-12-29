@@ -8,11 +8,7 @@ import SkillLevel from "@components/Skill/SkillLevel.astro";
 const { blok, properties = true } = Astro.props;
 ---
 
-<SkillComponent
-	name={blok.name}
-	characterClass={blok.class}
-	level={blok.level}
->
+<SkillComponent name={blok.name} characterClass={blok.class} level={blok.level}>
 	{
 		blok.icon?.filename && (
 			<SkillIcon
@@ -38,7 +34,7 @@ const { blok, properties = true } = Astro.props;
 	}
 	{
 		blok.description[0].component === "skillLevelDescription" ? (
-			<dl class="rack" slot="description">
+			<dl class="rack" data-border-top="true" slot="description">
 				{blok.description.map((g) => (
 					<SkillLevel grade={g.grade} level={g.level}>
 						<Fragment set:html={renderRichText(g.description)} />
@@ -55,7 +51,7 @@ const { blok, properties = true } = Astro.props;
 									>
 										<Fragment
 											set:html={renderRichText(
-												g2.description
+												g2.description,
 											)}
 										/>
 									</SkillLevel>
