@@ -6,16 +6,16 @@ const { title, align } = Astro.props;
 const defaultBanners = [
 	"https://a-us.storyblok.com/f/1014865/2560x1440/acbb4174ca/banner-1.png/",
 	"https://a-us.storyblok.com/f/1014865/1920x1080/dec9f282d0/banner-2.jpg/",
-	"https://a-us.storyblok.com/f/1014865/1920x1080/50b0a917dd/banner-3.jpg/"
+	"https://a-us.storyblok.com/f/1014865/1920x1080/50b0a917dd/banner-3.jpg/",
 ];
 const src = defaultBanners[Math.floor(Math.random() * defaultBanners.length)];
 ---
 
 <header class="page-title" data-align={align}>
-	<div class="page-title__inner stack">
+	<hgroup class="page-title__inner stack">
 		<h1>{title}</h1>
 		<slot />
-	</div>
+	</hgroup>
 	<slot name="img">
 		<StoryblokImg src={src} alt="" sizes="95vw" />
 	</slot>

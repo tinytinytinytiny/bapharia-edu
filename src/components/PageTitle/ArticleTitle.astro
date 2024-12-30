@@ -3,26 +3,29 @@ const { title, author, lastUpdatedDate } = Astro.props;
 ---
 
 <header class="page-title" data-align="start">
-	<div class="page-title__inner">
+	<hgroup class="page-title__inner">
 		<h1>{title}</h1>
-		<div role="note" class="text-inherit cluster gap-2xs">
-			<p class="font-bold">By {author}</p>
-			<p aria-hidden="true">•</p>
-			<p class="font-bold text-secondary-on-dark">
-				Last Updated <time datetime={lastUpdatedDate}
+		<p class="text-inherit">
+			<span class="font-bold">By {author}</span>
+			<span class="visually-hidden">;&nbsp;</span>
+			<span aria-hidden="true">•</span>
+			<span class="font-bold text-secondary-on-dark"
+				>Last Updated <time datetime={lastUpdatedDate}
 					>{new Date(lastUpdatedDate).toLocaleDateString()}</time
-				>
-			</p>
-		</div>
-	</div>
+				></span
+			>
+		</p>
+	</hgroup>
 	<slot name="img" />
 </header>
 
 <style>
-	[role="note"] {
+	hgroup p {
 		font-size: var(--text-0);
-		justify-content: center;
-		row-gap: 0;
+	}
+
+	[aria-hidden="true"] {
+		margin-inline: var(--space-2xs-rem);
 	}
 
 	@screen sm {
@@ -32,7 +35,7 @@ const { title, author, lastUpdatedDate } = Astro.props;
 	}
 
 	@screen md {
-		[role="note"] {
+		hgroup p {
 			font-size: var(--text-1);
 		}
 	}

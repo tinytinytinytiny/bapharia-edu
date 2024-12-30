@@ -43,7 +43,7 @@ const content = renderRichText(
 	{
 		schema: cloneDeep(RichTextSchema),
 		resolver: articleResolver,
-	}
+	},
 );
 const headings = blok.content.content.filter((x) => x.type === "heading");
 ---
@@ -64,9 +64,12 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 	<div class="content">
 		<div class="article">
 			<ArticleNav headings={headings} />
-			<div class="content-wrapper stack leading-[1.625]">
+			<section
+				class="content-wrapper stack leading-[1.625]"
+				aria-label="Content"
+			>
 				<Fragment set:html={content} />
-			</div>
+			</section>
 		</div>
 	</div>
 </BaseLayout>

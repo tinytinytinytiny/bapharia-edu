@@ -16,15 +16,16 @@ export default (component, blok) => {
 			}
 			return `<img class="figure rounded" ${attributes}>`;
 		case 'note':
-			return `<aside class="note" data-style="${blok.title.toLowerCase()}">
-				<p class="note-title">${blok.title}</p>
+			const noteLabelId = crypto.randomUUID();
+			return `<aside class="note" data-style="${blok.title.toLowerCase()}" aria-labelledby="${noteLabelId}">
+				<p class="note-title" id="${noteLabelId}" aria-hidden="true">${blok.title}</p>
 				<div class="note-body stack">${renderRichText(blok.content)}</div>
 			</aside>`;
 		case 'table':
-			const randomId = crypto.randomUUID();
-			return `<section class="table-container" aria-labelledby="${randomId}">
+			const tableCaptionId = crypto.randomUUID();
+			return `<section class="table-container" aria-labelledby="${tableCaptionId}">
 				<table data-layout="dense">
-					<caption class="visually-hidden" id="${randomId}">${blok.caption}</caption>
+					<caption class="visually-hidden" id="${tableCaptionId}">${blok.caption}</caption>
 					<thead>
 						<tr>
 							${blok.content.thead.map((th) => `<th>${th.value}</th>`).join('')}
