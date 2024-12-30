@@ -5,45 +5,32 @@ import DetailsSummaryIcon from "@components/Details/DetailsSummaryIcon.astro";
 const t = await useTranslations("en");
 
 const { name, characterClass, level } = Astro.props;
-const randomId = crypto.randomUUID();
 ---
 
-<section aria-labelledby={randomId}>
-	<details>
-		<summary class="button">
-			<span class="skill-title cluster">
-				<span class="leading-tight">
-					<span
-						class="block font-extrabold text-1 text-strong"
-						id={randomId}
-					>
-						{name}
-					</span>
-					<span class="visually-hidden">;&nbsp;</span>
-					<span class="block text--1 md:text-[1rem]">
-						Lv. {level}&#32;
-						{t(`class.${characterClass}`)} required
-					</span>
+<details>
+	<summary class="button">
+		<span class="skill-title cluster">
+			<span class="leading-tight">
+				<span class="block font-extrabold text-1 text-strong">
+					{name}
 				</span>
-				<slot name="icon" />
+				<span class="visually-hidden">;&nbsp;</span>
+				<span class="block text--1 md:text-[1rem]">
+					Lv. {level}&#32;
+					{t(`class.${characterClass}`)} required
+				</span>
 			</span>
-			<DetailsSummaryIcon />
-		</summary>
-		<div class="skill-content sidebar">
-			<section
-				class="skill-properties-container"
-				aria-labelledby={`${randomId}-properties`}
-			>
-				<p hidden id={`${randomId}-properties`}>Properties</p>
-				<slot name="properties" />
-			</section>
-			<p hidden id={`${randomId}-description`}>Description</p>
-			<section aria-labelledby={`${randomId}-description`}>
-				<slot name="description" />
-			</section>
+			<slot name="icon" />
+		</span>
+		<DetailsSummaryIcon />
+	</summary>
+	<div class="skill-content sidebar">
+		<div class="skill-properties-container">
+			<slot name="properties" />
 		</div>
-	</details>
-</section>
+		<slot name="description" />
+	</div>
+</details>
 
 <style>
 	details {

@@ -10,9 +10,12 @@ const {
 	additionalEffect,
 	variant = "tactical",
 } = Astro.props;
+
+const randomId = crypto.randomUUID();
 ---
 
-<dl class="skill-properties flex-grid">
+<p hidden id={randomId}>Properties</p>
+<dl class="skill-properties flex-grid" aria-labelledby={randomId}>
 	<div class="skill-property">
 		<dt>Cooldown</dt>
 		<dd>{cooldown || 0}&#32;{cooldown == 1 ? "second" : "seconds"}</dd>

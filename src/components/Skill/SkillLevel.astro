@@ -7,10 +7,8 @@ const subgrades = {
 const { grade, subgrade, level } = Astro.props;
 ---
 
-<div class="skill-level sidebar">
-	<dt class="grow-0">
-		G{grade}{subgrades[subgrade] || ""} (Lv. {level})
-	</dt>
+<div class:list={["skill-level", "sidebar", { "has-subgrade": subgrade }]}>
+	<dt class="grow-0">G{grade}{subgrades[subgrade] || ""} (Lv. {level})</dt>
 	<dd class="stack">
 		<slot />
 	</dd>
@@ -19,7 +17,12 @@ const { grade, subgrade, level } = Astro.props;
 <style>
 	.skill-level {
 		--sidebar-content-min-width: 32ch;
-		--sidebar-target-width: 9.5ch;
-		row-gap: var(--space-xs-rem);
+		--sidebar-target-width: 8.6ch;
+		column-gap: 0.5em;
+		row-gap: 0;
+	}
+
+	.has-subgrade {
+		--sidebar-target-width: 9.6ch;
 	}
 </style>

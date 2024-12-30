@@ -6,6 +6,7 @@ import SkillProperties from "@components/Skill/SkillProperties.astro";
 import SkillLevel from "@components/Skill/SkillLevel.astro";
 
 const { blok, properties = true } = Astro.props;
+const skillDescId = crypto.randomUUID();
 ---
 
 <SkillComponent name={blok.name} characterClass={blok.class} level={blok.level}>
@@ -34,33 +35,40 @@ const { blok, properties = true } = Astro.props;
 	}
 	{
 		blok.description[0].component === "skillLevelDescription" ? (
-			<dl class="rack" slot="description">
-				{blok.description.map((g) => (
-					<SkillLevel grade={g.grade} level={g.level}>
-						<Fragment set:html={renderRichText(g.description)} />
-						{g.upgrades?.length > 0 && (
-							<dl
-								class="rack mbs-[var(--rack-space)]"
-								data-border-top="true"
-							>
-								{g.upgrades.map((g2) => (
-									<SkillLevel
-										grade={g.grade}
-										subgrade={g2.grade}
-										level={g2.level}
-									>
-										<Fragment
-											set:html={renderRichText(
-												g2.description,
-											)}
-										/>
-									</SkillLevel>
-								))}
-							</dl>
-						)}
-					</SkillLevel>
-				))}
-			</dl>
+			<Fragment slot="description">
+				<p hidden id={skillDescId}>
+					Description
+				</p>
+				<dl class="rack" aria-labelledby={skillDescId}>
+					{blok.description.map((g) => (
+						<SkillLevel grade={g.grade} level={g.level}>
+							<Fragment
+								set:html={renderRichText(g.description)}
+							/>
+							{g.upgrades?.length > 0 && (
+								<dl
+									class="rack mbs-[var(--rack-space)]"
+									data-border-top="true"
+								>
+									{g.upgrades.map((g2) => (
+										<SkillLevel
+											grade={g.grade}
+											subgrade={g2.grade}
+											level={g2.level}
+										>
+											<Fragment
+												set:html={renderRichText(
+													g2.description,
+												)}
+											/>
+										</SkillLevel>
+									))}
+								</dl>
+							)}
+						</SkillLevel>
+					))}
+				</dl>
+			</Fragment>
 		) : (
 			<Fragment
 				slot="description"
