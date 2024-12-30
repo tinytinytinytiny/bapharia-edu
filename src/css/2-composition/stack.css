@@ -8,38 +8,44 @@
 
 	:where(figure) + *,
 	:where(.figure) + * {
-		--stack-space-override: var(--space-l-xl-rem);
+		--stack-space-override: var(--space-l-rem);
 	}
 
 	h2,
 	.h2 {
-		--stack-space-override: var(--space-xl-2xl-rem);
+		--stack-space-override: var(--space-xl-rem);
 	}
 
 	h3,
 	.h3 {
-		--stack-space-override: var(--space-l-xl-rem);
+		--stack-space-override: var(--space-l-rem);
 	}
 
 	h4,
 	.h4 {
-		--stack-space-override: var(--space-m-l-rem);
+		--stack-space-override: var(--space-m-rem);
 	}
 
 	h1 + *,
 	.h1 + *,
 	h2 + *,
-	.h2 + *,
+	.h2 + * {
+		--stack-space-override: var(--space-xs-rem);
+	}
+
 	h3 + *,
-	.h3 + *,
+	.h3 + * {
+		--stack-space-override: var(--space-2xs-rem);
+	}
+
 	h4 + *,
 	.h4 + * {
-		--stack-space-override: var(--space-xs-rem);
+		--stack-space-override: var(--space-3xs-rem);
 	}
 
 	figure,
 	.figure {
-		--stack-space-override: var(--space-l-xl-rem);
+		--stack-space-override: var(--space-l-rem);
 	}
 
 	.visually-hidden + * {

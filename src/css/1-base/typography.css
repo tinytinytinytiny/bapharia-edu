@@ -1,12 +1,5 @@
 @layer base {
 
-	em,
-	strong,
-	dt {
-		color: var(--color-text-strong);
-		font-weight: 700;
-	}
-
 	h1,
 	h2,
 	h3,
@@ -14,8 +7,17 @@
 	.h1,
 	.h2,
 	.h3,
-	.h4 {
+	.h4,
+	i,
+	em {
 		color: var(--color-text-strong);
+	}
+
+	b,
+	strong,
+	dt {
+		color: var(--color-text-strong);
+		font-weight: 700;
 	}
 
 	h1,
@@ -50,8 +52,9 @@
 
 	h4,
 	.h4 {
-		font-size: var(--text-1);
 		line-height: 1.25;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
 	}
 
 	a {

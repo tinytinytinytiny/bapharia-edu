@@ -41,7 +41,7 @@
 	},
 	"text": {
 		"regular": "oklch(28% 0.04 225)",
-		"strong": "#000",
+		"strong": "oklch(16% 0.03 225)",
 		"inverted": "#fff"
 	}
 }
