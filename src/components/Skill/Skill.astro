@@ -1,35 +1,52 @@
 ---
 import { useTranslations } from "src/utils/i18n";
+import DetailsSummaryIcon from "@components/Details/DetailsSummaryIcon.astro";
 
 const t = await useTranslations("en");
 
 const { name, characterClass, level } = Astro.props;
 ---
 
-<article>
-	<div class="stack stack-space-s bg-surface-1 rounded p-s">
-		<header class="cluster">
+<details>
+	<summary class="button">
+		<div class="skill-title cluster">
 			<hgroup class="leading-tight">
 				<h4>{name}</h4>
-				<p class="text--1 md:text-0">
+				<p class="text--1 md:text-[1rem]">
 					Lv. {level}&#32;
 					{t(`class.${characterClass}`)} required
 				</p>
 			</hgroup>
 			<slot name="icon" />
-		</header>
-		<div class="sidebar">
-			<div class="skill-properties-container">
-				<slot name="properties" />
-			</div>
-			<h5 class="visually-hidden">Description</h5>
-			<slot name="description" />
 		</div>
+		<DetailsSummaryIcon />
+	</summary>
+	<div class="skill-content sidebar">
+		<div class="skill-properties-container">
+			<slot name="properties" />
+		</div>
+		<h5 class="visually-hidden">Description</h5>
+		<slot name="description" />
 	</div>
-</article>
+</details>
 
 <style>
-	header {
+	details {
+		background-color: var(--color-surface-1);
+		border-radius: var(--border-radius);
+	}
+
+	summary,
+	details[open] summary {
+		--button-background: transparent;
+		--button-hover-background: var(--color-surface-2);
+		--button-active-background: var(--color-surface-3);
+		--button-color: var(--color-text);
+		--button-padding-block: var(--space-xs);
+		--button-padding-inline: var(--space-s);
+	}
+
+	.skill-title {
 		gap: var(--space-xs-rem);
 	}
 
@@ -39,12 +56,14 @@ const { name, characterClass, level } = Astro.props;
 		text-transform: none;
 	}
 
-	.sidebar {
+	.skill-content {
 		--sidebar-target-width: 12rem;
 		--sidebar-content-min-width: 41.5ch;
 		align-items: stretch;
 		flex-direction: row-reverse;
-		gap: var(--space-s-m);
+		gap: var(--space-m);
+		padding: var(--space-s);
+		padding-block-start: var(--space-2xs);
 	}
 
 	.skill-properties-container {

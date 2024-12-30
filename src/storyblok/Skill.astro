@@ -34,7 +34,7 @@ const { blok, properties = true } = Astro.props;
 	}
 	{
 		blok.description[0].component === "skillLevelDescription" ? (
-			<dl class="rack" data-border-top="true" slot="description">
+			<dl class="rack" slot="description">
 				{blok.description.map((g) => (
 					<SkillLevel grade={g.grade} level={g.level}>
 						<Fragment set:html={renderRichText(g.description)} />

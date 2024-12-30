@@ -1,69 +1,12 @@
 ---
-import Svg from "@jasikpark/astro-svg-loader";
+import DetailsSummaryIcon from "./DetailsSummaryIcon.astro";
 const { class: className, name } = Astro.props;
 ---
 
 <details class={className} name={name}>
 	<summary class="button" data-type="ghost">
 		<slot name="summary" />
-		<span class="icon details-open-icon">
-			<Svg src={import("@assets/icons/minus.svg?raw")} />
-		</span>
-		<span class="icon details-closed-icon">
-			<Svg src={import("@assets/icons/plus.svg?raw")} />
-		</span>
+		<DetailsSummaryIcon />
 	</summary>
 	<slot />
 </details>
-
-<style>
-	summary {
-		--button-padding-inline: var(--space-s);
-		display: flex;
-		flex-wrap: nowrap;
-		justify-content: space-between;
-	}
-
-	.details-open-icon {
-		display: none;
-	}
-
-	:where(details[open]) summary {
-		--button-background: var(--color-accent);
-		--button-hover-background: var(--color-accent-light);
-		--button-active-background: var(--color-accent-dark);
-		--button-color: var(--color-text-inverted);
-		border-color: transparent;
-	}
-
-	details[open] .details-open-icon {
-		display: block;
-	}
-
-	details[open] .details-closed-icon {
-		display: none;
-	}
-
-	details::details-content {
-		overflow: clip;
-	}
-
-	@media (prefers-reduced-motion: no-preference) {
-		@supports (interpolate-size: allow-keywords) {
-			details::details-content {
-				block-size: 0;
-				opacity: 0;
-				interpolate-size: allow-keywords;
-				transition:
-					block-size 0.2s ease-in,
-					opacity 0.2s ease-in,
-					content-visibility 0.2s ease-in allow-discrete;
-			}
-
-			details[open]::details-content {
-				block-size: auto;
-				opacity: 1;
-			}
-		}
-	}
-</style>

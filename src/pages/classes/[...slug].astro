@@ -75,11 +75,9 @@ try {
 				<div class="stack stack-space-xs">
 					{
 						content.base_actions?.length > 0 && (
-							<Details>
 								<h3
 									class="skill-category-name"
 									id="base-actions"
-									slot="summary"
 								>
 									Base Actions
 								</h3>
@@ -93,16 +91,13 @@ try {
 										),
 									)}
 								</div>
-							</Details>
 						)
 					}
 					{
 						content.tactical_skills?.length > 0 && (
-							<Details>
 								<h3
 									class="skill-category-name"
 									id="tactical-skills"
-									slot="summary"
 								>
 									Tactical Skills
 								</h3>
@@ -111,16 +106,13 @@ try {
 										<StoryblokComponent blok={skill} />
 									))}
 								</div>
-							</Details>
 						)
 					}
 					{
 						content.ultimate_skills?.length > 0 && (
-							<Details>
 								<h3
 									class="skill-category-name"
 									id="ultimate-skills"
-									slot="summary"
 								>
 									Ultimate Skills
 								</h3>
@@ -129,16 +121,13 @@ try {
 										<StoryblokComponent blok={skill} />
 									))}
 								</div>
-							</Details>
 						)
 					}
 					{
 						content.base_abilities?.length > 0 && (
-							<Details>
 								<h3
 									class="skill-category-name"
 									id="base-abilities"
-									slot="summary"
 								>
 									Base Abilities
 								</h3>
@@ -150,16 +139,13 @@ try {
 										/>
 									))}
 								</div>
-							</Details>
 						)
 					}
 					{
 						content.class_abilities?.length > 0 && (
-							<Details>
 								<h3
 									class="skill-category-name"
 									id="class-abilities"
-									slot="summary"
 								>
 									Class Abilities
 								</h3>
@@ -171,7 +157,6 @@ try {
 										/>
 									))}
 								</div>
-							</Details>
 						)
 					}
 				</div>
@@ -179,20 +164,3 @@ try {
 		</div>
 	</div>
 </BaseLayout>
-
-<style>
-	.skill-category-name {
-		color: var(--button-color);
-	}
-</style>
-
-<script>
-	import screens from "@data/design-tokens/screen-sizes.json";
-
-	const breakpoint = window.matchMedia(`(min-width: ${screens.xl})`);
-	if (breakpoint.matches) {
-		document
-			.querySelectorAll("details")
-			.forEach((details) => (details.open = true));
-	}
-</script>
