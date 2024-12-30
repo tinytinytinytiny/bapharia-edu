@@ -1,6 +1,8 @@
 @layer base {
-	:root {
-		--article-gutter: var(--space-xl);
+	@screen xl {
+		:root {
+			--article-gutter: var(--space-xl);
+		}
 	}
 }
 
@@ -23,8 +25,8 @@
 		@supports (float: inline-end) {
 			.article-nav {
 				float: inline-end;
-				margin-inline-start: var(--space-m-l);
 				margin-left: 0;
+				margin-inline-start: var(--space-m-l);
 			}
 		}
 	}

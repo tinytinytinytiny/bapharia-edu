@@ -55,10 +55,14 @@
 		}
 
 		.page-title:where([data-align="start"]) {
+			display: grid;
+			grid-template-columns:
+				1fr minmax(auto, max(59.625rem, 100% - var(--heading-nav-width, 0px) * 2 - var(--article-gutter, 0px) * 2)) calc(var(--heading-nav-width, 0px) + var(--article-gutter, 0px));
 			background-image: var(--color-scrim-linear);
 		}
 
 		.page-title:where([data-align="start"]) .page-title__inner {
+			grid-column: 2;
 			text-align: start;
 		}
 
