@@ -1,95 +1,144 @@
-const VERSION = '1.0.0';
-const coreID = VERSION + '_core';
-const pageID = VERSION + '_pages';
-const cacheIDs = [coreID, pageID];
+const VERSION = '0.0.2';
+const coreCacheName = VERSION + '_core';
+const imagesCacheName = VERSION + '_images';
+const pagesCacheName = VERSION + '_pages';
+const definedCacheNames = [coreCacheName, imagesCacheName, pagesCacheName];
+
+const limits = {
+	pages: 20,
+	images: 50
+};
 
 const filesToCache = [
+	'/favicon.svg',
 	'/fonts.css',
 	'/fonts/PublicSans[wght].woff2',
 	'/fonts/PublicSans-Italic[wght].woff2',
 	'/fonts/NotoSansJP-VariableFont_wght.woff2'
 ];
 
-const trimCache = (key, max) => {
-	caches.open(key).then((cache) => {
-		cache.keys().then((keys) => {
-			if (keys.length <= max) return;
-			cache.delete(keys[0]).then(() => trimCache(key, max));
-		});
-	});
-};
-
-self.addEventListener('install', (e) => {
+self.addEventListener('install', (event) => {
 	self.skipWaiting();
-	e.waitUntil(
-		caches.open(coreID)
-			.then(cache =>
-				cache
-					.addAll(filesToCache)
-					.catch((error) => {
-						if (error.name === 'QuotaExceededError') {
-							trimCache(pageID, 0);
-						} else {
-							console.error('Error caching all: ' + error.name + ': ' + error.message);
-						}
-					})
-			)
+	event.waitUntil(
+		caches.open(coreCacheName)
+			.then((cache) => cache.addAll(filesToCache))
 	);
 });
 
-self.addEventListener('activate', (e) => {
-	e.waitUntil(async function () {
-		if (self.registration.navigationPreload) {
-			await self.registration.navigationPreload.enable();
-		}
-
-		caches.keys().then((keys) =>
-			Promise.all(
-				keys
-					.filter((key) => !cacheIDs.includes(key))
-					.map((key) => caches.delete(key))
-			)
-		).then(() => self.clients.claim());
-	});
+// delete old caches upon activation
+self.addEventListener('activate', (event) => {
+	event.waitUntil(
+		caches.keys()
+			// delete caches that don't match current version
+			.then((cacheNames) => Promise.all(
+				cacheNames.map((cacheName) => {
+					if (!definedCacheNames.includes(cacheName)) {
+						return caches.delete(cacheName);
+					}
+				})
+			))
+			// use this service worker immediately
+			.then(() => clients.claim())
+	);
 });
 
-self.addEventListener('fetch', (e) => {
-	if (e.request.method !== 'GET') return;
+self.addEventListener('fetch', (event) => {
+	const request = event.request;
 
+	// Ignore non-GET requests
+	if (request.method !== 'GET') return;
+
+	// IMAGES: fetching updated version, then store in cache
 	if (
-		e.request.destination === 'document'
-		|| e.request.destination === 'style'
-		&& !e.request.url.includes('fonts.css')
+		!request.url.match(/(favicon\.svg)$/)
+		&& request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)$/)
+		|| request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)\/m\//)
 	) {
-		e.respondWith(caches.open(pageID).then((cache) => {
-			return fetch(e.request.url).then((response) => {
-				cache
-					.put(e.request, response.clone())
-					.catch((error) => {
-						if (error.name === 'QuotaExceededError') {
-							trimCache(pageID, 0);
-						} else {
-							console.error('Error caching: ' + error.name + ': ' + error.message);
-						}
+		event.respondWith(
+			// look for a cached version of the image
+			caches.match(request)
+				.then((responseFromCache) => {
+					if (responseFromCache) {
+						event.waitUntil(storeInCache(request, imagesCacheName));
+						return responseFromCache;
+					}
+
+					// put image in cache if not in cache already
+					return fetch(request).then((responseFromFetch) => {
+						/* put a copy in the cache. this is necessary
+						because images are streams of data. once data
+						is streamed, it can't be used again */
+						const copy = responseFromFetch.clone();
+
+						caches.open(imagesCacheName)
+							.then((imagesCache) => imagesCache.put(request, copy));
+
+						return responseFromFetch;
 					});
-				return response;
-			}).catch(async function () {
-				const cachedResponse = await cache.match(e.request.url);
-				if (cachedResponse) return cachedResponse;
-
-				const response = await e.preloadResponse;
-				if (response) return response;
-			});
-		}));
-	} else {
-		e.respondWith(async function () {
-			const cachedResponse = await caches.match(e.request);
-			if (cachedResponse) return cachedResponse;
-
-			const response = await e.preloadResponse;
-			if (response) return response;
-
-			return fetch(e.request).catch(() => { });
-		}());
+				}) // end then
+		); // end respondWith
+		return;
 	}
+
+	// PAGES: fetch updated version, then store in cache
+	if (request.headers.get('Accept').includes('text/html')) {
+		event.respondWith(
+			caches.match(request)
+				.then((responseFromCache) => {
+					if (responseFromCache) {
+						event.waitUntil(storeInCache(request, pagesCacheName));
+						return responseFromCache;
+					}
+
+					return fetch(request).then((responseFromFetch) => {
+						const copy = responseFromFetch.clone();
+						caches.open(pagesCacheName)
+							.then((pagesCache) => pagesCache.put(request, copy));
+						return responseFromFetch;
+					});
+				}) // end then
+		); // end respondWith
+		return;
+	}
+
+	// EVERYTHING ELSE: look for cached copy, else fetch from network
+	event.respondWith(
+		/* look for a matching file that has been cached.
+		match() searches all caches when used on the caches
+		object, so no need to specify cache name */
+		caches.match(request)
+			/* match() does not reject if a match is not found.
+			it always resolves and returns null if there is no match */
+			.then((responseFromCache) => responseFromCache || fetch(request))
+	);
 });
+
+self.addEventListener('message', (event) => {
+	if (event.data !== 'cleanup') return;
+	trimCache(pagesCacheName, limits.pages);
+	trimCache(imagesCacheName, limits.images);
+});
+
+function storeInCache(request, cacheName) {
+	// cleanup
+	trimCache(pagesCacheName, limits.pages);
+	trimCache(imagesCacheName, limits.images);
+
+	// fetch the file
+	fetch(request).then((responseFromFetch) => {
+		// open the cache
+		caches.open(cacheName)
+			// put the file in the cache
+			.then(cache => cache.put(request, responseFromFetch))
+	});
+}
+
+function trimCache(cacheName, max) {
+	caches.open(cacheName).then((cache) => {
+		cache.keys().then((items) => {
+			if (items.length > max) {
+				cache.delete(items[0]).then(() => trimCache(cacheName, max));
+			}
+		});
+	});
+}

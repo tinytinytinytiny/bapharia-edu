@@ -58,16 +58,17 @@ const isSubmenuOpen = Boolean(
 			(error) =>
 				console.error(`Service worker registration failed: ${error}`),
 		);
+
+		if (navigator.serviceWorker.controller) {
+			window.addEventListener("load", () => {
+				navigator.serviceWorker.controller.postMessage("cleanup");
+			});
+		}
 	}
 </script>
 
 <script is:inline type="speculationrules">
 	{
-		"prefetch": [
-			{
-				"urls": ["/classes", "/guides"]
-			}
-		],
 		"prerender": [
 			{
 				"where": { "href_matches": "/*" },
