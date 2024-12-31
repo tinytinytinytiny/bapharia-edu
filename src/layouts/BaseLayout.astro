@@ -9,7 +9,7 @@ const { title, storyblokAttributes = [] } = Astro.props;
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
 const rootPathName = "/" + Astro.url.pathname.split("/")[1];
 const isSubmenuOpen = Boolean(
-	navExpandedRoutes.find((x) => x.url === rootPathName)
+	navExpandedRoutes.find((x) => x.url === rootPathName),
 );
 ---
 
@@ -48,15 +48,31 @@ const isSubmenuOpen = Boolean(
 </html>
 
 <script is:inline>
-if ("serviceWorker" in navigator) {
-	navigator.serviceWorker.register("/service-worker.js").then(
-		(registration) =>
-			console.log(
-				"Service worker registration succeeded:",
-				registration
-			),
-		(error) =>
-			console.error(`Service worker registration failed: ${error}`)
-	);
-}
+	if ("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("/service-worker.js").then(
+			(registration) =>
+				console.log(
+					"Service worker registration succeeded:",
+					registration,
+				),
+			(error) =>
+				console.error(`Service worker registration failed: ${error}`),
+		);
+	}
+</script>
+
+<script is:inline type="speculationrules">
+	{
+		"prefetch": [
+			{
+				"urls": ["/classes", "/guides"]
+			}
+		],
+		"prerender": [
+			{
+				"where": { "href_matches": "/*" },
+				"eagerness": "moderate"
+			}
+		]
+	}
 </script>
