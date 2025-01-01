@@ -12,7 +12,7 @@ export const getStoryblokImageDimensions = (url) => ({
 });
 
 export const storyblokImage = (url) => {
-	const baseUrl = url.split('/').slice(0, 8).join('/');
+	const baseUrl = url.replace('//a-us.storyblok.com', '//a2-us.storyblok.com').split('/').slice(0, 8).join('/');
 	const optimizedUrl = (url.split('/')[8] === 'm') ? url : baseUrl + '/m/';
 	const dimensions = url.split('/')[5].split('x').map(x => Number(x));
 	return {

@@ -17,7 +17,11 @@ const isSubmenuOpen = Boolean(
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://a-us.storyblok.com/" crossorigin />
+		<link
+			rel="preconnect"
+			href="https://a2-us.storyblok.com/"
+			crossorigin
+		/>
 		<link rel="stylesheet" href="/fonts.css" />
 		<slot name="head" />
 		<meta name="viewport" content="width=device-width" />
@@ -65,6 +69,16 @@ const isSubmenuOpen = Boolean(
 			});
 		}
 	}
+
+	document.body.addEventListener(
+		"error",
+		(event) => {
+			if (event.target.tagName.toLowerCase() === "img") {
+				event.target.classList.add("w-auto");
+			}
+		},
+		true,
+	);
 </script>
 
 <script is:inline type="speculationrules">

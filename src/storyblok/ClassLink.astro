@@ -23,12 +23,13 @@ const { width, height } = getStoryblokImageDimensions(blok.image.filename);
 		<div class="card-img grow-0">
 			<img
 				class="mix-blend-exclusion"
-				src={`${blok.image.filename}/m/`}
+				src={`${blok.image.filename.replace("//a-us.storyblok.com", "//a2-us.storyblok.com")}/m/`}
 				alt=""
 				width={width}
 				height={height}
 				decoding="async"
 				loading="lazy"
+				crossorigin
 			/>
 		</div>
 	</div>

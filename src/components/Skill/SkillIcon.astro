@@ -3,36 +3,36 @@ import { storyblokImage } from "@utils";
 
 const elements = {
 	fire: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png",
+		"https://a2-us.storyblok.com/f/1014865/48x48/0ea0892433/ui_playerskillattribute_1.png",
 	),
 	thunder: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png",
+		"https://a2-us.storyblok.com/f/1014865/48x48/80b598383d/ui_playerskillattribute_2.png",
 	),
 	ice: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png",
+		"https://a2-us.storyblok.com/f/1014865/48x48/0139faf455/ui_playerskillattribute_3.png",
 	),
 	earth: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png",
+		"https://a2-us.storyblok.com/f/1014865/48x48/a1d11fdffb/ui_playerskillattribute_4.png",
 	),
 	light: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png",
+		"https://a2-us.storyblok.com/f/1014865/48x48/6b7214e5df/ui_playerskillattribute_5.png",
 	),
 	dark: storyblokImage(
-		"https://a-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png",
+		"https://a2-us.storyblok.com/f/1014865/48x48/61080d8f65/ui_playerskillattribute_6.png",
 	),
 };
 const frames = {
-	A: "https://a-us.storyblok.com/f/1014865/64x64/b534ca330b/ui_playerskilltype_a.png/m/",
-	A_B: "https://a-us.storyblok.com/f/1014865/64x64/913578000d/ui_playerskilltype_a_b.png/m/",
-	A_D: "https://a-us.storyblok.com/f/1014865/64x64/8d2d190716/ui_playerskilltype_a_d.png/m/",
-	A_R: "https://a-us.storyblok.com/f/1014865/64x64/7ef95a7471/ui_playerskilltype_a_r.png/m/",
-	B: "https://a-us.storyblok.com/f/1014865/64x64/ee46f5a371/ui_playerskilltype_b.png/m/",
-	B_D: "https://a-us.storyblok.com/f/1014865/64x64/23b8e15349/ui_playerskilltype_b_d.png/m/",
-	D: "https://a-us.storyblok.com/f/1014865/64x64/356966a1b3/ui_playerskilltype_d.png/m/",
-	Empty: "https://a-us.storyblok.com/f/1014865/64x64/82a066c1e5/ui_playerskilltype_empty.png/m/",
-	R: "https://a-us.storyblok.com/f/1014865/64x64/894fee3ca7/ui_playerskilltype_r.png/m/",
-	R_B: "https://a-us.storyblok.com/f/1014865/64x64/3cf57655ad/ui_playerskilltype_r_b.png/m/",
-	R_D: "https://a-us.storyblok.com/f/1014865/64x64/c39e9b2054/ui_playerskilltype_r_d.png/m/",
+	A: "https://a2-us.storyblok.com/f/1014865/64x64/b534ca330b/ui_playerskilltype_a.png/m/",
+	A_B: "https://a2-us.storyblok.com/f/1014865/64x64/913578000d/ui_playerskilltype_a_b.png/m/",
+	A_D: "https://a2-us.storyblok.com/f/1014865/64x64/8d2d190716/ui_playerskilltype_a_d.png/m/",
+	A_R: "https://a2-us.storyblok.com/f/1014865/64x64/7ef95a7471/ui_playerskilltype_a_r.png/m/",
+	B: "https://a2-us.storyblok.com/f/1014865/64x64/ee46f5a371/ui_playerskilltype_b.png/m/",
+	B_D: "https://a2-us.storyblok.com/f/1014865/64x64/23b8e15349/ui_playerskilltype_b_d.png/m/",
+	D: "https://a2-us.storyblok.com/f/1014865/64x64/356966a1b3/ui_playerskilltype_d.png/m/",
+	Empty: "https://a2-us.storyblok.com/f/1014865/64x64/82a066c1e5/ui_playerskilltype_empty.png/m/",
+	R: "https://a2-us.storyblok.com/f/1014865/64x64/894fee3ca7/ui_playerskilltype_r.png/m/",
+	R_B: "https://a2-us.storyblok.com/f/1014865/64x64/3cf57655ad/ui_playerskilltype_r_b.png/m/",
+	R_D: "https://a2-us.storyblok.com/f/1014865/64x64/c39e9b2054/ui_playerskilltype_r_d.png/m/",
 };
 let frameSrc = frames.Empty;
 
@@ -41,11 +41,11 @@ const { category, type, element, src } = Astro.props;
 switch (category) {
 	case "passiveBase":
 		frameSrc =
-			"https://a-us.storyblok.com/f/1014865/64x64/3b58a545b4/ui_skillboard_playerabilitybiconbg.png/m/";
+			"https://a2-us.storyblok.com/f/1014865/64x64/3b58a545b4/ui_skillboard_playerabilitybiconbg.png/m/";
 		break;
 	case "passiveClass":
 		frameSrc =
-			"https://a-us.storyblok.com/f/1014865/64x64/9f202d2337/ui_skillboard_playerabilityciconbg.png/m/";
+			"https://a2-us.storyblok.com/f/1014865/64x64/9f202d2337/ui_skillboard_playerabilityciconbg.png/m/";
 		break;
 	default:
 		frameSrc = frames[type || "Empty"];
@@ -53,8 +53,26 @@ switch (category) {
 ---
 
 <div class="skill-icon">
-	<img src={frameSrc} alt="" width="64" height="64" decoding="async" />
-	{src && <img src={src} alt="" width="64" height="64" decoding="async" />}
+	<img
+		src={frameSrc}
+		alt=""
+		width="64"
+		height="64"
+		decoding="async"
+		crossorigin
+	/>
+	{
+		src && (
+			<img
+				src={src}
+				alt=""
+				width="64"
+				height="64"
+				decoding="async"
+				crossorigin
+			/>
+		)
+	}
 	{
 		element && (
 			<img
@@ -65,6 +83,7 @@ switch (category) {
 				width="24"
 				height="24"
 				decoding="async"
+				crossorigin
 			/>
 		)
 	}
