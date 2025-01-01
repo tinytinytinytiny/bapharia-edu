@@ -8,11 +8,12 @@ const {
 	decoding = "async",
 	loading = "auto",
 	widths,
-	sizes = "100vw"
+	sizes = "100vw",
 } = Astro.props;
 
 const img = storyblokImage(src);
 ---
+
 <img
 	class={className}
 	src={img.optimizedUrl}
@@ -23,4 +24,5 @@ const img = storyblokImage(src);
 	height={img.height}
 	decoding={decoding}
 	loading={loading}
+	crossorigin
 />

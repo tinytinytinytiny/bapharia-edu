@@ -1,4 +1,4 @@
-const VERSION = '0.0.2';
+const VERSION = '0.0.5';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -6,7 +6,7 @@ const definedCacheNames = [coreCacheName, imagesCacheName, pagesCacheName];
 
 const limits = {
 	pages: 20,
-	images: 50
+	images: 60
 };
 
 const filesToCache = [
@@ -14,7 +14,8 @@ const filesToCache = [
 	'/fonts.css',
 	'/fonts/PublicSans[wght].woff2',
 	'/fonts/PublicSans-Italic[wght].woff2',
-	'/fonts/NotoSansJP-VariableFont_wght.woff2'
+	'/fonts/NotoSansJP-VariableFont_wght.woff2',
+	'/offline.html'
 ];
 
 self.addEventListener('install', (event) => {
@@ -80,23 +81,21 @@ self.addEventListener('fetch', (event) => {
 		return;
 	}
 
-	// PAGES: fetch updated version, then store in cache
-	if (request.headers.get('Accept').includes('text/html')) {
+	// PAGES: network first, cache fallback
+	if (
+		request.headers.get('Accept').includes('text/html')
+		&& !request.url.match(/\/(offline\.html)$/)
+	) {
 		event.respondWith(
-			caches.match(request)
-				.then((responseFromCache) => {
-					if (responseFromCache) {
-						event.waitUntil(storeInCache(request, pagesCacheName));
-						return responseFromCache;
-					}
-
-					return fetch(request).then((responseFromFetch) => {
-						const copy = responseFromFetch.clone();
-						caches.open(pagesCacheName)
-							.then((pagesCache) => pagesCache.put(request, copy));
-						return responseFromFetch;
-					});
-				}) // end then
+			fetch(request).then((responseFromFetch) => {
+				const copy = responseFromFetch.clone();
+				caches.open(pagesCacheName)
+					.then((pagesCache) => pagesCache.put(request, copy));
+				return responseFromFetch;
+			}).catch(() => {
+				return caches.match(request)
+					.then((responseFromCache) => responseFromCache || caches.match('offline.html'));
+			})
 		); // end respondWith
 		return;
 	}
