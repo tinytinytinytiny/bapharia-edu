@@ -11,11 +11,11 @@ const { name, characterClass, level } = Astro.props;
 	<summary class="button">
 		<span class="skill-title cluster">
 			<span class="leading-tight">
-				<span class="block font-extrabold text-1 text-strong">
+				<span class="skill-title__name">
 					{name}
 				</span>
 				<span class="visually-hidden">;&nbsp;</span>
-				<span class="block text--1 md:text-[1rem]">
+				<span class="skill-title__sub">
 					Lv. {level}&#32;
 					{t(`class.${characterClass}`)} required
 				</span>
@@ -49,13 +49,18 @@ const { name, characterClass, level } = Astro.props;
 	}
 
 	.skill-title {
-		gap: var(--space-xs);
+		gap: var(--space-xs-s);
 	}
 
-	h4 {
-		font-variant: normal;
-		letter-spacing: normal;
-		text-transform: none;
+	.skill-title__name {
+		color: var(--color-text-strong);
+		display: block;
+		font-weight: 800;
+	}
+
+	.skill-title__sub {
+		display: block;
+		font-size: var(--text--1);
 	}
 
 	.skill-content {
@@ -78,8 +83,12 @@ const { name, characterClass, level } = Astro.props;
 	}
 
 	@screen sm {
-		header {
-			gap: var(--default-gutter);
+		.skill-title__name {
+			font-size: var(--text-1);
+		}
+
+		.skill-title__sub {
+			font-size: 1rem;
 		}
 	}
 </style>
