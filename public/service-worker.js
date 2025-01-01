@@ -1,4 +1,4 @@
-const VERSION = '0.0.6';
+const VERSION = '0.0.8';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -19,10 +19,11 @@ const filesToCache = [
 ];
 
 self.addEventListener('install', (event) => {
-	self.skipWaiting();
 	event.waitUntil(
-		caches.open(coreCacheName)
-			.then((cache) => cache.addAll(filesToCache))
+		caches.open(coreCacheName).then((cache) => {
+			cache.addAll(filesToCache)
+				.then(() => self.skipWaiting())
+		})
 	);
 });
 
