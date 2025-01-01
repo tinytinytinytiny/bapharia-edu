@@ -1,4 +1,4 @@
-const VERSION = '0.0.5';
+const VERSION = '0.0.6';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -15,7 +15,7 @@ const filesToCache = [
 	'/fonts/PublicSans[wght].woff2',
 	'/fonts/PublicSans-Italic[wght].woff2',
 	'/fonts/NotoSansJP-VariableFont_wght.woff2',
-	'/offline.html'
+	'/offline'
 ];
 
 self.addEventListener('install', (event) => {
@@ -84,7 +84,7 @@ self.addEventListener('fetch', (event) => {
 	// PAGES: network first, cache fallback
 	if (
 		request.headers.get('Accept').includes('text/html')
-		&& !request.url.match(/\/(offline\.html)$/)
+		&& !request.url.match(/\/(offline)$/)
 	) {
 		event.respondWith(
 			fetch(request).then((responseFromFetch) => {
