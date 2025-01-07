@@ -9,12 +9,12 @@ export default (component, blok) => {
 			const attributes = `srcset="${img.generateSrcset()}" sizes="${sizes}" src="${img.optimizedUrl}" alt="${blok.content.alt}" width="${img.width}" height="${img.height}" decoding="async" loading="lazy" crossorigin`;
 
 			if (blok.caption) {
-				return `<figure class="stack stack-space-2xs-rem">
+				return `<figure class="stack stack-space-2xs-rem ${blok.fullWidth && 'full-width'}">
 					<img class="rounded" ${attributes}>
 					<figcaption class="italic text-[1rem]">${blok.caption}</figcaption>
 				</figure>`;
 			}
-			return `<img class="figure rounded" ${attributes}>`;
+			return `<img class="figure rounded ${blok.fullWidth && 'full-width'}" ${attributes}>`;
 		case 'note':
 			const noteLabelId = crypto.randomUUID();
 			return `<aside class="note" data-style="${blok.title.toLowerCase()}" aria-labelledby="${noteLabelId}">
