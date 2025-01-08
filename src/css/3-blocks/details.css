@@ -14,7 +14,7 @@
 		list-style: none;
 	}
 
-	summary:focus-visible {
+	summary:focus {
 		@apply focus-ring;
 	}
 

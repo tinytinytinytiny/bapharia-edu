@@ -36,6 +36,60 @@ const { name, characterClass, level } = Astro.props;
 	details {
 		background-color: var(--color-surface-1);
 		border-radius: var(--border-radius);
+		position: relative;
+	}
+
+	details::before,
+	details::after {
+		border-radius: inherit;
+		content: "";
+		display: block;
+		position: absolute;
+	}
+
+	details::before {
+		background-color: var(--color-separator);
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		inset-block: 100% calc(-1 * var(--space-3xs));
+		inset-inline: var(--border-radius);
+		opacity: 0.2;
+	}
+
+	details::after {
+		border: 2px solid var(--color-separator);
+		inset: 0;
+		pointer-events: none;
+	}
+
+	details[open]::before {
+		opacity: 0;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		@supports (interpolate-size: allow-keywords) and
+			selector(details::details-content) {
+			details::before,
+			details::after {
+				transition: opacity 0.2s ease-out;
+			}
+
+			details[open]::after {
+				transition:
+					border-color 0.2s ease-out,
+					opacity 0.2s ease-out;
+			}
+		}
+	}
+
+	@media (hover: hover) {
+		details:not([open]):has(summary:hover)::after {
+			border-color: var(--color-separator-strong);
+		}
+	}
+
+	details:not([open]):has(summary:active) {
+		transform: translateY(calc(var(--space-3xs) / 2));
 	}
 
 	summary,
@@ -44,8 +98,8 @@ const { name, characterClass, level } = Astro.props;
 		--button-hover-background: var(--color-surface-2);
 		--button-active-background: var(--color-surface-3);
 		--button-color: var(--color-text-regular);
-		--button-padding-block: var(--space-xs);
-		--button-padding-inline: var(--space-s);
+		--button-padding-block: calc(var(--space-xs) - 2px);
+		--button-padding-inline: calc(var(--space-s) - 2px);
 	}
 
 	.skill-title {

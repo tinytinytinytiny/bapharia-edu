@@ -56,7 +56,7 @@
 		background-color: var(--button-active-background);
 	}
 
-	.button:focus-visible {
+	.button:focus {
 		@apply focus-ring;
 	}
 
