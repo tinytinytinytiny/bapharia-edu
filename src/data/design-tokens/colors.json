@@ -1,17 +1,17 @@
 {
 	"accent": {
-		"DEFAULT": "oklch(40% 0.1 245)",
-		"light": "oklch(50% 0.13 245)",
-		"dark": "oklch(30% 0.07 245)",
+		"DEFAULT": "oklch(40% 0.07 245)",
+		"light": "oklch(50% 0.09 245)",
+		"dark": "oklch(30% 0.05 245)",
 		"surface": {
 			"DEFAULT": "oklch(92% 0.05 245)",
-			"tint": "oklch(76% 0.14 245 / 38%)"
+			"tint": "oklch(76% 0.12 245 / 38%)"
 		}
 	},
 	"secondary": {
 		"DEFAULT": "oklch(40% 0.1 155)",
 		"surface": "oklch(92% 0.08 155)",
-		"on-dark": "oklch(90% 0.18 155)"
+		"on-dark": "oklch(90% 0.15 155)"
 	},
 	"alert": {
 		"DEFAULT": "oklch(45% 0.09 85)",
@@ -23,14 +23,14 @@
 		"radial": "radial-gradient(oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 400%)"
 	},
 	"separator": {
-		"DEFAULT": "oklch(24% 0.04 225 / 24%)",
-		"strong": "oklch(24% 0.04 225 / 48%)"
+		"DEFAULT": "oklch(24% 0.04 180 / 20%)",
+		"strong": "oklch(24% 0.04 180 / 40%)"
 	},
 	"shade": {
-		"weak": "oklch(40% 0.024 225 / 10%)",
-		"DEFAULT": "oklch(40% 0.024 225 / 18%)",
-		"strong": "oklch(40% 0.024 225 / 27%)",
-		"strongest": "oklch(40% 0.024 225 / 38%)"
+		"weak": "oklch(40% 0.024 180 / 10%)",
+		"DEFAULT": "oklch(40% 0.024 180 / 15%)",
+		"strong": "oklch(40% 0.024 180 / 20%)",
+		"strongest": "oklch(40% 0.024 180 / 25%)"
 	},
 	"surface": {
 		"0": "#fff",
