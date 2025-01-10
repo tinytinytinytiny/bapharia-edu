@@ -3,13 +3,13 @@
 @layer base {
 	:root {
 		--content-padding-block: var(--space-s-l);
-		--content-padding-inline: 0;
-		--default-gutter: var(--space-s-rem);
+		--content-padding-inline: 0px;
+		--default-gutter: var(--space-s);
 		--default-stack-space: 1.25em;
 		--grid-min-item-size: 29.25rem;
 		--main-region-limit: 112.5rem;
 		--main-region-padding: var(--space-s);
-		--paragraph-max-width: 80ch;
+		--paragraph-max-width: calc(48 * var(--text-0));
 	}
 
 	* {
@@ -56,7 +56,6 @@
 	}
 
 	.content-wrapper {
-		margin-inline: auto;
 		max-inline-size: max-content;
 	}
 

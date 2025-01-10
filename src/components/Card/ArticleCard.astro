@@ -5,8 +5,11 @@ const { title, url, class: className, innerClass } = Astro.props;
 <div class:list={["card-frame", className]}>
 	<div class:list={["card", "guide-card", innerClass]}>
 		<div class="card-body">
-			<div class="stack stack-space-2xs-rem">
-				<a class="card-title card-link underline-on-hover" href={url}>
+			<div class="stack">
+				<a
+					class="h4 card-title card-link underline-on-hover"
+					href={url}
+				>
 					{title}
 				</a>
 				<slot name="summary" />
@@ -22,12 +25,12 @@ const { title, url, class: className, innerClass } = Astro.props;
 
 <style>
 	.guide-card {
-		gap: var(--space-2xs-rem);
-		padding: var(--space-2xs);
+		gap: var(--space-3xs);
+		padding: calc(var(--space-2xs) - 2px);
 	}
 
 	.card-body {
-		padding: var(--space-3xs-2xs);
+		padding: var(--border-radius-s);
 	}
 
 	.card-img {

@@ -9,9 +9,9 @@ export default (component, blok) => {
 			const attributes = `srcset="${img.generateSrcset()}" sizes="${sizes}" src="${img.optimizedUrl}" alt="${blok.content.alt}" width="${img.width}" height="${img.height}" decoding="async" loading="lazy" crossorigin`;
 
 			if (blok.caption) {
-				return `<figure class="stack stack-space-2xs-rem ${blok.fullWidth && 'full-width'}">
+				return `<figure class="${(blok.fullWidth) ? 'full-width' : ''}">
 					<img class="rounded" ${attributes}>
-					<figcaption class="italic text-[1rem]">${blok.caption}</figcaption>
+					<figcaption class="italic text-[1rem] mbs-2xs">${blok.caption}</figcaption>
 				</figure>`;
 			}
 			return `<img class="figure rounded ${blok.fullWidth && 'full-width'}" ${attributes}>`;

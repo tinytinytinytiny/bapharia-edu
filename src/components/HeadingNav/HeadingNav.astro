@@ -14,7 +14,7 @@ const { title = "On this page", class: className } = Astro.props;
 		constructor() {
 			super();
 			this.addEventListener("click", (event) => {
-				const id = event.target.closest("a").href.split("#")[1];
+				const id = event.target.closest("a")?.href.split("#")[1];
 				if (document.getElementById(id)) {
 					const h = document.getElementById(id);
 					if (h.closest("details")) {

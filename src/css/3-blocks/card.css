@@ -22,7 +22,7 @@
 		top: 50%;
 		right: calc(var(--border-radius) / 2);
 		left: calc(var(--border-radius) / 2);
-		bottom: calc(-1 * var(--space-3xs));
+		bottom: -4px;
 	}
 
 	.card-frame > .card {
@@ -60,7 +60,7 @@
 	}
 
 	.card:focus-within {
-		@apply focus-ring;
+		@apply focus-ring-2;
 	}
 
 	.card-frame:active > .card {

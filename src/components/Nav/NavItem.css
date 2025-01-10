@@ -36,7 +36,7 @@
 	.nav-item__link:focus-visible,
 	.nav-submenu-item__link:focus-visible {
 		border-color: var(--color-focus-ring);
-		outline: 2px solid;
+		outline: 2px solid var(--color-text-inverted);
 		outline-offset: -4px;
 	}
 

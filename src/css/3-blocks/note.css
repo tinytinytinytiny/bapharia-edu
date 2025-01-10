@@ -11,16 +11,15 @@
 		box-sizing: content-box;
 		max-inline-size: var(--paragraph-max-width);
 		overflow: hidden;
-		padding: var(--space-3xs);
+		padding: 4px;
 	}
 
-	.note,
+	/* .note,
 	:where(.note) + * {
 		--stack-space-override: var(--space-m-rem);
-	}
+	} */
 
 	.note-title {
-		/* background-image: linear-gradient(100deg, rgba(0, 0, 0, 0.9) 60%, transparent 300%); */
 		background-color: rgba(0, 0, 0, 0.86);
 		border-radius: var(--border-radius-s);
 		color: #fff;

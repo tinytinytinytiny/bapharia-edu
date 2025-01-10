@@ -6,41 +6,23 @@
 		--stack-space-override: var(--stack-space);
 	}
 
-	:where(figure) + *,
-	:where(.figure) + * {
+	:is(figure, .figure) + :not(:where(h2, .h2, h3, .h3)) {
 		--stack-space-override: var(--space-l-rem);
 	}
 
-	h2,
-	.h2 {
-		--stack-space-override: var(--space-xl-rem);
-	}
-
-	h3,
-	.h3 {
-		--stack-space-override: var(--space-l-rem);
-	}
-
-	h4,
-	.h4 {
-		--stack-space-override: var(--space-m-rem);
-	}
-
-	h1 + *,
-	.h1 + *,
 	h2 + *,
 	.h2 + * {
-		--stack-space-override: var(--space-xs-rem);
+		--stack-space-override: calc(var(--text-5) * 0.3125);
 	}
 
 	h3 + *,
 	.h3 + * {
-		--stack-space-override: var(--space-2xs-rem);
+		--stack-space-override: calc(var(--text-3) * 0.3125);
 	}
 
 	h4 + *,
 	.h4 + * {
-		--stack-space-override: var(--space-3xs-rem);
+		--stack-space-override: calc(var(--text-1) * 0.3125);
 	}
 
 	figure,

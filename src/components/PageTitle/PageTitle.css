@@ -1,79 +1,48 @@
 @layer components {
 	.page-title {
-		align-items: center;
-		color: #fff;
-		background-image: var(--color-scrim-radial);
-		border-radius: var(--border-radius);
+		align-items: stretch;
 		display: flex;
-		font-size: var(--text-1);
-		overflow: hidden;
-		padding-block: var(--space-xl);
-		padding-inline: var(--space-xs);
-		position: relative;
+		flex-flow: row wrap;
+		gap: var(--default-gutter);
+	}
+
+	.page-title__inner,
+	.page-title img {
+		border-radius: var(--border-radius);
+		flex: 1 1 30rem;
+		min-inline-size: calc(50% - var(--default-gutter) / 2);
 	}
 
 	.page-title__inner {
-		inline-size: 100%;
-		text-align: center;
+		background-color: var(--color-accent);
+		background-image: var(--color-scrim-linear);
+		color: var(--color-text-inverted);
+		display: flex;
+		flex-flow: column nowrap;
+		font-size: var(--text-1);
+		justify-content: center;
+		padding-block: var(--space-xl);
+		padding-inline: max(var(--content-padding-inline), var(--space-s-l));
 	}
 
-	.page-title__inner > * {
-		margin-inline: auto;
-	}
-
-	.page-title__inner > :empty {
-		display: none;
-	}
-
-	.page-title h1 {
+	.page-title__inner h1 {
 		color: inherit;
 	}
 
-	:where(.page-title h1) + * {
-		margin-block-start: 1em;
-	}
-
-	.page-title img {
-		background-color: var(--color-surface-3);
-		height: 100%;
-		inset: 0;
-		object-fit: cover;
-		object-position: center;
-		position: absolute;
-		width: 100%;
-		z-index: -1;
-	}
-
-	.page-title b,
-	.page-title strong {
+	.page-title__inner b,
+	.page-title__inner strong {
 		color: var(--color-secondary-on-dark);
 	}
 
-	@screen sm {
-		.page-title {
-			padding-inline: var(--content-padding-inline);
-		}
-
-		.page-title:where([data-align="start"]) {
-			display: grid;
-			grid-template-columns:
-				1fr minmax(auto, max(59.625rem, 100% - var(--heading-nav-width, 0px) * 2 - var(--article-gutter, 0px) * 2)) calc(var(--heading-nav-width, 0px) + var(--article-gutter, 0px));
-			background-image: var(--color-scrim-linear);
-		}
-
-		.page-title:where([data-align="start"]) .page-title__inner {
-			grid-column: 2;
-			text-align: start;
-		}
-
-		.page-title:where([data-align="start"]) .page-title__inner > * {
-			margin-inline-start: 0;
-		}
+	:where(.page-title h1) + * {
+		margin-block-start: 0.75em;
+		line-height: 1.375;
 	}
 
-	@screen md {
-		.page-title {
-			min-block-size: 24rem;
-		}
+	.page-title img {
+		aspect-ratio: 7 / 3;
+		background-color: var(--color-surface-2);
+		object-fit: cover;
+		object-position: center;
 	}
 }

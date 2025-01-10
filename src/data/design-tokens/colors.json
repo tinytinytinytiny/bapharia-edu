@@ -1,8 +1,8 @@
 {
 	"accent": {
-		"DEFAULT": "oklch(40% 0.07 245)",
-		"light": "oklch(50% 0.09 245)",
-		"dark": "oklch(30% 0.05 245)",
+		"DEFAULT": "oklch(40% 0.1 245)",
+		"light": "oklch(50% 0.13 245)",
+		"dark": "oklch(30% 0.07 245)",
 		"surface": {
 			"DEFAULT": "oklch(92% 0.05 245)",
 			"tint": "oklch(76% 0.12 245 / 38%)"
@@ -17,7 +17,7 @@
 		"DEFAULT": "oklch(45% 0.09 85)",
 		"surface": "oklch(92% 0.08 85)"
 	},
-	"focus-ring": "oklch(70% 0.16 245 / 80%)",
+	"focus-ring": "oklch(60% 0.15 245 / 90%)",
 	"scrim": {
 		"linear": "linear-gradient(90deg, oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 150%)",
 		"radial": "radial-gradient(oklch(20% 0.06 245 / 90%), oklch(20% 0.06 245 / 50%) 400%)"
