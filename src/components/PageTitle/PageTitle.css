@@ -9,8 +9,9 @@
 	.page-title__inner,
 	.page-title img {
 		border-radius: var(--border-radius);
-		flex: 1 1 30rem;
-		min-inline-size: calc(50% - var(--default-gutter) / 2);
+		flex: 1 0 var(--grid-min-item-size);
+		inline-size: 0;
+		max-inline-size: 100%;
 	}
 
 	.page-title__inner {
