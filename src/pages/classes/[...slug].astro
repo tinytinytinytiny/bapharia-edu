@@ -72,7 +72,7 @@ try {
 					<Fragment set:html={renderRichText(content.overview)} />
 				</div>
 				<h2 id="skills">Skills</h2>
-				<div class="stack stack-space-xs">
+				<div class="stack">
 					{
 						content.base_actions?.length > 0 && (
 								<h3
@@ -81,7 +81,7 @@ try {
 								>
 									Base Actions
 								</h3>
-								<div class="stack stack-space-xs mbs-xs mbe-m-l">
+								<div class="stack stack-space-xs">
 									{content.base_actions.map(
 										(skill, index) => (
 											<StoryblokComponent
@@ -101,7 +101,7 @@ try {
 								>
 									Tactical Skills
 								</h3>
-								<div class="stack stack-space-xs mbs-xs mbe-m-l">
+								<div class="stack stack-space-xs">
 									{content.tactical_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -116,7 +116,7 @@ try {
 								>
 									Ultimate Skills
 								</h3>
-								<div class="stack stack-space-xs mbs-xs mbe-m-l">
+								<div class="stack stack-space-xs">
 									{content.ultimate_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -131,7 +131,7 @@ try {
 								>
 									Base Abilities
 								</h3>
-								<div class="stack stack-space-xs mbs-xs mbe-m-l">
+								<div class="stack stack-space-xs">
 									{content.base_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
@@ -149,7 +149,7 @@ try {
 								>
 									Class Abilities
 								</h3>
-								<div class="stack stack-space-xs mbs-xs">
+								<div class="stack stack-space-xs">
 									{content.class_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
