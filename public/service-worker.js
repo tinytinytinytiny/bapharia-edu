@@ -1,4 +1,4 @@
-const VERSION = '0.0.9';
+const VERSION = '0.0.10';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -60,8 +60,14 @@ self.addEventListener('fetch', (event) => {
 			// look for a cached version of the image
 			caches.match(request)
 				.then((responseFromCache) => {
+					// if image is in cache, load cached image but fetch updated image and store it in cache
 					if (responseFromCache) {
-						event.waitUntil(storeInCache(request, imagesCacheName));
+						event.waitUntil(fetch(request).then((responseFromFetch) => {
+							const copy = responseFromFetch.clone();
+							trimCache(imagesCacheName, limits.images);
+							caches.open(imagesCacheName)
+								.then((imagesCache) => imagesCache.put(request, copy));
+						}));
 						return responseFromCache;
 					}
 
@@ -71,9 +77,9 @@ self.addEventListener('fetch', (event) => {
 						because images are streams of data. once data
 						is streamed, it can't be used again */
 						const copy = responseFromFetch.clone();
+						trimCache(imagesCacheName, limits.images);
 						caches.open(imagesCacheName)
 							.then((imagesCache) => imagesCache.put(request, copy));
-
 						return responseFromFetch;
 					});
 				}) // end then
@@ -137,16 +143,6 @@ self.addEventListener('message', (event) => {
 	trimCache(pagesCacheName, limits.pages);
 	trimCache(imagesCacheName, limits.images);
 });
-
-function storeInCache(request, cacheName) {
-	// fetch the file
-	fetch(request).then((responseFromFetch) => {
-		// open the cache
-		caches.open(cacheName)
-			// put the file in the cache
-			.then(cache => cache.put(request, responseFromFetch))
-	});
-}
 
 function trimCache(cacheName, max) {
 	caches.open(cacheName).then((cache) => {
