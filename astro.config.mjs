@@ -17,6 +17,7 @@ export default defineConfig({
 		svelte(),
 		storyblok({
 			accessToken: env.STORYBLOK_TOKEN,
+			bridge: false,
 			components: {
 				article: 'storyblok/Article',
 				skill: 'storyblok/Skill',
