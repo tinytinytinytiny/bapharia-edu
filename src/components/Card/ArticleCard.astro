@@ -1,46 +1,44 @@
 ---
-const { title, url, class: className, innerClass } = Astro.props;
+const { title, url, class: className } = Astro.props;
 ---
 
-<div class:list={["card-frame", className]}>
-	<div class:list={["card", "guide-card", innerClass]}>
-		<div class="card-body">
-			<div class="stack">
-				<a
-					class="h4 card-title card-link underline-on-hover"
-					href={url}
-				>
-					{title}
-				</a>
-				<slot name="summary" />
-			</div>
+<div class:list={["card", "guide-card", className]}>
+	<div class="card-body">
+		<div class="stack">
+			<a class="h4 card-title card-link underline-on-hover" href={url}>
+				{title}
+			</a>
+			<slot name="summary" />
 		</div>
-		<div class="card-img">
-			<slot name="img">
-				<img />
-			</slot>
-		</div>
+	</div>
+	<div class="card-img">
+		<slot name="img">
+			<img />
+		</slot>
 	</div>
 </div>
 
 <style>
 	.guide-card {
+		--card-img-target-width: 144px;
 		gap: var(--space-3xs);
 		padding: calc(var(--space-2xs) - 2px);
 	}
 
 	.card-body {
-		padding: var(--border-radius-s);
+		font-size: 1rem;
+		padding: var(--space-2xs);
 	}
 
 	.card-img {
 		border-radius: var(--border-radius-s);
+		order: initial;
 	}
 </style>
 
 <style is:global>
 	.guide-card .card-img img {
-		aspect-ratio: 5 / 2;
+		aspect-ratio: 7 / 2;
 		height: 100%;
 		object-fit: cover;
 		width: 100%;

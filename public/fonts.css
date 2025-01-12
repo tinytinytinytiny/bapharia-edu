@@ -1,17 +1,17 @@
 @font-face {
 	font-display: swap;
-	font-family: 'Public Sans';
+	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 100 900;
-	src: url('/fonts/PublicSans[wght].woff2') format('woff2-variations');
+	src: url('/fonts/WorkSans-VariableFont_wght.woff2') format('woff2-variations');
 }
 
 @font-face {
 	font-display: swap;
-	font-family: 'Public Sans';
+	font-family: 'Work Sans';
 	font-style: italic;
 	font-weight: 100 900;
-	src: url('/fonts/PublicSans-Italic[wght].woff2') format('woff2-variations');
+	src: url('/fonts/WorkSans-Italic-VariableFont_wght.woff2') format('woff2-variations');
 }
 
 @font-face {

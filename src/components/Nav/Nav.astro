@@ -43,7 +43,7 @@ function isCurrentUrl(url) {
 			Menu
 		</button>
 		<div id="main-menu" class="nav-menu">
-			<ul class="is-full list-none">
+			<ul class="nav-menu-list stack is-full list-none">
 				{
 					navigationData.map(async (item) => (
 						<li class="nav-item">
@@ -114,7 +114,7 @@ function isCurrentUrl(url) {
 	}
 
 	.nav-toggle {
-		margin-inline: var(--space-s);
+		margin-inline: var(--main-region-padding);
 	}
 
 	.primary-nav.open .nav-toggle {
@@ -126,13 +126,17 @@ function isCurrentUrl(url) {
 		display: none;
 		flex-flow: column nowrap;
 		font-size: var(--text-1);
-		margin-block-start: var(--space-m);
-		padding-inline: var(--space-2xs);
+		margin-block-start: var(--space-s);
+		padding-inline: var(--main-region-padding);
 		padding-bottom: env(safe-area-inset-bottom);
 	}
 
 	[aria-expanded="true"] + .nav-menu {
 		display: flex;
+	}
+
+	.nav-menu-list {
+		--stack-space: 2px;
 	}
 
 	@screen md {
@@ -171,7 +175,27 @@ function isCurrentUrl(url) {
 			inline-size: var(--sidebar-width);
 			margin-block-start: 0;
 			overflow-y: auto;
-			padding-block: var(--space-2xs) var(--space-s);
+			padding-block: calc(
+					var(--main-region-padding) - var(--default-gutter) / 2
+				)
+				var(--main-region-padding);
+			padding-inline: calc(var(--main-region-padding) / 2);
+		}
+
+		.nav-menu-list {
+			--stack-space: 0;
+		}
+
+		@supports selector(:has(*)) {
+			@screen md {
+				.nav-menu {
+					border-inline-end: 1px solid transparent;
+				}
+
+				.nav-menu:has(.nav-item__link[aria-expanded="true"]) {
+					border-color: var(--color-box-shadow);
+				}
+			}
 		}
 	}
 </style>

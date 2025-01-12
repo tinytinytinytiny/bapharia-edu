@@ -1,10 +1,15 @@
 ---
-const { title = "On this page", class: className } = Astro.props;
+const { title, class: className } = Astro.props;
 ---
 
 <nav class:list={["heading-nav", className]} aria-label="Table of Contents">
 	<heading-nav>
-		<h2>{title}</h2>
+		<h2>
+			<span class="heading-nav__eyebrow"
+				>On this page<span class="visually-hidden">:&nbsp;</span></span
+			>
+			{title && <span class="heading-nav__title">{title}</span>}
+		</h2>
 		<slot />
 	</heading-nav>
 </nav>

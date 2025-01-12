@@ -63,7 +63,7 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 	</ArticleTitle>
 	<div class="content">
 		<div class="article">
-			<ArticleNav headings={headings} />
+			<ArticleNav title={blok.title} headings={headings} />
 			<section class="content-wrapper stack" aria-label="Content">
 				<Fragment set:html={content} />
 			</section>

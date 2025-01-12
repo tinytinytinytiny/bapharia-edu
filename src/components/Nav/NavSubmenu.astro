@@ -23,7 +23,7 @@ function isCurrentUrl(url) {
 }
 ---
 
-<ul class="list-none">
+<ul class="nav-submenu-list list-none stack">
 	<li class="nav-submenu-item">
 		<a
 			href={parentUrl}
@@ -47,3 +47,9 @@ function isCurrentUrl(url) {
 		))
 	}
 </ul>
+
+<style>
+	.nav-submenu-list {
+		--stack-space: 2px;
+	}
+</style>

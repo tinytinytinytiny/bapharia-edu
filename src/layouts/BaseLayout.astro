@@ -1,4 +1,5 @@
 ---
+import "tiny-css-reset";
 import "../css/global.css";
 import navigationData from "@data/navigation";
 import Nav from "@components/Nav/Nav.astro";
@@ -43,8 +44,8 @@ const isSubmenuOpen = Boolean(
 				</div>
 			</div> -->
 		</header>
-		<div class="main-region stack stack-space-s">
-			<main class="stack stack-space-s" {...storyblokAttributes}>
+		<div class="main-region stack stack-space-xs">
+			<main class="stack stack-space-xs" {...storyblokAttributes}>
 				<slot />
 			</main>
 		</div>
@@ -66,7 +67,7 @@ const isSubmenuOpen = Boolean(
 					),
 			);
 
-			if (navigator.serviceWorker.controller && !document.prerendering) {
+			if (navigator.serviceWorker.controller) {
 				navigator.serviceWorker.controller.postMessage("cleanup");
 			}
 		}

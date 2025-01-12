@@ -1,21 +1,15 @@
 @layer components {
 	.page-title {
-		align-items: stretch;
-		display: flex;
-		flex-flow: row wrap;
-		gap: var(--default-gutter);
+		position: relative;
 	}
 
 	.page-title__inner,
 	.page-title img {
 		border-radius: var(--border-radius);
-		flex: 1 0 var(--grid-min-item-size);
-		inline-size: 0;
-		max-inline-size: 100%;
 	}
 
 	.page-title__inner {
-		background-color: var(--color-accent);
+		aspect-ratio: 32 / 9;
 		background-image: var(--color-scrim-linear);
 		color: var(--color-text-inverted);
 		display: flex;
@@ -41,9 +35,39 @@
 	}
 
 	.page-title img {
-		aspect-ratio: 7 / 3;
 		background-color: var(--color-surface-2);
+		block-size: 100%;
+		inset: 0;
 		object-fit: cover;
 		object-position: center;
+		position: absolute;
+		z-index: -1;
+	}
+
+	@screen xl {
+		.page-title {
+			align-items: stretch;
+			display: flex;
+			flex-flow: row nowrap;
+			gap: var(--default-gutter);
+		}
+
+		.page-title__inner,
+		.page-title img {
+			aspect-ratio: 7 / 3;
+			flex: 1 0 var(--grid-min-item-size);
+			inline-size: 0;
+			max-inline-size: 100%;
+		}
+
+		.page-title__inner {
+			background-color: oklch(50% 0.1 40);
+		}
+
+		.page-title img {
+			block-size: auto;
+			position: initial;
+			z-index: initial;
+		}
 	}
 }

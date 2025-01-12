@@ -2,7 +2,11 @@
 import Svg from "@jasikpark/astro-svg-loader";
 ---
 
-<button type="button" class="theme-toggle button icon-label-button md:icon-button text-0" data-color="neutral">
+<button
+	type="button"
+	class="theme-toggle button icon-label-button md:icon-button text-0"
+	data-color="neutral"
+>
 	<div class="icon">
 		<Svg src={import("@assets/icons/moon-fill.svg?raw")} />
 	</div>
@@ -12,7 +16,7 @@ import Svg from "@jasikpark/astro-svg-loader";
 <style>
 	.theme-toggle {
 		inline-size: 100%;
-		margin-block-start: var(--space-m-rem);
+		margin-block-start: var(--space-m);
 	}
 
 	@screen md {

@@ -1,5 +1,5 @@
 {
-	"s": "var(--space-2xs)",
-	"DEFAULT": "var(--space-xs)",
-	"full": "9999px"
+	"s": "var(--space-xs)",
+	"DEFAULT": "var(--space-s)",
+	"full": "calc(Infinity * 1px)"
 }

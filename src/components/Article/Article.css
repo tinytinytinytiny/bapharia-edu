@@ -1,7 +1,15 @@
 @layer base {
+	:root {
+		--article-gutter: 0px;
+	}
+
+	:where(.article) li + li {
+		margin-block-start: 0.5em;
+	}
+
 	@screen xl {
 		:root {
-			--article-gutter: var(--space-xl);
+			--article-gutter: var(--space-m);
 		}
 	}
 }
@@ -19,7 +27,8 @@
 		}
 
 		.heading-nav.article-nav + .content-wrapper {
-			margin-block-start: 0;
+			--content-margin-start: 0px;
+			--content-margin-start-text: 0px;
 		}
 
 		@supports (float: inline-end) {
@@ -41,9 +50,9 @@
 
 		.article > .content-wrapper {
 			display: grid;
-			flex-basis: 45rem;
+			flex-basis: 38.625rem;
 			flex-grow: 999;
-			grid-template-columns: 1fr minmax(auto, max(59.625rem, 100% - var(--heading-nav-width) - var(--article-gutter)));
+			grid-template-columns: 1fr minmax(auto, max(59.0625rem, 100% - var(--heading-nav-width) - var(--article-gutter)));
 			/* margin-inline-start: auto; */
 			max-inline-size: none;
 		}

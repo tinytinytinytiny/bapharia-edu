@@ -23,7 +23,7 @@
 			Number(screens["2xl"].split("rem")[0]) - 0.01
 		}rem`;
 		const minBreakPoint = window.matchMedia(
-			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`
+			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`,
 		);
 		expanded = !minBreakPoint.matches;
 		minBreakPoint.addEventListener("change", (event) => {
@@ -107,12 +107,11 @@
 {/if}
 <!-- submenu container -->
 <div {id} class="nav-submenu">
-	<slot />
 	<!-- close button -->
 	<div class="closer-container hidden md:block">
 		<button
 			aria-controls={id}
-			class="button icon-label-button is-full"
+			class="button icon-label-button is-full justify-start"
 			data-size="s"
 			data-type="ghost"
 			type="button"
@@ -123,14 +122,14 @@
 			<div class="icon">
 				{@html PanelLeft}
 			</div>
-			<span>Collapse menu</span>
+			<span>Hide menu</span>
 		</button>
 	</div>
+	<slot />
 </div>
 
 <style>
 	.chevron {
-		--icon-size: var(--space-m-rem);
 		color: var(--color-text-regular);
 		margin-inline: auto calc(-1 * var(--space-3xs));
 	}
@@ -138,8 +137,10 @@
 	.closer-container {
 		background-color: var(--color-surface-1);
 		inset-block-end: 0;
-		padding-block: var(--space-xs) var(--space-s);
+		margin-block: calc(-1 * var(--main-region-padding)) var(--space-2xs);
+		padding-block-start: var(--main-region-padding);
 		position: sticky;
-		z-index: 1;
+		top: calc(-1 * var(--main-region-padding));
+		z-index: 2;
 	}
 </style>

@@ -39,57 +39,8 @@ const { name, characterClass, level } = Astro.props;
 		position: relative;
 	}
 
-	details::before,
-	details::after {
-		border-radius: inherit;
-		content: "";
-		display: block;
-		position: absolute;
-	}
-
-	details::before {
-		background-color: var(--color-separator);
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-		inset-block: 100% -4px;
-		inset-inline: var(--border-radius);
-		opacity: 0.2;
-	}
-
-	details::after {
-		border: 2px solid var(--color-separator);
-		inset: 0;
-		pointer-events: none;
-	}
-
-	details[open]::before {
-		opacity: 0;
-	}
-
-	@media (prefers-reduced-motion: no-preference) {
-		@supports (interpolate-size: allow-keywords) and
-			selector(details::details-content) {
-			details::before,
-			details::after {
-				transition: opacity 0.2s ease-out;
-			}
-
-			details[open]::after {
-				transition:
-					border-color 0.2s ease-out,
-					opacity 0.2s ease-out;
-			}
-		}
-	}
-
-	@media (hover: hover) {
-		details:not([open]):has(summary:hover)::after {
-			border-color: var(--color-separator-strong);
-		}
-	}
-
 	details:not([open]):has(summary:active) {
-		transform: translateY(calc(var(--space-3xs) / 2));
+		transform: translateY(2px);
 	}
 
 	summary,
@@ -103,7 +54,7 @@ const { name, characterClass, level } = Astro.props;
 	}
 
 	summary:focus {
-		border-color: var(--color-accent);
+		border-color: var(--color-text-inverted);
 		outline: 3px solid var(--color-focus-ring);
 		outline-offset: 0;
 	}
@@ -115,7 +66,7 @@ const { name, characterClass, level } = Astro.props;
 	.skill-title__name {
 		color: var(--color-text-strong);
 		display: block;
-		font-weight: 800;
+		font-weight: 700;
 	}
 
 	.skill-title__sub {

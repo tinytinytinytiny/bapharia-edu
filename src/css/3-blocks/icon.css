@@ -2,9 +2,9 @@
 	.icon {
 		align-items: center;
 		display: flex;
-		height: var(--icon-size, var(--space-m-rem));
+		height: var(--icon-size, 24px);
 		justify-content: center;
-		width: var(--icon-size, var(--space-m-rem));
+		width: var(--icon-size, 24px);
 	}
 
 	.icon svg {

@@ -1,4 +1,4 @@
-const VERSION = '0.0.10';
+const VERSION = '0.0.11';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -12,8 +12,8 @@ const limits = {
 const filesToCache = [
 	'/favicon.svg',
 	'/fonts.css',
-	'/fonts/PublicSans[wght].woff2',
-	'/fonts/PublicSans-Italic[wght].woff2',
+	'/fonts/WorkSans-VariableFont_wght.woff2',
+	'/fonts/WorkSans-Italic-VariableFont_wght.woff2',
 	'/fonts/NotoSansJP-VariableFont_wght.woff2',
 	'/offline'
 ];
@@ -50,39 +50,23 @@ self.addEventListener('fetch', (event) => {
 	// Ignore non-GET requests
 	if (request.method !== 'GET') return;
 
-	// IMAGES: fetching updated version, then store in cache
+	// IMAGES: network first, cache fallback
 	if (
 		!request.url.match(/(favicon\.svg)$/)
 		&& request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)$/)
 		|| request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)\/m\//)
 	) {
 		event.respondWith(
-			// look for a cached version of the image
-			caches.match(request)
-				.then((responseFromCache) => {
-					// if image is in cache, load cached image but fetch updated image and store it in cache
-					if (responseFromCache) {
-						event.waitUntil(fetch(request).then((responseFromFetch) => {
-							const copy = responseFromFetch.clone();
-							trimCache(imagesCacheName, limits.images);
-							caches.open(imagesCacheName)
-								.then((imagesCache) => imagesCache.put(request, copy));
-						}));
-						return responseFromCache;
-					}
-
-					// put image in cache if not in cache already
-					return fetch(request).then((responseFromFetch) => {
-						/* put a copy in the cache. this is necessary
-						because images are streams of data. once data
-						is streamed, it can't be used again */
-						const copy = responseFromFetch.clone();
-						trimCache(imagesCacheName, limits.images);
-						caches.open(imagesCacheName)
-							.then((imagesCache) => imagesCache.put(request, copy));
-						return responseFromFetch;
-					});
-				}) // end then
+			fetch(request).then((responseFromFetch) => {
+				const copy = responseFromFetch.clone();
+				trimCache(imagesCacheName, limits.images);
+				caches.open(imagesCacheName)
+					.then((imagesCache) => imagesCache.put(request, copy));
+				return responseFromFetch;
+			}).catch(() => {
+				return caches.match(request)
+					.then((responseFromCache) => responseFromCache);
+			})
 		); // end respondWith
 		return;
 	}
@@ -120,7 +104,7 @@ self.addEventListener('fetch', (event) => {
 				return responseFromFetch;
 			}).catch(() => {
 				return caches.match(request)
-					.then((responseFromCache) => responseFromCache || caches.match('offline.html'));
+					.then((responseFromCache) => responseFromCache);
 			})
 		); // end respondWith
 		return;

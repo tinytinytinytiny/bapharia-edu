@@ -4,9 +4,9 @@
 		--button-hover-background: var(--color-accent-light);
 		--button-active-background: var(--color-accent-dark);
 		--button-color: var(--color-text-inverted);
-		--button-icon-size: var(--space-m-rem);
+		--button-icon-size: 24px;
 		--button-padding-block: var(--space-2xs);
-		--button-padding-inline: var(--space-m);
+		--button-padding-inline: var(--space-s);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
 	}
 }
@@ -20,13 +20,14 @@
 		border-radius: var(--border-radius);
 		color: var(--button-color);
 		display: inline-flex;
-		font-weight: 500;
+		font-weight: 550;
 		justify-content: center;
 		line-height: 1;
 		min-block-size: var(--button-height);
 		padding-block: var(--button-padding-block);
 		padding-inline: var(--button-padding-inline);
 		position: relative;
+		transition: transform 0.04s ease-in;
 	}
 
 	.button:not(.bg-transparent) {
@@ -46,6 +47,7 @@
 		input:where(.button):hover,
 		summary:where(.button):hover {
 			background-color: var(--button-hover-background);
+			color: var(--button-hover-color, var(--button-color));
 		}
 	}
 
@@ -54,6 +56,8 @@
 	input:where(.button):active,
 	summary:where(.button):active {
 		background-color: var(--button-active-background);
+		color: var(--button-active-color, var(--button-color));
+		transform: translateY(1px);
 	}
 
 	.button:focus {
@@ -61,8 +65,8 @@
 	}
 
 	.button:where([data-size="s"]) {
-		--button-icon-size: var(--space-s-rem);
-		--button-padding-inline: var(--space-s);
+		--button-icon-size: 16px;
+		--button-padding-inline: var(--space-xs);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
 		font-size: var(--text--1);
 	}
@@ -74,14 +78,14 @@
 		--button-color: var(--color-text-regular);
 	}
 
-	.button:where([data-type="ghost"]) {
+	.button:where([data-type="ghost"], [data-type="text"]) {
 		--button-background: transparent;
 		--button-hover-background: var(--color-shade-weak);
 		--button-active-background: var(--color-shade);
-		--button-color: var(--color-text-regular);
 	}
 
 	.button:where([data-type="ghost"]) {
+		--button-color: var(--color-text-regular);
 		border-color: var(--color-separator);
 	}
 
@@ -89,16 +93,21 @@
 		border-color: var(--color-separator-strong);
 	}
 
+	.button:where([data-type="text"]) {
+		--button-color: var(--color-accent);
+		--button-active-color: var(--color-accent-dark);
+	}
+
 	.icon-label-button {
-		--button-gap: calc(var(--button-padding-inline) / 3);
+		--button-gap: 0.5em;
 		gap: var(--button-gap);
 	}
 
-	.icon-label-button :where(.icon:first-child) {
+	.icon-label-button:not([class*="justify-"]) :where(.icon:first-child) {
 		margin-inline-start: calc(-1 * var(--button-gap));
 	}
 
-	.icon-label-button :where(.icon:last-child) {
+	.icon-label-button:not([class*="justify-"]) :where(.icon:last-child) {
 		margin-inline-end: calc(-1 * var(--button-gap));
 	}
 

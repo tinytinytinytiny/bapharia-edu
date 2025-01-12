@@ -1,14 +1,12 @@
-@import 'tiny-css-reset';
-
 @layer base {
 	:root {
 		--content-padding-block: var(--space-s-l);
 		--content-padding-inline: 0px;
-		--default-gutter: var(--space-s);
+		--default-gutter: var(--space-xs);
 		--default-stack-space: 1.25em;
-		--grid-min-item-size: 29.25rem;
-		--main-region-limit: 112.5rem;
-		--main-region-padding: var(--space-s);
+		--grid-min-item-size: 18.875rem;
+		--main-region-limit: 99.625rem;
+		--main-region-padding: var(--space-xs);
 		--paragraph-max-width: calc(48 * var(--text-0));
 	}
 
@@ -32,7 +30,7 @@
 	body {
 		background-color: var(--color-surface-0);
 		color: var(--color-text-regular);
-		font-family: 'Public Sans', 'Noto Sans JP', sans-serif;
+		font-family: 'Work Sans', 'Noto Sans JP', sans-serif;
 		font-size: var(--text-0);
 		font-weight: 400;
 		line-height: 1.5;

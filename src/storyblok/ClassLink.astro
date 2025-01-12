@@ -9,28 +9,26 @@ const { blok, class: className } = Astro.props;
 const { width, height } = getStoryblokImageDimensions(blok.image.filename);
 ---
 
-<div class:list={["card-frame", className]} data-variant="border">
-	<div class="card isolate">
-		<div class="card-body">
-			<a
-				href={`/${blok.url.cached_url}`}
-				class="card-title card-link underline-on-hover"
-			>
-				{t(`class.${blok.name}`)}
-			</a>
-			<p class="leading-tight mbs-3xs-rem">{blok.caption}</p>
-		</div>
-		<div class="card-img grow-0">
-			<img
-				class="mix-blend-exclusion"
-				src={`${blok.image.filename.replace("//a-us.storyblok.com", "//a2-us.storyblok.com")}/m/`}
-				alt=""
-				width={width}
-				height={height}
-				decoding="async"
-				loading="lazy"
-				crossorigin
-			/>
-		</div>
+<div class:list={["card", "isolate", className]}>
+	<div class="card-body">
+		<a
+			href={`/${blok.url.cached_url}`}
+			class="card-title card-link underline-on-hover"
+		>
+			{t(`class.${blok.name}`)}
+		</a>
+		<p class="leading-tight mbs-3xs-rem">{blok.caption}</p>
+	</div>
+	<div class="card-img grow-0">
+		<img
+			class="mix-blend-exclusion"
+			src={`${blok.image.filename.replace("//a-us.storyblok.com", "//a2-us.storyblok.com")}/m/`}
+			alt=""
+			width={width}
+			height={height}
+			decoding="async"
+			loading="lazy"
+			crossorigin
+		/>
 	</div>
 </div>

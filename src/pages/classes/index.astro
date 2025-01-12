@@ -27,7 +27,7 @@ const content = story.content;
 	<div class="content mbs-l-rem sm:mbs-[var(--stack-space)]">
 		<div class="sidebar">
 			<div>
-				<div class="content-wrapper stack leading-[1.625]">
+				<div class="content-wrapper stack">
 					<Fragment set:html={renderRichText(content.overview)} />
 				</div>
 			</div>
@@ -54,6 +54,7 @@ const content = story.content;
 		--sidebar-target-width: 40.5rem;
 		--sidebar-content-min-width: auto;
 		align-items: flex-start;
+		column-gap: var(--space-m);
 		row-gap: var(--space-xl-rem);
 	}
 

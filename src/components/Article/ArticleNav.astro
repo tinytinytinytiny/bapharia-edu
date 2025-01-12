@@ -1,7 +1,7 @@
 ---
 import HeadingNav from "@components/HeadingNav/HeadingNav.astro";
 import ArticleNavList from "./ArticleNavList.astro";
-const { headings } = Astro.props;
+const { title, headings } = Astro.props;
 
 const toc = [];
 
@@ -66,6 +66,6 @@ headings.forEach((heading, index) => {
 });
 ---
 
-<HeadingNav title={"In this article"} class="article-nav">
+<HeadingNav title={title} class="article-nav">
 	<ArticleNavList headings={toc} />
 </HeadingNav>

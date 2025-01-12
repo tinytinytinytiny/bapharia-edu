@@ -1,34 +1,12 @@
 @layer base {
 	.card {
 		--card-background: var(--color-surface-1);
-		--card-body-target-width: 21.375rem;
-		--card-img-target-width: 13.5rem;
+		--card-body-target-width: 16rem;
+		--card-img-target-width: 216px;
 	}
 }
 
 @layer components {
-	.card-frame {
-		position: relative;
-	}
-
-	.card-frame::before {
-		background-color: var(--color-separator);
-		border-radius: var(--border-radius-s);
-		content: '';
-		display: block;
-		margin-inline: auto;
-		opacity: 0.2;
-		position: absolute;
-		top: 50%;
-		right: calc(var(--border-radius) / 2);
-		left: calc(var(--border-radius) / 2);
-		bottom: -4px;
-	}
-
-	.card-frame > .card {
-		height: 100%;
-	}
-
 	.card {
 		background-color: var(--card-background);
 		border: 2px solid transparent;
@@ -41,30 +19,22 @@
 		transition: transform 0.04s ease-in;
 	}
 
-	.card-frame > .card {
-		border-color: var(--color-separator);
-	}
-
 	@media (hover: hover) {
-		:where(.card-frame) > .card:hover {
-			border-color: var(--color-separator-strong);
-		}
-
 		.card:hover {
 			--card-background: var(--color-surface-2);
-		}
-
-		.card:hover .card-img img {
-			transform: scale(105%);
+			box-shadow:
+				0 6px 1px -6px var(--color-box-shadow),
+				0 12px 4px -10px var(--color-box-shadow);
+			transform: translateY(-2px);
 		}
 	}
 
 	.card:focus-within {
-		@apply focus-ring-2;
+		@apply focus-ring;
 	}
 
-	.card-frame:active > .card {
-		transform: translateY(calc(var(--space-3xs) / 2));
+	.card:active {
+		transform: translateY(2px);
 	}
 
 	.card-img {
@@ -77,11 +47,6 @@
 		order: -1;
 		overflow: hidden;
 		overflow: clip;
-	}
-
-	.card-img img {
-		transform-origin: center;
-		transition: transform 0.2s ease-out;
 	}
 
 	.card-body {
@@ -112,11 +77,5 @@
 
 	.card-link:focus-visible {
 		text-decoration: underline;
-	}
-
-	@media (prefers-reduced-motion) {
-		.card:hover .card-img img {
-			transform: none;
-		}
 	}
 }
