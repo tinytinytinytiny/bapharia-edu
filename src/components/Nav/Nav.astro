@@ -192,7 +192,13 @@ function isCurrentUrl(url) {
 					border-inline-end: 1px solid transparent;
 				}
 
-				.nav-menu:has(.nav-item__link[aria-expanded="true"]) {
+				.nav-menu:has(.nav-item__link.expanded.interacted) {
+					border-color: var(--color-box-shadow);
+				}
+			}
+
+			@screen 2xl {
+				.nav-menu:has(.nav-item__link.expanded) {
 					border-color: var(--color-box-shadow);
 				}
 			}
@@ -244,6 +250,19 @@ function isCurrentUrl(url) {
 		);
 
 		if (!event.target.closest(".nav-menu") && minBreakPoint.matches) {
+			submenu.set({ open: false });
+		}
+	});
+
+	document.addEventListener("keydown", (event) => {
+		const maxBreakPoint = `${
+			Number(screens["2xl"].split("rem")[0]) - 0.01
+		}rem`;
+		const minBreakPoint = window.matchMedia(
+			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`,
+		);
+
+		if (event.key === "Escape" && minBreakPoint.matches) {
 			submenu.set({ open: false });
 		}
 	});
