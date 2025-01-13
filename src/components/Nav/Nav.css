@@ -5,30 +5,25 @@
 	}
 
 	.main-region {
-		grid-template-columns: 1fr minmax(var(--sidebar-content-offset), 1fr) minmax(auto, var(--main-region-limit)) 1fr;
+		grid-template-columns: minmax(var(--sidebar-content-offset), 1fr) minmax(auto, var(--main-region-limit)) 1fr;
 		margin-block-start: var(--nav-toggle-content-offset);
-	}
-
-	.main-region > * {
-		grid-column: 3;
 	}
 
 	@screen md {
 		:root {
-			--sidebar-content-offset: var(--sidebar-width);
 			--sidebar-submenu-width: calc(var(--space-4xl-rem) * 2 + var(--main-region-padding) * 2.5 - var(--sidebar-width));
 			--sidebar-width: calc(var(--space-2xl-rem) + var(--main-region-padding));
 		}
 
 		.main-region {
 			margin-block-start: 0;
-			padding-inline-start: 0;
+			padding-inline-start: var(--sidebar-width);
 		}
 	}
 
 	@screen 2xl {
 		.submenu-expanded {
-			--sidebar-content-offset: calc(var(--sidebar-width) + var(--sidebar-submenu-width) + var(--main-region-padding) / 2);
+			--sidebar-content-offset: calc(var(--sidebar-submenu-width) + var(--main-region-padding) / 2);
 		}
 	}
 }
