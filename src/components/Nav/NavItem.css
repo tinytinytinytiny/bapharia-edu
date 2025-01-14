@@ -142,17 +142,20 @@
 			overflow-y: auto;
 			overscroll-behavior: none;
 			padding-block: var(--main-region-padding) 0;
-			padding-inline: var(--sidebar-width) var(--main-region-padding);
+			padding-inline: calc(var(--sidebar-width) + var(--main-region-padding)) var(--main-region-padding);
 			position: fixed;
 			text-align: start;
 			top: 0;
 			z-index: -1;
 		}
 
-		@supports selector(:has(*)) {
-			.nav-submenu {
-				padding-inline-start: calc(var(--sidebar-width) + var(--main-region-padding));
-			}
+		.nav-submenu::before {
+			background-color: var(--color-surface-2);
+			content: '';
+			inset-block: 0;
+			inset-inline-start: var(--sidebar-width);
+			inline-size: 1px;
+			position: absolute;
 		}
 
 		.nav-item__link.expanded + .nav-submenu,

@@ -51,6 +51,24 @@
 		padding-inline-start: 1.5em;
 	}
 
+	@supports (block-size: 1lh) {
+
+		.heading-nav ul,
+		.heading-nav li {
+			position: relative;
+		}
+
+		.heading-nav ul li > ul::before {
+			background-color: var(--color-separator-weak);
+			content: '';
+			inline-size: 1px;
+			inset-block: -0.6875em 0.188em;
+			inset-block: -0.6875em 0.125lh;
+			inset-inline-start: 0.1em;
+			position: absolute;
+		}
+	}
+
 	.heading-nav a {
 		@apply underline-on-hover;
 		color: var(--color-accent);

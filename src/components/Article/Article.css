@@ -46,12 +46,7 @@
 		}
 
 		.article > .content-wrapper {
-			flex-basis: 38.625rem;
-			flex-grow: 999;
-		}
-
-		.article.navless > .content-wrapper {
-			grid-template-columns: 1fr 59.625rem 1fr;
+			flex: 999 1 calc(var(--space-3xl-rem) * 4 + var(--space-l-rem) * 3);
 		}
 	}
 }
