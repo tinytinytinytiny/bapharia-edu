@@ -11,7 +11,7 @@
 		box-sizing: content-box;
 		max-inline-size: var(--paragraph-max-width);
 		overflow: hidden;
-		padding: 4px;
+		padding: var(--space-3xs);
 	}
 
 	/* .note,
@@ -20,7 +20,7 @@
 	} */
 
 	.note-title {
-		background-color: rgba(0, 0, 0, 0.86);
+		background-color: rgba(0, 0, 0, 0.85);
 		border-radius: var(--border-radius-s);
 		color: #fff;
 		font-weight: 700;

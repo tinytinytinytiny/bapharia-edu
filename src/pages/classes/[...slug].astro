@@ -67,12 +67,9 @@ try {
 				</ul>
 			</HeadingNav>
 			<section class="content-wrapper stack max-is-none" aria-label="Content">
-				<div class="stack">
-					<h2 id="overview">Overview</h2>
-					<Fragment set:html={renderRichText(content.overview)} />
-				</div>
+				<h2 id="overview">Overview</h2>
+				<Fragment set:html={renderRichText(content.overview)} />
 				<h2 id="skills">Skills</h2>
-				<div class="stack">
 					{
 						content.base_actions?.length > 0 && (
 								<h3
@@ -81,7 +78,7 @@ try {
 								>
 									Base Actions
 								</h3>
-								<div class="stack stack-space-xs">
+								<div class="stack stack-space-xs full-width">
 									{content.base_actions.map(
 										(skill, index) => (
 											<StoryblokComponent
@@ -101,7 +98,7 @@ try {
 								>
 									Tactical Skills
 								</h3>
-								<div class="stack stack-space-xs">
+								<div class="stack stack-space-xs full-width">
 									{content.tactical_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -116,7 +113,7 @@ try {
 								>
 									Ultimate Skills
 								</h3>
-								<div class="stack stack-space-xs">
+								<div class="stack stack-space-xs full-width">
 									{content.ultimate_skills.map((skill) => (
 										<StoryblokComponent blok={skill} />
 									))}
@@ -131,7 +128,7 @@ try {
 								>
 									Base Abilities
 								</h3>
-								<div class="stack stack-space-xs">
+								<div class="stack stack-space-xs full-width">
 									{content.base_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
@@ -149,7 +146,7 @@ try {
 								>
 									Class Abilities
 								</h3>
-								<div class="stack stack-space-xs">
+								<div class="stack stack-space-xs full-width">
 									{content.class_abilities.map((skill) => (
 										<StoryblokComponent
 											blok={skill}
@@ -159,7 +156,6 @@ try {
 								</div>
 						)
 					}
-				</div>
 			</section>
 		</div>
 	</div>

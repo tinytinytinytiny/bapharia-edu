@@ -2,10 +2,10 @@
 const { title, author, lastUpdatedDate } = Astro.props;
 ---
 
-<header class="page-title" data-align="start">
-	<hgroup class="page-title__inner">
+<header class="page-title">
+	<hgroup class="page-title__inner stack">
 		<h1>{title}</h1>
-		<p class="text-inherit">
+		<p>
 			<span
 				>By <span class="font-bold text-secondary-on-dark"
 					>{author}</span
@@ -24,10 +24,6 @@ const { title, author, lastUpdatedDate } = Astro.props;
 </header>
 
 <style>
-	hgroup p {
-		font-size: var(--text-0);
-	}
-
 	[aria-hidden="true"] {
 		margin-inline: var(--space-2xs-rem);
 	}
@@ -35,12 +31,6 @@ const { title, author, lastUpdatedDate } = Astro.props;
 	@screen sm {
 		[role="note"] {
 			justify-content: initial;
-		}
-	}
-
-	@screen md {
-		hgroup p {
-			font-size: var(--text-1);
 		}
 	}
 </style>

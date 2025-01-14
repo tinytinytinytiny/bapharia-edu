@@ -53,7 +53,7 @@
 
 	[data-layout="dense"] th,
 	[data-layout="dense"] td {
-		padding-block: 8px;
-		padding-inline: 12px;
+		padding-block: var(--space-2xs);
+		padding-inline: var(--space-xs);
 	}
 }

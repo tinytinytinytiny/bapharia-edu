@@ -14,7 +14,6 @@
 		color: var(--color-text-inverted);
 		display: flex;
 		flex-flow: column nowrap;
-		font-size: var(--text-1);
 		justify-content: center;
 		padding-block: var(--space-xl);
 		padding-inline: max(var(--content-padding-inline), var(--space-s-l));
@@ -27,11 +26,6 @@
 	.page-title__inner b,
 	.page-title__inner strong {
 		color: var(--color-secondary-on-dark);
-	}
-
-	:where(.page-title h1) + * {
-		margin-block-start: 0.75em;
-		line-height: 1.375;
 	}
 
 	.page-title img {
@@ -54,7 +48,7 @@
 
 		.page-title__inner,
 		.page-title img {
-			aspect-ratio: 7 / 3;
+			aspect-ratio: 16 / 9;
 			flex: 1 0 var(--grid-min-item-size);
 			inline-size: 0;
 			max-inline-size: 100%;

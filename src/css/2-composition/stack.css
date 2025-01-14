@@ -10,14 +10,31 @@
 		--stack-space-override: var(--space-l-rem);
 	}
 
+	h2,
+	.h2,
+	h3,
+	.h3 {
+		--stack-space-override: 1.125em;
+	}
+
+	h4,
+	.h4 {
+		--stack-space-override: 1.25em;
+	}
+
+	h1 + *,
+	.h1 + * {
+		--stack-space-override: calc(var(--text-7) * 0.2375);
+	}
+
 	h2 + *,
 	.h2 + * {
-		--stack-space-override: calc(var(--text-5) * 0.3125);
+		--stack-space-override: calc(var(--text-5) * 0.28125);
 	}
 
 	h3 + *,
 	.h3 + * {
-		--stack-space-override: calc(var(--text-3) * 0.3125);
+		--stack-space-override: calc(var(--text-3) * 0.28125);
 	}
 
 	h4 + *,

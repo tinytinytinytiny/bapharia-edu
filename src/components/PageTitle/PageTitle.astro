@@ -1,7 +1,7 @@
 ---
 import StoryblokImg from "@components/Image/StoryblokImg.astro";
 
-const { title, align } = Astro.props;
+const { title } = Astro.props;
 
 const defaultBanners = [
 	"https://a2-us.storyblok.com/f/1014865/2560x1440/acbb4174ca/banner-1.png/",
@@ -11,8 +11,8 @@ const defaultBanners = [
 const src = defaultBanners[Math.floor(Math.random() * defaultBanners.length)];
 ---
 
-<header class="page-title" data-align={align}>
-	<hgroup class="page-title__inner">
+<header class="page-title">
+	<hgroup class="page-title__inner stack">
 		<h1>{title}</h1>
 		<slot />
 	</hgroup>
