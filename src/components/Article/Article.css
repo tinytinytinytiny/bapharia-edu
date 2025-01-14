@@ -46,7 +46,7 @@
 		}
 
 		.article > .content-wrapper {
-			flex: 999 1 calc(var(--space-3xl-rem) * 4 + var(--space-l-rem) * 3);
+			flex: 999 1 42.75rem;
 		}
 	}
 }

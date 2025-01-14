@@ -14,7 +14,7 @@
 	}
 
 	.nav-item__link {
-		--icon-size: var(--space-m-rem);
+		--icon-size: 24px;
 		align-items: center;
 		display: flex;
 		gap: var(--space-xs);
@@ -98,7 +98,7 @@
 		}
 
 		.nav-item__link .icon {
-			block-size: calc(var(--icon-size) + var(--space-3xs));
+			block-size: calc(var(--icon-size) + var(--space-3xs) + 4px);
 			border: 2px solid transparent;
 			border-radius: var(--border-radius);
 			inline-size: calc(100% - var(--main-region-padding));

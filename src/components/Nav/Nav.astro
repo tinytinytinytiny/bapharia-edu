@@ -185,24 +185,6 @@ function isCurrentUrl(url) {
 		.nav-menu-list {
 			--stack-space: 0;
 		}
-
-		/* @supports selector(:has(*)) {
-			@screen md {
-				.nav-menu {
-					border-inline-end: 1px solid transparent;
-				}
-
-				.nav-menu:has(.nav-item__link.expanded.interacted) {
-					border-color: var(--color-surface-2);
-				}
-			}
-
-			@screen 2xl {
-				.nav-menu:has(.nav-item__link.expanded) {
-					border-color: var(--color-surface-2);
-				}
-			}
-		} */
 	}
 </style>
 
@@ -233,7 +215,10 @@ function isCurrentUrl(url) {
 			document.documentElement.classList.add("submenu-expanded");
 		} else {
 			document.documentElement.classList.remove("submenu-expanded");
-			if (submenu.id) {
+			if (
+				submenu.id &&
+				document.activeElement.closest(`#${submenu.id}`)
+			) {
 				document
 					.querySelector(`[aria-controls="${submenu.id}"]`)
 					.focus();
