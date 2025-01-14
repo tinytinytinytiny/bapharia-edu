@@ -11,10 +11,10 @@ export default (component, blok) => {
 			if (blok.caption) {
 				return `<figure class="${(blok.fullWidth) ? 'full-width' : ''}">
 					<img class="rounded" ${attributes}>
-					<figcaption class="italic text-[1rem] mbs-2xs">${blok.caption}</figcaption>
+					<figcaption class="text--1 mbs-2xs">${blok.caption}</figcaption>
 				</figure>`;
 			}
-			return `<img class="figure rounded ${blok.fullWidth && 'full-width'}" ${attributes}>`;
+			return `<img class="figure rounded ${(blok.fullWidth) ? 'full-width' : ''}" ${attributes}>`;
 		case 'note':
 			const noteLabelId = crypto.randomUUID();
 			return `<aside class="note" data-style="${blok.title.toLowerCase()}" aria-labelledby="${noteLabelId}">
