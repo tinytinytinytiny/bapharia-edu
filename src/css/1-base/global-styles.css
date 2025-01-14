@@ -47,6 +47,10 @@
 		min-inline-size: 0;
 	}
 
+	main {
+		container: main / inline-size;
+	}
+
 	.content {
 		border-radius: var(--border-radius);
 		padding-block: 0 var(--content-padding-block);
