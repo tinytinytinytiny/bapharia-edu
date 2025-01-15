@@ -38,7 +38,7 @@
 		z-index: -1;
 	}
 
-	@screen lg {
+	@container main (min-width: 58.375rem) {
 		.page-title {
 			align-items: stretch;
 			aspect-ratio: 32 / 9;

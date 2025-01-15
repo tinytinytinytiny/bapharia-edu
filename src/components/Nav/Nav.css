@@ -15,6 +15,12 @@
 			--sidebar-width: calc(var(--space-2xl-rem) + var(--main-region-padding));
 		}
 
+		@supports (inline-size: min(22vw, 500px)) {
+			:root {
+				--sidebar-submenu-width: calc(min(var(--space-4xl-rem) * 2 + var(--main-region-padding) * 2.5, 22vw) - var(--sidebar-width));
+			}
+		}
+
 		.main-region {
 			margin-block-start: 0;
 			padding-inline-start: var(--sidebar-width);

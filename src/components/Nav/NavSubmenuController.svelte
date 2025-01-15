@@ -136,6 +136,8 @@
 
 	.closer-container {
 		background-color: var(--color-surface-1);
+		border-bottom-left-radius: var(--border-radius);
+		border-bottom-right-radius: var(--border-radius);
 		inset-block-end: 0;
 		margin-block: calc(-1 * var(--main-region-padding)) var(--space-2xs);
 		padding-block-start: var(--main-region-padding);
