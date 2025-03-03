@@ -96,4 +96,10 @@
 			--content-padding-inline: var(--space-xl);
 		}
 	}
+
+	@screen 3xl {
+		:root {
+			--content-padding-inline: var(--space-2xl);
+		}
+	}
 }
