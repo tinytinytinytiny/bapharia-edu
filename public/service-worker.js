@@ -1,4 +1,4 @@
-const VERSION = '0.0.11';
+const VERSION = '0.0.12';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -27,25 +27,35 @@ self.addEventListener('install', (event) => {
 	);
 });
 
+/**
+ * Deletes caches that don't match the current version.
+ * 
+ * @async
+ * @function deleteOldCaches
+ * @return {Promise<Array>} An array of caches.delete() Promises for each old cache
+ */
+async function deleteOldCaches() {
+	/** @type {string[]} */
+	const cacheNames = await caches.keys();
+	return cacheNames.map((cacheName) => {
+		if (!definedCacheNames.includes(cacheName)) {
+			return caches.delete(cacheName);
+		}
+	});
+}
+
 // delete old caches upon activation
 self.addEventListener('activate', (event) => {
-	event.waitUntil(
-		caches.keys()
-			// delete caches that don't match current version
-			.then((cacheNames) => Promise.all(
-				cacheNames.map((cacheName) => {
-					if (!definedCacheNames.includes(cacheName)) {
-						return caches.delete(cacheName);
-					}
-				})
-			))
-			// use this service worker immediately
-			.then(() => clients.claim())
-	);
+	event.waitUntil(async function () {
+		if (self.registration.navigationPreload) {
+			await self.registration.navigationPreload.enable();
+		}
+		Promise.all(await deleteOldCaches()).then(() => clients.claim());
+	}());
 });
 
 self.addEventListener('fetch', (event) => {
-	const request = event.request;
+	const { preloadResponse, request } = event;
 
 	// Ignore non-GET requests
 	if (request.method !== 'GET') return;
@@ -56,18 +66,21 @@ self.addEventListener('fetch', (event) => {
 		&& request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)$/)
 		|| request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)\/m\//)
 	) {
-		event.respondWith(
-			fetch(request).then((responseFromFetch) => {
+		event.respondWith(async function() {
+			const responsePreloaded = await preloadResponse;
+			if (responsePreloaded) return responsePreloaded;
+
+			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
 				trimCache(imagesCacheName, limits.images);
 				caches.open(imagesCacheName)
 					.then((imagesCache) => imagesCache.put(request, copy));
 				return responseFromFetch;
-			}).catch(() => {
-				return caches.match(request)
-					.then((responseFromCache) => responseFromCache);
+			}).catch(async () => {
+				const responseFromCache = await caches.match(request);
+				if (responseFromCache) return responseFromCache;
 			})
-		); // end respondWith
+		}()); // end respondWith
 		return;
 	}
 
@@ -76,18 +89,21 @@ self.addEventListener('fetch', (event) => {
 		request.headers.get('Accept').includes('text/html')
 		&& !request.url.match(/\/(offline)$/)
 	) {
-		event.respondWith(
-			fetch(request).then((responseFromFetch) => {
+		event.respondWith(async function() {
+			const responsePreloaded = await preloadResponse;
+			if (responsePreloaded) return responsePreloaded;
+
+			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
 				trimCache(pagesCacheName, limits.pages);
 				caches.open(pagesCacheName)
 					.then((pagesCache) => pagesCache.put(request, copy));
 				return responseFromFetch;
-			}).catch(() => {
-				return caches.match(request)
-					.then((responseFromCache) => responseFromCache || caches.match('offline.html'));
+			}).catch(async () => {
+				const responseFromCache = await caches.match(request);
+				return responseFromCache || caches.match('offline.html');
 			})
-		); // end respondWith
+		}()); // end respondWith
 		return;
 	}
 
@@ -96,30 +112,39 @@ self.addEventListener('fetch', (event) => {
 		request.headers.get('Accept').includes('text/css')
 		|| request.headers.get('Accept').includes('application/javascript')
 	) {
-		event.respondWith(
-			fetch(request).then((responseFromFetch) => {
+		event.respondWith(async function() {
+			const responsePreloaded = await preloadResponse;
+			if (responsePreloaded) return responsePreloaded;
+
+			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
 				caches.open(coreCacheName)
 					.then((coreCache) => coreCache.put(request, copy));
 				return responseFromFetch;
-			}).catch(() => {
-				return caches.match(request)
-					.then((responseFromCache) => responseFromCache);
+			}).catch(async () => {
+				const responseFromCache = await caches.match(request);
+				return responseFromCache;
 			})
-		); // end respondWith
+		}()); // end respondWith
 		return;
 	}
 
 	// EVERYTHING ELSE: look for cached copy, else fetch from network
-	event.respondWith(
+	event.respondWith(async function () {
 		/* look for a matching file that has been cached.
 		match() searches all caches when used on the caches
 		object, so no need to specify cache name */
-		caches.match(request)
-			/* match() does not reject if a match is not found.
-			it always resolves and returns null if there is no match */
-			.then((responseFromCache) => responseFromCache || fetch(request))
-	);
+		const responseFromCache = await caches.match(event.request);
+		/* match() does not reject if a match is not found.
+		it always resolves and returns null if there is no match */
+		if (responseFromCache) return responseFromCache;
+
+		// use preloaded response if it's there
+		const responsePreloaded = await preloadResponse;
+		if (responsePreloaded) return responsePreloaded;
+
+		return fetch(request);
+	}());
 });
 
 self.addEventListener('message', (event) => {

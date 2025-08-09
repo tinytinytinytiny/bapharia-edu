@@ -11,6 +11,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import ArticleTitle from "@components/PageTitle/ArticleTitle.astro";
 import ArticleNav from "@components/Article/ArticleNav.astro";
 import StoryblokImg from "@components/Image/StoryblokImg.astro";
+import style from "lite-youtube-embed";
 
 const { lastUpdatedDate, blok } = Astro.props;
 
@@ -72,6 +73,7 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 </BaseLayout>
 
 <script>
+	import "@justinribeiro/lite-youtube";
 	document.querySelectorAll(".table-container").forEach((container) => {
 		const { scrollWidth, clientWidth } = container;
 		if (scrollWidth > clientWidth) {
