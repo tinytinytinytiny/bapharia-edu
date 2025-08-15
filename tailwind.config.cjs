@@ -31,6 +31,12 @@ function flatten(obj) {
 	return result;
 }
 
+/**
+ * Converts design tokens into CSS variables. Tailwind classes will reference these variables instead of hardcoded values
+ * @param {Object} tokens 
+ * @param {String} prefix 
+ * @returns {Object} Object with design token values replaced with CSS variables
+ */
 function makeCSSVariables(tokens, prefix = '') {
 	const CSSVar = (prefix, token) =>
 		`var(--${[prefix, ...token.split('.')]

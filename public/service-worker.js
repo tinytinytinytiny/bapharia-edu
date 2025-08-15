@@ -1,4 +1,4 @@
-const VERSION = '0.0.12';
+const VERSION = '0.0.13';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -107,7 +107,7 @@ self.addEventListener('fetch', (event) => {
 		return;
 	}
 
-	// CSS/JS: network first, cache fallback
+	// CSS/JS: cache first, network fallback
 	if (
 		request.headers.get('Accept').includes('text/css')
 		|| request.headers.get('Accept').includes('application/javascript')
@@ -116,15 +116,15 @@ self.addEventListener('fetch', (event) => {
 			const responsePreloaded = await preloadResponse;
 			if (responsePreloaded) return responsePreloaded;
 
+			const responseFromCache = await caches.match(request);
+			if (responseFromCache) return responseFromCache;
+
 			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
 				caches.open(coreCacheName)
 					.then((coreCache) => coreCache.put(request, copy));
 				return responseFromFetch;
-			}).catch(async () => {
-				const responseFromCache = await caches.match(request);
-				return responseFromCache;
-			})
+			});
 		}()); // end respondWith
 		return;
 	}
