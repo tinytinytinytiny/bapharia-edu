@@ -39,7 +39,7 @@ const skillDescId = crypto.randomUUID();
 				<p hidden id={skillDescId}>
 					Description
 				</p>
-				<dl class="rack" aria-labelledby={skillDescId}>
+				<dl class="rack skill-levels" aria-labelledby={skillDescId}>
 					{blok.description.map((g) => (
 						<SkillLevel grade={g.grade} level={g.level}>
 							<Fragment
@@ -77,3 +77,13 @@ const skillDescId = crypto.randomUUID();
 		)
 	}
 </SkillComponent>
+
+<style>
+	@supports (grid-template-columns: subgrid) {
+		.skill-levels {
+			display: grid;
+			column-gap: 0.25em;
+			grid-template-columns: minmax(10ch, max-content) 1fr;
+		}
+	}
+</style>

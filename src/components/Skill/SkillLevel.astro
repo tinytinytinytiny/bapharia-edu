@@ -17,12 +17,36 @@ const { grade, subgrade, level } = Astro.props;
 <style>
 	.skill-level {
 		--sidebar-content-min-width: 32ch;
-		--sidebar-target-width: 8.6ch;
-		column-gap: 0.5em;
+		--sidebar-target-width: 10.1ch;
+		column-gap: 0.25em;
 		row-gap: 0;
 	}
 
 	.has-subgrade {
-		--sidebar-target-width: 9.6ch;
+		--sidebar-target-width: 10.9ch;
+	}
+
+	@supports (grid-template-columns: subgrid) {
+		.skill-level {
+			display: block;
+			grid-column: 1 / -1;
+		}
+
+		.skill-level > :last-child {
+			width: auto;
+		}
+
+		@container skill-content (inline-size >= 50ch) {
+			.skill-level {
+				display: grid;
+				grid-template-columns: subgrid;
+			}
+		}
+
+		@container skill-content (inline-size >= 70ch) {
+			.has-subgrade {
+				grid-template-columns: minmax(10.85ch, max-content) 1fr;
+			}
+		}
 	}
 </style>
