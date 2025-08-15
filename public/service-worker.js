@@ -1,4 +1,4 @@
-const VERSION = '0.0.13';
+const VERSION = '0.0.14';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -90,9 +90,6 @@ self.addEventListener('fetch', (event) => {
 		&& !request.url.match(/\/(offline)$/)
 	) {
 		event.respondWith(async function() {
-			const responsePreloaded = await preloadResponse;
-			if (responsePreloaded) return responsePreloaded;
-
 			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
 				trimCache(pagesCacheName, limits.pages);
@@ -101,7 +98,12 @@ self.addEventListener('fetch', (event) => {
 				return responseFromFetch;
 			}).catch(async () => {
 				const responseFromCache = await caches.match(request);
-				return responseFromCache || caches.match('offline.html');
+				if (responseFromCache) return responseFromCache;
+
+				const responsePreloaded = await preloadResponse;
+				if (responsePreloaded) return responsePreloaded;
+
+				return caches.match('offline.html');
 			})
 		}()); // end respondWith
 		return;
@@ -113,11 +115,11 @@ self.addEventListener('fetch', (event) => {
 		|| request.headers.get('Accept').includes('application/javascript')
 	) {
 		event.respondWith(async function() {
-			const responsePreloaded = await preloadResponse;
-			if (responsePreloaded) return responsePreloaded;
-
 			const responseFromCache = await caches.match(request);
 			if (responseFromCache) return responseFromCache;
+
+			const responsePreloaded = await preloadResponse;
+			if (responsePreloaded) return responsePreloaded;
 
 			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
@@ -135,6 +137,7 @@ self.addEventListener('fetch', (event) => {
 		match() searches all caches when used on the caches
 		object, so no need to specify cache name */
 		const responseFromCache = await caches.match(event.request);
+
 		/* match() does not reject if a match is not found.
 		it always resolves and returns null if there is no match */
 		if (responseFromCache) return responseFromCache;
