@@ -28,6 +28,29 @@ const isSubmenuOpen = Boolean(
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? `${title} - Bapharia.edu` : "Bapharia.edu"}</title>
+		<script is:inline>
+			window.addEventListener("load", () => {
+				if ("serviceWorker" in navigator) {
+					navigator.serviceWorker.register("/service-worker.js").then(
+						(registration) =>
+							console.log(
+								"Service worker registration succeeded:",
+								registration,
+							),
+						(error) =>
+							console.error(
+								`Service worker registration failed: ${error}`,
+							),
+					);
+
+					if (navigator.serviceWorker.controller) {
+						navigator.serviceWorker.controller.postMessage(
+							"cleanup",
+						);
+					}
+				}
+			});
+		</script>
 	</head>
 	<body>
 		<header>
@@ -53,26 +76,6 @@ const isSubmenuOpen = Boolean(
 </html>
 
 <script is:inline>
-	window.addEventListener("load", () => {
-		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker.register("/service-worker.js").then(
-				(registration) =>
-					console.log(
-						"Service worker registration succeeded:",
-						registration,
-					),
-				(error) =>
-					console.error(
-						`Service worker registration failed: ${error}`,
-					),
-			);
-
-			if (navigator.serviceWorker.controller) {
-				navigator.serviceWorker.controller.postMessage("cleanup");
-			}
-		}
-	});
-
 	document.body.addEventListener(
 		"error",
 		(event) => {

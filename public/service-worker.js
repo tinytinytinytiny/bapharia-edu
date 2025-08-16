@@ -1,4 +1,4 @@
-const VERSION = '0.0.14';
+const VERSION = '0.0.15';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -113,6 +113,7 @@ self.addEventListener('fetch', (event) => {
 	if (
 		request.headers.get('Accept').includes('text/css')
 		|| request.headers.get('Accept').includes('application/javascript')
+		|| request.url.match(/\.js$/)
 	) {
 		event.respondWith(async function() {
 			const responseFromCache = await caches.match(request);

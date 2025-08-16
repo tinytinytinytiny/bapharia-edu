@@ -6,6 +6,7 @@ import NavSubmenu from "./NavSubmenu.astro";
 import AsyncSubmenu from "./AsyncSubmenu.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Svg from "@jasikpark/astro-svg-loader";
+import screens from "@data/design-tokens/screen-sizes.json";
 import { slugify } from "@utils";
 import { useTranslations } from "src/utils/i18n";
 
@@ -27,7 +28,11 @@ function isCurrentUrl(url) {
 }
 ---
 
-<nav class="primary-nav" aria-label="Main">
+<nav
+	class="primary-nav"
+	aria-label="Main"
+	data-breakpoints={JSON.stringify(screens)}
+>
 	<div class="primary-nav__inner">
 		<button
 			aria-controls="main-menu"
@@ -208,7 +213,6 @@ function isCurrentUrl(url) {
 
 	// submenu navigation
 	import { submenu } from "./navStore.js";
-	import screens from "@data/design-tokens/screen-sizes.json";
 
 	submenu.listen((submenu) => {
 		if (submenu.open) {
@@ -225,6 +229,8 @@ function isCurrentUrl(url) {
 			}
 		}
 	});
+
+	const screens = JSON.parse(nav.getAttribute("data-breakpoints"));
 
 	document.body.addEventListener("click", (event) => {
 		const maxBreakPoint = `${
