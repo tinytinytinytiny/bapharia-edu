@@ -1,5 +1,5 @@
 @layer base {
-	:root {
+	#root {
 		--button-background: var(--color-accent);
 		--button-hover-background: var(--color-accent-light);
 		--button-active-background: var(--color-accent-dark);

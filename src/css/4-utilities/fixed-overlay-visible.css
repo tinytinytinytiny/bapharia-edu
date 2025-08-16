@@ -4,20 +4,4 @@
 	.fixed-overlay-visible body {
 		overflow: hidden;
 	}
-
-	/* .fixed-overlay-visible body {
-		margin-right: var(--scrollbar-width);
-	} */
-
-	@screen md {
-
-		.fixed-overlay-visible,
-		.fixed-overlay-visible body {
-			overflow: initial;
-		}
-
-		/* .fixed-overlay-visible body {
-			margin-right: 0;
-		} */
-	}
 }

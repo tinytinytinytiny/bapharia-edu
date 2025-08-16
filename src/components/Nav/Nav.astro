@@ -31,7 +31,8 @@ function isCurrentUrl(url) {
 <nav
 	class="primary-nav"
 	aria-label="Main"
-	data-breakpoints={JSON.stringify(screens)}
+	data-breakpoint-max={`${Number(screens["2xl"].split("rem")[0]) - 0.01}rem`}
+	data-breakpoint-min={screens.md}
 >
 	<div class="primary-nav__inner">
 		<button
@@ -144,7 +145,11 @@ function isCurrentUrl(url) {
 		--stack-space: 2px;
 	}
 
-	@screen md {
+	@container body (min-inline-size: 46rem) {
+		.primary-nav {
+			--size: "md";
+		}
+
 		.primary-nav,
 		.primary-nav.open {
 			height: 100vh;
@@ -191,13 +196,34 @@ function isCurrentUrl(url) {
 			--stack-space: 0;
 		}
 	}
+
+	@container body (min-inline-size: 94rem) {
+		.primary-nav {
+			--size: "2xl";
+		}
+	}
 </style>
 
 <script>
-	// primary navigation (mobile hamburger menu)
+	import "match-container";
+
 	const nav = document.querySelector(".primary-nav");
+
+	// primary navigation (mobile hamburger menu)
 	const navToggle = document.querySelector(".nav-toggle");
 	let expanded = JSON.parse(navToggle.getAttribute("aria-expanded"));
+
+	const mdBreakpoint = nav.matchContainer(
+		`body (min-inline-size: ${nav.getAttribute("data-breakpoint-min")})`,
+	);
+	mdBreakpoint.addEventListener("change", (event) => {
+		if (event.matches) {
+			expanded = false;
+			nav.classList.remove("open");
+			document.documentElement.classList.remove("fixed-overlay-visible");
+			navToggle.setAttribute("aria-expanded", expanded);
+		}
+	});
 
 	navToggle.addEventListener("click", () => {
 		expanded = !expanded;
@@ -214,11 +240,13 @@ function isCurrentUrl(url) {
 	// submenu navigation
 	import { submenu } from "./navStore.js";
 
+	const rootElement = document.getElementById("root");
+
 	submenu.listen((submenu) => {
 		if (submenu.open) {
-			document.documentElement.classList.add("submenu-expanded");
+			rootElement.classList.add("submenu-expanded");
 		} else {
-			document.documentElement.classList.remove("submenu-expanded");
+			rootElement.classList.remove("submenu-expanded");
 			if (
 				submenu.id &&
 				document.activeElement.closest(`#${submenu.id}`)
@@ -230,30 +258,26 @@ function isCurrentUrl(url) {
 		}
 	});
 
-	const screens = JSON.parse(nav.getAttribute("data-breakpoints"));
+	// close menu if clicked outside or esc key is pressed
+	// events only fire if the screen is wide enough for the menu to be opened as a side sheet
+	// events will not fire if the screen is wide enough for the menu to appear as a sidebar
+	const maxBreakPoint = nav.getAttribute("data-breakpoint-max");
+	const minBreakPoint = nav.getAttribute("data-breakpoint-min");
+	const isBetweenMinAndMaxBreakpoint = nav.matchContainer(
+		`body (min-inline-size: ${minBreakPoint}) and (max-inline-size: ${maxBreakPoint})`,
+	);
 
 	document.body.addEventListener("click", (event) => {
-		const maxBreakPoint = `${
-			Number(screens["2xl"].split("rem")[0]) - 0.01
-		}rem`;
-		const minBreakPoint = window.matchMedia(
-			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`,
-		);
-
-		if (!event.target.closest(".nav-menu") && minBreakPoint.matches) {
+		if (
+			!event.target.closest(".nav-menu") &&
+			isBetweenMinAndMaxBreakpoint.matches
+		) {
 			submenu.set({ open: false });
 		}
 	});
 
 	document.addEventListener("keydown", (event) => {
-		const maxBreakPoint = `${
-			Number(screens["2xl"].split("rem")[0]) - 0.01
-		}rem`;
-		const minBreakPoint = window.matchMedia(
-			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`,
-		);
-
-		if (event.key === "Escape" && minBreakPoint.matches) {
+		if (event.key === "Escape" && isBetweenMinAndMaxBreakpoint.matches) {
 			submenu.set({ open: false });
 		}
 	});

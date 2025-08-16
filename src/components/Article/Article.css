@@ -1,5 +1,5 @@
 @layer base {
-	:root {
+	#root {
 		--article-gutter: 0px;
 	}
 
@@ -7,15 +7,15 @@
 		margin-block-start: 0.3125em;
 	}
 
-	@screen xl {
-		:root {
+	@container body (min-inline-size: 78rem) {
+		#root {
 			--article-gutter: var(--space-l);
 		}
 	}
 }
 
 @layer components {
-	@screen md {
+	@container body (min-inline-size: 46rem) {
 		.article > .content-wrapper {
 			display: grid;
 			grid-template-columns: minmax(0px, var(--paragraph-max-width)) 1fr;
@@ -37,7 +37,7 @@
 		}
 	}
 
-	@screen xl {
+	@container body (min-inline-size: 78rem) {
 		.article {
 			display: flex;
 			flex-flow: row-reverse wrap;

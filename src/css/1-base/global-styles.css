@@ -1,5 +1,5 @@
 @layer base {
-	:root {
+	#root {
 		--content-padding-block: var(--space-s-l);
 		--content-padding-inline: 0px;
 		--default-gutter: var(--space-xs);
@@ -28,12 +28,19 @@
 	}
 
 	body {
-		background-color: var(--color-surface-0);
 		color: var(--color-text-regular);
+		container: body / inline-size;
 		font-family: 'Work Sans', 'Noto Sans JP', sans-serif;
 		font-size: var(--text-0);
 		font-weight: 400;
 		line-height: 1.5;
+	}
+
+	#root {
+		background-color: var(--color-surface-0);
+		min-height: 100%;
+		min-width: 100%;
+		position: absolute;
 	}
 
 	.main-region {
@@ -75,12 +82,9 @@
 		display: none;
 	}
 
-	@screen sm {
-		:root {
+	@container body (min-inline-size: 30rem) {
+		#root {
 			--content-padding-inline: var(--space-s-l);
-		}
-
-		body {
 			background-color: var(--color-surface-1);
 		}
 
@@ -90,15 +94,15 @@
 		}
 	}
 
-	@screen xl {
-		:root {
+	@container body (min-inline-size: 78rem) {
+		#root {
 			--content-padding-block: var(--space-xl);
 			--content-padding-inline: var(--space-xl);
 		}
 	}
 
-	@screen 3xl {
-		:root {
+	@container body (min-inline-size: 110rem) {
+		#root {
 			--content-padding-inline: var(--space-2xl);
 		}
 	}

@@ -94,7 +94,7 @@ const { name, characterClass, level } = Astro.props;
 		display: none;
 	}
 
-	@screen sm {
+	@container body (min-inline-size: 30rem) {
 		.skill-title__name {
 			font-size: var(--text-1);
 		}

@@ -14,7 +14,7 @@ const isSubmenuOpen = Boolean(
 );
 ---
 
-<html lang="en" class:list={[{ "submenu-expanded": isSubmenuOpen }]}>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -53,24 +53,26 @@ const isSubmenuOpen = Boolean(
 		</script>
 	</head>
 	<body>
-		<header>
-			<Nav />
-			<!-- <div class="main-region pbe-0 hidden md:grid">
-				<div class="spread">
-					<JSTTime />
-					<nav
-						aria-labelledby="language-select-label-1"
-						aria-describedby="language-select-description-1"
-					>
-						<LanguageSelect />
-					</nav>
-				</div>
-			</div> -->
-		</header>
-		<div class="main-region stack stack-space-xs">
-			<main class="stack stack-space-xs" {...storyblokAttributes}>
-				<slot />
-			</main>
+		<div id="root" class:list={[{ "submenu-expanded": isSubmenuOpen }]}>
+			<header>
+				<Nav />
+				<!-- <div class="main-region pbe-0 hidden md:grid">
+					<div class="spread">
+						<JSTTime />
+						<nav
+							aria-labelledby="language-select-label-1"
+							aria-describedby="language-select-description-1"
+						>
+							<LanguageSelect />
+						</nav>
+					</div>
+				</div> -->
+			</header>
+			<div class="main-region stack stack-space-xs">
+				<main class="stack stack-space-xs" {...storyblokAttributes}>
+					<slot />
+				</main>
+			</div>
 		</div>
 	</body>
 </html>

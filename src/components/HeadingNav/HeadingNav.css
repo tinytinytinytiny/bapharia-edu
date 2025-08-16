@@ -1,6 +1,6 @@
 @layer base {
-	@screen xl {
-		:root {
+	@container body (min-inline-size: 78rem) {
+		#root {
 			--heading-nav-width: calc(var(--space-5xl-rem) + var(--space-l-rem));
 		}
 	}
@@ -83,14 +83,14 @@
 		margin-block-start: var(--content-margin-start);
 	}
 
-	@screen md {
+	@container body (min-inline-size: 46rem) {
 		.heading-nav {
 			padding-block: var(--content-padding-block);
 			padding-inline: var(--content-padding-inline);
 		}
 	}
 
-	@screen xl {
+	@container body (min-inline-size: 78rem) {
 		.heading-nav {
 			background-color: transparent;
 			border-radius: 0;

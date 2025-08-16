@@ -63,11 +63,11 @@
 
 	.nav-submenu-item__link {
 		display: block;
-		padding-block: var(--space-2xs);
+		padding-block: var(--space-2xs-rem);
 		padding-inline: var(--space-xs);
 	}
 
-	@screen md {
+	@container body (min-inline-size: 46rem) {
 		.nav-item {
 			font-size: var(--text--1);
 			line-height: 1.25;
@@ -139,6 +139,7 @@
 			inset-inline-start: 0;
 			inline-size: calc(var(--sidebar-submenu-width) + var(--sidebar-width));
 			margin-block-start: 0;
+			max-inline-size: 90vw;
 			overflow-y: auto;
 			overscroll-behavior: none;
 			padding-block: var(--main-region-padding) 0;
@@ -174,9 +175,10 @@
 		}
 	}
 
-	@screen 2xl {
+	@container body (min-inline-size: 94rem) {
 		.nav-submenu {
 			box-shadow: none;
+			max-inline-size: none;
 			padding-inline-end: calc(var(--main-region-padding) / 2);
 		}
 

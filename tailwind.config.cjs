@@ -60,6 +60,7 @@ module.exports = {
 	important: false,
 	theme: {
 		screens,
+		containers: screens,
 		borderRadius: makeCSSVariables(borderRadius, 'border-radius'),
 		colors: makeCSSVariables(color, 'color'),
 		fontSize: makeCSSVariables(fontSize, 'text'),
@@ -95,6 +96,7 @@ module.exports = {
 	plugins: [
 		require('@mertasan/tailwindcss-variables'),
 		require('tailwindcss-logical'),
+		require('@tailwindcss/container-queries'),
 		plugin(function ({ addUtilities, theme }) {
 			const customUtilities = [
 				{ configKey: 'spacing', prefix: '.stack-space', property: '--stack-space' }

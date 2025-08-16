@@ -1,5 +1,5 @@
 @layer base {
-	:root {
+	#root {
 		--nav-toggle-content-offset: calc(var(--button-height) + var(--space-s));
 		--sidebar-content-offset: 0;
 	}
@@ -9,16 +9,10 @@
 		margin-block-start: var(--nav-toggle-content-offset);
 	}
 
-	@screen md {
-		:root {
+	@container body (min-inline-size: 46rem) {
+		#root {
 			--sidebar-submenu-width: calc(var(--space-4xl-rem) * 2 + var(--main-region-padding) * 2.5 - var(--sidebar-width));
 			--sidebar-width: calc(var(--space-2xl-rem) + var(--main-region-padding));
-		}
-
-		@supports (inline-size: min(22vw, 500px)) {
-			:root {
-				--sidebar-submenu-width: calc(min(var(--space-4xl-rem) * 2 + var(--main-region-padding) * 2.5, 22vw) - var(--sidebar-width));
-			}
 		}
 
 		.main-region {
@@ -27,8 +21,12 @@
 		}
 	}
 
-	@screen 2xl {
-		.submenu-expanded {
+	@container body (min-inline-size: 94rem) {
+		#root {
+			--sidebar-submenu-width: calc((var(--space-4xl-rem) * 2 + var(--main-region-padding) * 2.5) - var(--sidebar-width));
+		}
+
+		#root.submenu-expanded {
 			--sidebar-content-offset: calc(var(--sidebar-submenu-width) + var(--main-region-padding) / 2);
 		}
 	}

@@ -1,5 +1,5 @@
 @layer base {
-	:root {
+	#root {
 		--sidebar-target-width: 20rem;
 		--sidebar-content-min-width: 50%;
 	}

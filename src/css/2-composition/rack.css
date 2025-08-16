@@ -1,5 +1,5 @@
 @layer base {
-	:root {
+	#root {
 		--default-rack-space: var(--space-2xs);
 	}
 }
