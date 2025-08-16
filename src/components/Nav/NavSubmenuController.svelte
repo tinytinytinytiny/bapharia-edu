@@ -15,6 +15,7 @@
 	let expanded = Boolean(current);
 	let interacted = false;
 	let mounted;
+	let submenuRef;
 
 	onMount(() => {
 		mounted = true;
@@ -22,8 +23,8 @@
 		const maxBreakPoint = `${
 			Number(screens["2xl"].split("rem")[0]) - 0.01
 		}rem`;
-		const minBreakPoint = window.matchMedia(
-			`(min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`,
+		const minBreakPoint = submenuRef.matchContainer(
+			`body (min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`,
 		);
 		expanded = !minBreakPoint.matches;
 		minBreakPoint.addEventListener("change", (event) => {
@@ -106,7 +107,7 @@
 	</a>
 {/if}
 <!-- submenu container -->
-<div {id} class="nav-submenu">
+<div {id} class="nav-submenu" bind:this={submenuRef}>
 	<!-- close button -->
 	<div class="closer-container hidden md:block">
 		<button
