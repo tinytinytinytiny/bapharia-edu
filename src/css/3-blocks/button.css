@@ -113,6 +113,7 @@
 
 	.icon-button {
 		font-size: 0;
+		font-size-adjust: none;
 		gap: 0;
 		padding-inline: var(--button-padding-block);
 	}

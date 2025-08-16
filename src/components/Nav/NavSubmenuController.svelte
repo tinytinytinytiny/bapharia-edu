@@ -1,6 +1,5 @@
 <script>
 	import { submenu } from "./navStore.js";
-	import screens from "@data/design-tokens/screen-sizes.json";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
 	import ChevronRight from "@assets/icons/chevron-right.svg?raw";
 	import PanelLeft from "@assets/icons/panel-left.svg?raw";
@@ -15,19 +14,20 @@
 	let expanded = Boolean(current);
 	let interacted = false;
 	let mounted;
-	let submenuRef;
 
 	onMount(() => {
 		mounted = true;
 
-		const maxBreakPoint = `${
-			Number(screens["2xl"].split("rem")[0]) - 0.01
-		}rem`;
-		const minBreakPoint = submenuRef.matchContainer(
-			`body (min-width: ${screens.md}) and (max-width: ${maxBreakPoint})`,
-		);
-		expanded = !minBreakPoint.matches;
-		minBreakPoint.addEventListener("change", (event) => {
+		const isBetweenMinAndMaxBreakpoint = submenu.get().containerQuery;
+		expanded = !isBetweenMinAndMaxBreakpoint.matches; // set aria-expanded
+		if (isBetweenMinAndMaxBreakpoint.matches) {
+			expanded = false;
+			submenu.set({ open: false, id });
+		} else if (current) {
+			expanded = true;
+			submenu.set({ open: true, id });
+		}
+		isBetweenMinAndMaxBreakpoint.addEventListener("change", (event) => {
 			if (event.matches) {
 				expanded = false;
 				submenu.set({ open: false, id });
@@ -81,7 +81,7 @@
 			{@html icon}
 		</div>
 		<span>{title}</span>
-		<div class="chevron icon md:hidden">
+		<div class="chevron icon @md/body:hidden">
 			{#if expanded}
 				{#await ChevronDown then svg}
 					{@html svg}
@@ -107,9 +107,9 @@
 	</a>
 {/if}
 <!-- submenu container -->
-<div {id} class="nav-submenu" bind:this={submenuRef}>
+<div {id} class="nav-submenu">
 	<!-- close button -->
-	<div class="closer-container hidden md:block">
+	<div class="closer-container hidden @md/body:block">
 		<button
 			aria-controls={id}
 			class="button icon-label-button is-full justify-start"

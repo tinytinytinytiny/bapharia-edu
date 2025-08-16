@@ -239,23 +239,25 @@ function isCurrentUrl(url) {
 
 	// submenu navigation
 	import { submenu } from "./navStore.js";
+	import { waitForDOMUpdate } from "@utils";
 
 	const rootElement = document.getElementById("root");
-
-	submenu.listen((submenu) => {
-		if (submenu.open) {
-			rootElement.classList.add("submenu-expanded");
-		} else {
-			rootElement.classList.remove("submenu-expanded");
-			if (
-				submenu.id &&
-				document.activeElement.closest(`#${submenu.id}`)
-			) {
-				document
-					.querySelector(`[aria-controls="${submenu.id}"]`)
-					.focus();
+	waitForDOMUpdate().then(() => {
+		submenu.listen((submenu) => {
+			if (submenu.open) {
+				rootElement.classList.add("submenu-expanded");
+			} else {
+				rootElement.classList.remove("submenu-expanded");
+				if (
+					submenu.id &&
+					document.activeElement.closest(`#${submenu.id}`)
+				) {
+					document
+						.querySelector(`[aria-controls="${submenu.id}"]`)
+						.focus();
+				}
 			}
-		}
+		});
 	});
 
 	// close menu if clicked outside or esc key is pressed
@@ -266,6 +268,7 @@ function isCurrentUrl(url) {
 	const isBetweenMinAndMaxBreakpoint = nav.matchContainer(
 		`body (min-inline-size: ${minBreakPoint}) and (max-inline-size: ${maxBreakPoint})`,
 	);
+	submenu.set({ containerQuery: isBetweenMinAndMaxBreakpoint });
 
 	document.body.addEventListener("click", (event) => {
 		if (

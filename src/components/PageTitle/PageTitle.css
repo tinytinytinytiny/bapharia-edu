@@ -1,12 +1,15 @@
 @layer components {
 	.page-title {
-		position: relative;
+		display: grid;
+		place-items: center;
 	}
 
 	.page-title__inner,
 	.page-title img {
 		aspect-ratio: 32 / 9;
 		border-radius: var(--border-radius);
+		grid-column: 1;
+		grid-row: 1;
 	}
 
 	.page-title__inner {
@@ -15,6 +18,7 @@
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: center;
+		order: 1;
 		padding-block: var(--space-xl);
 		padding-inline: max(var(--content-padding-inline), var(--space-s-l));
 	}
@@ -31,20 +35,17 @@
 	.page-title img {
 		background-color: var(--color-surface-2);
 		block-size: 100%;
-		inset: 0;
 		object-fit: cover;
 		object-position: center;
-		position: absolute;
-		z-index: -1;
 	}
 
 	@container main (min-width: 58.375rem) {
 		.page-title {
 			align-items: stretch;
 			aspect-ratio: 32 / 9;
-			display: grid;
 			grid-template-columns: repeat(12, 1fr);
 			gap: var(--default-gutter);
+			justify-items: auto;
 		}
 
 		.page-title__inner,
@@ -56,6 +57,7 @@
 		.page-title__inner {
 			background-color: oklch(50% 0.1 40);
 			grid-column: 1 / 8;
+			order: initial;
 		}
 
 		.page-title img {

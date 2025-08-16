@@ -24,7 +24,7 @@ const content = story.content;
 	<PageTitle title={content.title}>
 		<Fragment set:html={renderRichText(content.subheading)} />
 	</PageTitle>
-	<div class="content mbs-l-rem sm:mbs-[var(--stack-space)]">
+	<div class="content mbs-l-rem @sm/body:mbs-[var(--stack-space)]">
 		<div class="sidebar">
 			<div>
 				<div class="content-wrapper stack">

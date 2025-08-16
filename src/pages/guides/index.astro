@@ -41,7 +41,7 @@ const {
 				items.map((guide) => (
 					<li>
 						<ArticleCard
-							class="bs-full sm:bg-surface-0"
+							class="bs-full @sm/body:bg-surface-0"
 							title={guide.content.title}
 							url={`/${guide.full_slug}`}
 						>
@@ -61,3 +61,9 @@ const {
 		</ul>
 	</div>
 </BaseLayout>
+
+<style>
+	.auto-grid {
+		--grid-min-item-size: 18em;
+	}
+</style>
