@@ -1,6 +1,6 @@
-import { atom } from 'nanostores';
+import { map } from 'nanostores';
 
-export const submenu = atom({
+export const submenu = map({
 	open: false,
 	id: undefined,
 	containerQuery: undefined

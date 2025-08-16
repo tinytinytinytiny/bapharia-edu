@@ -1,5 +1,6 @@
 <script>
 	import { submenu } from "./navStore.js";
+	import { listenKeys } from "nanostores";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
 	import ChevronRight from "@assets/icons/chevron-right.svg?raw";
 	import PanelLeft from "@assets/icons/panel-left.svg?raw";
@@ -22,18 +23,21 @@
 		expanded = !isBetweenMinAndMaxBreakpoint.matches; // set aria-expanded
 		if (isBetweenMinAndMaxBreakpoint.matches) {
 			expanded = false;
-			submenu.set({ open: false, id });
+			submenu.setKey("id", id);
+			submenu.setKey("open", false);
 		} else if (current) {
 			expanded = true;
-			submenu.set({ open: true, id });
+			submenu.setKey("id", id);
+			submenu.setKey("open", true);
 		}
 		isBetweenMinAndMaxBreakpoint.addEventListener("change", (event) => {
 			if (event.matches) {
 				expanded = false;
-				submenu.set({ open: false, id });
+				submenu.setKey("id", id);
+				submenu.setKey("open", false);
 			} else if (current) {
-				expanded = true;
-				submenu.set({ open: true, id });
+				submenu.setKey("id", id);
+				submenu.setKey("open", true);
 			}
 		});
 	});
@@ -48,9 +52,11 @@
 
 	function toggle() {
 		if (expanded) {
-			submenu.set({ open: false, id });
+			submenu.setKey("id", id);
+			submenu.setKey("open", false);
 		} else {
-			submenu.set({ open: true, id });
+			submenu.setKey("id", id);
+			submenu.setKey("open", true);
 		}
 	}
 

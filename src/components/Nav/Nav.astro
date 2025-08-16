@@ -268,20 +268,20 @@ function isCurrentUrl(url) {
 	const isBetweenMinAndMaxBreakpoint = nav.matchContainer(
 		`body (min-inline-size: ${minBreakPoint}) and (max-inline-size: ${maxBreakPoint})`,
 	);
-	submenu.set({ containerQuery: isBetweenMinAndMaxBreakpoint });
+	submenu.setKey("containerQuery", isBetweenMinAndMaxBreakpoint);
 
 	document.body.addEventListener("click", (event) => {
 		if (
 			!event.target.closest(".nav-menu") &&
 			isBetweenMinAndMaxBreakpoint.matches
 		) {
-			submenu.set({ open: false });
+			submenu.setKey("open", false);
 		}
 	});
 
 	document.addEventListener("keydown", (event) => {
 		if (event.key === "Escape" && isBetweenMinAndMaxBreakpoint.matches) {
-			submenu.set({ open: false });
+			submenu.setKey("open", false);
 		}
 	});
 </script>
