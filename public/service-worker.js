@@ -1,4 +1,4 @@
-const VERSION = '0.0.15';
+const VERSION = '0.0.16';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -67,9 +67,6 @@ self.addEventListener('fetch', (event) => {
 		|| request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)\/m\//)
 	) {
 		event.respondWith(async function() {
-			const responsePreloaded = await preloadResponse;
-			if (responsePreloaded) return responsePreloaded;
-
 			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
 				trimCache(imagesCacheName, limits.images);
@@ -79,6 +76,9 @@ self.addEventListener('fetch', (event) => {
 			}).catch(async () => {
 				const responseFromCache = await caches.match(request);
 				if (responseFromCache) return responseFromCache;
+
+				const responsePreloaded = await preloadResponse;
+				if (responsePreloaded) return responsePreloaded;
 			})
 		}()); // end respondWith
 		return;
