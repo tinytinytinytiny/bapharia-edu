@@ -1,15 +1,15 @@
 @layer components {
 	.page-title {
+		aspect-ratio: 32 / 9;
 		display: grid;
-		place-items: center;
+		place-items: stretch;
 	}
 
 	.page-title__inner,
 	.page-title img {
-		aspect-ratio: 32 / 9;
 		border-radius: var(--border-radius);
-		grid-column: 1;
-		grid-row: 1;
+		grid-area: 1 / 1;
+		min-inline-size: 0;
 	}
 
 	.page-title__inner {
@@ -41,17 +41,9 @@
 
 	@container main (min-width: 58.375rem) {
 		.page-title {
-			align-items: stretch;
-			aspect-ratio: 32 / 9;
 			grid-template-columns: repeat(12, 1fr);
 			gap: var(--default-gutter);
-			justify-items: auto;
-		}
-
-		.page-title__inner,
-		.page-title img {
-			aspect-ratio: auto;
-			min-inline-size: 0;
+			justify-items: initial;
 		}
 
 		.page-title__inner {
@@ -63,8 +55,6 @@
 		.page-title img {
 			block-size: auto;
 			grid-column: 8 / -1;
-			position: initial;
-			z-index: initial;
 		}
 	}
 
