@@ -39,9 +39,9 @@
 
 	#root {
 		background-color: var(--color-surface-0);
-		min-height: 100%;
+		display: flow-root;
+		min-height: inherit;
 		min-width: 100%;
-		position: absolute;
 	}
 
 	.main-region {

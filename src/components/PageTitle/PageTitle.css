@@ -7,6 +7,7 @@
 
 	.page-title__inner,
 	.page-title img {
+		aspect-ratio: 32 / 9;
 		border-radius: var(--border-radius);
 		grid-area: 1 / 1;
 		min-inline-size: 0;
@@ -44,6 +45,11 @@
 			grid-template-columns: repeat(12, 1fr);
 			gap: var(--default-gutter);
 			justify-items: initial;
+		}
+
+		.page-title__inner,
+		.page-title img {
+			aspect-ratio: auto;
 		}
 
 		.page-title__inner {
