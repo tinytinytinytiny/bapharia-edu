@@ -1,64 +1,27 @@
-@layer base {
-	@container body (min-inline-size: 78rem) {
-		#root {
-			--heading-nav-width: calc(var(--space-5xl-rem) + var(--space-l-rem));
-		}
-	}
-}
-
 @layer components {
-	.heading-nav {
-		background-color: var(--color-surface-1);
-		border-radius: var(--border-radius);
-		inline-size: var(--paragraph-max-width);
-		max-inline-size: 100%;
-		padding: var(--space-s);
-	}
-
-	.heading-nav h2 {
-		font-size: var(--text-2);
-	}
-
-	.heading-nav__eyebrow,
-	.heading-nav__title {
-		display: block;
-	}
-
-	.heading-nav__eyebrow {
-		font-size: var(--text--1);
-		font-weight: 400;
-		letter-spacing: normal;
-		line-height: 1.25;
-	}
-
-	.heading-nav__title {
-		font-weight: 600;
-		letter-spacing: -0.0125em;
-		line-height: 1.067;
-		margin-block-start: var(--space-2xs-rem);
-	}
-
-	.heading-nav ul {
+	heading-nav ul {
+		list-style-type: '';
 		margin-block-start: var(--space-xs-rem);
+		padding: 0;
 	}
 
-	.heading-nav ul > li + li {
+	heading-nav ul > li + li {
 		margin-block-start: 0.75em;
 	}
 
-	.heading-nav ul li > ul {
+	heading-nav ul li > ul {
 		margin-block-start: 0.75em;
 		padding-inline-start: 1.5em;
 	}
 
 	@supports (block-size: 1lh) {
 
-		.heading-nav ul,
-		.heading-nav li {
+		heading-nav ul,
+		heading-nav li {
 			position: relative;
 		}
 
-		.heading-nav ul li > ul::before {
+		heading-nav ul li > ul::before {
 			background-color: var(--color-separator-weak);
 			content: '';
 			inline-size: 1px;
@@ -69,7 +32,7 @@
 		}
 	}
 
-	.heading-nav a {
+	heading-nav a {
 		@apply underline-on-hover;
 		color: var(--color-accent);
 		display: block;
@@ -79,46 +42,13 @@
 		--content-margin-start: calc(var(--text-5) * 1.25);
 	}
 
-	:where(.heading-nav) + .content-wrapper {
+	:where(heading-nav) + .content-wrapper {
 		margin-block-start: var(--content-margin-start);
 	}
 
-	@container body (min-inline-size: 46rem) {
-		.heading-nav {
-			padding-block: var(--content-padding-block);
-			padding-inline: var(--content-padding-inline);
-		}
-	}
-
-	@container body (min-inline-size: 78rem) {
-		.heading-nav {
-			background-color: transparent;
-			border-radius: 0;
-			flex: 1 0 var(--heading-nav-width);
-			font-size: 1rem;
-			margin-block: calc(-1 * var(--content-padding-block));
-			margin-inline: 0;
-			padding: 0;
-		}
-
-		.heading-nav > * {
-			display: block;
-			inset-block-start: 0;
-			margin-inline: -4px calc(-1 * var(--content-padding-inline) + 4px);
-			max-block-size: 100vh;
-			overflow-y: auto;
-			padding-block: var(--content-padding-block);
-			padding-inline: 4px;
-			position: sticky;
-		}
-
-		.heading-nav h2 {
+	@container toc style(--toc-variant: sidebar) {
+		heading-nav h2 {
 			color: var(--color-text-strong);
-			padding-inline-end: var(--content-padding-inline);
-		}
-
-		.heading-nav a {
-			padding-inline-end: var(--content-padding-inline);
 		}
 
 		.content-wrapper {

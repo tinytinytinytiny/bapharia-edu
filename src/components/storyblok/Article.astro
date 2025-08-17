@@ -7,7 +7,7 @@ import {
 import cloneDeep from "clone-deep";
 import articleResolver from "./article-resolver";
 import { slugify } from "@utils";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import ArticleTOCLayout from "@layouts/ArticleTOCLayout.astro";
 import ArticleTitle from "@components/PageTitle/ArticleTitle.astro";
 import ArticleNav from "@components/Article/ArticleNav.astro";
 import StoryblokImg from "@components/Image/StoryblokImg.astro";
@@ -49,11 +49,15 @@ const content = renderRichText(
 const headings = blok.content.content.filter((x) => x.type === "heading");
 ---
 
-<BaseLayout title={blok.title} storyblokAttributes={storyblokEditable(blok)}>
+<ArticleTOCLayout
+	title={blok.title}
+	storyblokAttributes={storyblokEditable(blok)}
+>
 	<ArticleTitle
 		title={blok.title}
 		author={blok.author}
 		lastUpdatedDate={lastUpdatedDate}
+		slot="title"
 	>
 		<StoryblokImg
 			slot="img"
@@ -62,15 +66,13 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 			sizes="95vw"
 		/>
 	</ArticleTitle>
+	<ArticleNav title={blok.title} headings={headings} slot="toc" />
 	<div class="content">
-		<div class="article">
-			<ArticleNav title={blok.title} headings={headings} />
-			<section class="content-wrapper stack" aria-label="Content">
-				<Fragment set:html={content} />
-			</section>
+		<div class="article content-wrapper stack">
+			<Fragment set:html={content} />
 		</div>
 	</div>
-</BaseLayout>
+</ArticleTOCLayout>
 
 <script>
 	import "@justinribeiro/lite-youtube";

@@ -7,7 +7,7 @@
 		--grid-min-item-size: 18.875rem;
 		--main-region-limit: 99.625rem;
 		--main-region-padding: var(--space-xs);
-		--paragraph-max-width: calc(var(--text-0) * 51);
+		--paragraph-max-width: calc(var(--text-0) * 48);
 	}
 
 	* {

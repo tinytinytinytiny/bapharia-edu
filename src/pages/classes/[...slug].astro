@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import ArticleTOCLayout from "@layouts/ArticleTOCLayout.astro";
 import PageTitle from "@components/PageTitle/PageTitle.astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 import {
@@ -28,135 +28,133 @@ try {
 }
 ---
 
-<BaseLayout
+<ArticleTOCLayout
 	title={t(`class.${name}`)}
 	storyblokAttributes={storyblokEditable(content)}
 >
-	<PageTitle title={t(`class.${name}`)} align="start">
+	<PageTitle title={t(`class.${name}`)} align="start" slot="title">
 		<Fragment set:html={renderRichText(content.description)} />
 	</PageTitle>
-	<div class="content">
-		<div class="article">
-			<HeadingNav title={t(`class.${name}`)}>
-				<ul class="list-none">
+	<HeadingNav title={t(`class.${name}`)} slot="toc">
+		<ul>
+			<li>
+				<a href="#overview">Overview</a>
+			</li>
+			<li>
+				<a href="#skills">Skills</a>
+			</li>
+			<li>
+				<ul>
 					<li>
-						<a href="#overview">Overview</a>
+						<a href="#base-actions">Base Actions</a>
 					</li>
 					<li>
-						<a href="#skills">Skills</a>
+						<a href="#tactical-skills">Tactical Skills</a>
 					</li>
 					<li>
-						<ul class="list-none">
-							<li>
-								<a href="#base-actions">Base Actions</a>
-							</li>
-							<li>
-								<a href="#tactical-skills">Tactical Skills</a>
-							</li>
-							<li>
-								<a href="#ultimate-skills">Ultimate Skills</a>
-							</li>
-							<li>
-								<a href="#base-abilities">Base Abilities</a>
-							</li>
-							<li>
-								<a href="#class-abilities">Class Abilities</a>
-							</li>
-						</ul>
+						<a href="#ultimate-skills">Ultimate Skills</a>
+					</li>
+					<li>
+						<a href="#base-abilities">Base Abilities</a>
+					</li>
+					<li>
+						<a href="#class-abilities">Class Abilities</a>
 					</li>
 				</ul>
-			</HeadingNav>
-			<section class="content-wrapper stack max-is-none" aria-label="Content">
-				<h2 id="overview">Overview</h2>
-				<Fragment set:html={renderRichText(content.overview)} />
-				<h2 id="skills">Skills</h2>
-					{
-						content.base_actions?.length > 0 && (
-								<h3
-									class="skill-category-name"
-									id="base-actions"
-								>
-									Base Actions
-								</h3>
-								<div class="stack stack-space-xs full-width">
-									{content.base_actions.map(
-										(skill, index) => (
-											<StoryblokComponent
-												blok={skill}
-												properties={index < 2}
-											/>
-										),
-									)}
-								</div>
-						)
-					}
-					{
-						content.tactical_skills?.length > 0 && (
-								<h3
-									class="skill-category-name"
-									id="tactical-skills"
-								>
-									Tactical Skills
-								</h3>
-								<div class="stack stack-space-xs full-width">
-									{content.tactical_skills.map((skill) => (
-										<StoryblokComponent blok={skill} />
-									))}
-								</div>
-						)
-					}
-					{
-						content.ultimate_skills?.length > 0 && (
-								<h3
-									class="skill-category-name"
-									id="ultimate-skills"
-								>
-									Ultimate Skills
-								</h3>
-								<div class="stack stack-space-xs full-width">
-									{content.ultimate_skills.map((skill) => (
-										<StoryblokComponent blok={skill} />
-									))}
-								</div>
-						)
-					}
-					{
-						content.base_abilities?.length > 0 && (
-								<h3
-									class="skill-category-name"
-									id="base-abilities"
-								>
-									Base Abilities
-								</h3>
-								<div class="stack stack-space-xs full-width">
-									{content.base_abilities.map((skill) => (
+			</li>
+		</ul>
+	</HeadingNav>
+	<div class="content">
+		<div class="article content-wrapper stack max-is-none" aria-label="Content">
+			<h2 id="overview">Overview</h2>
+			<Fragment set:html={renderRichText(content.overview)} />
+			<h2 id="skills">Skills</h2>
+				{
+					content.base_actions?.length > 0 && (
+							<h3
+								class="skill-category-name"
+								id="base-actions"
+							>
+								Base Actions
+							</h3>
+							<div class="stack stack-space-xs full-width">
+								{content.base_actions.map(
+									(skill, index) => (
 										<StoryblokComponent
 											blok={skill}
-											properties={false}
+											properties={index < 2}
 										/>
-									))}
-								</div>
-						)
-					}
-					{
-						content.class_abilities?.length > 0 && (
-								<h3
-									class="skill-category-name"
-									id="class-abilities"
-								>
-									Class Abilities
-								</h3>
-								<div class="stack stack-space-xs full-width">
-									{content.class_abilities.map((skill) => (
-										<StoryblokComponent
-											blok={skill}
-											properties={false}
-										/>
-									))}
-								</div>
-						)
-					}
-			</section>
+									),
+								)}
+							</div>
+					)
+				}
+				{
+					content.tactical_skills?.length > 0 && (
+							<h3
+								class="skill-category-name"
+								id="tactical-skills"
+							>
+								Tactical Skills
+							</h3>
+							<div class="stack stack-space-xs full-width">
+								{content.tactical_skills.map((skill) => (
+									<StoryblokComponent blok={skill} />
+								))}
+							</div>
+					)
+				}
+				{
+					content.ultimate_skills?.length > 0 && (
+							<h3
+								class="skill-category-name"
+								id="ultimate-skills"
+							>
+								Ultimate Skills
+							</h3>
+							<div class="stack stack-space-xs full-width">
+								{content.ultimate_skills.map((skill) => (
+									<StoryblokComponent blok={skill} />
+								))}
+							</div>
+					)
+				}
+				{
+					content.base_abilities?.length > 0 && (
+							<h3
+								class="skill-category-name"
+								id="base-abilities"
+							>
+								Base Abilities
+							</h3>
+							<div class="stack stack-space-xs full-width">
+								{content.base_abilities.map((skill) => (
+									<StoryblokComponent
+										blok={skill}
+										properties={false}
+									/>
+								))}
+							</div>
+					)
+				}
+				{
+					content.class_abilities?.length > 0 && (
+							<h3
+								class="skill-category-name"
+								id="class-abilities"
+							>
+								Class Abilities
+							</h3>
+							<div class="stack stack-space-xs full-width">
+								{content.class_abilities.map((skill) => (
+									<StoryblokComponent
+										blok={skill}
+										properties={false}
+									/>
+								))}
+							</div>
+					)
+				}
 		</div>
 	</div>
-</BaseLayout>
+</ArticleTOCLayout>

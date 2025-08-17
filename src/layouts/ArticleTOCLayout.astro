@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+const { title, storyblokAttributes = [], tocSide = "start" } = Astro.props;
+---
+
+<BaseLayout {title} {...storyblokAttributes}>
+	<slot name="title" />
+	<div class="layout-grid" data-toc-side="start">
+		<div class="toc-container">
+			<div class="toc-scroll-container">
+				<div class="toc">
+					<a
+						href="#content"
+						class="button flex mbe-xs visually-hidden-onblur"
+						data-size="s">Skip navigation</a
+					>
+					<slot name="toc" />
+				</div>
+			</div>
+		</div>
+		<section id="content" aria-label="Content">
+			<slot />
+		</section>
+	</div>
+</BaseLayout>
+
+<style>
+	.layout-grid {
+		align-items: start;
+		display: grid;
+		gap: calc(var(--text-5) * 1.25);
+		grid-auto-flow: column;
+	}
+
+	.toc-container,
+	[id="content"] {
+		grid-column: 1 / -1;
+	}
+
+	.toc-container {
+		--toc-variant: full;
+		border-radius: var(--border-radius);
+		background-color: var(--color-surface-1);
+		container: toc / inline-size;
+		overflow: clip;
+	}
+
+	.toc-scroll-container {
+		align-items: start;
+		display: grid;
+		gap: var(--space-xs);
+		padding: var(--space-s);
+	}
+
+	@container body (min-inline-size: 30rem) {
+		.layout-grid {
+			gap: var(--space-xs);
+		}
+
+		.toc-scroll-container {
+			background-color: var(--color-surface-0);
+			padding-block: var(--content-padding-block);
+			padding-inline: var(--content-padding-inline);
+		}
+	}
+
+	@container main (min-width: 69.25rem) {
+		.layout-grid {
+			grid-template-columns: minmax(var(--grid-min-item-size), 1fr) 4fr;
+		}
+
+		.layout-grid[data-toc-side="end"] {
+			grid-template-columns: 4fr minmax(var(--grid-min-item-size), 1fr);
+		}
+
+		.toc-container {
+			--toc-variant: sidebar;
+			inset-block-start: var(--space-xs);
+			grid-column: 1;
+			max-block-size: calc(100vb - var(--space-xs) * 2);
+			position: sticky;
+		}
+
+		.toc-scroll-container {
+			font-size: 1rem;
+			overflow-y: auto;
+			max-block-size: inherit;
+			padding: var(--space-s-l);
+		}
+
+		[id="content"] {
+			grid-column: 2;
+		}
+
+		[data-toc-side="end"] [id="content"] {
+			grid-column: 1;
+		}
+
+		[data-toc-side="end"] .toc-container {
+			grid-column: 2;
+		}
+	}
+</style>

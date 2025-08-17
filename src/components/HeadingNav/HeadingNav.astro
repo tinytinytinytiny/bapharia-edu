@@ -1,18 +1,41 @@
 ---
-const { title, class: className } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<nav class:list={["heading-nav", className]} aria-label="Table of Contents">
-	<heading-nav>
-		<h2>
-			<span class="heading-nav__eyebrow"
-				>On this page<span class="visually-hidden">:&nbsp;</span></span
-			>
-			{title && <span class="heading-nav__title">{title}</span>}
-		</h2>
-		<slot />
-	</heading-nav>
-</nav>
+<heading-nav role="navigation" aria-label="Table of Contents">
+	<h2>
+		<span class="heading-nav__eyebrow"
+			>On this page<span class="visually-hidden">:&nbsp;</span></span
+		>
+		{title && <span class="heading-nav__title">{title}</span>}
+	</h2>
+	<slot />
+</heading-nav>
+
+<style>
+	h2 {
+		font-size: var(--text-2);
+	}
+
+	.heading-nav__eyebrow,
+	.heading-nav__title {
+		display: block;
+	}
+
+	.heading-nav__eyebrow {
+		font-size: var(--text--1);
+		font-weight: 400;
+		letter-spacing: normal;
+		line-height: 1.25;
+	}
+
+	.heading-nav__title {
+		font-weight: 600;
+		letter-spacing: -0.0125em;
+		line-height: 1.067;
+		margin-block-start: var(--space-2xs-rem);
+	}
+</style>
 
 <script>
 	class HeadingNav extends HTMLElement {

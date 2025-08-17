@@ -19,9 +19,9 @@ export default defineConfig({
 			accessToken: env.STORYBLOK_TOKEN,
 			bridge: false,
 			components: {
-				article: 'storyblok/Article',
-				skill: 'storyblok/Skill',
-				classLink: 'storyblok/ClassLink'
+				article: 'components/storyblok/Article',
+				skill: 'components/storyblok/Skill',
+				classLink: 'components/storyblok/ClassLink'
 			},
 			apiOptions: { region: 'us' }
 		})

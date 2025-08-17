@@ -1,52 +1,29 @@
 @layer base {
-	#root {
-		--article-gutter: 0px;
-	}
-
 	:where(.article) li + li {
 		margin-block-start: 0.3125em;
-	}
-
-	@container body (min-inline-size: 78rem) {
-		#root {
-			--article-gutter: var(--space-l);
-		}
 	}
 }
 
 @layer components {
 	@container body (min-inline-size: 46rem) {
-		.article > .content-wrapper {
+		.article.content-wrapper {
 			display: grid;
 			grid-template-columns: minmax(0px, var(--paragraph-max-width)) 1fr;
 			max-inline-size: none;
 		}
 
-		.article > .content-wrapper > * {
+		.article.content-wrapper > * {
 			grid-column: 1;
 		}
 
-		.article > .content-wrapper > .full-width,
-		.article > .content-wrapper > h1,
-		.article > .content-wrapper > .h1,
-		.article > .content-wrapper > h2,
-		.article > .content-wrapper > .h2,
-		.article > .content-wrapper > h3,
-		.article > .content-wrapper > .h3 {
+		.article.content-wrapper > .full-width,
+		.article.content-wrapper > h1,
+		.article.content-wrapper > .h1,
+		.article.content-wrapper > h2,
+		.article.content-wrapper > .h2,
+		.article.content-wrapper > h3,
+		.article.content-wrapper > .h3 {
 			grid-column: 1 / -1;
-		}
-	}
-
-	@container body (min-inline-size: 78rem) {
-		.article {
-			display: flex;
-			flex-flow: row-reverse wrap;
-			column-gap: var(--article-gutter);
-			row-gap: calc(var(--article-gutter) + var(--content-padding-block));
-		}
-
-		.article > .content-wrapper {
-			flex: 999 1 42.75rem;
 		}
 	}
 }
