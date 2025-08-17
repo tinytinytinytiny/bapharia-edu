@@ -14,18 +14,27 @@ import Details from "@components/Details/Details.astro";
 const storyblokApi = useStoryblokApi();
 const slug = Astro.params.slug;
 const t = await useTranslations("en");
-let name;
-let content;
 
-try {
-	const { data } = await storyblokApi.get(`cdn/stories/classes/${slug}`, {
+export async function getStaticPaths() {
+	const storyblokApi = useStoryblokApi();
+	const { data } = await storyblokApi.get('cdn/stories/', {
+		starts_with: 'classes/',
+		content_type: 'class',
 		version: import.meta.env.DEV ? "draft" : "published",
 	});
-	name = data.story.content.ui_string;
-	content = data.story.content;
-} catch (error) {
-	return Astro.redirect("/404");
+	const stories = Object.values(data.stories);
+	return stories.map((story) => {
+		return {
+			params: { slug: story.slug }
+		};
+	});
 }
+
+const { data } = await storyblokApi.get(`cdn/stories/classes/${slug}`, {
+	version: import.meta.env.DEV ? "draft" : "published",
+});
+const name = data.story.content.ui_string;
+const content = data.story.content;
 ---
 
 <ArticleTOCLayout

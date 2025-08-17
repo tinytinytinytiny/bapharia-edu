@@ -26,7 +26,7 @@ export default defineConfig({
 			apiOptions: { region: 'us' }
 		})
 	],
-	output: "server",
+	output: "static",
 	// vite: {
 	// 	plugins: [basicSsl()],
 	// 	server: {

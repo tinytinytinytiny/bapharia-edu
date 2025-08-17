@@ -2,20 +2,29 @@
 import { useStoryblokApi, storyblokEditable } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
-const storyblokApi = useStoryblokApi();
-const slug = Astro.params.slug;
-let content;
-let lastUpdatedDate;
-
-try {
-	const { data } = await storyblokApi.get(`cdn/stories/guides/${slug}`, {
+export async function getStaticPaths() {
+	const storyblokApi = useStoryblokApi();
+	const { data } = await storyblokApi.get("cdn/stories/", {
+		starts_with: "guides/",
+		content_type: "article",
 		version: import.meta.env.DEV ? "draft" : "published",
 	});
-	content = data.story.content;
-	lastUpdatedDate = data.story.published_at || data.story.created_at;
-} catch (error) {
-	return Astro.redirect("/404");
+	const stories = Object.values(data.stories);
+	return stories.map((story) => {
+		return {
+			params: { slug: story.slug },
+		};
+	});
 }
+
+const storyblokApi = useStoryblokApi();
+const slug = Astro.params.slug;
+
+const { data } = await storyblokApi.get(`cdn/stories/guides/${slug}`, {
+	version: import.meta.env.DEV ? "draft" : "published",
+});
+const content = data.story.content;
+const lastUpdatedDate = data.story.published_at || data.story.created_at;
 ---
 
 <StoryblokComponent blok={content} lastUpdatedDate={lastUpdatedDate} />
