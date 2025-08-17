@@ -1,6 +1,5 @@
 <script>
 	import { submenu } from "./navStore.js";
-	import { listenKeys } from "nanostores";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
 	import ChevronRight from "@assets/icons/chevron-right.svg?raw";
 	import PanelLeft from "@assets/icons/panel-left.svg?raw";

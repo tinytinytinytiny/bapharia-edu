@@ -21,7 +21,7 @@
 		"astro": "^3.0.7",
 		"clone-deep": "^4.0.1",
 		"match-container": "github:teetotum/match-container",
-		"nanostores": "^0.9.1",
+		"nanostores": "^1.0.1",
 		"postcss-import": "^15.1.0",
 		"postcss-import-ext-glob": "^2.1.1",
 		"svelte": "^3.59.1",

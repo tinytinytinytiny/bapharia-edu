@@ -239,25 +239,23 @@ function isCurrentUrl(url) {
 
 	// submenu navigation
 	import { submenu } from "./navStore.js";
-	import { waitForDOMUpdate } from "@utils";
 
 	const rootElement = document.getElementById("root");
-	waitForDOMUpdate().then(() => {
-		submenu.listen((submenu) => {
-			if (submenu.open) {
-				rootElement.classList.add("submenu-expanded");
-			} else {
-				rootElement.classList.remove("submenu-expanded");
-				if (
-					submenu.id &&
-					document.activeElement.closest(`#${submenu.id}`)
-				) {
-					document
-						.querySelector(`[aria-controls="${submenu.id}"]`)
-						.focus();
-				}
+	submenu.listen((submenu, oldValue, changed) => {
+		if (changed !== "open") return;
+		if (submenu.open) {
+			rootElement.classList.add("submenu-expanded");
+		} else {
+			rootElement.classList.remove("submenu-expanded");
+			if (
+				submenu.id &&
+				document.activeElement.closest(`#${submenu.id}`)
+			) {
+				document
+					.querySelector(`[aria-controls="${submenu.id}"]`)
+					.focus();
 			}
-		});
+		}
 	});
 
 	// close menu if clicked outside or esc key is pressed
