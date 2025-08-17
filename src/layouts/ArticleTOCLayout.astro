@@ -5,7 +5,7 @@ const { title, storyblokAttributes = [], tocSide = "start" } = Astro.props;
 
 <BaseLayout {title} {...storyblokAttributes}>
 	<slot name="title" />
-	<div class="layout-grid" data-toc-side="start">
+	<div class="layout-grid" data-toc-side="end">
 		<div class="toc-container">
 			<div class="toc-scroll-container">
 				<div class="toc">
@@ -66,17 +66,17 @@ const { title, storyblokAttributes = [], tocSide = "start" } = Astro.props;
 
 	@container main (min-width: 69.25rem) {
 		.layout-grid {
-			grid-template-columns: minmax(var(--grid-min-item-size), 1fr) 4fr;
+			grid-template-columns: 4fr minmax(var(--grid-min-item-size), 1fr);
 		}
 
-		.layout-grid[data-toc-side="end"] {
-			grid-template-columns: 4fr minmax(var(--grid-min-item-size), 1fr);
+		.layout-grid[data-toc-side="start"] {
+			grid-template-columns: minmax(var(--grid-min-item-size), 1fr) 4fr;
 		}
 
 		.toc-container {
 			--toc-variant: sidebar;
 			inset-block-start: var(--space-xs);
-			grid-column: 1;
+			grid-column: 2;
 			max-block-size: calc(100vb - var(--space-xs) * 2);
 			position: sticky;
 		}
@@ -89,14 +89,14 @@ const { title, storyblokAttributes = [], tocSide = "start" } = Astro.props;
 		}
 
 		[id="content"] {
-			grid-column: 2;
-		}
-
-		[data-toc-side="end"] [id="content"] {
 			grid-column: 1;
 		}
 
-		[data-toc-side="end"] .toc-container {
+		[data-toc-side="start"] [id="content"] {
+			grid-column: 1;
+		}
+
+		[data-toc-side="start"] .toc-container {
 			grid-column: 2;
 		}
 	}
