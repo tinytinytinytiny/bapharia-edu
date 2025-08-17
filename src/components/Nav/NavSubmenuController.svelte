@@ -122,7 +122,8 @@
 			data-type="ghost"
 			type="button"
 			on:click={() => {
-				submenu.set({ open: false, id });
+				submenu.setKey("id", id);
+				submenu.setKey("open", false);
 			}}
 		>
 			<div class="icon">
