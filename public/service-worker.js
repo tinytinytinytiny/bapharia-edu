@@ -1,4 +1,4 @@
-const VERSION = '0.0.16';
+const VERSION = '0.0.17';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -103,7 +103,7 @@ self.addEventListener('fetch', (event) => {
 				const responsePreloaded = await preloadResponse;
 				if (responsePreloaded) return responsePreloaded;
 
-				return caches.match('offline.html');
+				return caches.match('/offline');
 			})
 		}()); // end respondWith
 		return;
