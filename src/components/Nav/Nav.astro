@@ -241,7 +241,7 @@ function isCurrentUrl(url) {
 	import { submenu } from "./navStore.js";
 
 	const rootElement = document.getElementById("root");
-	submenu.listen((submenu, oldValue, changed) => {
+	submenu.listen((submenu, _, changed) => {
 		if (changed !== "open") return;
 		if (submenu.open) {
 			rootElement.classList.add("submenu-expanded");

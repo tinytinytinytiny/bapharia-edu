@@ -41,7 +41,8 @@
 		});
 	});
 
-	submenu.listen((submenu) => {
+	submenu.listen((submenu, _, changed) => {
+		if (changed !== "open") return;
 		if (submenu.id === id && submenu.open) {
 			open();
 		} else {
