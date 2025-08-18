@@ -9,12 +9,12 @@ export default (component, blok) => {
 			const attributes = `srcset="${img.generateSrcset()}" sizes="${sizes}" src="${img.optimizedUrl}" alt="${blok.content.alt}" width="${img.width}" height="${img.height}" decoding="async" loading="lazy" crossorigin`;
 
 			if (blok.caption) {
-				return `<figure class="${(blok.fullWidth) ? 'full-width' : ''}">
+				return `<figure class="${(blok.fullWidth) ? 'full-width justify-self-center' : ''}">
 					<img class="rounded" ${attributes}>
 					<figcaption class="text--1 mbs-2xs">${blok.caption}</figcaption>
 				</figure>`;
 			}
-			return `<img class="figure rounded ${(blok.fullWidth) ? 'full-width' : ''}" ${attributes}>`;
+			return `<img class="figure rounded ${(blok.fullWidth) ? 'full-width justify-self-center' : ''}" ${attributes}>`;
 		case 'note':
 			const noteLabelId = crypto.randomUUID();
 			return `<aside class="note" data-style="${blok.title.toLowerCase()}" aria-labelledby="${noteLabelId}">
@@ -45,7 +45,7 @@ export default (component, blok) => {
 				</table>
 			</section>`;
 		case 'youtube':
-			return `<lite-youtube class="youtube figure full-width rounded" videoid="${blok.video.split('=')[1]}">
+			return `<lite-youtube class="youtube figure full-width justify-self-center rounded" videoid="${blok.video.split('=')[1]}">
 				<a href="https://youtube.com/watch?v=${blok.video.split('=')[1]}" class="lite-youtube-fallback" title="Play Video">
 					Watch on YouTube: ${blok.title}
 				</a>

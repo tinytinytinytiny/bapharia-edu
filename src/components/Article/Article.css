@@ -26,4 +26,24 @@
 			grid-column: 1 / -1;
 		}
 	}
+
+	/* 10 columns */
+	@container main (min-inline-size: 97.875rem) {
+		.article.content-wrapper {
+			grid-template-columns: 1fr minmax(0px, var(--paragraph-max-width)) 1fr;
+		}
+
+		.article.content-wrapper > * {
+			grid-column: 2;
+		}
+
+		.article.content-wrapper > h1,
+		.article.content-wrapper > .h1,
+		.article.content-wrapper > h2,
+		.article.content-wrapper > .h2,
+		.article.content-wrapper > h3,
+		.article.content-wrapper > .h3 {
+			grid-column-start: 2;
+		}
+	}
 }

@@ -5,9 +5,9 @@
 		--default-gutter: var(--space-xs);
 		--default-stack-space: 1.25em;
 		--grid-min-item-size: 18.875rem;
-		--main-region-limit: 99.625rem;
+		--main-region-limit: 117.625rem;
 		--main-region-padding: var(--space-xs);
-		--paragraph-max-width: calc(var(--text-0) * 48);
+		--paragraph-max-width: calc(var(--text-0) * 50);
 	}
 
 	* {

@@ -40,6 +40,7 @@
 		object-position: center;
 	}
 
+	/* 6 columns */
 	@container main (min-width: 58.375rem) {
 		.page-title {
 			grid-template-columns: repeat(12, 1fr);
@@ -64,6 +65,7 @@
 		}
 	}
 
+	/* 8 columns */
 	@container main (min-width: 78.875rem) {
 		.page-title {
 			grid-template-columns: 1fr 1fr;

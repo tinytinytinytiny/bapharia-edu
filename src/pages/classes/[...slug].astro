@@ -11,10 +11,6 @@ import { useTranslations } from "src/utils/i18n";
 import HeadingNav from "@components/HeadingNav/HeadingNav.astro";
 import Details from "@components/Details/Details.astro";
 
-const storyblokApi = useStoryblokApi();
-const slug = Astro.params.slug;
-const t = await useTranslations("en");
-
 export async function getStaticPaths() {
 	const storyblokApi = useStoryblokApi();
 	const { data } = await storyblokApi.get('cdn/stories/', {
@@ -29,6 +25,10 @@ export async function getStaticPaths() {
 		};
 	});
 }
+
+const storyblokApi = useStoryblokApi();
+const slug = Astro.params.slug;
+const t = await useTranslations("en");
 
 const { data } = await storyblokApi.get(`cdn/stories/classes/${slug}`, {
 	version: import.meta.env.DEV ? "draft" : "published",
@@ -86,7 +86,7 @@ const content = data.story.content;
 							>
 								Base Actions
 							</h3>
-							<div class="stack stack-space-xs full-width">
+							<div class="stack stack-space-xs">
 								{content.base_actions.map(
 									(skill, index) => (
 										<StoryblokComponent
@@ -106,7 +106,7 @@ const content = data.story.content;
 							>
 								Tactical Skills
 							</h3>
-							<div class="stack stack-space-xs full-width">
+							<div class="stack stack-space-xs">
 								{content.tactical_skills.map((skill) => (
 									<StoryblokComponent blok={skill} />
 								))}
@@ -121,7 +121,7 @@ const content = data.story.content;
 							>
 								Ultimate Skills
 							</h3>
-							<div class="stack stack-space-xs full-width">
+							<div class="stack stack-space-xs">
 								{content.ultimate_skills.map((skill) => (
 									<StoryblokComponent blok={skill} />
 								))}
@@ -136,7 +136,7 @@ const content = data.story.content;
 							>
 								Base Abilities
 							</h3>
-							<div class="stack stack-space-xs full-width">
+							<div class="stack stack-space-xs">
 								{content.base_abilities.map((skill) => (
 									<StoryblokComponent
 										blok={skill}
@@ -154,7 +154,7 @@ const content = data.story.content;
 							>
 								Class Abilities
 							</h3>
-							<div class="stack stack-space-xs full-width">
+							<div class="stack stack-space-xs">
 								{content.class_abilities.map((skill) => (
 									<StoryblokComponent
 										blok={skill}
