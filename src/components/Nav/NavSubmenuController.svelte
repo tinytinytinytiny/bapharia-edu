@@ -1,5 +1,4 @@
 <script>
-	import { submenuContainerQuery } from "./navStore.js";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
 	import ChevronRight from "@assets/icons/chevron-right.svg?raw";
 	import PanelLeft from "@assets/icons/panel-left.svg?raw";
@@ -19,57 +18,36 @@
 	onMount(() => {
 		mounted = true;
 
-		submenuRef
-			.closest(".primary-nav")
-			.addEventListener("submenutoggle", (event) => {
-				if (
-					event.detail.id === id &&
-					event.detail.newState === "open"
-				) {
-					open();
-				} else {
-					close();
-				}
-			});
+		const nav = submenuRef.closest(".primary-nav");
 
-		const isBetweenMinAndMaxBreakpoint = submenuContainerQuery.get();
+		nav.addEventListener("submenutoggle", (event) => {
+			if (event.detail.id === id && event.detail.newState === "open") {
+				open();
+			} else {
+				close();
+			}
+		});
+
+		const maxBreakPoint = nav.getAttribute("data-breakpoint-max");
+		const minBreakPoint = nav.getAttribute("data-breakpoint-min");
+		const isBetweenMinAndMaxBreakpoint = nav.matchContainer(
+			`body (min-inline-size: ${minBreakPoint}) and (max-inline-size: ${maxBreakPoint})`,
+		);
 		expanded = !isBetweenMinAndMaxBreakpoint.matches; // set aria-expanded
-		if (isBetweenMinAndMaxBreakpoint.matches) {
-			expanded = false;
-			submenuRef.dispatchEvent(
-				new CustomEvent("submenutoggle", {
-					bubbles: true,
-					detail: {
-						id,
-						newState: "closed",
-					},
-				}),
-			);
-		} else if (current) {
-			expanded = true;
-			submenuRef.dispatchEvent(
-				new CustomEvent("submenutoggle", {
-					bubbles: true,
-					detail: {
-						id,
-						newState: "open",
-					},
-				}),
-			);
-		}
 		isBetweenMinAndMaxBreakpoint.addEventListener("change", (event) => {
 			if (event.matches) {
+				const oldExpanded = expanded;
+				expanded = false;
 				submenuRef.dispatchEvent(
 					new CustomEvent("submenutoggle", {
 						bubbles: true,
 						detail: {
 							id,
 							newState: "closed",
-							oldState: expanded ? "open" : "closed",
+							oldState: oldExpanded ? "open" : "closed",
 						},
 					}),
 				);
-				expanded = false;
 			} else if (current) {
 				submenuRef.dispatchEvent(
 					new CustomEvent("submenutoggle", {

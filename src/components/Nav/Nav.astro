@@ -236,8 +236,6 @@ function isCurrentUrl(url) {
 	});
 
 	// submenu navigation
-	import { submenuContainerQuery } from "./navStore.js";
-
 	const rootElement = document.getElementById("root");
 	let openSubmenuId;
 
@@ -267,7 +265,6 @@ function isCurrentUrl(url) {
 	const isBetweenMinAndMaxBreakpoint = nav.matchContainer(
 		`body (min-inline-size: ${minBreakPoint}) and (max-inline-size: ${maxBreakPoint})`,
 	);
-	submenuContainerQuery.set(isBetweenMinAndMaxBreakpoint);
 
 	document.body.addEventListener("click", (event) => {
 		if (
