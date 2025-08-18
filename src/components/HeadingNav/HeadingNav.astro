@@ -1,20 +1,47 @@
 ---
+import Svg from "@jasikpark/astro-svg-loader";
+
 const { title } = Astro.props;
 ---
 
 <heading-nav role="navigation" aria-label="Table of Contents">
-	<h2>
-		<span class="heading-nav__eyebrow"
-			>On this page<span class="visually-hidden">:&nbsp;</span></span
+	<div class="heading-nav__header">
+		<h2>
+			<span class="heading-nav__eyebrow"
+				>On this page<span class="visually-hidden">:&nbsp;</span></span
+			>
+			{title && <span class="heading-nav__title">{title}</span>}
+		</h2>
+		<button
+			class="button icon-button heading-nav__button"
+			aria-expanded="false"
 		>
-		{title && <span class="heading-nav__title">{title}</span>}
-	</h2>
+			<span class="icon">
+				<span class="contents heading-nav__button__show-icon">
+					<Svg src={import("@assets/icons/plus.svg?raw")} />
+				</span>
+				<span class="contents heading-nav__button__hide-icon">
+					<Svg src={import("@assets/icons/minus.svg?raw")} />
+				</span>
+			</span>
+			<span>Show/Hide</span>
+		</button>
+	</div>
 	<slot />
 </heading-nav>
 
 <style>
+	.heading-nav__header {
+		align-items: center;
+		display: flex;
+		flex-flow: row wrap;
+		gap: var(--space-s-rem);
+		justify-content: space-between;
+	}
+
 	h2 {
-		font-size: var(--text-2);
+		flex-grow: 999;
+		flex-grow: calc(Infinity);
 	}
 
 	.heading-nav__eyebrow,
@@ -23,34 +50,104 @@ const { title } = Astro.props;
 	}
 
 	.heading-nav__eyebrow {
-		font-size: var(--text--1);
-		font-weight: 400;
+		font-size: var(--text-1);
 		letter-spacing: normal;
 		line-height: 1.25;
 	}
 
 	.heading-nav__title {
+		display: none;
 		font-weight: 600;
 		letter-spacing: -0.0125em;
-		line-height: 1.067;
-		margin-block-start: var(--space-2xs-rem);
+		line-height: 1;
+		margin-block-start: 0.4rem;
+	}
+
+	.heading-nav__button {
+		display: flex;
+		flex-grow: 1;
+		flex-shrink: 0;
+		margin: calc(-1 * var(--space-2xs-xs));
+	}
+
+	heading-nav:not(:state(open)) .heading-nav__button__hide-icon {
+		display: none;
+	}
+
+	heading-nav:state(open) .heading-nav__button__show-icon {
+		display: none;
+	}
+
+	@container toc style(--toc-variant: sidebar) {
+		.heading-nav__title {
+			display: block;
+		}
+
+		.heading-nav__eyebrow {
+			font-size: var(--text--1);
+			font-weight: 400;
+		}
+
+		.heading-nav__button {
+			display: none;
+		}
 	}
 </style>
 
 <script>
 	class HeadingNav extends HTMLElement {
+		#controller;
+		#toggleButton;
+
 		constructor() {
 			super();
-			this.addEventListener("click", (event) => {
-				const id = event.target.closest("a")?.href.split("#")[1];
-				if (document.getElementById(id)) {
-					const h = document.getElementById(id);
-					if (h.closest("details")) {
-						h.closest("details").open = true;
-					}
-				}
-			});
+			this._internals = this.attachInternals();
 		}
+
+		connectedCallback() {
+			this.#controller = new AbortController();
+			this.#toggleButton = this.querySelector(".heading-nav__button");
+
+			this.addEventListener("click", this.#openDetailsOnLinkClick, {
+				signal: this.#controller.signal,
+			});
+
+			this.#toggleButton.addEventListener(
+				"click",
+				() => {
+					this.open = !this.open;
+				},
+				{ signal: this.#controller.signal },
+			);
+		}
+
+		disconnectedCallback() {
+			this.#controller.abort();
+		}
+
+		get open() {
+			return this._internals.states.has("open");
+		}
+
+		set open(flag) {
+			if (flag) {
+				this._internals.states.add("open");
+				this.#toggleButton.setAttribute("aria-expanded", "true");
+			} else {
+				this._internals.states.delete("open");
+				this.#toggleButton.setAttribute("aria-expanded", "false");
+			}
+		}
+
+		#openDetailsOnLinkClick = (event) => {
+			const id = event.target.closest("a")?.href.split("#")[1];
+			if (document.getElementById(id)) {
+				const h = document.getElementById(id);
+				if (h.closest("details")) {
+					h.closest("details").open = true;
+				}
+			}
+		};
 	}
 
 	customElements.define("heading-nav", HeadingNav);

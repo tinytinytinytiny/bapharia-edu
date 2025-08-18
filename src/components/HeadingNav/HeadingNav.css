@@ -1,8 +1,13 @@
 @layer components {
 	heading-nav ul {
+		display: none;
 		list-style-type: '';
-		margin-block-start: var(--space-xs-rem);
+		margin-block-start: 1em;
 		padding: 0;
+	}
+
+	heading-nav:state(open) ul {
+		display: block;
 	}
 
 	heading-nav ul > li + li {
@@ -38,6 +43,32 @@
 		display: block;
 	}
 
+	@media (prefers-reduced-motion: no-preference) {
+		@supports (interpolate-size: allow-keywords) {
+			heading-nav ul {
+				block-size: 0;
+				opacity: 0;
+				interpolate-size: allow-keywords;
+				transition:
+					block-size 0.2s ease-in,
+					opacity 0.2s ease-in,
+					display 0.2s ease-in allow-discrete;
+			}
+
+			heading-nav:state(open) ul {
+				block-size: auto;
+				opacity: 1;
+			}
+
+			@starting-style {
+				heading-nav:state(open) ul {
+					block-size: 0;
+					opacity: 0;
+				}
+			}
+		}
+	}
+
 	.content-wrapper {
 		--content-margin-start: calc(var(--text-5) * 1.25);
 	}
@@ -49,6 +80,13 @@
 	@container toc style(--toc-variant: sidebar) {
 		heading-nav h2 {
 			color: var(--color-text-strong);
+		}
+
+		heading-nav ul {
+			display: block;
+			block-size: auto;
+			margin-block-start: 1.25em;
+			opacity: 1;
 		}
 
 		.content-wrapper {

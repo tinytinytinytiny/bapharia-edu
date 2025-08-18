@@ -39,17 +39,20 @@ const { title, storyblokAttributes = [], tocSide = "start" } = Astro.props;
 
 	.toc-container {
 		--toc-variant: full;
-		border-radius: var(--border-radius);
-		background-color: var(--color-surface-1);
 		container: toc / inline-size;
-		overflow: clip;
 	}
 
 	.toc-scroll-container {
 		align-items: start;
+		background-color: var(--color-surface-1);
+		border-radius: var(--border-radius);
 		display: grid;
 		gap: var(--space-xs);
 		padding: var(--space-s);
+	}
+
+	[id="content"] {
+		container: content / inline-size;
 	}
 
 	@container body (min-inline-size: 30rem) {
