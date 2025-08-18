@@ -16,13 +16,7 @@
 			grid-column: 1;
 		}
 
-		.article.content-wrapper > .full-width,
-		.article.content-wrapper > h1,
-		.article.content-wrapper > .h1,
-		.article.content-wrapper > h2,
-		.article.content-wrapper > .h2,
-		.article.content-wrapper > h3,
-		.article.content-wrapper > .h3 {
+		.article.content-wrapper > .full-width {
 			grid-column: 1 / -1;
 		}
 	}
@@ -35,15 +29,6 @@
 
 		.article.content-wrapper > * {
 			grid-column: 2;
-		}
-
-		.article.content-wrapper > h1,
-		.article.content-wrapper > .h1,
-		.article.content-wrapper > h2,
-		.article.content-wrapper > .h2,
-		.article.content-wrapper > h3,
-		.article.content-wrapper > .h3 {
-			grid-column-start: 2;
 		}
 	}
 }
