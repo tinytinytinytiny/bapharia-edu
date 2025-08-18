@@ -93,11 +93,11 @@ const { title, storyblokAttributes = [], tocSide = "start" } = Astro.props;
 			grid-column: 1;
 		}
 
-		[data-toc-side="start"] [id="content"] {
+		[data-toc-side="start"] .toc-container {
 			grid-column: 1;
 		}
 
-		[data-toc-side="start"] .toc-container {
+		[data-toc-side="start"] [id="content"] {
 			grid-column: 2;
 		}
 	}

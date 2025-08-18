@@ -12,6 +12,7 @@ const rootPathName = "/" + Astro.url.pathname.split("/")[1];
 const isSubmenuOpen = Boolean(
 	navExpandedRoutes.find((x) => x.url === rootPathName),
 );
+const currentYear = new Date().getFullYear();
 ---
 
 <html lang="en">
@@ -68,14 +69,39 @@ const isSubmenuOpen = Boolean(
 					</div>
 				</div> -->
 			</header>
-			<div class="main-region stack stack-space-xs">
+			<div class="main-region">
 				<main class="stack stack-space-xs" {...storyblokAttributes}>
 					<slot />
 				</main>
 			</div>
+			<footer>
+				<div>Copyright © 2023–{currentYear}</div>
+				<div>Temporary footer</div>
+			</footer>
 		</div>
 	</body>
 </html>
+
+<style>
+	footer {
+		border-block-start: 1px solid var(--color-separator-weak);
+		font-size: var(--text--1);
+		margin-block: var(--space-l-rem);
+		padding-block-start: var(--space-l-rem);
+		padding-inline-start: calc(
+			var(--sidebar-width) + var(--sidebar-content-offset)
+		);
+		padding-inline-end: var(--sidebar-content-offset);
+		text-align: center;
+	}
+
+	@container body (min-inline-size: 30rem) {
+		footer {
+			border: none;
+			padding-block-start: 0;
+		}
+	}
+</style>
 
 <script is:inline>
 	document.body.addEventListener(

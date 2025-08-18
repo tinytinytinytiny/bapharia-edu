@@ -61,7 +61,6 @@
 
 	.content {
 		border-radius: var(--border-radius);
-		padding-block: 0 var(--content-padding-block);
 		padding-inline: var(--content-padding-inline);
 	}
 
@@ -91,7 +90,7 @@
 
 		.content {
 			background-color: var(--color-surface-0);
-			padding-block-start: var(--content-padding-block);
+			padding-block: var(--content-padding-block);
 		}
 	}
 
