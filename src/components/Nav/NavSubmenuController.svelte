@@ -38,7 +38,7 @@
 			if (event.matches) {
 				const oldExpanded = expanded;
 				expanded = false;
-				submenuRef.dispatchEvent(
+				nav.dispatchEvent(
 					new CustomEvent("submenutoggle", {
 						bubbles: true,
 						detail: {
@@ -49,7 +49,7 @@
 					}),
 				);
 			} else if (current) {
-				submenuRef.dispatchEvent(
+				nav.dispatchEvent(
 					new CustomEvent("submenutoggle", {
 						bubbles: true,
 						detail: {
