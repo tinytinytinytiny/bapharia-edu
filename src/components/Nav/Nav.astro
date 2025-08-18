@@ -239,19 +239,22 @@ function isCurrentUrl(url) {
 	import { submenu } from "./navStore.js";
 
 	const rootElement = document.getElementById("root");
-	submenu.listen((submenu, _, changed) => {
-		if (changed !== "open") return;
-		if (submenu.open) {
+	let openSubmenuId;
+
+	document.documentElement.addEventListener("submenutoggle", (event) => {
+		if (event.detail.newState === "open") {
 			rootElement.classList.add("submenu-expanded");
+			if (event.detail.id) openSubmenuId = event.detail.id;
 		} else {
 			rootElement.classList.remove("submenu-expanded");
 			if (
-				submenu.id &&
-				document.activeElement.closest(`#${submenu.id}`)
+				openSubmenuId &&
+				document.activeElement.closest(`#${openSubmenuId}`)
 			) {
 				document
-					.querySelector(`[aria-controls="${submenu.id}"]`)
+					.querySelector(`[aria-controls="${openSubmenuId}"]`)
 					.focus();
+				openSubmenuId = null;
 			}
 		}
 	});
@@ -271,13 +274,27 @@ function isCurrentUrl(url) {
 			!event.target.closest(".nav-menu") &&
 			isBetweenMinAndMaxBreakpoint.matches
 		) {
-			submenu.setKey("open", false);
+			nav.dispatchEvent(
+				new CustomEvent("submenutoggle", {
+					bubbles: true,
+					detail: {
+						newState: "closed",
+					},
+				}),
+			);
 		}
 	});
 
 	document.addEventListener("keydown", (event) => {
 		if (event.key === "Escape" && isBetweenMinAndMaxBreakpoint.matches) {
-			submenu.setKey("open", false);
+			nav.dispatchEvent(
+				new CustomEvent("submenutoggle", {
+					bubbles: true,
+					detail: {
+						newState: "closed",
+					},
+				}),
+			);
 		}
 	});
 </script>

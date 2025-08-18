@@ -14,49 +14,95 @@
 	let expanded = Boolean(current);
 	let interacted = false;
 	let mounted;
+	let submenuRef;
 
 	onMount(() => {
 		mounted = true;
+
+		document.documentElement.addEventListener("submenutoggle", (event) => {
+			if (event.detail.id === id && event.detail.newState === "open") {
+				open();
+			} else {
+				close();
+			}
+		});
 
 		const isBetweenMinAndMaxBreakpoint = submenu.get().containerQuery;
 		expanded = !isBetweenMinAndMaxBreakpoint.matches; // set aria-expanded
 		if (isBetweenMinAndMaxBreakpoint.matches) {
 			expanded = false;
-			submenu.setKey("id", id);
-			submenu.setKey("open", false);
+			submenuRef.dispatchEvent(
+				new CustomEvent("submenutoggle", {
+					bubbles: true,
+					detail: {
+						id,
+						newState: "closed",
+					},
+				}),
+			);
 		} else if (current) {
 			expanded = true;
-			submenu.setKey("id", id);
-			submenu.setKey("open", true);
+			submenuRef.dispatchEvent(
+				new CustomEvent("submenutoggle", {
+					bubbles: true,
+					detail: {
+						id,
+						newState: "open",
+					},
+				}),
+			);
 		}
 		isBetweenMinAndMaxBreakpoint.addEventListener("change", (event) => {
 			if (event.matches) {
+				submenuRef.dispatchEvent(
+					new CustomEvent("submenutoggle", {
+						bubbles: true,
+						detail: {
+							id,
+							newState: "closed",
+							oldState: expanded ? "open" : "closed",
+						},
+					}),
+				);
 				expanded = false;
-				submenu.setKey("id", id);
-				submenu.setKey("open", false);
 			} else if (current) {
-				submenu.setKey("id", id);
-				submenu.setKey("open", true);
+				submenuRef.dispatchEvent(
+					new CustomEvent("submenutoggle", {
+						bubbles: true,
+						detail: {
+							id,
+							newState: "open",
+							oldState: expanded ? "open" : "closed",
+						},
+					}),
+				);
 			}
 		});
 	});
 
-	submenu.listen((submenu, _, changed) => {
-		if (changed !== "open") return;
-		if (submenu.id === id && submenu.open) {
-			open();
-		} else {
-			close();
-		}
-	});
-
-	function toggle() {
+	function toggle(event) {
 		if (expanded) {
-			submenu.setKey("id", id);
-			submenu.setKey("open", false);
+			event.target.dispatchEvent(
+				new CustomEvent("submenutoggle", {
+					bubbles: true,
+					detail: {
+						id,
+						newState: "closed",
+						oldState: "open",
+					},
+				}),
+			);
 		} else {
-			submenu.setKey("id", id);
-			submenu.setKey("open", true);
+			event.target.dispatchEvent(
+				new CustomEvent("submenutoggle", {
+					bubbles: true,
+					detail: {
+						id,
+						newState: "open",
+						oldState: "closed",
+					},
+				}),
+			);
 		}
 	}
 
@@ -113,7 +159,7 @@
 	</a>
 {/if}
 <!-- submenu container -->
-<div {id} class="nav-submenu">
+<div {id} class="nav-submenu" bind:this={submenuRef}>
 	<!-- close button -->
 	<div class="closer-container hidden @md/body:block">
 		<button
@@ -122,9 +168,17 @@
 			data-size="s"
 			data-type="ghost"
 			type="button"
-			on:click={() => {
-				submenu.setKey("id", id);
-				submenu.setKey("open", false);
+			on:click={(event) => {
+				event.target.dispatchEvent(
+					new CustomEvent("submenutoggle", {
+						bubbles: true,
+						detail: {
+							id,
+							newState: "closed",
+							oldState: "open",
+						},
+					}),
+				);
 			}}
 		>
 			<div class="icon">
