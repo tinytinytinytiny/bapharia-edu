@@ -43,8 +43,8 @@ const { name, characterClass, level } = Astro.props;
 		transform: translateY(2px);
 	}
 
-	summary,
-	details[open] summary {
+	summary.button,
+	[open] summary.button {
 		--button-background: transparent;
 		--button-hover-background: var(--color-surface-2);
 		--button-active-background: var(--color-surface-3);

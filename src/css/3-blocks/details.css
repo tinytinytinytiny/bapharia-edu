@@ -13,7 +13,7 @@
 		list-style: none;
 	}
 
-	summary.button {
+	[open] summary.button {
 		--button-background: var(--color-accent);
 		--button-hover-background: var(--color-accent-light);
 		--button-active-background: var(--color-accent-dark);
