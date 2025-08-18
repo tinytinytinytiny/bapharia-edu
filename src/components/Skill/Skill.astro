@@ -53,12 +53,6 @@ const { name, characterClass, level } = Astro.props;
 		--button-padding-inline: calc(var(--space-s) - 2px);
 	}
 
-	summary:focus {
-		border-color: var(--color-text-inverted);
-		outline: 3px solid var(--color-focus-ring);
-		outline-offset: 0;
-	}
-
 	.skill-title {
 		gap: var(--space-xs-s);
 	}
@@ -76,13 +70,13 @@ const { name, characterClass, level } = Astro.props;
 
 	.skill-content {
 		--sidebar-target-width: 12rem;
-		--sidebar-content-min-width: 41.5ch;
+		--sidebar-content-min-width: var(--paragraph-max-width);
 		container: skill-content / inline-size;
 		align-items: stretch;
 		flex-direction: row-reverse;
 		gap: var(--space-s);
 		padding: var(--space-s);
-		padding-block-start: var(--space-2xs);
+		padding-block-start: var(--space-3xs);
 	}
 
 	.skill-properties-container {

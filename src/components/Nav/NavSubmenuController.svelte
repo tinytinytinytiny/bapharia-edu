@@ -1,5 +1,5 @@
 <script>
-	import { submenu } from "./navStore.js";
+	import { submenuContainerQuery } from "./navStore.js";
 	import ChevronDown from "@assets/icons/chevron-down.svg?raw";
 	import ChevronRight from "@assets/icons/chevron-right.svg?raw";
 	import PanelLeft from "@assets/icons/panel-left.svg?raw";
@@ -19,15 +19,20 @@
 	onMount(() => {
 		mounted = true;
 
-		document.documentElement.addEventListener("submenutoggle", (event) => {
-			if (event.detail.id === id && event.detail.newState === "open") {
-				open();
-			} else {
-				close();
-			}
-		});
+		submenuRef
+			.closest(".primary-nav")
+			.addEventListener("submenutoggle", (event) => {
+				if (
+					event.detail.id === id &&
+					event.detail.newState === "open"
+				) {
+					open();
+				} else {
+					close();
+				}
+			});
 
-		const isBetweenMinAndMaxBreakpoint = submenu.get().containerQuery;
+		const isBetweenMinAndMaxBreakpoint = submenuContainerQuery.get();
 		expanded = !isBetweenMinAndMaxBreakpoint.matches; // set aria-expanded
 		if (isBetweenMinAndMaxBreakpoint.matches) {
 			expanded = false;

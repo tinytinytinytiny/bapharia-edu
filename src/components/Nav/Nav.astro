@@ -236,12 +236,12 @@ function isCurrentUrl(url) {
 	});
 
 	// submenu navigation
-	import { submenu } from "./navStore.js";
+	import { submenuContainerQuery } from "./navStore.js";
 
 	const rootElement = document.getElementById("root");
 	let openSubmenuId;
 
-	document.documentElement.addEventListener("submenutoggle", (event) => {
+	nav.addEventListener("submenutoggle", (event) => {
 		if (event.detail.newState === "open") {
 			rootElement.classList.add("submenu-expanded");
 			if (event.detail.id) openSubmenuId = event.detail.id;
@@ -267,7 +267,7 @@ function isCurrentUrl(url) {
 	const isBetweenMinAndMaxBreakpoint = nav.matchContainer(
 		`body (min-inline-size: ${minBreakPoint}) and (max-inline-size: ${maxBreakPoint})`,
 	);
-	submenu.setKey("containerQuery", isBetweenMinAndMaxBreakpoint);
+	submenuContainerQuery.set(isBetweenMinAndMaxBreakpoint);
 
 	document.body.addEventListener("click", (event) => {
 		if (

@@ -2,7 +2,6 @@
 
 	summary,
 	summary.button {
-		--button-padding-inline: var(--space-s);
 		align-items: center;
 		display: flex;
 		flex-wrap: nowrap;
@@ -14,20 +13,22 @@
 		list-style: none;
 	}
 
-	summary:focus {
-		@apply focus-ring;
-	}
-
-	.icon.details-open-icon {
-		display: none;
-	}
-
-	details[open] summary {
+	summary.button {
 		--button-background: var(--color-accent);
 		--button-hover-background: var(--color-accent-light);
 		--button-active-background: var(--color-accent-dark);
 		--button-color: var(--color-text-inverted);
 		border-color: transparent;
+	}
+
+	summary.button:focus {
+		border-color: var(--color-focus-ring);
+		outline: 2px solid var(--color-text-inverted);
+		outline-offset: -4px;
+	}
+
+	.icon.details-open-icon {
+		display: none;
 	}
 
 	details[open] .details-open-icon {

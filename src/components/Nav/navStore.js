@@ -1,8 +1,3 @@
-import { map } from 'nanostores';
+import { atom } from 'nanostores';
 
-// @TODO: remove open and id keys
-export const submenu = map({
-	open: false,
-	id: undefined,
-	containerQuery: undefined
-});
+export const submenuContainerQuery = atom();
