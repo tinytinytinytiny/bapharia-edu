@@ -81,8 +81,13 @@
 		max-inline-size: var(--paragraph-max-width);
 	}
 
+	ol {
+		padding-inline-start: 1.2em;
+	}
+
 	ul {
-		list-style-type: '• ';
+		list-style-type: '• ';
+		padding-inline-start: 0.95em;
 	}
 
 	.list-none {

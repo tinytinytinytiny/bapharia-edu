@@ -2,9 +2,8 @@
 import "tiny-css-reset";
 import "../css/global.css";
 import navigationData from "@data/navigation";
+import Svg from "@jasikpark/astro-svg-loader";
 import Nav from "@components/Nav/Nav.astro";
-// import LanguageSelect from "@components/LanguageSelect/LanguageSelect.astro";
-// import JSTTime from "@components/JSTTime/JSTTime.astro";
 
 const { title, storyblokAttributes = [] } = Astro.props;
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
@@ -58,17 +57,6 @@ const currentYear = new Date().getFullYear();
 			<div class="contents" aria-owns="main-skip-link"></div>
 			<header>
 				<Nav />
-				<!-- <div class="main-region pbe-0 hidden @md/body:grid">
-					<div class="spread">
-						<JSTTime />
-						<nav
-							aria-labelledby="language-select-label-1"
-							aria-describedby="language-select-description-1"
-						>
-							<LanguageSelect />
-						</nav>
-					</div>
-				</div> -->
 			</header>
 			<div class="main-region">
 				<main
@@ -88,8 +76,12 @@ const currentYear = new Date().getFullYear();
 				</main>
 			</div>
 			<footer>
-				<div>Copyright © 2023–{currentYear}</div>
-				<div>Temporary footer</div>
+				<div class="flex justify-center">
+					<Svg src={import("@assets/logo vertical.svg?raw")} />
+				</div>
+				<p class="max-is-none text--1 text-center">
+					Copyright © 2023–{currentYear}
+				</p>
 			</footer>
 		</div>
 	</body>
@@ -106,15 +98,28 @@ const currentYear = new Date().getFullYear();
 	}
 
 	footer {
+		align-items: center;
 		border-block-start: 1px solid var(--color-separator-weak);
-		font-size: var(--text--1);
+		display: flex;
+		flex-direction: column;
 		margin-block: var(--space-l-rem);
 		padding-block-start: var(--space-l-rem);
 		padding-inline-start: calc(
 			var(--sidebar-width) + var(--sidebar-content-offset)
 		);
 		padding-inline-end: var(--sidebar-content-offset);
-		text-align: center;
+	}
+
+	.footer-links {
+		column-gap: var(--space-xl-rem);
+		display: flex;
+		flex-flow: row wrap;
+		font-size: 1rem;
+		row-gap: var(--space-s-rem);
+	}
+
+	.footer-links a {
+		color: var(--color-text-regular);
 	}
 
 	@container body (min-inline-size: 30rem) {
