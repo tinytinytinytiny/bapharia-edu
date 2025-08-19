@@ -1,4 +1,8 @@
 @layer components {
+	heading-nav {
+		font-size: var(--text-0);
+	}
+
 	heading-nav ul {
 		display: none;
 		list-style-type: '';

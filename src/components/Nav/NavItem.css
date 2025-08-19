@@ -135,7 +135,6 @@
 			height: 100vh;
 			height: 100lvh;
 			flex-flow: column nowrap;
-			font-size: 1rem;
 			inset-inline-start: 0;
 			inline-size: calc(var(--sidebar-submenu-width) + var(--sidebar-width));
 			margin-block-start: 0;

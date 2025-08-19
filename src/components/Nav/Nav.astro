@@ -95,6 +95,7 @@ function isCurrentUrl(url) {
 
 <style>
 	.primary-nav {
+		container: primary-nav / inline-size;
 		inset-inline: 0;
 		position: fixed;
 		top: 0;
@@ -146,10 +147,6 @@ function isCurrentUrl(url) {
 	}
 
 	@container body (min-inline-size: 46rem) {
-		.primary-nav {
-			--size: "md";
-		}
-
 		.primary-nav,
 		.primary-nav.open {
 			height: 100vh;
@@ -194,12 +191,6 @@ function isCurrentUrl(url) {
 
 		.nav-menu-list {
 			--stack-space: 0;
-		}
-	}
-
-	@container body (min-inline-size: 94rem) {
-		.primary-nav {
-			--size: "2xl";
 		}
 	}
 </style>
