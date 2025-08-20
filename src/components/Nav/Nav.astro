@@ -202,17 +202,26 @@ function isCurrentUrl(url) {
 	const navToggle = document.querySelector(".nav-toggle");
 	let expanded = JSON.parse(navToggle.getAttribute("aria-expanded"));
 
-	const mdBreakpoint = nav.matchContainer(
-		`body (min-inline-size: ${nav.getAttribute("data-breakpoint-min")})`,
-	);
-	mdBreakpoint.addEventListener("change", (event) => {
-		if (event.matches) {
-			expanded = false;
-			nav.classList.remove("open");
-			document.documentElement.classList.remove("fixed-overlay-visible");
-			navToggle.setAttribute("aria-expanded", expanded);
+	const navToggleObserver = new ResizeObserver((entries) => {
+		for (const entry of entries) {
+			let width;
+			if (entry.contentBoxSize) {
+				width = entry.contentBoxSize[0].inlineSize;
+			} else {
+				width = entry.contentRect.width;
+			}
+			if (!width) {
+				expanded = false;
+				nav.classList.remove("open");
+				document.documentElement.classList.remove(
+					"fixed-overlay-visible",
+				);
+				navToggle.setAttribute("aria-expanded", expanded);
+			}
 		}
 	});
+
+	navToggleObserver.observe(navToggle);
 
 	navToggle.addEventListener("click", () => {
 		expanded = !expanded;

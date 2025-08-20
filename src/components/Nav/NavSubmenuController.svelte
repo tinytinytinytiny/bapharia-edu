@@ -36,18 +36,7 @@
 		expanded = !isBetweenMinAndMaxBreakpoint.matches; // set aria-expanded
 		isBetweenMinAndMaxBreakpoint.addEventListener("change", (event) => {
 			if (event.matches) {
-				const oldExpanded = expanded;
 				expanded = false;
-				nav.dispatchEvent(
-					new CustomEvent("submenutoggle", {
-						bubbles: true,
-						detail: {
-							id,
-							newState: "closed",
-							oldState: oldExpanded ? "open" : "closed",
-						},
-					}),
-				);
 			} else if (current) {
 				nav.dispatchEvent(
 					new CustomEvent("submenutoggle", {
