@@ -228,7 +228,15 @@ function isCurrentUrl(url) {
 
 	// submenu navigation
 	const rootElement = document.getElementById("root");
-	let openSubmenuId;
+	let openSubmenuId = getOpenSubmenuId();
+
+	function getOpenSubmenuId() {
+		const submenu = nav.querySelector(
+			'.nav-item__link[aria-current="page"][aria-expanded="true"] + .nav-submenu',
+		);
+		if (submenu) return submenu.id;
+		return null;
+	}
 
 	nav.addEventListener("submenutoggle", (event) => {
 		if (event.detail.newState === "open") {
@@ -236,14 +244,29 @@ function isCurrentUrl(url) {
 			if (event.detail.id) openSubmenuId = event.detail.id;
 		} else {
 			rootElement.classList.remove("submenu-expanded");
+			/**
+			 * need to focus the submenu's toggle button if the overlaying side
+			 * sheet variant is closed while the activeElement is a child of it.
+			 * if the event doesn't specify an id to close, the toggle button of
+			 * the currently open submenu is focused
+			 */
+			const closingSubmenuId = event.detail.id || openSubmenuId;
 			if (
-				openSubmenuId &&
-				document.activeElement.closest(`#${openSubmenuId}`)
+				closingSubmenuId &&
+				document.activeElement.closest(`#${closingSubmenuId}`)
 			) {
 				document
-					.querySelector(`[aria-controls="${openSubmenuId}"]`)
+					.querySelector(`[aria-controls="${closingSubmenuId}"]`)
 					.focus();
-				openSubmenuId = null;
+				/**
+				 * if the id specified by the event detail equals the id of the
+				 * currently open submenu, set openSubmenuId to null
+				 * if there is no id specified, treat the event as a dismiss-all
+				 * signal and set openSubmenuId to null
+				 */
+				if (openSubmenuId === event.detail.id || !event.detail.id) {
+					openSubmenuId = null;
+				}
 			}
 		}
 	});
