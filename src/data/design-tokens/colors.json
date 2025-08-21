@@ -9,40 +9,40 @@
 		}
 	},
 	"secondary": {
-		"DEFAULT": "oklch(40% 0.08 175)",
+		"DEFAULT": "oklch(70% 0.1 175)",
 		"surface": "oklch(92% 0.05 175)",
 		"on-dark": "oklch(90% 0.12 175)"
 	},
 	"alert": {
-		"DEFAULT": "oklch(45% 0.09 85)",
-		"surface": "oklch(92% 0.08 85)"
+		"DEFAULT": "oklch(45% 0.09 73)",
+		"surface": "oklch(92% 0.08 73)"
 	},
-	"box-shadow": "oklch(30% 0.06 85 / 10%)",
+	"box-shadow": "oklch(30% 0.06 73 / 10%)",
 	"focus-ring": "oklch(60% 0.15 253 / 90%)",
 	"scrim": {
-		"linear": "linear-gradient(90deg in oklch, oklch(20% 0.06 253 / 90%), oklch(20% 0.03 204 / 50%) 150%)",
-		"radial": "radial-gradient(in oklch, oklch(20% 0.06 253 / 90%), oklch(20% 0.03 204 / 50%) 400%)"
+		"linear": "linear-gradient(90deg in oklch, oklch(20% 0.06 253 / 90%), oklch(20% 0.03 192 / 50%) 150%)",
+		"radial": "radial-gradient(in oklch, oklch(20% 0.06 253 / 90%), oklch(20% 0.03 192 / 50%) 400%)"
 	},
 	"separator": {
-		"weak": "oklch(20% 0.032 85 / 10%)",
-		"DEFAULT": "oklch(20% 0.032 85 / 24%)",
+		"weak": "oklch(20% 0.032 73 / 10%)",
+		"DEFAULT": "oklch(20% 0.032 73 / 24%)",
 		"strong": "var(--color-text-regular)"
 	},
 	"shade": {
-		"weak": "oklch(40% 0.032 85 / 8%)",
-		"DEFAULT": "oklch(40% 0.032 85 / 16%)",
-		"strong": "oklch(40% 0.032 85 / 24%)",
-		"strongest": "oklch(40% 0.032 85 / 32%)"
+		"weak": "oklch(40% 0.032 73 / 8%)",
+		"DEFAULT": "oklch(40% 0.032 73 / 16%)",
+		"strong": "oklch(40% 0.032 73 / 24%)",
+		"strongest": "oklch(40% 0.032 73 / 32%)"
 	},
 	"surface": {
 		"0": "#fff",
-		"1": "oklch(95% 0.006 85)",
-		"2": "oklch(91% 0.01 85)",
-		"3": "oklch(87% 0.014 85)",
-		"4": "oklch(83% 0.018 85)"
+		"1": "oklch(95% 0.006 73)",
+		"2": "oklch(91% 0.01 73)",
+		"3": "oklch(87% 0.014 73)",
+		"4": "oklch(83% 0.018 73)"
 	},
 	"text": {
-		"regular": "oklch(20% 0.032 85)",
+		"regular": "oklch(20% 0.032 73)",
 		"strong": "#000",
 		"inverted": "#fff"
 	}
