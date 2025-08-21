@@ -76,10 +76,4 @@ const headings = blok.content.content.filter((x) => x.type === "heading");
 
 <script>
 	import "@justinribeiro/lite-youtube";
-	document.querySelectorAll(".table-container").forEach((container) => {
-		const { scrollWidth, clientWidth } = container;
-		if (scrollWidth > clientWidth) {
-			container.setAttribute("tabindex", "0");
-		}
-	});
 </script>

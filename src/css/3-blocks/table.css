@@ -2,10 +2,12 @@
 	.table-container {
 		inline-size: max-content;
 		max-inline-size: 100%;
+		outline: none;
 		overflow-x: auto;
 	}
 
 	.table-container:focus-visible {
+		@apply focus-ring;
 		outline-offset: 2px;
 	}
 
