@@ -58,7 +58,6 @@
 
 	main {
 		container: main / inline-size;
-		font-size: var(--text-0);
 	}
 
 	.content {
