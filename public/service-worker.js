@@ -1,4 +1,4 @@
-const VERSION = '0.0.17';
+const VERSION = '0.0.18';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -15,6 +15,7 @@ const filesToCache = [
 	'/fonts/WorkSans-VariableFont_wght.woff2',
 	'/fonts/WorkSans-Italic-VariableFont_wght.woff2',
 	'/fonts/NotoSansJP-VariableFont_wght.woff2',
+	'/js/match-container.js',
 	'/offline'
 ];
 
