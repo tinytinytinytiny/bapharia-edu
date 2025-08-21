@@ -4,7 +4,7 @@
 		--button-hover-background: var(--color-accent-light);
 		--button-active-background: var(--color-accent-dark);
 		--button-color: var(--color-text-inverted);
-		--button-icon-size: 24px;
+		--button-icon-size: 1.5rem;
 		--button-padding-block: var(--space-2xs);
 		--button-padding-inline: var(--space-s);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
@@ -65,7 +65,7 @@
 	}
 
 	.button:where([data-size="s"]) {
-		--button-icon-size: 16px;
+		--button-icon-size: 1rem;
 		--button-padding-inline: var(--space-xs);
 		--button-height: calc(var(--button-icon-size) + var(--button-padding-block) * 2 + 4px);
 		font-size: var(--text--1);
@@ -112,14 +112,17 @@
 	}
 
 	.icon-button {
-		font-size: 0;
-		font-size-adjust: none;
 		gap: 0;
 		padding-inline: var(--button-padding-block);
 	}
 
 	.icon-button .icon {
 		margin: 0;
+	}
+
+	.icon-button > :not(.icon) {
+		font-size: 0;
+		font-size-adjust: none;
 	}
 
 	.chip {

@@ -59,20 +59,18 @@ const currentYear = new Date().getFullYear();
 				<Nav />
 			</header>
 			<div class="main-region">
-				<main
-					id="main"
-					class="stack stack-space-xs"
-					{...storyblokAttributes}
-				>
-					<slot />
-					<a
-						id="main-skip-link"
-						href="#main"
-						class="skip-link button visually-hidden-onblur"
-						tabindex="1"
-					>
-						Skip to content
-					</a>
+				<main id="main" {...storyblokAttributes}>
+					<div class="stack stack-space-xs text-0">
+						<slot />
+						<a
+							id="main-skip-link"
+							href="#main"
+							class="skip-link button visually-hidden-onblur"
+							tabindex="1"
+						>
+							Skip to content
+						</a>
+					</div>
 				</main>
 			</div>
 			<footer>
