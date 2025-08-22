@@ -1,4 +1,4 @@
-const VERSION = '0.0.19';
+const VERSION = '0.0.20';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -16,7 +16,7 @@ const filesToCache = [
 	'/fonts/WorkSans-Italic-VariableFont_wght.woff2',
 	'/fonts/NotoSansJP-VariableFont_wght.woff2',
 	'/js/match-container.js',
-	'/offline'
+	'/offline/'
 ];
 
 self.addEventListener('install', (event) => {
@@ -119,7 +119,7 @@ self.addEventListener('fetch', (event) => {
 			} catch {
 				return caches
 					.match(request)
-					.then((response) => response || caches.match('/offline'));
+					.then((response) => response || caches.match('/offline/'));
 			}
 		}()); // end respondWith
 		return;

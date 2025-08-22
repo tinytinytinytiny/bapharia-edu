@@ -41,10 +41,14 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 						),
 					);
 					const ul = document.createElement("ul");
-					cachedPages.forEach((page) => {
+					new Set(
+						cachedPages.map(
+							(page) => page.url.replace(/\/$/, "") + "/",
+						),
+					).forEach((url) => {
 						const li = document.createElement("li");
 						const a = document.createElement("a");
-						const pathname = new URL(page.url).pathname;
+						const pathname = new URL(url).pathname;
 						a.href = pathname;
 						a.appendChild(document.createTextNode(pathname));
 						li.appendChild(a);

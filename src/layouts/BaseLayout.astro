@@ -7,7 +7,7 @@ import Nav from "@components/Nav/Nav.astro";
 
 const { title, storyblokAttributes = [] } = Astro.props;
 const navExpandedRoutes = navigationData.filter((x) => "children" in x);
-const rootPathName = "/" + Astro.url.pathname.split("/")[1];
+const rootPathName = "/" + Astro.url.pathname.split("/")[1] + "/";
 const isSubmenuOpen = Boolean(
 	navExpandedRoutes.find((x) => x.url === rootPathName),
 );
