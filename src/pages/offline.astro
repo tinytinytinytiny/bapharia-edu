@@ -4,10 +4,15 @@ import PageTitle from "@components/PageTitle/PageTitle.astro";
 ---
 
 <BaseLayout>
-	<PageTitle title="Offline" />
+	<PageTitle title="Offline">
+		<p><b>Congratulations!</b> You are touching grass</p>
+	</PageTitle>
 	<div class="content">
-		<div class="content-wrapper text-center stack">
-			<p>Congratulations! You are touching grass</p>
+		<div class="article content-wrapper stack">
+			<p class="h2">It appears you are offline.</p>
+			<p id="cache-empty">
+				And there is nothing you can do. Cry about it.
+			</p>
 		</div>
 	</div>
 </BaseLayout>

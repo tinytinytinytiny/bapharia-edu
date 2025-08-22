@@ -1,4 +1,4 @@
-const VERSION = '0.0.18';
+const VERSION = '0.0.19';
 const coreCacheName = VERSION + '_core';
 const imagesCacheName = VERSION + '_images';
 const pagesCacheName = VERSION + '_pages';
@@ -68,6 +68,16 @@ self.addEventListener('fetch', (event) => {
 		|| request.url.match(/\.(jpe?g|png|gif|svg|webp|avif)\/m\//)
 	) {
 		event.respondWith(async function() {
+			const responsePreloaded = await preloadResponse;
+			if (responsePreloaded) {
+				const copy = responsePreloaded.clone();
+				trimCache(imagesCacheName, limits.images);
+				caches
+					.open(imagesCacheName)
+					.then((imagesCache) => imagesCache.put(request, copy));
+				return responsePreloaded;
+			};
+
 			return fetch(request).then((responseFromFetch) => {
 				const copy = responseFromFetch.clone();
 				trimCache(imagesCacheName, limits.images);
@@ -77,9 +87,6 @@ self.addEventListener('fetch', (event) => {
 			}).catch(async () => {
 				const responseFromCache = await caches.match(request);
 				if (responseFromCache) return responseFromCache;
-
-				const responsePreloaded = await preloadResponse;
-				if (responsePreloaded) return responsePreloaded;
 			})
 		}()); // end respondWith
 		return;
@@ -91,21 +98,29 @@ self.addEventListener('fetch', (event) => {
 		&& !request.url.match(/\/(offline)$/)
 	) {
 		event.respondWith(async function() {
-			return fetch(request).then((responseFromFetch) => {
+			try {
+				const responsePreloaded = await preloadResponse;
+				if (responsePreloaded) {
+					const copy = responsePreloaded.clone();
+					trimCache(pagesCacheName, limits.pages);
+					caches
+						.open(pagesCacheName)
+						.then((pagesCache) => pagesCache.put(request, copy));
+					return responsePreloaded;
+				};
+
+				const responseFromFetch = await fetch(request);
 				const copy = responseFromFetch.clone();
 				trimCache(pagesCacheName, limits.pages);
-				caches.open(pagesCacheName)
+				caches
+					.open(pagesCacheName)
 					.then((pagesCache) => pagesCache.put(request, copy));
 				return responseFromFetch;
-			}).catch(async () => {
-				const responseFromCache = await caches.match(request);
-				if (responseFromCache) return responseFromCache;
-
-				const responsePreloaded = await preloadResponse;
-				if (responsePreloaded) return responsePreloaded;
-
-				return caches.match('/offline');
-			})
+			} catch {
+				return caches
+					.match(request)
+					.then((response) => response || caches.match('/offline'));
+			}
 		}()); // end respondWith
 		return;
 	}
