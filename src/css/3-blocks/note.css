@@ -36,8 +36,8 @@
 		font-size: var(--text-0);
 		grid-column: 1 / -1;
 		grid-row: 1 / -1;
-		padding-inline: var(--note-padding) max(var(--note-padding), var(--note-padding) + (var(--note-icon-box) + var(--note-icon-outline) - var(--note-padding)));
-		padding-block: var(--note-padding) max(var(--note-padding), var(--note-padding) + (var(--note-icon-box) + var(--note-icon-outline) - var(--note-padding)));
+		padding-inline: var(--note-padding) max(var(--note-padding), var(--note-padding) / 2 + var(--note-icon-box) + var(--note-icon-outline));
+		padding-block: var(--note-padding);
 	}
 
 	[data-style="tip"] .note-body {
