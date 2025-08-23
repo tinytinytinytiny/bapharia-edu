@@ -1,6 +1,6 @@
 @layer base {
 	#root {
-		--default-rack-space: var(--space-2xs);
+		--default-rack-space: var(--space-xs-cqi-rem);
 	}
 }
 

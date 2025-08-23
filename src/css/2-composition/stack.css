@@ -7,7 +7,7 @@
 	}
 
 	:is(figure, .figure) + :not(:where(h2, .h2, h3, .h3)) {
-		--stack-space-override: var(--space-l-cqi-rem);
+		--stack-space-override: var(--space-l-xl-cqi-rem);
 	}
 
 	h2,
@@ -35,7 +35,7 @@
 
 	figure,
 	.figure {
-		--stack-space-override: var(--space-l-cqi-rem);
+		--stack-space-override: var(--space-l-xl-cqi-rem);
 	}
 
 	.visually-hidden + * {

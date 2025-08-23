@@ -3,7 +3,7 @@
 		--content-padding-block: var(--space-s-l);
 		--content-padding-inline: 0px;
 		--default-gutter: var(--space-xs);
-		--default-stack-space: 1.25em;
+		--default-stack-space: 1.5em;
 		--grid-min-item-size: 18.875rem;
 		--main-region-limit: 107.75rem;
 		/* 11 columns */
