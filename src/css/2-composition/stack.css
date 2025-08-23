@@ -7,44 +7,35 @@
 	}
 
 	:is(figure, .figure) + :not(:where(h2, .h2, h3, .h3)) {
-		--stack-space-override: var(--space-l-rem);
+		--stack-space-override: var(--space-l-cqi-rem);
 	}
 
 	h2,
 	.h2,
 	h3,
-	.h3 {
-		--stack-space-override: 1.125em;
-	}
-
+	.h3,
 	h4,
 	.h4 {
-		--stack-space-override: 1.25em;
+		--stack-space-override: 1.5em;
 	}
 
 	h1 + *,
 	.h1 + * {
-		--stack-space-override: calc(var(--text-7) * 0.2375);
+		--stack-space-override: var(--space-s-cqi-rem);
 	}
 
 	h2 + *,
-	.h2 + * {
-		--stack-space-override: calc(var(--text-5) * 0.28125);
-	}
-
+	.h2 + *,
 	h3 + *,
-	.h3 + * {
-		--stack-space-override: calc(var(--text-3) * 0.28125);
-	}
-
+	.h3 + *,
 	h4 + *,
 	.h4 + * {
-		--stack-space-override: calc(var(--text-1) * 0.3125);
+		--stack-space-override: var(--space-xs-cqi-rem);
 	}
 
 	figure,
 	.figure {
-		--stack-space-override: var(--space-l-rem);
+		--stack-space-override: var(--space-l-cqi-rem);
 	}
 
 	.visually-hidden + * {

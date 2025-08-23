@@ -70,7 +70,7 @@
 	}
 
 	.content-wrapper {
-		--content-margin-start: calc(var(--text-5) * 1.25);
+		--content-margin-start: calc(var(--text-5) * 1.5);
 	}
 
 	:where(heading-nav) + .content-wrapper {
