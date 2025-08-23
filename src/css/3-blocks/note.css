@@ -2,7 +2,7 @@
 	.note {
 		--icon-size: 20px;
 		--note-icon-box: 36px;
-		--note-icon-outline: 4px;
+		--note-icon-outline: 6px;
 		--note-padding: var(--space-s-m);
 	}
 }
