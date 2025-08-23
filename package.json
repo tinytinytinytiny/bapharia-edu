@@ -30,6 +30,7 @@
 		"vite": "^4.3.9"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "2.2.0",
 		"@vitejs/plugin-basic-ssl": "^1.0.1"
 	}
 }

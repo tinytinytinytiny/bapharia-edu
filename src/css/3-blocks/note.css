@@ -1,46 +1,92 @@
-@layer components {
-
-	.note-title,
-	.note-body {
-		padding: var(--space-xs-s);
-	}
-
+@layer base {
 	.note {
-		background-color: var(--color-accent-surface);
+		--icon-size: 24px;
+		--note-icon-box: 32px;
+		--note-icon-outline: 1px;
+		--note-padding: var(--space-s-m);
+	}
+}
+
+@layer components {
+	.note {
 		border-radius: var(--border-radius);
-		box-sizing: content-box;
-		max-inline-size: var(--paragraph-max-width);
-		overflow: hidden;
-		padding: var(--space-3xs);
-	}
-
-	/* .note,
-	:where(.note) + * {
-		--stack-space-override: var(--space-m-rem);
-	} */
-
-	.note-title {
-		background-color: rgba(0, 0, 0, 0.85);
-		border-radius: var(--border-radius-s);
-		color: #fff;
-		font-weight: 700;
-		line-height: 1;
-		padding-block: var(--space-xs);
-	}
-
-	.note[data-style="tip"] {
-		background-color: var(--color-secondary-surface);
-	}
-
-	.note[data-style="caution"] {
-		background-color: var(--color-alert-surface);
-	}
-
-	.note-body {
-		line-height: 1.5;
+		container: note / inline-size;
+		display: grid;
+		grid-template-columns: minmax(0px, 1fr) var(--note-icon-box);
+		grid-template-rows: auto var(--note-icon-box);
+		overflow: clip;
 	}
 
 	.note a {
 		color: inherit;
+	}
+
+	.note-body {
+		background-color: var(--color-accent-surface);
+		clip-path: shape(from 0 0,
+				hline to 100%,
+				vline to calc(100% - var(--note-icon-box) - var(--border-radius) - var(--note-icon-outline)),
+				arc by calc(-1 * var(--border-radius)) var(--border-radius) of var(--border-radius) cw,
+				hline to calc(100% - var(--note-icon-box) - var(--note-icon-outline) + var(--border-radius)),
+				arc by calc(-1 * var(--border-radius)) var(--border-radius) of var(--border-radius) ccw,
+				vline to calc(100% - var(--border-radius)),
+				arc by calc(-1 * var(--border-radius)) var(--border-radius) of var(--border-radius) cw,
+				hline to 0,
+				close);
+		font-size: var(--text-0);
+		grid-column: 1 / -1;
+		grid-row: 1 / -1;
+		padding-inline: var(--note-padding) max(var(--note-padding), var(--note-padding) + (var(--note-icon-box) + var(--note-icon-outline) - var(--note-padding)));
+		padding-block: var(--note-padding) max(var(--note-padding), var(--note-padding) + (var(--note-icon-box) + var(--note-icon-outline) - var(--note-padding)));
+	}
+
+	[data-style="tip"] .note-body {
+		background-color: var(--color-secondary-surface);
+	}
+
+	[data-style="caution"] .note-body {
+		background-color: var(--color-alert-surface);
+	}
+
+	.note-title {
+		font-weight: 700;
+	}
+
+	.note-icon {
+		border-radius: var(--border-radius);
+		display: grid;
+		place-items: center;
+		width: var(--note-icon-box);
+		height: var(--note-icon-box);
+		grid-column: 2;
+		grid-row: 2;
+	}
+
+	.note-icon > * {
+		color: var(--color-text-regular);
+		grid-area: 1 / 1;
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+
+	.note[data-icon="top"] {
+		grid-template-rows: var(--note-icon-box) auto;
+	}
+
+	[data-icon="top"] .note-body {
+		clip-path: shape(from calc(100% - var(--note-icon-box) - var(--note-icon-outline) - var(--border-radius)) 0,
+				arc by var(--border-radius) var(--border-radius) of var(--border-radius) cw,
+				vline to calc(var(--note-icon-box) + var(--note-icon-outline) - var(--border-radius)),
+				arc by var(--border-radius) var(--border-radius) of var(--border-radius) ccw,
+				hline to calc(100% - var(--border-radius)),
+				arc by var(--border-radius) var(--border-radius) of var(--border-radius) cw,
+				vline to 100%,
+				hline to 0,
+				vline to 0,
+				close);
+	}
+
+	[data-icon="top"] .note-icon {
+		grid-row: 1;
 	}
 }
