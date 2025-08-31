@@ -59,7 +59,7 @@
 		}
 
 		.note-icon {
-			background-color: var(--color-accent-light);
+			background-color: var(--color-accent);
 			border-radius: var(--border-radius);
 			color: #fff;
 			display: grid;
@@ -92,6 +92,7 @@
 					hline to 0,
 					vline to 0,
 					close);
+			padding-inline: var(--note-padding);
 		}
 
 		[data-icon="top"] .note-icon {

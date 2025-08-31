@@ -1,8 +1,8 @@
 {
 	"accent": {
-		"DEFAULT": "oklch(40% 0.1 253)",
-		"light": "oklch(48% 0.13 253)",
-		"dark": "oklch(32% 0.07 253)",
+		"DEFAULT": "oklch(46% 0.11 253)",
+		"light": "oklch(54% 0.13 253)",
+		"dark": "oklch(38% 0.09 253)",
 		"surface": {
 			"DEFAULT": "oklch(92% 0.05 253)",
 			"tint": "oklch(76% 0.1 253 / 40%)"
@@ -24,7 +24,7 @@
 		"radial": "radial-gradient(in oklch, oklch(20% 0.06 253 / 90%), oklch(20% 0.03 192 / 50%) 400%)"
 	},
 	"separator": {
-		"weak": "oklch(20% 0.032 73 / 10%)",
+		"weak": "oklch(20% 0.032 73 / 12%)",
 		"DEFAULT": "oklch(20% 0.032 73 / 24%)",
 		"strong": "var(--color-text-regular)"
 	},
