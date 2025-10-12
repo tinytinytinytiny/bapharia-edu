@@ -50,14 +50,14 @@ export default (component, blok) => {
 					</thead>
 					<tbody>
 						${blok.content.tbody
-							.map(
-								(row) => `
+					.map(
+						(row) => `
 							<tr>
 								${row.body.map((cell) => `<td>${cell.value}</td>`).join("")}
 							</tr>
 						`,
-							)
-							.join("")}
+					)
+					.join("")}
 					</tbody>
 				</table>
 			</section>`;

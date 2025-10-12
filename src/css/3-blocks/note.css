@@ -41,6 +41,11 @@
 			overflow: clip;
 		}
 
+		.note[data-icon="bottom"],
+		.note:not([data-icon]) {
+			border-end-end-radius: 0;
+		}
+
 		.note-body {
 			background-color: var(--color-accent-surface);
 			clip-path: shape(from 0 0,
@@ -60,7 +65,7 @@
 
 		.note-icon {
 			background-color: var(--color-accent);
-			border-radius: var(--border-radius);
+			border-radius: calc(var(--border-radius) - var(--note-icon-outline));
 			color: #fff;
 			display: grid;
 			place-items: center;
@@ -78,6 +83,7 @@
 
 		/* TOP RIGHT */
 		.note[data-icon="top"] {
+			border-start-end-radius: 0;
 			grid-template-rows: var(--note-icon-box) auto;
 		}
 
